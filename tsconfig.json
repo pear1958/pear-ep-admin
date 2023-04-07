@@ -9,10 +9,32 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": "./",
+    // 找不到模块 @/xxx 或其相应的类型声明
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    },
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  // 指定要编译的路径列表
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts"
+  ],
+  // 指定要排除的、不编译的文件
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.js"
+  ],
 }
