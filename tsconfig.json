@@ -1,22 +1,27 @@
 {
+  // 配置编译选项
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
+    "target": "ESNext", // 用于指定编译之后的版本目标  如果设为 ESNEXT，则为最新 ES 规范版本
+    "useDefineForClassFields": true, // class编译优化
+    "module": "ESNext", // 指定要使用的模块标准
+    "moduleResolution": "Node", // 模块解析策略  有 node 和 classic 两种类型
+    "strict": true, // 是否启动所有类型检查
+    "jsx": "preserve", // 在 .tsx 文件里支持JSX
+    "resolveJsonModule": true, // 允许导入json文件
+    "isolatedModules": true, // 指定是否将每个文件作为单独的模块
+    // 发出额外的 JS 以简化对导入 CommonJS 模块的支持
+    // eg: fs模块 import fs from 'fs'  https://juejin.cn/post/7138308695900815373
+    "esModuleInterop": true, 
+    // 手动导入一些ts内置的声明文件  在 node_modules/typescript/lib目录下
     "lib": [
       "ESNext",
       "DOM"
     ],
-    "skipLibCheck": true,
-    "noEmit": true,
+    "allowJs": true, // 指定是否允许编译JS文件，默认false,即不编译JS文件
+    "skipLibCheck": true, // 是否跳过检查库文件
+    "noEmit": true, // 不生成编译后 输出的js文件
     "baseUrl": "./",
-    // 找不到模块 @/xxx 或其相应的类型声明
+    // import的时候 找不到模块 @/xxx 或其相应的类型声明
     "paths": {
       "@/*": [
         "src/*"
@@ -29,9 +34,11 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
     "vite.config.ts"
   ],
-  // 指定要排除的、不编译的文件
+  // 指定编译器 要排除的、不编译的文件
   "exclude": [
     "node_modules",
     "dist",

@@ -10,7 +10,21 @@ import '@/style/common.scss'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+import * as Icons from '@element-plus/icons-vue'
+
+import { registerGlobComp } from '@/components'
+
+import errorHandler from '@/utils/errorHandler'
 
 const app = createApp(App)
 
-app.use(router).use(ElementPlus).use(store).mount('#app')
+app.config.errorHandler = errorHandler
+
+registerGlobComp(app)
+
+// 注册element Icons组件
+Object.keys(Icons).forEach(key => {
+  app.component(key, Icons[key as keyof typeof Icons])
+})
+
+app.use(router).use(store).use(ElementPlus).mount('#app')

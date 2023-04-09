@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import svgLoader from 'vite-svg-loader'
 import viteCompression from 'vite-plugin-compression'
+// 使用此插件 需要 删掉package.json 中的 "type": "module" 配置
 import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
 import { formatEnv } from './src/utils/env'
 

@@ -1,5 +1,9 @@
 export const routes = [
   {
+    path: '/',
+    redirect: '/home'
+  },
+  {
     path: '/login',
     component: () => import('@/views/user/login.vue'),
     meta: { title: '登录' }
