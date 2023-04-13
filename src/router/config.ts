@@ -1,7 +1,7 @@
 export const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/form'
   },
   {
     path: '/login',
@@ -12,5 +12,10 @@ export const routes = [
     path: '/home',
     component: () => import('@/views/home/index.vue'),
     meta: { title: '首页' }
+  },
+  {
+    path: '/form',
+    component: () => import('@/views/form/index.vue'),
+    meta: { title: '表单' }
   },
 ]

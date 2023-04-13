@@ -11,14 +11,17 @@
     "isolatedModules": true, // 指定是否将每个文件作为单独的模块
     // 发出额外的 JS 以简化对导入 CommonJS 模块的支持
     // eg: fs模块 import fs from 'fs'  https://juejin.cn/post/7138308695900815373
-    "esModuleInterop": true, 
+    "esModuleInterop": true,
     // 手动导入一些ts内置的声明文件  在 node_modules/typescript/lib目录下
     "lib": [
       "ESNext",
       "DOM"
     ],
-    "allowJs": true, // 指定是否允许编译JS文件，默认false,即不编译JS文件
-    "skipLibCheck": true, // 是否跳过检查库文件
+    // 可以在 ts 中引入js文件 & 不报错
+    "allowJs": true, // 指定是否允许编译JS文件，默认false, 即不编译JS文件
+    // .d.ts 文件中的顶级声明必须以 "declare" 或 "export" 修饰符 开头
+    // false: 要检查, 则Js中有的类型, 前面必须加declare关键字
+    "skipLibCheck": true, // 是否跳过检查 声明文件
     "noEmit": true, // 不生成编译后 输出的js文件
     "baseUrl": "./",
     // import的时候 找不到模块 @/xxx 或其相应的类型声明

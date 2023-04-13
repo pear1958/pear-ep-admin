@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 import { ref, unref, watch } from 'vue'
-import pcaCodeJson from './lib/pca-code.json'
+import pcaCodeJson from './pca-code.json'
 
 // 同理 可以扩展 一个省市区街道四级联动组件 && 一个级联选择框的省市区组件
 

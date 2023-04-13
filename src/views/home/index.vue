@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts" name="Home">
+import { ref } from 'vue'
 import ChooseArea from '@/components/ChooseArea/index.vue'
 import Progress from '@/components/Progress/index.vue'
 import test from './test.vue'
