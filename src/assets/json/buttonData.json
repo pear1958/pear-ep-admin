@@ -1,0 +1,8 @@
+{
+  "code": 200,
+  "data": {
+    "driverManage": ["add", "delete", "edit", "query", "一键导出", "一键删除"],
+    "equipManage": ["设备列表1", "设备列表2"]
+  },
+  "msg": "成功"
+}

@@ -12,9 +12,9 @@ import { FormOptions } from '@/components/Form/types'
 const options: FormOptions[] = reactive([
   {
     type: 'input',
-    value: '',
-    prop: 'username',
     label: '用户名',
+    value: '',
+    field: 'username',
     placeholder: '请输入用户名',
     rules: [
       {
@@ -31,10 +31,44 @@ const options: FormOptions[] = reactive([
     ]
   },
   {
+    type: 'rate',
+    label: '评分',
+    value: 1,
+    rules: [],
+    field: 'rate',
+    control: [
+      {
+        // value: '',
+        handle: (val: any) => val < 3,
+        rule: {
+          type: 'input',
+          field: 'reason',
+          value: '默认信息',
+          label: '差评原因',
+          placeholder: '请输入用户名'
+        },
+        // 需要新增到哪个formItem的后面  不给默认就是当前formItem的后面
+        appendField: 'rate'
+      }
+      // {
+      //   value: 'append',
+      //   child: true,
+      //   rule: [
+      //     {
+      //       type: 'button',
+      //       slot: 'append', // <template #append>.com</template>
+      //       children: ['append'] // 文字名称
+      //     }
+      //   ],
+      //  prependField: 'username',
+      // }
+    ]
+  },
+  {
     type: 'input',
     value: '',
     label: '密码',
-    prop: 'password',
+    field: 'password',
     placeholder: '请输入密码',
     rules: [
       {
@@ -59,7 +93,7 @@ const options: FormOptions[] = reactive([
     type: 'select',
     value: '',
     placeholder: '请选择职位',
-    prop: 'role',
+    field: 'role',
     label: '职位',
     attrs: {
       style: {
@@ -94,7 +128,7 @@ const options: FormOptions[] = reactive([
   {
     type: 'checkbox-group',
     value: [],
-    prop: 'like',
+    field: 'like',
     label: '爱好',
     rules: [
       {
@@ -124,7 +158,7 @@ const options: FormOptions[] = reactive([
   {
     type: 'radio-group',
     value: '',
-    prop: 'gender',
+    field: 'gender',
     label: '性别',
     rules: [
       {

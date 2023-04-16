@@ -4,8 +4,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import '@/style/reset.scss'
-import '@/style/common.scss'
+import '@/style/index.scss'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'

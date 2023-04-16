@@ -31,7 +31,7 @@ export interface FormOptions {
   // 表单项的值
   value?: any
   // 表单的 propName
-  prop?: string
+  field?: string
   // 表单项的验证规则
   rules?: RuleItem[]
   placeholder?: string
@@ -63,7 +63,9 @@ export interface FormOptions {
     autoUpload?: boolean
     disabled?: boolean
     limit?: number
-  }
+  },
+  control?: any[],
+  [key: string]: any
 }
 
 // ValidateFieldsError: 导入位置是否正确

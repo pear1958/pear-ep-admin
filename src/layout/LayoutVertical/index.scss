@@ -1,0 +1,39 @@
+.layout {
+  // overflow: hidden;
+
+  :deep(.el-sub-menu .el-menu-item) {
+    background-color: #0c2135 !important;
+  }
+
+  :deep(.el-menu--vertical .el-menu .el-sub-menu__title) {
+    background-color: #0c2135 !important;
+  }
+
+  :deep(.el-menu-item:hover) {
+    color: #ffffff;
+  }
+
+  .sider {
+    height: 100vh;
+    background-color: #001529;
+
+    .logo {
+      height: $headerHeight;
+      border-bottom: 1px solid #282a35;
+      overflow: hidden;
+      background-color: #001529;
+      box-sizing: border-box;
+
+      span {
+        margin-left: 6px;
+        font-size: 21.5px;
+        font-weight: bold;
+        color: #dadada;
+      }
+    }
+
+    .menu {
+      height: calc(100vh - $headerHeight);
+    }
+  }
+}
