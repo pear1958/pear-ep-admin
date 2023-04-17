@@ -1,4 +1,4 @@
-.layout {
+.layout-box {
   // overflow: hidden;
 
   :deep(.el-sub-menu .el-menu-item) {
@@ -11,6 +11,10 @@
 
   :deep(.el-menu-item:hover) {
     color: #ffffff;
+  }
+
+  :deep(.el-menu-item.is-active) {
+    background-color: var(--el-color-primary) !important;
   }
 
   .sider {
@@ -34,6 +38,34 @@
 
     .menu {
       height: calc(100vh - $headerHeight);
+
+      :deep(.el-menu) {
+        border-right: none;
+      }
+    }
+  }
+
+  .right-layout {
+    // transition: all 0.2s;
+    height: 100vh;
+    overflow: hidden;
+
+    .header {
+      background-color: #ffffff;
+      height: $headerHeight;
+      line-height: $headerHeight;
+      padding: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 700;
+      transition: all 0.2s;
+    }
+
+    .content {
+      min-height: calc(100vh - $headerHeight - $tabHeight);
+      margin-top: $headerHeight + $tabHeight;
+      padding: 0;
     }
   }
 }

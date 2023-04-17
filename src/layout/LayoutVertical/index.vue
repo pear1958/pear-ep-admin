@@ -1,6 +1,6 @@
 <template>
-  <el-container class="layout">
-    <el-aside :width="isCollapse ? '64px' : '210px'" class="sider">
+  <el-container class="layout-box">
+    <el-aside :width="sideBarWidth" class="sider">
       <!-- Logo -->
       <div class="logo flex-center">
         <logo-svg />
@@ -26,9 +26,16 @@
       </div>
     </el-aside>
 
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
+    <el-container class="right-layout">
+      <el-header class="header" :style="{ left: sideBarWidth }">
+        <Header />
+      </el-header>
+
+      <Tabs />
+
+      <el-main class="content">
+        <Main />
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -40,9 +47,14 @@ import { useSystemStore } from '@/store/modules/system'
 import { filterMenuData } from '@/router/utils'
 import { usePermissionStore } from '@/store/modules/permission'
 import SubMenu from '../components/SubMenu/index.vue'
+import Header from '../components/Header/index.vue'
+import Tabs from '../components/Tabs/index.vue'
+import Main from '../components/Main/index.vue'
 import logoSvg from '@/assets/imgs/logo.svg?component'
 
 const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
+
+const sideBarWidth = computed(() => (isCollapse.value ? '64px' : '210px'))
 
 const route = useRoute()
 
