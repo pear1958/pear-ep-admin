@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import Collapse from './components/Collapse.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
@@ -105,9 +105,10 @@ function onClick(data) {
   padding: 0 10px;
   cursor: pointer;
   transition: color 0.3s;
+  color: #000;
 
   &:hover {
-    color: var(--primary-color);
+    color: var(--el-color-primary);
   }
 }
 </style>

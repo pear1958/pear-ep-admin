@@ -1,15 +1,12 @@
 import { App } from 'vue'
-// import ChooseArea from './ChooseArea/index.vue'
+import SvgIcon from './SvgIcon/index.vue'
 
 const components = {
-  // ChooseArea
+  SvgIcon
 }
-
-type keyType = keyof typeof components
 
 export function registerGlobComp(app: App) {
-  Object.keys(components).forEach(key => {
-    app.component(key, components[key as keyType])
-  })
+  for (const [key, component] of Object.entries(components)) {
+    app.component(key, component)
+  }
 }
-

@@ -46,13 +46,7 @@ emitter.on('refreshPage', val => {
   padding: 20px;
   box-sizing: border-box;
   background-color: $mainBgColor;
+  // 防止切换路由时出现 x y 轴的滚动条
+  overflow-x: hidden;
 }
-</style>
-
-<style lang="scss">
-// .el-main.content {
-//   &::-webkit-scrollbar {
-//     background-color: $mainBgColor;
-//   }
-// }
 </style>

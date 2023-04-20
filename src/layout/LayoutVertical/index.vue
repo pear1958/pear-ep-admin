@@ -11,7 +11,7 @@
         <el-scrollbar>
           <!-- activeMenu: 页面加载时默认激活菜单的 index #001529 -->
           <el-menu
-            :default-active="activeMenu"
+            :default-active="activeKey"
             :router="false"
             :collapse="isCollapse"
             :collapse-transition="false"
@@ -19,6 +19,7 @@
             background-color="#001529"
             text-color="#ffffffa6"
             active-text-color="#ffffff"
+            @select="handleClick"
           >
             <SubMenu :menuList="menuData" />
           </el-menu>
@@ -41,8 +42,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 import { useSystemStore } from '@/store/modules/system'
 import { filterMenuData } from '@/router/utils'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -52,17 +53,26 @@ import Tabs from '../components/Tabs/index.vue'
 import Main from '../components/Main/index.vue'
 import logoSvg from '@/assets/imgs/logo.svg?component'
 
-const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
-
-const sideBarWidth = computed(() => (isCollapse.value ? '64px' : '210px'))
-
+const router = useRouter()
 const route = useRoute()
 
-const activeMenu = computed(() => route.path)
+const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
+const sideBarWidth = computed(() => (isCollapse.value ? '64px' : '210px'))
+const activeKey = computed(() => route.path)
 
 const menuData = computed(() => filterMenuData(usePermissionStore().menuList))
 
-console.log('menuData', menuData)
+function handleClick(key: string) {
+  // 获取点击的路由
+  const clickRoute = router.getRoutes().find(item => item.path === key) as RouteRecordRaw
+
+  // 外部链接
+  if (clickRoute.meta?.link) {
+    return window.open(clickRoute.meta?.link as string, '_blank')
+  }
+
+  router.push(key)
+}
 </script>
 
 <style lang="scss" scoped>

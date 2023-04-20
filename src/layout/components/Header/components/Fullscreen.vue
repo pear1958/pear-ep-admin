@@ -1,13 +1,13 @@
 <template>
   <div class="header-icon" @click="toggle">
-    <el-icon>
-      <FullScreen v-if="!isFullscreen" />
-      <div v-else>退出</div>
-    </el-icon>
+    <!-- v-if="!isFullscreen" -->
+    <!-- <svg-icon name="xianxingdiqiu" /> -->
+    <!-- <svg-icon name="xianxingdiqiu" /> -->
+    <svg-icon name="arrow-down" />
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 const isFullscreen = ref(false)
@@ -39,3 +39,10 @@ function toggle() {
   }
 }
 </script>
+
+<style lang="scss">
+.test-i {
+  font-size: 20px;
+  color: red;
+}
+</style>

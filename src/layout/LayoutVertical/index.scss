@@ -1,5 +1,7 @@
 .layout-box {
-  // overflow: hidden;
+  // 解决关闭全屏时, Y轴出现滚动条
+  height: 100vh;
+  overflow: hidden;
 
   :deep(.el-sub-menu .el-menu-item) {
     background-color: #0c2135 !important;
@@ -20,6 +22,7 @@
   .sider {
     height: 100vh;
     background-color: #001529;
+    transition: all 0.2s;
 
     .logo {
       height: $headerHeight;
@@ -36,20 +39,16 @@
       }
     }
 
-    .menu {
+    :deep(.menu) {
       height: calc(100vh - $headerHeight);
 
-      :deep(.el-menu) {
+      .el-menu {
         border-right: none;
       }
     }
   }
 
   .right-layout {
-    // transition: all 0.2s;
-    height: 100vh;
-    overflow: hidden;
-
     .header {
       background-color: #ffffff;
       height: $headerHeight;
