@@ -8,25 +8,35 @@
     <div class="header-right">
       <!-- <Search /> -->
       <Fullscreen />
-      <!-- <a-dropdown :trigger="['click']">
+
+      <el-dropdown trigger="click" @command="onClick">
         <div class="user">
-          <a-avatar :size="26" :src="avatar"></a-avatar>
+          <el-avatar :size="26" :src="avatarUrl"></el-avatar>
           <span class="name">Admin</span>
         </div>
-        <template #overlay>
-          <a-menu @click="onClick">
-            <a-menu-item key="0">
-              <user-outlined />
+
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="0">
+              <el-icon>
+                <User />
+              </el-icon>
               <span class="user-text">个人中心</span>
-            </a-menu-item>
-            <a-menu-item key="1">
-              <poweroff-outlined />
+            </el-dropdown-item>
+
+            <el-dropdown-item command="1">
+              <el-icon>
+                <Aim />
+              </el-icon>
               <span class="user-text">退出登录</span>
-            </a-menu-item>
-          </a-menu>
+            </el-dropdown-item>
+          </el-dropdown-menu>
         </template>
-      </a-dropdown>
-      <setting-outlined @click="openSetDrawer" class="header-icon" /> -->
+      </el-dropdown>
+
+      <el-icon @click="openSetDrawer" :size="18" class="header-icon">
+        <Setting />
+      </el-icon>
     </div>
   </div>
 </template>
@@ -41,7 +51,7 @@ import Fullscreen from './components/Fullscreen.vue'
 import emitter from '@/utils/mitt'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'
-import avatar from '@/assets/imgs/avatar.jpg'
+import avatarUrl from '@/assets/imgs/avatar.jpg'
 
 const openSetDrawer = () => {
   emitter.emit('openSetDrawer')
@@ -49,14 +59,13 @@ const openSetDrawer = () => {
 
 const router = useRouter()
 
-function onClick(data) {
-  switch (data.key) {
+function onClick(key: string) {
+  switch (key) {
     case '0':
       // router.push('/userCenter/index')
       break
 
     case '1':
-      // localStorage.removeItem('token')
       localStorage.clear()
       usePermissionStore().$reset()
       useUserStore().$reset()
@@ -82,6 +91,7 @@ function onClick(data) {
 
 .user {
   padding: 0 8px;
+  padding-right: 14px;
   cursor: pointer;
   @include flex();
 

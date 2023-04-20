@@ -75,7 +75,7 @@ export const useSystemStore = defineStore({
     },
     // 删除多个Tab
     // 不传fullPath则是 删除所有Tab
-    removeMultipleTab(fullPath: string) {
+    removeMultipleTab(fullPath?: string) {
       this.tabList = this.tabList.filter(item => item.fullPath === fullPath)
     },
     removeLeftTab(fullPath: string) {

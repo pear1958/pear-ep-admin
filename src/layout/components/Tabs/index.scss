@@ -1,0 +1,41 @@
+.tabs-box {
+  height: $tabHeight;
+  line-height: $tabHeight;
+  position: fixed;
+  right: 0;
+  top: $headerHeight;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  // 约等于 border-bottom
+  box-shadow: 0 0 1px #888;
+
+  :deep(.el-tabs) {
+    margin-top: 1px;
+
+    .el-tabs__content {
+      display: none;
+    }
+
+    .el-tabs__header {
+      height: calc($tabHeight - 2px);
+      margin: 0 !important;
+      border-bottom: none !important;
+
+      .el-tabs__item {
+        height: calc($tabHeight - 2px);
+        font-size: 12px;
+        border: 1px solid var(--el-border-color-light);
+        margin: 0 3px;
+      }
+
+      .el-tabs__nav-prev,
+      .el-tabs__nav-next {
+        line-height: $tabHeight;
+      }
+
+      .el-tabs__nav {
+        border: none;
+      }
+    }
+  }
+}

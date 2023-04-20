@@ -59,6 +59,8 @@
       top: 0;
       z-index: 700;
       transition: all 0.2s;
+      border-bottom: 1px solid var(--el-border-color-light);
+      box-sizing: border-box;
     }
 
     .content {

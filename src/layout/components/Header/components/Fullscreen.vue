@@ -1,14 +1,19 @@
 <template>
   <div class="header-icon" @click="toggle">
+    <Fullscreen v-if="!isFullscreen" />
+    <FullscreenExit v-else />
     <!-- v-if="!isFullscreen" -->
     <!-- <svg-icon name="xianxingdiqiu" /> -->
     <!-- <svg-icon name="xianxingdiqiu" /> -->
-    <svg-icon name="arrow-down" />
+    <!-- <svg-icon name="arrow-down" /> -->
+    <!-- <div>hh</div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import Fullscreen from '@/assets/svg/Fullscreen.svg?component'
+import FullscreenExit from '@/assets/svg/FullscreenExit.svg?component'
 
 const isFullscreen = ref(false)
 

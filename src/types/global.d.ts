@@ -23,3 +23,9 @@ declare namespace Menu {
     rank?: number
   }
 }
+
+declare interface tabItem {
+  title: string
+  fullPath: string
+  name: string
+}
