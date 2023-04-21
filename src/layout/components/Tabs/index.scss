@@ -71,7 +71,8 @@
     border-left: 1px solid var(--el-border-color-light);
     @include flex();
 
-    .dropdownIcon {
+    .dropdown-icon {
+      font-size: 17px;
       cursor: pointer;
 
       &:focus-visible {

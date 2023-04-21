@@ -25,11 +25,8 @@
 
     <div class="more-button">
       <el-dropdown>
-        <span class="dropdownIcon">
-          <!-- <svg-icon name="arrow-down" /> -->
-          <el-icon>
-            <ArrowDownBold />
-          </el-icon>
+        <span class="dropdown-icon">
+          <svg-icon name="arrow-down" />
         </span>
 
         <template #dropdown>

@@ -6,6 +6,10 @@ import store from './store'
 
 import '@/style/index.scss'
 
+// 注册使用 svg icon
+// https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
+import 'virtual:svg-icons-register'
+
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
