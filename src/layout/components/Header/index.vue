@@ -6,7 +6,7 @@
     </div>
 
     <div class="header-right">
-      <!-- <Search /> -->
+      <Search />
       <Fullscreen />
 
       <el-dropdown trigger="click" @command="onClick">
@@ -41,8 +41,7 @@
 import { useRouter } from 'vue-router'
 import Collapse from './components/Collapse.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
-// import Search from './components/Search.vue'
-// import LockScreen from './components/LockScreen.vue'
+import Search from './components/Search.vue'
 import Fullscreen from './components/Fullscreen.vue'
 import emitter from '@/utils/mitt'
 import { useUserStore } from '@/store/modules/user'

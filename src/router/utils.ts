@@ -5,10 +5,10 @@ import { deepClone } from '@/utils/func'
  * @param {Array} menuList 所有菜单列表
  * @return Array
  */
-export function getFlatArr(menuList: Menu.MenuOptions[]) {
+export function getFlatArr(menuList: MenuList) {
   let newMenuList = JSON.parse(JSON.stringify(menuList))
 
-  return newMenuList.reduce((pre: Menu.MenuOptions[], current: Menu.MenuOptions) => {
+  return newMenuList.reduce((pre: MenuList, current: MenuItem) => {
     let flatArr = [...pre, current]
 
     if (current.children) flatArr = [...flatArr, ...getFlatArr(current.children)]
@@ -23,11 +23,11 @@ export function getFlatArr(menuList: Menu.MenuOptions[]) {
  * @param {menuItem[]} menuList 所有的菜单数据
  * @return Array
  */
-export function getBreadcrumbList(path: string, menuList: Menu.MenuOptions[]) {
-  let matchRouteList: Menu.MenuOptions[] = []
+export function getBreadcrumbList(path: string, menuList: MenuList) {
+  let matchRouteList: MenuList = []
 
   try {
-    const getNodePath = (node: Menu.MenuOptions) => {
+    const getNodePath = (node: MenuItem) => {
       matchRouteList.push(node)
 
       // 找到该路径, 结束循环
@@ -46,11 +46,11 @@ export function getBreadcrumbList(path: string, menuList: Menu.MenuOptions[]) {
 }
 
 // 递归删除meta中 showInMenu 为false的路由
-export function filterMenuData(menuData: Menu.MenuOptions[]) {
+export function filterMenuData(menuData: MenuList) {
   // 处理第一层的菜单数据
-  const tempData = deepClone(menuData).filter((item: Menu.MenuOptions) => item.meta?.showInMenu !== false)
+  const tempData = deepClone(menuData).filter((item: MenuItem) => item.meta?.showInMenu !== false)
 
-  tempData.forEach((item: Menu.MenuOptions) => {
+  tempData.forEach((item: MenuItem) => {
     if (item.children) item.children = filterMenuData(item.children)
   })
 

@@ -24,6 +24,10 @@ declare namespace Menu {
   }
 }
 
+declare type MenuItem = Menu.MenuOptions
+
+declare type MenuList = MenuItem[]
+
 declare interface tabItem {
   title: string
   fullPath: string

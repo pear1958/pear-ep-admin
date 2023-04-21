@@ -10,6 +10,8 @@ import fullscreenOutlined from '@iconify-icons/ant-design/fullscreen-outlined'
 import fullscreenExitOutlined from '@iconify-icons/ant-design/fullscreen-exit-outlined'
 import userOutlined from '@iconify-icons/ant-design/user-outlined'
 import poweroffOutlined from '@iconify-icons/ant-design/poweroff-outlined'
+import searchOutlined from '@iconify-icons/ant-design/search-outlined'
+import enterOutlined from '@iconify-icons/ant-design/enter-outlined'
 
 const offlineIcons = {
   'reload-outlined': reloadOutlined,
@@ -21,7 +23,9 @@ const offlineIcons = {
   'fullscreen-outlined': fullscreenOutlined,
   'fullscreen-exit-outlined': fullscreenExitOutlined,
   'user-outlined': userOutlined,
-  'poweroff-outlined': poweroffOutlined
+  'poweroff-outlined': poweroffOutlined,
+  'search-outlined': searchOutlined,
+  'enter-outlined': enterOutlined
 }
 
 export const regisOfflineIcons = () => {

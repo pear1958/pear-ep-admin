@@ -1,7 +1,3 @@
-import '@vue/runtime-core'
-
-export {}
-
 import SvgIcon from '../components/SvgIcon/index.vue'
 import { IconifyOffline, IconifyOnline } from '../components/Icon'
 
