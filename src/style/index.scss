@@ -1,2 +1,13 @@
 @import './reset.scss';
 @import './common.scss';
+@import './dark.scss';
+
+@import '../assets/fonts/index.scss';
+
+body {
+  font-size: 14px;
+}
+
+button:focus {
+  outline: none;
+}

@@ -1,6 +1,6 @@
 <template>
   <el-container class="layout-box">
-    <el-aside :width="sideBarWidth" class="sider">
+    <el-aside :width="sideBarWidth" class="sider" id="sider">
       <!-- Logo -->
       <div class="logo flex-center">
         <logo-svg />
@@ -16,7 +16,7 @@
             :collapse="isCollapse"
             :collapse-transition="false"
             unique-opened
-            background-color="#001529"
+            :background-color="!isDark ? '#001529' : '#1f1f1f'"
             text-color="#ffffffa6"
             active-text-color="#ffffff"
             @select="handleClick"
@@ -61,6 +61,8 @@ const sideBarWidth = computed(() => (isCollapse.value ? '64px' : '210px'))
 const activeKey = computed(() => route.path)
 
 const menuData = computed(() => filterMenuData(usePermissionStore().menuList))
+
+const isDark = computed(() => useSystemStore().isDark)
 
 function handleClick(key: string) {
   // 获取点击的路由

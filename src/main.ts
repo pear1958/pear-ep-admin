@@ -15,13 +15,16 @@ import 'element-plus/dist/index.css'
 
 import * as Icons from '@element-plus/icons-vue'
 
+// element-plus 内置暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 import { registerGlobComp } from '@/components'
 
 import errorHandler from '@/utils/errorHandler'
 
 // 导入 下载的 iconfont
-import './assets/iconfont/iconfont.js'
-import './assets/iconfont/iconfont.css'
+// import './assets/iconfont/iconfont.js'
+// import './assets/iconfont/iconfont.css'
 
 const app = createApp(App)
 

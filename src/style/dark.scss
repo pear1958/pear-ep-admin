@@ -1,0 +1,70 @@
+html.dark {
+  $bg-color: var(--el-bg-color);
+  $border-color: var(--el-border-color-light);
+  $text-color: var(--el-text-color-primary); // #E5EAF3
+
+  .layout-box,
+  .header,
+  .tabs-box {
+    background-color: $bg-color !important;
+  }
+
+  #sider {
+    background-color: #1f1f1f;
+
+    > .logo {
+      background-color: #1f1f1f !important;
+    }
+
+    // 菜单栏暗黑模式适配
+
+    .el-sub-menu .el-menu-item,
+    .el-menu--vertical .el-menu .el-sub-menu__title {
+      background-color: #141414 !important;
+    }
+
+    .el-menu-item.is-active {
+      background-color: var(--el-color-primary) !important;
+    }
+  }
+
+  .right-layout > .content {
+    border-radius: 4px;
+    background-color: $bg-color !important;
+  }
+
+  .right-layout > .content .main {
+    border: 1px solid $border-color;
+    background-color: $bg-color !important;
+  }
+
+  .tabs-box .el-dropdown span {
+    color: #c9d1d9 !important;
+  }
+
+  .tabs-box .is-active .el-dropdown span {
+    color: $text-color !important;
+  }
+
+  .header .el-breadcrumb__item {
+    .link {
+      color: rgba(255, 255, 255, 0.8) !important;
+
+      &:hover {
+        color: var(--el-color-primary) !important;
+      }
+    }
+
+    .el-breadcrumb__separator {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .text {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  .header-icon {
+    color: var(--el-text-color-regular) !important;
+  }
+}

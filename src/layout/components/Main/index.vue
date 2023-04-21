@@ -27,26 +27,9 @@ emitter.on('refreshPage', val => {
 
 <style lang="scss" scoped>
 .main {
-  min-height: calc(100vh - $headerHeight - $tabHeight);
   padding: 20px;
+  min-height: calc(100vh - $headerHeight - $tabHeight - 40px);
+  background-color: #ffffff;
   box-sizing: border-box;
-  background-color: $mainBgColor;
-}
-
-.el-main {
-  &::-webkit-scrollbar {
-    background-color: $mainBgColor;
-  }
-}
-</style>
-
-<style lang="scss" scoped>
-.main {
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: $mainBgColor;
-  // 防止切换路由时出现 x y 轴的滚动条
-  overflow-x: hidden;
 }
 </style>

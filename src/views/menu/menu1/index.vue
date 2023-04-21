@@ -7,7 +7,4 @@
 <script setup></script>
 
 <style lang="scss" scoped>
-.page-box {
-  background-color: #ffffff;
-}
 </style>

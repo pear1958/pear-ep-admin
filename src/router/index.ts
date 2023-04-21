@@ -4,6 +4,7 @@ import NProgress from '@/config/progress'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'
 import { basicRouter } from '@/router/modules/basic'
+import { useTheme } from '@/hooks/useTheme'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
@@ -76,6 +77,9 @@ router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title ? `${to.meta.title} - V-Admin` : 'V-Admin'
 
   usePermissionStore().setRouteName(to.name as string)
+
+  // 页面初始化时, 还原 主题 & 暗黑模式
+  useTheme().initThemeAndDark()
 
   // 没有token, 访问登陆页 -> 直接放行
   // 有token, 访问登陆页 -> 留在 当前页
