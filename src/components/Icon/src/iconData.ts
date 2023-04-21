@@ -7,7 +7,9 @@ import verticalLeftOutlined from '@iconify-icons/ant-design/vertical-left-outlin
 import columnWidthOutlined from '@iconify-icons/ant-design/column-width-outlined'
 import minusOutlined from '@iconify-icons/ant-design/minus-outlined'
 import fullscreenOutlined from '@iconify-icons/ant-design/fullscreen-outlined'
-import FullscreenExitOutlined from '@iconify-icons/ant-design/fullscreen-exit-outlined'
+import fullscreenExitOutlined from '@iconify-icons/ant-design/fullscreen-exit-outlined'
+import userOutlined from '@iconify-icons/ant-design/user-outlined'
+import poweroffOutlined from '@iconify-icons/ant-design/poweroff-outlined'
 
 const offlineIcons = {
   'reload-outlined': reloadOutlined,
@@ -17,7 +19,9 @@ const offlineIcons = {
   'column-width-outlined': columnWidthOutlined,
   'minus-outlined': minusOutlined,
   'fullscreen-outlined': fullscreenOutlined,
-  'fullscreen-exit-outlined': FullscreenExitOutlined
+  'fullscreen-exit-outlined': fullscreenExitOutlined,
+  'user-outlined': userOutlined,
+  'poweroff-outlined': poweroffOutlined
 }
 
 export const regisOfflineIcons = () => {

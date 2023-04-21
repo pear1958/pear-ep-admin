@@ -18,16 +18,12 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="0">
-              <el-icon>
-                <User />
-              </el-icon>
+              <IconifyOffline icon="user-outlined" />
               <span class="user-text">个人中心</span>
             </el-dropdown-item>
 
             <el-dropdown-item command="1">
-              <el-icon>
-                <Aim />
-              </el-icon>
+              <IconifyOffline icon="poweroff-outlined" />
               <span class="user-text">退出登录</span>
             </el-dropdown-item>
           </el-dropdown-menu>
