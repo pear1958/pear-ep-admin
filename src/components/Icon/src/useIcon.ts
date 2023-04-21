@@ -1,6 +1,6 @@
+import { iconType } from './types'
 import { h, defineComponent, Component } from 'vue'
-import { iconType } from './type'
-import { IconOffline, IconOnline, IconFont } from '../index'
+import { IconifyOffline, iconifyOnline, IconFont } from '../index'
 
 /**
  * @description: 在函数中渲染图标组件, 支持传attr
@@ -12,13 +12,16 @@ import { IconOffline, IconOnline, IconFont } from '../index'
 
 // 用法示例:
 
+// 在 main.js 中 导入 下载的 iconfont
+// import './assets/iconfont/iconfont.js'
+// import './assets/iconfont/iconfont.css'
+
 // 不传第二个参数, 默认就以 font-class 的形式渲染 IconFont
 // useIcon('IF-icon-water' || 'IF-icon-water svg' || 'IF-icon-water uni')
-// useIcon(() => svg)
-// useIcon('edit') || useIcon('edit', { online: true })
 
-// import { useIcon } from '@/components/Icon/src/useIcon'
-// <el-button type="primary" :icon="useIcon('user', { color: '#fff' })">切换角色</el-button>
+// useIcon('ant-design:bar-chart-outlined', { online: true, color: 'red' })
+
+// useIcon('vertical-left-outlined') || useIcon('vertical-left-outlined', { color: '#000' })
 
 export function useIcon(icon: any, attrs?: iconType): Component {
   const ifReg = /^IF-/
@@ -43,7 +46,7 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     return defineComponent({
       name: 'Icon',
       render() {
-        const IconifyIcon = attrs && attrs['online'] ? IconOnline : IconOffline
+        const IconifyIcon = attrs && attrs['online'] ? iconifyOnline : IconifyOffline
 
         return h(IconifyIcon, {
           icon,

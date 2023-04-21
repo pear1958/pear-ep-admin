@@ -44,12 +44,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, unref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, unref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { type TabsPaneContext, ElMessage } from 'element-plus'
 import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
 import Maximize from './Maximize.vue'
+import { useTabsDrag } from '@/layout/hooks/useTabs'
 // import { useIcon } from '@/components/Icon/src/useIcon'
 
 const route = useRoute()
@@ -65,6 +66,10 @@ const activeKey = ref(route.fullPath)
 
 // Tabs（白名单地址，不需要添加到 tabs 的路由地址）
 const NAME_WHITE_LIST = ['403', '404', '500', 'login']
+
+onMounted(() => {
+  useTabsDrag()
+})
 
 // 监听路由的变化
 watch(

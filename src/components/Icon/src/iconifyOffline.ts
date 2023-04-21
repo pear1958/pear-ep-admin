@@ -1,24 +1,21 @@
 import { h, defineComponent } from 'vue'
 import { Icon } from '@iconify/vue'
 
-// Iconify Icon在Vue里在线使用（用于外网环境）
 export default defineComponent({
-  name: 'IconOnline',
+  name: 'IconifyOffline',
   components: { Icon },
   props: {
-    // 图标名称
     icon: {
-      type: String,
-      default: ''
+      default: null
     }
   },
   render() {
-    const attrs = this.$attrs as any
+    const attrs = this.$attrs
 
     return h(
-      Icon,
+      Icon as any,
       {
-        icon: `${this.icon}`,
+        icon: this.icon,
         style: attrs?.style ? Object.assign(attrs.style, { outline: 'none' }) : { outline: 'none' },
         ...attrs
       },

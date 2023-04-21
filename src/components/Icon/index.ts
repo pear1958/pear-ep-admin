@@ -1,6 +1,8 @@
-// 离线图标组件
-import IconOffline from './src/iconOffline'
-import IconOnline from './src/iconOnline'
+import IconifyOffline from './src/iconifyOffline'
+import iconifyOnline from './src/iconifyOffline'
 import IconFont from './src/iconfont'
 
-export { IconOffline, IconOnline, IconFont }
+import { regisOfflineIcons } from './src/iconData'
+import { useIcon } from './src/useIcon'
+
+export { IconifyOffline, iconifyOnline, IconFont, regisOfflineIcons, useIcon }
