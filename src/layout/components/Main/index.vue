@@ -42,7 +42,7 @@ emitter.on('refreshPage', val => {
 
 <style lang="scss" scoped>
 .main {
-  min-height: calc(100vh - $headerHeight - $tabHeight);
+  height: 100%;
   padding: 20px;
   box-sizing: border-box;
   background-color: $mainBgColor;

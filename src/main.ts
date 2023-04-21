@@ -15,6 +15,10 @@ import { registerGlobComp } from '@/components'
 
 import errorHandler from '@/utils/errorHandler'
 
+// 导入 下载的 iconfont
+import './assets/iconfont/iconfont.js'
+import './assets/iconfont/iconfont.css'
+
 const app = createApp(App)
 
 app.config.errorHandler = errorHandler

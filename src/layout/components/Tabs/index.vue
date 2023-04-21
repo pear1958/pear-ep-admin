@@ -1,6 +1,8 @@
 <template>
+  <Maximize v-if="mainMaximize" />
+
   <div class="tabs-box" :style="{ left: sideBarWidth }">
-    <el-tabs type="card" @tab-click="tabClick" closable @tab-remove="removeTab">
+    <el-tabs v-model="activeKey" type="card" @tab-click="tabClick" closable @tab-remove="removeTab">
       <el-tab-pane v-for="tab in tabList" :key="tab.fullPath" :name="tab.fullPath">
         <template #label>
           <el-dropdown trigger="contextmenu" @command="onClick($event, tab)">
@@ -8,38 +10,58 @@
 
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item :icon="Plus" command="refresh">刷新</el-dropdown-item>
-                <el-dropdown-item :icon="CirclePlusFilled" command="closeCurrentTab">关闭</el-dropdown-item>
-                <el-dropdown-item :icon="CirclePlus" command="closeLeftTab" divided>关闭左侧标签页</el-dropdown-item>
-                <el-dropdown-item :icon="Check" command="closeRightTab">关闭右侧标签页</el-dropdown-item>
-                <el-dropdown-item :icon="CircleCheck" command="closeOtherTab" divided>关闭其它标签页</el-dropdown-item>
-                <el-dropdown-item :icon="CircleCheck" command="closeAllTab">关闭所有标签页</el-dropdown-item>
+                <el-dropdown-item icon="CircleCheck" command="refresh">刷新</el-dropdown-item>
+                <el-dropdown-item icon="CircleCheck" command="closeCurrentTab">关闭</el-dropdown-item>
+                <el-dropdown-item icon="CircleCheck" command="closeLeftTab" divided>关闭左侧标签页</el-dropdown-item>
+                <el-dropdown-item icon="CircleCheck" command="closeRightTab">关闭右侧标签页</el-dropdown-item>
+                <el-dropdown-item icon="CircleCheck" command="closeOtherTab" divided>关闭其它标签页</el-dropdown-item>
+                <el-dropdown-item icon="CircleCheck" command="closeAllTab">关闭所有标签页</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
         </template>
       </el-tab-pane>
     </el-tabs>
+
+    <div class="more-button">
+      <el-dropdown>
+        <span class="dropdownIcon">
+          <!-- <svg-icon name="arrow-down" /> -->
+          <el-icon>
+            <ArrowDownBold />
+          </el-icon>
+        </span>
+
+        <template #dropdown>
+          <el-dropdown-menu class="dropdown-menu">
+            <el-dropdown-item command="refresh" @click="refresh">刷新</el-dropdown-item>
+            <el-dropdown-item command="maximizeMain" @click="maximizeMain">最大化</el-dropdown-item>
+            <el-dropdown-item command="closeCurrentTab" @click="closeCurrentTab" divided>关闭当前</el-dropdown-item>
+            <el-dropdown-item command="closeOtherTab" @click="closeOtherTab">关闭其它</el-dropdown-item>
+            <el-dropdown-item command="closeAllTab" @click="closeAllTab">关闭所有</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, nextTick, ref, unref, watch } from 'vue'
-import { useSystemStore } from '@/store/modules/system'
 import { useRoute, useRouter } from 'vue-router'
 import { type TabsPaneContext, ElMessage } from 'element-plus'
+import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
-
-import { ArrowDown, Check, CircleCheck, CirclePlus, CirclePlusFilled, Plus } from '@element-plus/icons-vue'
+import Maximize from './Maximize.vue'
+// import { useIcon } from '@/components/Icon/src/useIcon'
 
 const route = useRoute()
 const router = useRouter()
 
 const systemStore = useSystemStore()
-
 const sideBarWidth = computed(() => (systemStore.sideBar.isCollapse ? '64px' : '210px'))
-
 const tabList = computed(() => systemStore.tabList)
+const mainMaximize = computed(() => systemStore.mainMaximize)
 
 // 默认值
 const activeKey = ref(route.fullPath)
@@ -88,6 +110,10 @@ const removeTab = (fullPath: string) => {
   // 删除Tab
   const isCurrentTab = fullPath === route.fullPath
   systemStore.removeTab(fullPath, isCurrentTab)
+}
+
+const maximizeMain = () => {
+  systemStore.setMainMaximize(true)
 }
 
 // 刷新当前Tab

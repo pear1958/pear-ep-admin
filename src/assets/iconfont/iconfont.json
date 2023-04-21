@@ -1,0 +1,30 @@
+{
+  "id": "3685241",
+  "name": "Vue3-Admin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9668603",
+      "name": "piggy-bank",
+      "font_class": "piggy-bank",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "22273394",
+      "name": "water",
+      "font_class": "water",
+      "unicode": "e6bc",
+      "unicode_decimal": 59068
+    },
+    {
+      "icon_id": "3868271",
+      "name": "测试申请",
+      "font_class": "ceshishenqing",
+      "unicode": "eb61",
+      "unicode_decimal": 60257
+    }
+  ]
+}
