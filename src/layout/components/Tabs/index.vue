@@ -10,12 +10,22 @@
 
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item icon="CircleCheck" command="refresh">刷新</el-dropdown-item>
-                <el-dropdown-item icon="CircleCheck" command="closeCurrentTab">关闭</el-dropdown-item>
-                <el-dropdown-item icon="CircleCheck" command="closeLeftTab" divided>关闭左侧标签页</el-dropdown-item>
-                <el-dropdown-item icon="CircleCheck" command="closeRightTab">关闭右侧标签页</el-dropdown-item>
-                <el-dropdown-item icon="CircleCheck" command="closeOtherTab" divided>关闭其它标签页</el-dropdown-item>
-                <el-dropdown-item icon="CircleCheck" command="closeAllTab">关闭所有标签页</el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">刷新</el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab"
+                  >关闭当前</el-dropdown-item
+                >
+                <el-dropdown-item :icon="useIcon('vertical-right-outlined')" command="closeLeftTab" divided
+                  >关闭左侧标签页</el-dropdown-item
+                >
+                <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab"
+                  >关闭右侧标签页</el-dropdown-item
+                >
+                <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided
+                  >关闭其它标签页</el-dropdown-item
+                >
+                <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab"
+                  >关闭所有标签页</el-dropdown-item
+                >
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -31,11 +41,25 @@
 
         <template #dropdown>
           <el-dropdown-menu class="dropdown-menu">
-            <el-dropdown-item command="refresh" @click="refresh">刷新</el-dropdown-item>
-            <el-dropdown-item command="maximizeMain" @click="maximizeMain">最大化</el-dropdown-item>
-            <el-dropdown-item command="closeCurrentTab" @click="closeCurrentTab" divided>关闭当前</el-dropdown-item>
-            <el-dropdown-item command="closeOtherTab" @click="closeOtherTab">关闭其它</el-dropdown-item>
-            <el-dropdown-item command="closeAllTab" @click="closeAllTab">关闭所有</el-dropdown-item>
+            <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh" @click="refresh"
+              >刷新</el-dropdown-item
+            >
+            <el-dropdown-item :icon="useIcon('fullscreen-outlined')" command="maximizeMain" @click="maximizeMain"
+              >最大化</el-dropdown-item
+            >
+            <el-dropdown-item
+              :icon="useIcon('close-outlined')"
+              command="closeCurrentTab"
+              @click="closeCurrentTab"
+              divided
+              >关闭当前</el-dropdown-item
+            >
+            <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" @click="closeOtherTab"
+              >关闭其它</el-dropdown-item
+            >
+            <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab" @click="closeAllTab"
+              >关闭所有</el-dropdown-item
+            >
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -51,7 +75,7 @@ import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
 import Maximize from './Maximize.vue'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
-// import { useIcon } from '@/components/Icon/src/useIcon'
+import { useIcon } from '@/components/Icon/src/useIcon'
 
 const route = useRoute()
 const router = useRouter()

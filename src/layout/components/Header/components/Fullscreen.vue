@@ -1,7 +1,6 @@
 <template>
   <div class="header-icon" @click="toggle">
-    <svg-icon name="Fullscreen" v-if="!isFullscreen" />
-    <svg-icon name="FullscreenExit" v-else />
+    <IconifyOffline :icon="!isFullscreen ? 'fullscreen-outlined' : 'fullscreen-exit-outlined'" />
   </div>
 </template>
 
@@ -37,5 +36,3 @@ function toggle() {
   }
 }
 </script>
-
-<style lang="scss" scoped></style>
