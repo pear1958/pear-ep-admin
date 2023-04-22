@@ -72,8 +72,8 @@ function onClick(key: string) {
 
 <style lang="scss" scoped>
 .header-box {
-  @include flex(space-between);
   height: 100%;
+  @include flex(space-between);
 
   .header-left {
     @include flex(flex-start);

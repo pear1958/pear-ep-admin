@@ -1,5 +1,5 @@
 <template>
-  <el-drawer v-model="showDrawer" title="项目设置" modal-class="setting-drawer">
+  <el-drawer v-model="showDrawer" title="项目设置" modal-class="setting-drawer" :size="380">
     <el-divider>暗黑模式</el-divider>
 
     <div class="flex-center">
@@ -10,7 +10,7 @@
 
     <div class="theme-item">
       <span>主题颜色</span>
-      <el-color-picker v-model="themeColor" />
+      <el-color-picker v-model="themeColor" :predefine="preDefineColors" />
     </div>
   </el-drawer>
 </template>
@@ -24,6 +24,8 @@ import { useSystemStore } from '@/store/modules/system'
 
 const showDrawer = ref(false)
 const themeColor = ref(useSystemStore().themeColor)
+
+const preDefineColors = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
 
 watch(themeColor, newVal => {
   useTheme().changeTheme(newVal)

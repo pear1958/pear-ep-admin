@@ -3,7 +3,7 @@
     <IconifyOffline icon="search-outlined" />
   </div>
 
-  <el-dialog v-model="showSearchPanel" :title="null" :footer="null" class="menu-dialog">
+  <el-dialog v-model="showSearchPanel" :title="null" :footer="null" class="menu-dialog" :width="520">
     <el-input
       v-model="searchKey"
       :prefix-icon="Search"
@@ -160,7 +160,7 @@ function handleSelect(data: MenuList) {
 
   .search-item {
     @include flex(space-between);
-    padding: 3px 20px;
+    padding: 13px 20px;
     border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
     transition: all 0.2s;
@@ -171,21 +171,26 @@ function handleSelect(data: MenuList) {
     }
 
     .icon {
+      height: 18px;
       font-size: 18px;
     }
 
     .breadcrumb-text {
       margin-left: 12px;
+
+      :deep(.el-breadcrumb__item) {
+        line-height: 27px;
+      }
     }
   }
 
   :deep(.empty) {
-    .el-empty__description {
-      margin-top: 0;
-    }
-
     .el-empty {
       padding: 30px 0;
+    }
+
+    .el-empty__description {
+      margin-top: 0;
     }
 
     p {
@@ -240,9 +245,6 @@ function handleSelect(data: MenuList) {
 
   .text {
     margin-left: 2px;
-    display: inline-block;
-    height: 22px;
-    line-height: 22px;
   }
 }
 </style>

@@ -18,7 +18,7 @@ export const useSystemStore = defineStore({
     // main区域是否全屏
     mainMaximize: false,
     isDark: false,
-    themeColor: '#1890FF'
+    themeColor: '#1890ff'
   }),
   actions: {
     setCollapse(value: boolean) {

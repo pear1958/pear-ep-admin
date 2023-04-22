@@ -49,10 +49,9 @@
   }
 
   .right-layout {
-    .header {
+    > .header {
       background-color: #ffffff;
       height: $headerHeight;
-      line-height: $headerHeight;
       padding: 0;
       position: fixed;
       right: 0;
@@ -63,7 +62,7 @@
       box-sizing: border-box;
     }
 
-    .content {
+    > .content {
       min-height: calc(100vh - $headerHeight - $tabHeight);
       margin-top: $headerHeight + $tabHeight;
       background-color: $mainBgColor;
