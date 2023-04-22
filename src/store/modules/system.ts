@@ -101,5 +101,5 @@ export const useSystemStore = defineStore({
       this.themeColor = color
     }
   },
-  persist: piniaPersistConfig('systemState')
+  persist: piniaPersistConfig('systemConfig')
 })

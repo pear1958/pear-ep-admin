@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Vue + TS</title>
   </head>
@@ -95,7 +95,23 @@
         </div>
       </div>
     </div>
-    
+
+    <script>
+      // 保持和主题相同的Loading
+      const color = JSON.parse(localStorage.getItem('systemConfig'))?.themeColor // String || undefined
+      const isDark = JSON.parse(localStorage.getItem('systemConfig'))?.isDark // Boolean || undefined
+
+      const html = document.querySelector('html')
+      const dot = document.querySelectorAll('.dot i')
+
+      if (isDark) html.style.background = '#141414'
+
+      color &&
+        dot.forEach(item => {
+          item.style.background = color
+        })
+    </script>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
