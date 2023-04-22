@@ -12,6 +12,8 @@ import userOutlined from '@iconify-icons/ant-design/user-outlined'
 import poweroffOutlined from '@iconify-icons/ant-design/poweroff-outlined'
 import searchOutlined from '@iconify-icons/ant-design/search-outlined'
 import enterOutlined from '@iconify-icons/ant-design/enter-outlined'
+import menuUnfoldOutlined from '@iconify-icons/ant-design/menu-unfold-outlined'
+import menuFoldOutlined from '@iconify-icons/ant-design/menu-fold-outlined'
 
 const offlineIcons = {
   'reload-outlined': reloadOutlined,
@@ -25,7 +27,9 @@ const offlineIcons = {
   'user-outlined': userOutlined,
   'poweroff-outlined': poweroffOutlined,
   'search-outlined': searchOutlined,
-  'enter-outlined': enterOutlined
+  'enter-outlined': enterOutlined,
+  'menu-unfold-outlined': menuUnfoldOutlined,
+  'menu-fold-outlined': menuFoldOutlined
 }
 
 export const regisOfflineIcons = () => {

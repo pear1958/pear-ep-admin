@@ -10,6 +10,9 @@ export function useTheme() {
     // 添加暗黑模式的类名
     html.classList[isDark ? 'add' : 'remove']('dark')
 
+    // if (isDark) html.setAttribute('class', 'dark')
+    // else html.setAttribute('class', '')
+
     systemStore.setDark(isDark)
   }
 

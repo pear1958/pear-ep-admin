@@ -28,6 +28,12 @@
 
       .el-menu {
         border-right: none;
+
+        > .el-menu-item,
+        .el-sub-menu__title {
+          height: 50px;
+          line-height: 50px;
+        }
       }
 
       .el-sub-menu .el-menu-item {

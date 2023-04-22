@@ -9,6 +9,7 @@
   // 约等于 border-bottom
   box-shadow: 0 0 1px #888;
   @include flex(space-between);
+  background-color: #ffffff;
 
   :deep(.el-tabs) {
     width: calc(100% - 45px);

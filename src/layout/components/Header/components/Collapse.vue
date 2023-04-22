@@ -1,7 +1,7 @@
 <template>
-  <el-icon class="collapse-icon" @click="toggleSidebar">
-    <component :is="isCollapse ? 'expand' : 'fold'" class="trigger" />
-  </el-icon>
+  <div class="collapse-icon" @click="toggleSidebar">
+    <iconifyOffline :icon="isCollapse ? 'menu-unfold-outlined' : 'menu-fold-outlined'" class="trigger" />
+  </div>
 </template>
 
 <script setup>
@@ -27,7 +27,7 @@ function toggleSidebar() {
   transition: color 0.3s;
 
   &:hover {
-    color: var(--el-color-primary);;
+    color: var(--el-color-primary);
   }
 }
 </style>
