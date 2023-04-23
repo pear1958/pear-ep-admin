@@ -149,7 +149,8 @@
       "children": [
         { "path": "/able/file", "name": "File", "component": "/able/file/index", "meta": { "title": "文件" } },
         { "path": "/able/map", "name": "Map", "component": "/able/map/index", "meta": { "title": "地图" } },
-        { "path": "/able/scroll", "name": "Scroll", "component": "/able/scroll/index", "meta": { "title": "滚动" } }
+        { "path": "/able/scroll", "name": "Scroll", "component": "/able/scroll/index", "meta": { "title": "滚动" } },
+        { "path": "/form", "name": "Form", "component": "/form/index", "meta": { "title": "表单" } }
       ]
     },
     {

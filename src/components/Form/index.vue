@@ -105,8 +105,6 @@ function getOptions() {
     }
   })
 
-  // res.map((item: any) => delete item.control)
-
   return res
 }
 
@@ -122,30 +120,12 @@ onMounted(() => {
   initForm()
 })
 
-// watch(
-//   () => formState,
-//   () => {
-//     console.log(11111111111)
-//   },
-//   { deep: true }
-// )
-
-// 监听父组件传递进来的options
-// 重新初始化
-// watch(
-//   () => props.options,
-//   () => {
-//     initForm()
-//   },
-//   { deep: true }
-// )
-
 const initForm = () => {
   if (!props.options?.length) return
 
   renderOptions.value = getOptions()
 
-  console.log('renderOptions', renderOptions.value)
+  // console.log('renderOptions', renderOptions.value)
 
   unref(renderOptions).forEach((item: FormOptions) => {
     formState[item.field!] = item.value // 初始化默认值

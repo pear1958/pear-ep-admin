@@ -33,7 +33,7 @@ const options: FormOptions[] = reactive([
   {
     type: 'rate',
     label: '评分',
-    value: 1,
+    value: 4,
     rules: [],
     field: 'rate',
     control: [
@@ -48,7 +48,7 @@ const options: FormOptions[] = reactive([
           placeholder: '请输入用户名'
         },
         // 需要新增到哪个formItem的后面  不给默认就是当前formItem的后面
-        appendField: 'rate'
+        appendField: 'password'
       }
       // {
       //   value: 'append',
