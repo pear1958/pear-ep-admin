@@ -72,7 +72,7 @@
       min-height: calc(100vh - $headerHeight - $tabHeight);
       margin-top: $headerHeight + $tabHeight;
       background-color: $mainBgColor;
-      padding: 10px 12px;
+      padding: 15px;
       box-sizing: border-box;
       // 防止切换路由时出现 x y 轴的滚动条
       overflow-x: hidden;

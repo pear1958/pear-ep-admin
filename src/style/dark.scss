@@ -31,11 +31,14 @@ html.dark {
   .right-layout > .content {
     border-radius: 4px;
     background-color: $bg-color !important;
-  }
 
-  .right-layout > .content .main {
-    border: 1px solid $border-color;
-    background-color: $bg-color !important;
+    > .main {
+      border: 1px solid $border-color;
+
+      .page-box {
+        background-color: $bg-color !important;
+      }
+    }
   }
 
   .tabs-box .el-dropdown span {
