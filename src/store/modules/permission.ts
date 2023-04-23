@@ -1,15 +1,13 @@
 import { defineStore } from 'pinia'
 import { getMenuListApi, getButtonDataApi } from '@/api/modules/user'
 import { getFlatArr, getBreadcrumbList } from '@/router/utils'
-// 基础路由(非动态路由)
-import { basicRouter } from '@/router/modules/basic'
 import { PermissState } from '../types'
 
 export const usePermissionStore = defineStore({
   id: 'permission',
   state: (): PermissState => ({
     // 菜单权限
-    menuList: [...basicRouter],
+    menuList: [],
     // 按钮权限
     buttonData: null,
     // 当前页面的 route name, 用来做按钮权限筛选
@@ -38,7 +36,7 @@ export const usePermissionStore = defineStore({
             const menuData = res.data ?? []
             this.menuList.push(...menuData)
             // 菜单排序
-            this.menuList.sort((a: Menu.MenuOptions, b: Menu.MenuOptions) => a.meta.rank! - b.meta.rank!)
+            // this.menuList.sort((a: Menu.MenuOptions, b: Menu.MenuOptions) => a.meta.rank! - b.meta.rank!)
             resolve(true)
           })
           .catch(() => {

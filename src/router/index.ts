@@ -3,7 +3,6 @@ import { staticRouter, notFoundRouter } from './modules/static'
 import NProgress from '@/config/progress'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'
-import { basicRouter } from '@/router/modules/basic'
 import { useTheme } from '@/hooks/useTheme'
 
 // 引入 views 文件夹下所有 vue 文件
@@ -46,7 +45,7 @@ function initRouter() {
       item.component = modules['/src/views' + item.component + '.vue']
     }
 
-    if (item.meta.isFull) {
+    if (item.meta?.isFull) {
       // https://router.vuejs.org/zh/api/#addroute
       router.addRoute(item)
     } else {
@@ -99,7 +98,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // 首次进入系统 || 刷新页面   获取菜单数据 & 初始化路由
-  if (!userInfo || menuList.length == basicRouter.length || !buttonData) {
+  if (!userInfo || !menuList.length || !buttonData) {
     // 需要捕获 getAuthData 的reject
     try {
       const reqSucc = await getAuthData()
@@ -133,7 +132,6 @@ router.beforeEach(async (to, from, next) => {
   next()
 })
 
-// 重置基础路由(basicRouter, 不包括 staticRouter)
 export function resetRouter() {
   usePermissionStore().flatMenuListGet.forEach((route: any) => {
     const { name } = route

@@ -8,8 +8,7 @@
       "component": "/home/index",
       "meta": {
         "title": "首页",
-        "icon": "House",
-        "rank": 1
+        "icon": "House"
       }
     },
     {
@@ -18,8 +17,7 @@
       "redirect": "/systemManage/account",
       "meta": {
         "title": "系统管理",
-        "icon": "Setting",
-        "rank": 2
+        "icon": "Setting"
       },
       "children": [
         {
@@ -67,6 +65,411 @@
           "meta": {
             "title": "菜单管理"
           }
+        }
+      ]
+    },
+    {
+      "path": "/menu",
+      "name": "menu",
+      "redirect": "/menu/menu1",
+      "meta": { "icon": "Files", "title": "多级菜单" },
+      "children": [
+        { "path": "/menu/menu1", "name": "menu1", "component": "/menu/menu1/index", "meta": { "title": "菜单1" } },
+        {
+          "path": "/menu/menu2",
+          "name": "menu2",
+          "redirect": "/menu/menu2/menu21",
+          "meta": { "title": "菜单2" },
+          "children": [
+            {
+              "path": "/menu/menu2/menu21",
+              "name": "menu21",
+              "component": "/menu/menu2/menu21/index",
+              "meta": { "title": "菜单2-1" }
+            },
+            {
+              "path": "/menu/menu2/menu22",
+              "name": "menu22",
+              "redirect": "/menu/menu2/menu22/menu221",
+              "meta": { "title": "菜单2-2" },
+              "children": [
+                {
+                  "path": "/menu/menu2/menu22/menu221",
+                  "name": "menu221",
+                  "component": "/menu/menu2/menu22/menu221/index",
+                  "meta": { "title": "菜单2-2-1" }
+                },
+                {
+                  "path": "/menu/menu2/menu22/menu222",
+                  "name": "menu222",
+                  "component": "/menu/menu2/menu22/menu222/index",
+                  "meta": { "title": "菜单2-2-2" }
+                }
+              ]
+            },
+            {
+              "path": "/menu/menu2/menu23",
+              "name": "menu23",
+              "component": "/menu/menu2/menu23/index",
+              "meta": { "title": "菜单2-3" }
+            }
+          ]
+        },
+        { "path": "/menu/menu3", "name": "menu3", "component": "/menu/menu3/index", "meta": { "title": "菜单3" } }
+      ]
+    },
+    {
+      "path": "/link",
+      "name": "link",
+      "redirect": "/baidu",
+      "meta": { "title": "外部链接", "icon": "Document" },
+      "children": [
+        {
+          "path": "/baidu",
+          "name": "biadu",
+          "meta": { "title": "百度", "link": "https://www.baidu.com" }
+        },
+        {
+          "path": "/taobao",
+          "name": "taobao",
+          "meta": { "title": "淘宝", "link": "https://www.taobao.com/" }
+        },
+        {
+          "path": "/zhihu",
+          "name": "zhihu",
+          "meta": { "title": "知乎", "link": "https://www.zhihu.com/" }
+        }
+      ]
+    },
+    {
+      "path": "/able",
+      "name": "Able",
+      "redirect": "/able/file",
+      "meta": { "title": "功能", "icon": "Message" },
+      "children": [
+        { "path": "/able/file", "name": "File", "component": "/able/file/index", "meta": { "title": "文件" } },
+        { "path": "/able/map", "name": "Map", "component": "/able/map/index", "meta": { "title": "地图" } },
+        { "path": "/able/scroll", "name": "Scroll", "component": "/able/scroll/index", "meta": { "title": "滚动" } }
+      ]
+    },
+    {
+      "path": "/table",
+      "redirect": "/table/proTable",
+      "meta": { "title": "表格", "icon": "Message" },
+      "children": [
+        {
+          "path": "/table/proTable",
+          "name": "proTable",
+          "component": "/table/proTable",
+          "meta": { "title": "超级表格" }
+        }
+      ]
+    },
+    {
+      "path": "/test",
+      "name": "CeShi",
+      "redirect": "/menu/menuTest0",
+      "meta": { "title": "测试滚动", "icon": "Notification" },
+      "children": [
+        {
+          "path": "/menu/menuTest0",
+          "name": "menuTest0",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test0" }
+        },
+        {
+          "path": "/menu/menuTest1",
+          "name": "menuTest1",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test1" }
+        },
+        {
+          "path": "/menu/menuTest2",
+          "name": "menuTest2",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test2" }
+        },
+        {
+          "path": "/menu/menuTest3",
+          "name": "menuTest3",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test3" }
+        },
+        {
+          "path": "/menu/menuTest4",
+          "name": "menuTest4",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test4" }
+        },
+        {
+          "path": "/menu/menuTest5",
+          "name": "menuTest5",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test5" }
+        },
+        {
+          "path": "/menu/menuTest6",
+          "name": "menuTest6",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test6" }
+        },
+        {
+          "path": "/menu/menuTest7",
+          "name": "menuTest7",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test7" }
+        },
+        {
+          "path": "/menu/menuTest8",
+          "name": "menuTest8",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test8" }
+        },
+        {
+          "path": "/menu/menuTest9",
+          "name": "menuTest9",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test9" }
+        },
+        {
+          "path": "/menu/menuTest10",
+          "name": "menuTest10",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test10" }
+        },
+        {
+          "path": "/menu/menuTest11",
+          "name": "menuTest11",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test11" }
+        },
+        {
+          "path": "/menu/menuTest12",
+          "name": "menuTest12",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test12" }
+        },
+        {
+          "path": "/menu/menuTest13",
+          "name": "menuTest13",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test13" }
+        },
+        {
+          "path": "/menu/menuTest14",
+          "name": "menuTest14",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test14" }
+        },
+        {
+          "path": "/menu/menuTest15",
+          "name": "menuTest15",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test15" }
+        },
+        {
+          "path": "/menu/menuTest16",
+          "name": "menuTest16",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test16" }
+        },
+        {
+          "path": "/menu/menuTest17",
+          "name": "menuTest17",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test17" }
+        },
+        {
+          "path": "/menu/menuTest18",
+          "name": "menuTest18",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test18" }
+        },
+        {
+          "path": "/menu/menuTest19",
+          "name": "menuTest19",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test19" }
+        },
+        {
+          "path": "/menu/menuTest20",
+          "name": "menuTest20",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test20" }
+        },
+        {
+          "path": "/menu/menuTest21",
+          "name": "menuTest21",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test21" }
+        },
+        {
+          "path": "/menu/menuTest22",
+          "name": "menuTest22",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test22" }
+        },
+        {
+          "path": "/menu/menuTest23",
+          "name": "menuTest23",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test23" }
+        },
+        {
+          "path": "/menu/menuTest24",
+          "name": "menuTest24",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test24" }
+        },
+        {
+          "path": "/menu/menuTest25",
+          "name": "menuTest25",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test25" }
+        },
+        {
+          "path": "/menu/menuTest26",
+          "name": "menuTest26",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test26" }
+        },
+        {
+          "path": "/menu/menuTest27",
+          "name": "menuTest27",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test27" }
+        },
+        {
+          "path": "/menu/menuTest28",
+          "name": "menuTest28",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test28" }
+        },
+        {
+          "path": "/menu/menuTest29",
+          "name": "menuTest29",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test29" }
+        },
+        {
+          "path": "/menu/menuTest30",
+          "name": "menuTest30",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test30" }
+        },
+        {
+          "path": "/menu/menuTest31",
+          "name": "menuTest31",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test31" }
+        },
+        {
+          "path": "/menu/menuTest32",
+          "name": "menuTest32",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test32" }
+        },
+        {
+          "path": "/menu/menuTest33",
+          "name": "menuTest33",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test33" }
+        },
+        {
+          "path": "/menu/menuTest34",
+          "name": "menuTest34",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test34" }
+        },
+        {
+          "path": "/menu/menuTest35",
+          "name": "menuTest35",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test35" }
+        },
+        {
+          "path": "/menu/menuTest36",
+          "name": "menuTest36",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test36" }
+        },
+        {
+          "path": "/menu/menuTest37",
+          "name": "menuTest37",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test37" }
+        },
+        {
+          "path": "/menu/menuTest38",
+          "name": "menuTest38",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test38" }
+        },
+        {
+          "path": "/menu/menuTest39",
+          "name": "menuTest39",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test39" }
+        },
+        {
+          "path": "/menu/menuTest40",
+          "name": "menuTest40",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test40" }
+        },
+        {
+          "path": "/menu/menuTest41",
+          "name": "menuTest41",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test41" }
+        },
+        {
+          "path": "/menu/menuTest42",
+          "name": "menuTest42",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test42" }
+        },
+        {
+          "path": "/menu/menuTest43",
+          "name": "menuTest43",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test43" }
+        },
+        {
+          "path": "/menu/menuTest44",
+          "name": "menuTest44",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test44" }
+        },
+        {
+          "path": "/menu/menuTest45",
+          "name": "menuTest45",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test45" }
+        },
+        {
+          "path": "/menu/menuTest46",
+          "name": "menuTest46",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test46" }
+        },
+        {
+          "path": "/menu/menuTest47",
+          "name": "menuTest47",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test47" }
+        },
+        {
+          "path": "/menu/menuTest48",
+          "name": "menuTest48",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test48" }
+        },
+        {
+          "path": "/menu/menuTest49",
+          "name": "menuTest49",
+          "component": "/test/index",
+          "meta": { "title": "菜单Test49" }
         }
       ]
     }
