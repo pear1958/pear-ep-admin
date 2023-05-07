@@ -1,17 +1,18 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import router from '@/router'
 import { httpResEnum } from '@/enums/httpEnum'
 import { useUserStore } from '@/store/modules/user'
 import { checkStatus } from './utils/checkStatus'
-import { ResultData } from './type'
+import { CustomAxiosRequestConfig, ResultData } from './type'
+import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
 
 const config = {
   baseURL: import.meta.env.VITE_API_BASE_URL as string,
   timeout: httpResEnum.TIMEOUT as number,
   headers: {
-    adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307',
-  },
+    adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
+  }
 }
 
 class Http {
@@ -23,9 +24,14 @@ class Http {
 
     // 请求拦截器
     this.service.interceptors.request.use(
-      (config: InternalAxiosRequestConfig) => {
+      (config: CustomAxiosRequestConfig) => {
         const { token } = useUserStore()
+
+        // showLoading: 默认为false, 即不显示全局Loading
+        config.showLoading && showFullScreenLoading()
+
         if (token) config.headers.Authorization = `Bearer ${token}`
+
         return config
       },
       (error: AxiosError) => {
@@ -37,6 +43,8 @@ class Http {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
+
+        hideFullScreenLoading()
 
         // token过期, 后端如果重新返回, 则储存在本地
         const { authorization: authStr } = response.headers
@@ -65,6 +73,8 @@ class Http {
       },
       (error: AxiosError) => {
         const { response: res } = error
+
+        hideFullScreenLoading()
 
         // 请求超时 && 网络错误单独判断，没有 response
         if (error.message.indexOf('timeout') !== -1) ElMessage.error('请求超时！请您稍后重试')

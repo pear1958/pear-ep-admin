@@ -1,3 +1,5 @@
+import { InternalAxiosRequestConfig } from 'axios'
+
 export interface ResultData<T> {
   code: string
   msg: string
@@ -18,4 +20,8 @@ export namespace Login {
   export interface authButtons {
     [key: string]: string[]
   }
+}
+
+export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
+  showLoading?: boolean
 }
