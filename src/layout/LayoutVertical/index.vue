@@ -44,8 +44,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
-import { useSystemStore } from '@/store/modules/system'
 import { filterMenuData } from '@/router/utils'
+import { useSystemStore } from '@/store/modules/system'
 import { usePermissionStore } from '@/store/modules/permission'
 import SubMenu from '../components/SubMenu/index.vue'
 import Header from '../components/Header/index.vue'

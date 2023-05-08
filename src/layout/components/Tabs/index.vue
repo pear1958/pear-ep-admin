@@ -3,9 +3,13 @@
 
   <div class="tabs-box" :style="{ left: sideBarWidth }">
     <el-tabs v-model="activeKey" type="card" @tab-click="tabClick" closable @tab-remove="removeTab">
-      <el-tab-pane v-for="tab in tabList" :key="tab.fullPath" :name="tab.fullPath">
+      <el-tab-pane v-for="(tab, index) in tabList" :key="tab.fullPath" :name="tab.fullPath">
         <template #label>
-          <el-dropdown trigger="contextmenu" @command="onDropDownClick($event, tab)">
+          <el-dropdown
+            trigger="contextmenu"
+            :popper-class="'dropdown-' + index"
+            @command="onDropDownClick($event, tab, 'dropdown-' + index)"
+          >
             <span>{{ tab.title }}</span>
 
             <template #dropdown>
@@ -220,10 +224,16 @@ const methodObj = {
 
 type methodName = keyof typeof methodObj
 
-async function onDropDownClick(key: string, tab: tabItem | undefined) {
-  if (!key || !tab) return
-  await nextTick()
-  methodObj[key as methodName](tab)
+function onDropDownClick(command: string, tab: tabItem | undefined, className?: string) {
+  if (!command || !tab) return
+
+  // 解决 dropdown 闪烁到最左侧的Bug
+  if (command === 'closeLeftTab' && className) {
+    const curDropDownEle = document.querySelector(`.${className}`) as HTMLDivElement
+    curDropDownEle.style.display = 'none'
+  }
+
+  methodObj[command as methodName](tab)
 }
 </script>
 
