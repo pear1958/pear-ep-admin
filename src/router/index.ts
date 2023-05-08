@@ -4,11 +4,14 @@ import NProgress from '@/config/progress'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useTheme } from '@/hooks/useTheme'
+import { AxiosCanceler } from '@/api/utils/axiosCancel'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
 
 // const whiteList = []
+
+const axiosCanceler = new AxiosCanceler()
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -69,6 +72,9 @@ router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('token')
   const { userInfo } = useUserStore()
   const { menuList, buttonData } = usePermissionStore()
+
+  // 在路由跳转之前, 清除所有请求
+  axiosCanceler.removeAllPending()
 
   NProgress.start()
 

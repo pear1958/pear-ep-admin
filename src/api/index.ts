@@ -6,6 +6,9 @@ import { useUserStore } from '@/store/modules/user'
 import { checkStatus } from './utils/checkStatus'
 import { CustomAxiosRequestConfig, ResultData } from './type'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
+import { AxiosCanceler } from './utils/axiosCancel'
+
+const axiosCanceler = new AxiosCanceler()
 
 const config = {
   baseURL: import.meta.env.VITE_API_BASE_URL as string,
@@ -27,6 +30,9 @@ class Http {
       (config: CustomAxiosRequestConfig) => {
         const { token } = useUserStore()
 
+        // 将当前请求添加到 pending 中
+        axiosCanceler.addPending(config)
+
         // showLoading: 默认为false, 即不显示全局Loading
         config.showLoading && showFullScreenLoading()
 
@@ -43,6 +49,9 @@ class Http {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
+
+        // 在请求结束后, 移除本次请求
+        axiosCanceler.removePending(config)
 
         hideFullScreenLoading()
 
