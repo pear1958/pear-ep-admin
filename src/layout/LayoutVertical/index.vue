@@ -28,7 +28,7 @@
     </el-aside>
 
     <el-container class="right-layout">
-      <el-header class="header" :style="{ left: sideBarWidth }">
+      <el-header class="header">
         <Header />
       </el-header>
 

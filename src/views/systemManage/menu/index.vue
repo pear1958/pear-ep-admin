@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-button type="primary" @click="test">测试</el-button>
+    <div v-for="item in 1000">哈哈哈</div>
   </div>
 </template>
 

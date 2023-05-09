@@ -1,15 +1,14 @@
 .tabs-box {
   height: $tabHeight;
   line-height: $tabHeight;
-  position: fixed;
-  right: 0;
   top: $headerHeight;
   box-sizing: border-box;
   transition: all 0.2s;
-  // 约等于 border-bottom
-  box-shadow: 0 0 1px #888;
   @include flex(space-between);
   background-color: #ffffff;
+  padding: 1px 0;
+  border-top: 1px solid var(--el-border-color-light);
+  border-bottom: 1px solid var(--el-border-color-light);
 
   :deep(.el-tabs) {
     width: calc(100% - 45px);
@@ -19,12 +18,12 @@
     }
 
     .el-tabs__header {
-      height: calc($tabHeight - 2px);
+      height: calc($tabHeight - 4px);
       margin: 0 !important;
       border-bottom: none !important;
 
       .el-tabs__item {
-        height: calc($tabHeight - 2px);
+        height: calc($tabHeight - 4px);
         font-size: 12px;
         border: 1px solid var(--el-border-color-light);
         margin: 0 3px;

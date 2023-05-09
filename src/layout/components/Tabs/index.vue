@@ -1,7 +1,7 @@
 <template>
   <Maximize v-if="mainMaximize" />
 
-  <div class="tabs-box" :style="{ left: sideBarWidth }">
+  <div class="tabs-box">
     <el-tabs v-model="activeKey" type="card" @tab-click="tabClick" closable @tab-remove="removeTab">
       <el-tab-pane v-for="(tab, index) in tabList" :key="tab.fullPath" :name="tab.fullPath">
         <template #label>

@@ -7,6 +7,8 @@
     height: 100vh;
     background-color: #001529;
     transition: all 0.2s;
+    // 解决打开全屏时, 菜单栏 Y轴 出现滚动条
+    overflow: hidden;
 
     .logo {
       height: $headerHeight;
@@ -59,18 +61,10 @@
       background-color: #ffffff;
       height: $headerHeight;
       padding: 0;
-      position: fixed;
-      right: 0;
-      top: 0;
-      z-index: 700;
-      transition: all 0.2s;
-      border-bottom: 1px solid var(--el-border-color-light);
-      box-sizing: border-box;
     }
 
     > .content {
       min-height: calc(100vh - $headerHeight - $tabHeight);
-      margin-top: $headerHeight + $tabHeight;
       background-color: $mainBgColor;
       padding: 15px;
       box-sizing: border-box;

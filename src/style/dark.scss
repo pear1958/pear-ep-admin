@@ -29,10 +29,10 @@ html.dark {
   }
 
   .right-layout > .content {
-    border-radius: 4px;
     background-color: $bg-color !important;
 
     > .main {
+      border-radius: 4px;
       border: 1px solid $border-color;
 
       .page-box {
@@ -41,12 +41,14 @@ html.dark {
     }
   }
 
-  .tabs-box .el-dropdown span {
-    color: #c9d1d9 !important;
-  }
+  .tabs-box {
+    .el-dropdown span {
+      color: #c9d1d9 !important;
+    }
 
-  .tabs-box .is-active .el-dropdown span {
-    color: $text-color !important;
+    .is-active .el-dropdown span {
+      color: $text-color !important;
+    }
   }
 
   .header .el-breadcrumb__item {
