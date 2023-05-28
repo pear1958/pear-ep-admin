@@ -10,9 +10,6 @@ import '@/style/index.scss'
 // https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
 import 'virtual:svg-icons-register'
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-
 import * as Icons from '@element-plus/icons-vue'
 
 // element-plus 内置暗黑模式
@@ -37,4 +34,4 @@ Object.keys(Icons).forEach(key => {
   app.component(key, Icons[key as keyof typeof Icons])
 })
 
-app.use(router).use(store).use(ElementPlus).mount('#app')
+app.use(router).use(store).mount('#app')

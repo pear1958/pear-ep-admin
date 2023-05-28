@@ -72,7 +72,7 @@ class Http {
         }
 
         // 全局错误信息拦截
-        if (data.code !== 200) {
+        if (data.code !== httpResEnum.SUCCESS) {
           ElMessage.error(data.msg)
           return Promise.reject(data)
         }

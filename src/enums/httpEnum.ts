@@ -1,4 +1,5 @@
 export enum httpResEnum {
-  TIMEOUT = 10000,
-  OVERDUE = 401
+  SUCCESS = 2000,
+  OVERDUE = 401,
+  TIMEOUT = 10000
 }

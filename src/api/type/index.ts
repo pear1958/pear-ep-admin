@@ -4,6 +4,7 @@ export interface ResultData<T> {
   code: string
   msg: string
   data: T
+  [key: string]: any
 }
 
 export namespace Login {

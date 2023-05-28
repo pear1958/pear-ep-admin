@@ -24,3 +24,12 @@ export const getButtonDataApi = () => {
 export const getUserInfoApi = () => {
   return Promise.resolve(userInfo)
 }
+
+interface TableParams {
+  current: number
+  size: number
+}
+
+export const getCompositionList = (params: TableParams) => {
+  return http.get<any>('/component/componentProduct', params)
+}

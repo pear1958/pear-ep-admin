@@ -1,0 +1,20 @@
+@each $var in row column {
+  .#{$var} {
+    display: flex;
+    flex-direction: $var;
+  }
+}
+
+@each $var in center flex-end flex-start end space-between space-around {
+  .align-#{$var} {
+    align-items: $var;
+  }
+
+  .justify-#{$var} {
+    justify-content: $var;
+  }
+
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
