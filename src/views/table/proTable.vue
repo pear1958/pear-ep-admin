@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, reactive, ref, unref } from 'vue'
 import comTable from '@/components/comTable.vue'
 import { columns } from './columns'
 import { getCompositionList } from '@/api/modules/user'

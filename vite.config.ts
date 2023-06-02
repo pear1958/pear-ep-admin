@@ -7,9 +7,6 @@ import svgLoader from 'vite-svg-loader'
 import viteCompression from 'vite-plugin-compression'
 // 使用此插件 需要 删掉package.json 中的 "type": "module" 配置
 import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { formatEnv } from './src/utils/env'
 
 const srcPath = resolve(__dirname, 'src')
@@ -71,29 +68,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           threshold: 10240, // 体积大于 threshold 才会被压缩, 单位b  10kb
           algorithm: 'gzip', // 压缩算法
           ext: '.gz' // 生成的压缩后缀
-        }),
-      AutoImport({
-        // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
-        imports: ['vue'],
-        // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
-        resolvers: [
-          ElementPlusResolver({
-            // 自动引入修改主题色添加这一行，使用预处理样式
-            // 不添加将会导致使用ElMessage，ElNotification 等组件时默认的主题色会覆盖自定义的主题色
-            importStyle: 'sass'
-          })
-        ],
-        dts: resolve(srcPath, 'types/auto-imports.d.ts')
-      }),
-      Components({
-        // 自动导入 Element Plus 组件
-        resolvers: [
-          ElementPlusResolver({
-            importStyle: 'sass'
-          })
-        ],
-        dts: resolve(srcPath, 'types/components.d.ts')
-      })
+        })
     ],
     // 解决 Vite 启动完之后首页加载慢的问题
     optimizeDeps: {
