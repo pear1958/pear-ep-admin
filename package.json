@@ -12,6 +12,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "@zhangzy56/vue-ele": "^1.0.3",
+    "animate.css": "^4.1.1",
     "axios": "^1.3.5",
     "element-plus": "^2.3.6",
     "hotkeys-js": "^3.10.2",
@@ -33,6 +34,7 @@
     "@vitejs/plugin-vue": "^4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
     "fast-glob": "^3.2.12",
     "postcss": "^8.4.31",
     "sass": "^1.61.0",
