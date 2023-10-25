@@ -1,7 +1,13 @@
 <template>
-  <div class="text-3xl font-bold underline bg-red dark:bg-blue">Map</div>
+  <div class="w-[220px] h-[220px] test flex-c">
+    <div class="text-3xl font-bold underline">Map</div>
+  </div>
 </template>
 
 <script lang="ts" setup></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.test {
+  border: 1px solid red;
+}
+</style>

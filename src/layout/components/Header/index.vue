@@ -30,9 +30,11 @@
         </template>
       </el-dropdown>
 
-      <el-icon @click="openSetDrawer" :size="18" class="header-icon">
-        <Setting />
-      </el-icon>
+      <div class="header-icon flex-c">
+        <el-icon @click="openSetDrawer" :size="16">
+          <Setting />
+        </el-icon>
+      </div>
     </div>
   </div>
 </template>
