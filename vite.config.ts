@@ -36,6 +36,14 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           target: 'https://cdpre.tfsmy.com/smart-front-gateway',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '')
+        },
+        '/dev-api': {
+          target: 'https://cdpre.tfsmy.com/smart-front-gateway',
+          changeOrigin: true,
+          // secure: false,
+          rewrite: path => {
+            return path.replace('/dev-api', '')
+          }
         }
       }
     },

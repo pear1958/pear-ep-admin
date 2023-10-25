@@ -22,6 +22,9 @@ import { registerGlobComp } from '@/components'
 
 import errorHandler from '@/utils/errorHandler'
 
+import VElement from '@zhangzy56/vue-ele'
+import '@zhangzy56/vue-ele/dist/index.css'
+
 // 导入 下载的 iconfont
 // import './assets/iconfont/iconfont.js'
 // import './assets/iconfont/iconfont.css'
@@ -37,4 +40,4 @@ Object.keys(Icons).forEach(key => {
   app.component(key, Icons[key as keyof typeof Icons])
 })
 
-app.use(router).use(store).use(ElementPlus).mount('#app')
+app.use(router).use(store).use(ElementPlus).use(VElement).mount('#app')
