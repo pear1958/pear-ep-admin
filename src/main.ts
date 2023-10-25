@@ -25,6 +25,9 @@ import errorHandler from '@/utils/errorHandler'
 import VElement from '@zhangzy56/vue-ele'
 import '@zhangzy56/vue-ele/dist/index.css'
 
+// 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/style/index.scss整体css文件导致热更新慢的问题
+import './style/tailwind.css'
+
 // 导入 下载的 iconfont
 // import './assets/iconfont/iconfont.js'
 // import './assets/iconfont/iconfont.css'
