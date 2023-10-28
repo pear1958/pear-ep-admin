@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import { MotionPlugin } from '@vueuse/motion'
+
 import '@/style/index.scss'
 
 // 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/style/index.scss整体css文件导致热更新慢的问题
@@ -25,8 +27,9 @@ import { registerGlobComp } from '@/components'
 
 import errorHandler from '@/utils/errorHandler'
 
-import VElement from '@zhangzy56/vue-ele'
-import '@zhangzy56/vue-ele/dist/index.css'
+// import VElement from '@zhangzy56/vue-ele'
+// import '@zhangzy56/vue-ele/dist/index.css'
+// .use(VElement)
 
 // 导入 下载的 iconfont
 // import './assets/iconfont/iconfont.js'
@@ -43,4 +46,4 @@ for (const [key, component] of Object.entries(Icons)) {
   app.component(key, component)
 }
 
-app.use(router).use(store).use(VElement).use(ElementPlus).mount('#app')
+app.use(router).use(store).use(ElementPlus).use(MotionPlugin).mount('#app')
