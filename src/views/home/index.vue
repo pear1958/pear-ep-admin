@@ -11,6 +11,11 @@
       <br />
       <Progress :time="5000" type="circle" isAnimate :percentage="60" />
     </div>
+
+    <div>
+      <el-table mb-1 :data="[]" />
+      <el-pagination :total="100" class="mt-15" />
+    </div>
   </div>
 </template>
 

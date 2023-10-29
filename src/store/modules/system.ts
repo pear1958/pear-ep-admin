@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import router from '@/router/index'
-import { systemState } from '../types'
+import { SystemState } from '../types'
 import piniaPersistConfig from '@/config/piniaPersist'
 
 export const useSystemStore = defineStore({
   id: 'system',
   // 在@/layout/index.vue中, 监听数据改变, 并且同步到localStorage中
-  state: (): systemState => ({
+  state: (): SystemState => ({
     layout: 'vertical',
     sideBar: {
       // 是否折叠菜单
@@ -18,7 +18,9 @@ export const useSystemStore = defineStore({
     // main区域是否全屏
     mainMaximize: false,
     isDark: false,
-    themeColor: '#1890ff'
+    themeColor: '#1890ff',
+    // 当前系统语言
+    language: null
   }),
   actions: {
     setCollapse(value: boolean) {
@@ -99,6 +101,9 @@ export const useSystemStore = defineStore({
     },
     setThemeColor(color: string) {
       this.themeColor = color
+    },
+    setSystemState(...args: ObjToKeyValArray<SystemState>) {
+      this.$patch({ [args[0]]: args[1] })
     }
   },
   persist: piniaPersistConfig('systemConfig')

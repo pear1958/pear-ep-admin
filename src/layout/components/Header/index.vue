@@ -8,8 +8,9 @@
     <div class="header-right">
       <Search />
       <Fullscreen />
+      <I18nIcon />
 
-      <el-dropdown trigger="click" @command="onClick">
+      <el-dropdown @command="onClick">
         <div class="user">
           <el-avatar :size="26" :src="avatarUrl"></el-avatar>
           <span class="name">Admin</span>
@@ -45,6 +46,7 @@ import Collapse from './components/Collapse.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import Search from './components/Search.vue'
 import Fullscreen from './components/Fullscreen.vue'
+import I18nIcon from './components/I18nIcon.vue'
 import emitter from '@/utils/mitt'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'

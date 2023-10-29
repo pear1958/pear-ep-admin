@@ -5,7 +5,9 @@ export interface userState {
 
 type LayoutType = 'vertical' | 'classic' | 'transverse' | 'columns'
 
-export interface systemState {
+export type LanguageType = 'zh' | 'en' | null
+
+export interface SystemState {
   layout: LayoutType
   sideBar: any
   keepAliveNameList: string[]
@@ -13,6 +15,7 @@ export interface systemState {
   mainMaximize: boolean
   isDark: boolean
   themeColor: string
+  language: LanguageType
 }
 
 export interface PermissState {

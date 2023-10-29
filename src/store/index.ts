@@ -1,8 +1,10 @@
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { PiniaColadaPlugin } from 'colada-plugin'
 
-const store = createPinia()
+const pinia = createPinia()
 
-store.use(piniaPluginPersistedstate)
+pinia.use(piniaPluginPersistedstate)
+pinia.use(PiniaColadaPlugin)
 
-export default store
+export default pinia

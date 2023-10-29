@@ -2,9 +2,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import router from './router'
-import store from './store'
+import pinia from './store'
 
 import { MotionPlugin } from '@vueuse/motion'
+import Colada from 'colada-plugin'
 
 import '@/style/index.scss'
 
@@ -35,6 +36,8 @@ import errorHandler from '@/utils/errorHandler'
 // import './assets/iconfont/iconfont.js'
 // import './assets/iconfont/iconfont.css'
 
+import i18n from '@/languages/index'
+
 const app = createApp(App)
 
 app.config.errorHandler = errorHandler
@@ -46,4 +49,4 @@ for (const [key, component] of Object.entries(Icons)) {
   app.component(key, component)
 }
 
-app.use(router).use(store).use(ElementPlus).use(MotionPlugin).mount('#app')
+app.use(router).use(pinia).use(Colada).use(ElementPlus).use(i18n).use(MotionPlugin).mount('#app')

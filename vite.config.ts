@@ -9,8 +9,6 @@ import viteCompression from 'vite-plugin-compression'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
 import { formatEnv } from './src/utils/env'
 
-const srcPath = resolve(__dirname, 'src')
-
 // https://cn.vitejs.dev/config/#conditional-config
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   // 加载 envDir 中的 .env 文件, 默认情况下只有前缀为 VITE_ 的会被加载
@@ -23,7 +21,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   return {
     resolve: {
       alias: {
-        '@': srcPath
+        '@': resolve(__dirname, 'src')
+        // 'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
       }
     },
     server: {
