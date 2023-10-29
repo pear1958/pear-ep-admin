@@ -14,7 +14,9 @@
 
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">刷新</el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">{{
+                  $t('tabs.refresh')
+                }}</el-dropdown-item>
                 <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab"
                   >关闭当前</el-dropdown-item
                 >

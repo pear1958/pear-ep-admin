@@ -3,7 +3,7 @@
     <IconifyOffline icon="search-outlined" />
   </div>
 
-  <el-dialog v-model="showSearchPanel" :title="null" :footer="null" class="menu-dialog" :width="520">
+  <el-dialog v-model="showSearchPanel" :title="undefined" :footer="null" class="menu-dialog" :width="520">
     <el-input
       v-model="searchKey"
       :prefix-icon="Search"
