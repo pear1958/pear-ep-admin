@@ -216,11 +216,11 @@
           }
         },
         {
-          "path": "/form",
-          "name": "Form",
-          "component": "/form/index",
+          "path": "/table",
+          "name": "InfiniteScrollTable",
+          "component": "/able/infiniteScroll",
           "meta": {
-            "title": "表单"
+            "title": "表格无限滚动"
           }
         }
       ]

@@ -6,6 +6,7 @@
       </template>
 
       <div>
+        <!-- 配置地址 https://github.com/leezng/vue-json-pretty/blob/dev/README.zh_CN.md -->
         <vue-json-pretty
           v-model:data="state.data"
           :deep="3"

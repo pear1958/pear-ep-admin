@@ -27,6 +27,11 @@
         "src/*"
       ],
     },
+    "types": [
+      // "node",
+      // "vite/client",
+      "element-plus/global",
+    ]
   },
   // 指定要编译的路径列表
   "include": [
