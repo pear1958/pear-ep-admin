@@ -48,8 +48,11 @@ dependencies:
     specifier: ^3.3.5
     version: 3.3.5
   vue:
-    specifier: ^3.2.47
+    specifier: ^3.3.4
     version: registry.npmmirror.com/vue@3.3.4
+  vue-json-pretty:
+    specifier: ^2.2.4
+    version: 2.2.4(vue@3.3.4)
   vue-router:
     specifier: ^4.1.6
     version: registry.npmmirror.com/vue-router@4.2.2(vue@3.3.4)
@@ -2816,6 +2819,15 @@ packages:
     peerDependenciesMeta:
       '@vue/composition-api':
         optional: true
+    dependencies:
+      vue: registry.npmmirror.com/vue@3.3.4
+    dev: false
+
+  /vue-json-pretty@2.2.4(vue@3.3.4):
+    resolution: {integrity: sha512-JX80b3QDrspcH43C53CdtYeq/froApQGSV5y43bEMWFj2LGOxB96aH1VmvrFA21nD1WTP6nwfFMQqGXuS4jyFQ==}
+    engines: {node: '>= 10.0.0', npm: '>= 5.0.0'}
+    peerDependencies:
+      vue: '>=3.0.0'
     dependencies:
       vue: registry.npmmirror.com/vue@3.3.4
     dev: false
