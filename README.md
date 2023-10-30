@@ -1,8 +1,8 @@
-## V-Admin
+## Ep-Admin
 
 ## 简介
 
-`v-admin` 是一款开源免费的中后台管理系统模版, 使用最新的 `Vue3`、`Vite`、`Ts`、`element-plus`、`Pinia` 等主流技术开发
+`Ep-Admin` 是一款开源免费的中后台管理系统模版, 使用最新的 `Vue3`、`Vite`、`Ts`、`element-plus`、`Pinia` 等主流技术开发
 
 #### 在线预览地址
 
@@ -20,11 +20,11 @@
 
 - 正在开发中...
 <p align="center">
-  <img alt="V-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-1.png">
-  <img alt="V-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-2.png">
-  <img alt="V-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-3.png">
-  <img alt="V-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-4.png">
-  <img alt="V-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-5.png">
+  <img alt="Ep-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-1.png">
+  <img alt="Ep-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-2.png">
+  <img alt="Ep-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-3.png">
+  <img alt="Ep-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-4.png">
+  <img alt="Ep-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-5.png">
 </p>
 
 #### 版本相关
@@ -51,13 +51,13 @@ Mock 平台:
 - 获取项目代码
 
 ```
-git clone git@github.com:zhangzy56/V-Admin.git
+git clone git@github.com:v-geek/EP-Admin.git
 ```
 
 - 安装依赖
 
 ```
-cd V-Admin
+cd Ep-Admin
 pnpm install
 ```
 
@@ -99,6 +99,6 @@ pnpm run build:pro
 
 #### 相关项目说明
 
-- @v-geek/Ep-Admin 本项目
-- @v-geek/v-design 个人开发的 UI 库
-- @v-geek/v-utils 日常常用的 utils
+- @v-geek/Ep-Admin 本项目 开发中...
+- @v-geek/v-design 个人开发的 UI 库 开发中...
+- @v-geek/v-utils 日常常用的 utils 开发中...
