@@ -50,8 +50,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       preprocessorOptions: {
         scss: {
           additionalData: `
-            @use "@/style/variable.scss" as *;
-            @use "@/style/mixin.scss" as *;
+            @use "@/styles/variable.scss" as *;
+            @use "@/styles/mixin.scss" as *;
           `
         }
       }

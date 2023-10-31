@@ -7,10 +7,10 @@ import pinia from './store'
 import { MotionPlugin } from '@vueuse/motion'
 import Colada from 'colada-plugin'
 
-import '@/style/index.scss'
+import '@/styles/index.scss'
 
-// 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/style/index.scss整体css文件导致热更新慢的问题
-import './style/tailwind.css'
+// 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/styles/index.scss整体css文件导致热更新慢的问题
+import '@/styles/tailwind.css'
 
 // 注册使用 svg icon
 // https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
