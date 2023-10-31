@@ -32,10 +32,6 @@ import errorHandler from '@/utils/errorHandler'
 // import '@zhangzy56/vue-ele/dist/index.css'
 // .use(VElement)
 
-// 导入 下载的 iconfont
-// import './assets/iconfont/iconfont.js'
-// import './assets/iconfont/iconfont.css'
-
 import i18n from '@/languages/index'
 
 const app = createApp(App)
