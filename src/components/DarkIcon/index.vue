@@ -10,7 +10,7 @@ import { useTheme } from '@/hooks/useTheme'
 
 const isDark = ref(useSystemStore().isDark)
 
-function onDarkChange(checked: boolean) {
-  useTheme().changeDark(checked)
+function onDarkChange(checked: string | number | boolean) {
+  useTheme().changeDark(checked as boolean)
 }
 </script>
