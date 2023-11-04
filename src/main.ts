@@ -28,9 +28,8 @@ import { registerGlobComp } from '@/components'
 
 import errorHandler from '@/utils/errorHandler'
 
-// import VElement from '@zhangzy56/vue-ele'
-// import '@zhangzy56/vue-ele/dist/index.css'
-// .use(VElement)
+import VGeekDesign from 'v-geek-design'
+import 'v-geek-design/dist/index.css'
 
 import i18n from '@/languages/index'
 
@@ -45,4 +44,4 @@ for (const [key, component] of Object.entries(Icons)) {
   app.component(key, component)
 }
 
-app.use(router).use(pinia).use(Colada).use(ElementPlus).use(i18n).use(MotionPlugin).mount('#app')
+app.use(router).use(pinia).use(VGeekDesign).use(Colada).use(ElementPlus).use(i18n).use(MotionPlugin).mount('#app')

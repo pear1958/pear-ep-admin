@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.1.0
@@ -43,6 +47,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.3.5
     version: 3.3.5
+  v-geek-design:
+    specifier: ^0.0.2
+    version: 0.0.2(axios@1.4.0)(vue@3.3.4)
   vue:
     specifier: ^3.3.4
     version: registry.npmmirror.com/vue@3.3.4
@@ -3108,6 +3115,16 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  /v-geek-design@0.0.2(axios@1.4.0)(vue@3.3.4):
+    resolution: {integrity: sha512-B5wd+Kbm1zVIHKn1qvpCgrmsKeKO59bjlLvBDFa8dXUqMoyCos1y71w2TC67XrgwQaf6uF+uWV1LpKqNSFqPOg==}
+    peerDependencies:
+      axios: ^1.6.0
+      vue: ^3.3.4
+    dependencies:
+      axios: registry.npmmirror.com/axios@1.4.0
+      vue: registry.npmmirror.com/vue@3.3.4
+    dev: false
 
   /vue-demi@0.14.5(vue@3.3.4):
     resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
@@ -6344,7 +6361,3 @@ packages:
     name: yallist
     version: 4.0.0
     dev: true
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
