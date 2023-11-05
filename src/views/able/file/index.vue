@@ -9,7 +9,7 @@
       :before-upload="beforeUpload"
       :on-change="onFileChange"
       multiple
-      class="mt-20"
+      class="mt-4"
     />
   </div>
 </template>
