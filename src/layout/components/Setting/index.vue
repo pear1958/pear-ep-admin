@@ -2,7 +2,7 @@
   <el-drawer v-model="showDrawer" title="项目设置" modal-class="setting-drawer" :size="380">
     <el-divider>暗黑模式</el-divider>
 
-    <div class="flex-center">
+    <div class="flex-c">
       <dark-icon />
     </div>
 

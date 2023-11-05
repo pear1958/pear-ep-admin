@@ -9,12 +9,15 @@ import Colada from 'colada-plugin'
 
 import '@/styles/index.scss'
 
-// 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/styles/index.scss整体css文件导致热更新慢的问题
-import '@/styles/tailwind.css'
-
 // 注册使用 svg icon
 // https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
 import 'virtual:svg-icons-register'
+
+import VGeekDesign from 'v-geek-design'
+import 'v-geek-design/dist/index.css'
+
+// 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/styles/index.scss整体css文件导致热更新慢的问题
+import '@/styles/tailwind.css'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -27,9 +30,6 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import { registerGlobComp } from '@/components'
 
 import errorHandler from '@/utils/errorHandler'
-
-import VGeekDesign from 'v-geek-design'
-import 'v-geek-design/dist/index.css'
 
 import i18n from '@/languages/index'
 

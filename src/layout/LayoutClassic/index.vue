@@ -2,7 +2,7 @@
   <el-container class="layout-box">
     <el-header class="header">
       <!-- Logo -->
-      <div class="logo flex-center" :style="{ width: '210px' }">
+      <div class="logo flex-c" :style="{ width: '210px' }">
         <logo-svg />
         <span>V-Admin</span>
       </div>

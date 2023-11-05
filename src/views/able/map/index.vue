@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[220px] h-[220px] test flex-c">
+  <div class="w-[220px] h-[220px] test flex-c p-4">
     <div class="text-3xl font-bold underline">Map</div>
   </div>
 </template>

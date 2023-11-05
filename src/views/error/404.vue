@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box-404 flex-center">
+  <div class="page-box-404 flex-c">
     <noExist />
 
     <div class="desc">

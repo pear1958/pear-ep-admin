@@ -16,7 +16,7 @@
     <div class="panel panel-scroll">
       <template v-if="searchList.length">
         <div class="search-item" v-for="searchItem in searchList" @click="handleSelect(searchItem)">
-          <div class="flex-center">
+          <div class="flex-c">
             <span class="icon">
               <el-icon>
                 <Document />

@@ -2,7 +2,7 @@
   <el-container class="layout-box">
     <el-aside :width="sideBarWidth" class="sider" id="sider">
       <!-- Logo -->
-      <div class="logo flex-center">
+      <div class="logo flex-c">
         <logo-svg />
         <span v-show="!isCollapse">V-Admin</span>
       </div>

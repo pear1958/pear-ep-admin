@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div>App</div>
+    <div>File</div>
 
     <GeekUpload
       v-model:file-list="fileList"
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { UploadFile } from 'v-geek-design/dist/types/components/Upload'
-// import { GeekUpload } from 'v-geek-design/dist/es/v-design'
+// import { GeekUpload } from 'v-geek-design'
 
 const fileList = ref([])
 const activeIndex = ref(0)
