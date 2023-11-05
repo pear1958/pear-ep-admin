@@ -48,8 +48,8 @@ dependencies:
     specifier: ^3.3.5
     version: 3.3.5
   v-geek-design:
-    specifier: ^0.0.9
-    version: 0.0.9(axios@1.4.0)(vue@3.3.4)
+    specifier: ^0.0.11
+    version: 0.0.11(axios@1.4.0)(vue@3.3.4)
   vue:
     specifier: ^3.3.4
     version: registry.npmmirror.com/vue@3.3.4
@@ -3168,8 +3168,8 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  /v-geek-design@0.0.9(axios@1.4.0)(vue@3.3.4):
-    resolution: {integrity: sha512-EXz4wxV19gwaWV9vP0zjNBS3TzDaO4W+FQtNVtFSJD1KJl7jYL8pi7R+EVmCsJ9fUBMxkDxbMbgf2N5s/6kbKQ==}
+  /v-geek-design@0.0.11(axios@1.4.0)(vue@3.3.4):
+    resolution: {integrity: sha512-76EUVQaNyYtl+vBbE3/bKevzEh7obb8EQp3VHBQdBw/XbLILULTWhMsVMhrPnUJGBkfpcORQZezI/Cyy9GFldQ==}
     peerDependencies:
       axios: ^1.6.0
       vue: ^3.3.4
