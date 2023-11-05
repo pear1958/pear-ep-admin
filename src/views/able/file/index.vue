@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box p-4">
     <div>File</div>
 
     <GeekUpload
@@ -45,6 +45,5 @@ const onFileChange = (file: UploadFile) => {
   width: 800px;
   height: 400px;
   background-color: #fff;
-  padding: 30px;
 }
 </style>
