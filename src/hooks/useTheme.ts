@@ -23,11 +23,13 @@ export function useTheme() {
 
     // 为了兼容暗黑模式下主题颜色也正常，以下方法计算主题颜色 由深到浅 的具体颜色
 
+    // https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
+
     html.style.setProperty('--el-color-primary', color)
 
     html.style.setProperty(
       '--el-color-primary-dark-2',
-      systemStore.isDark ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
+      systemStore.isDark ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.2)}`
     )
 
     // 颜色加深或变浅
