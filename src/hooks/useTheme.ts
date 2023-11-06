@@ -27,11 +27,6 @@ export function useTheme() {
 
     html.style.setProperty('--el-color-primary', color)
 
-    html.style.setProperty(
-      '--el-color-primary-dark-2',
-      systemStore.isDark ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.2)}`
-    )
-
     // 颜色加深或变浅
     for (let i = 1; i <= 9; i++) {
       html.style.setProperty(
@@ -39,6 +34,11 @@ export function useTheme() {
         systemStore.isDark ? `${getDarkColor(color, i / 10)}` : `${getLightColor(color, i / 10)}`
       )
     }
+
+    html.style.setProperty(
+      '--el-color-primary-dark-2',
+      systemStore.isDark ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.2)}`
+    )
   }
 
   // 页面初始化时, 还原 主题 & 暗黑模式
