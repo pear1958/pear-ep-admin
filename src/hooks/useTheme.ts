@@ -24,6 +24,7 @@ export function useTheme() {
     // 为了兼容暗黑模式下主题颜色也正常，以下方法计算主题颜色 由深到浅 的具体颜色
 
     // https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
+    // https://doc.buildadmin.com/senior/web/styles.html#%E9%A2%84%E8%AE%BE%E9%A2%9C%E8%89%B2%E5%8F%98%E9%87%8F
 
     html.style.setProperty('--el-color-primary', color)
 
