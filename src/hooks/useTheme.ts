@@ -38,7 +38,7 @@ export function useTheme() {
 
     html.style.setProperty(
       '--el-color-primary-dark-2',
-      systemStore.isDark ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.2)}`
+      systemStore.isDark ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
     )
   }
 
