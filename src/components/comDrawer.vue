@@ -1,11 +1,19 @@
 <template>
-  <div class="mask" v-if="props.modelValue" @click="close()"></div>
+  <Transition name="fade">
+    <div class="mask" v-if="modelValue && showMask" @click="close()"></div>
+  </Transition>
 
-  <div class="drawer" :class="{ show: props.modelValue }" :style="{ width: props.width + 'px' }" v-bind="$attrs">
-    <template v-if="props.modelValue">
+  <Transition name="drawer">
+    <div
+      class="drawer"
+      :class="{ show: modelValue }"
+      :style="{ width: width + 'px' }"
+      v-bind="$attrs"
+      v-if="modelValue"
+    >
       <div class="header">
         <div class="title">
-          <div v-if="!slots.title">{{ props.title }}</div>
+          <div v-if="!slots.title">{{ title }}</div>
           <slot name="title" v-else></slot>
         </div>
 
@@ -25,15 +33,15 @@
       <div class="footer" v-if="slots.footer">
         <slot name="footer" />
       </div>
-    </template>
-  </div>
+    </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
 import { useSlots } from 'vue'
 import { Close } from '@element-plus/icons-vue'
 
-const props = defineProps({
+defineProps({
   modelValue: {
     type: Boolean,
     required: true
@@ -45,6 +53,10 @@ const props = defineProps({
   title: {
     type: String,
     default: ''
+  },
+  showMask: {
+    type: Boolean,
+    default: true
   }
 })
 
@@ -61,29 +73,23 @@ const close = () => {
 <style lang="scss" scoped>
 .mask {
   position: fixed;
-  z-index: 100;
   left: 0;
   right: 0;
   top: 0px;
   bottom: 0px;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
 
 .drawer {
   position: fixed;
   top: 0px;
   bottom: 0px;
-  right: -100%;
   background: #ffffff;
   border-left: 1px solid #cfd8dc;
   box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.12);
-  transition: all 0.5s ease-in-out;
   z-index: 1300;
-
-  // 动画
-  &.show {
-    right: 0;
-  }
+  right: 0;
 
   .header {
     height: 55px;
