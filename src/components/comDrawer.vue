@@ -1,0 +1,134 @@
+<template>
+  <div class="mask" v-if="props.modelValue" @click="close()"></div>
+
+  <div class="drawer" :class="{ show: props.modelValue }" :style="{ width: props.width + 'px' }" v-bind="$attrs">
+    <template v-if="props.modelValue">
+      <div class="header">
+        <div class="title">
+          <div v-if="!slots.title">{{ props.title }}</div>
+          <slot name="title" v-else></slot>
+        </div>
+
+        <el-icon :size="18" @click="close" class="close-icon">
+          <Close />
+        </el-icon>
+      </div>
+
+      <div class="body">
+        <el-scrollbar>
+          <div class="content-box">
+            <slot />
+          </div>
+        </el-scrollbar>
+      </div>
+
+      <div class="footer" v-if="slots.footer">
+        <slot name="footer" />
+      </div>
+    </template>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useSlots } from 'vue'
+import { Close } from '@element-plus/icons-vue'
+
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    required: true
+  },
+  width: {
+    type: Number,
+    default: 422
+  },
+  title: {
+    type: String,
+    default: ''
+  }
+})
+
+const slots = useSlots()
+
+const emit = defineEmits(['update:modelValue', 'beforeClose'])
+
+const close = () => {
+  emit('beforeClose')
+  emit('update:modelValue', false)
+}
+</script>
+
+<style lang="scss" scoped>
+.mask {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.drawer {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: -100%;
+  background: #ffffff;
+  border-left: 1px solid #cfd8dc;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.12);
+  transition: all 0.5s ease-in-out;
+  z-index: 1300;
+
+  // 动画
+  &.show {
+    right: 0;
+  }
+
+  .header {
+    height: 55px;
+    padding: 0 15px;
+    color: #72767b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+
+    .title {
+      color: #000000d9;
+      font-size: 16px;
+    }
+
+    .close-icon {
+      cursor: pointer;
+    }
+  }
+
+  .body {
+    height: calc(100vh - 110px);
+
+    // :deep(.el-scrollbar) {
+    //   overflow: visible;
+    // }
+
+    .content-box {
+      padding: 20px;
+      // padding: 5px 20px 20px 20px;
+    }
+  }
+
+  .footer {
+    height: 55px;
+    padding: 0 16px;
+    border-top: 1px solid #f0f0f0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+</style>
