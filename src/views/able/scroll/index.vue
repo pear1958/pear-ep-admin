@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="test">
     <el-button @click="visible = true" type="primary">打开Drawer</el-button>
 
     <com-drawer v-model="visible" title="抽屉组件">

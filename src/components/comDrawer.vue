@@ -86,7 +86,6 @@ const close = () => {
   top: 0px;
   bottom: 0px;
   background: #ffffff;
-  border-left: 1px solid #cfd8dc;
   box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.12);
   z-index: 1300;
   right: 0;
