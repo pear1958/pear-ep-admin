@@ -1,11 +1,18 @@
 import { App } from 'vue'
-import SvgIcon from './SvgIcon/index.vue'
-import { IconifyOffline, iconifyOnline, regisOfflineIcons } from './Icon'
+import SvgIcon from './SvgIcon.vue'
+import { IconifyOffline, IconifyOnline, regisOfflineIcons } from './Icon'
+
+import ChooseArea from './ChooseArea/index.vue'
+import Progress from './Progress.vue'
+import Tabs from './Tabs/Tabs.vue'
+import TabItem from './Tabs/TabItem'
+import Dialog from './Dialog/Dialog.vue'
+import { openDialog } from './Dialog/openDialog'
 
 const components = {
   SvgIcon,
   IconifyOffline,
-  iconifyOnline
+  IconifyOnline
 }
 
 export function registerGlobComp(app: App) {
@@ -15,3 +22,5 @@ export function registerGlobComp(app: App) {
 
   regisOfflineIcons()
 }
+
+export { ChooseArea, Progress, Tabs, TabItem, Dialog, openDialog }

@@ -17,9 +17,7 @@
           <slot name="title" v-else></slot>
         </div>
 
-        <el-icon :size="18" @click="close" class="close-icon">
-          <Close />
-        </el-icon>
+        <i-ep-close @click="close" class="close-icon" />
       </div>
 
       <div class="body">
@@ -39,7 +37,6 @@
 
 <script setup lang="ts">
 import { useSlots } from 'vue'
-import { Close } from '@element-plus/icons-vue'
 
 defineProps({
   modelValue: {
@@ -105,6 +102,7 @@ const close = () => {
     }
 
     .close-icon {
+      font-size: 18px;
       cursor: pointer;
     }
   }
@@ -112,13 +110,8 @@ const close = () => {
   .body {
     height: calc(100vh - 110px);
 
-    // :deep(.el-scrollbar) {
-    //   overflow: visible;
-    // }
-
     .content-box {
       padding: 20px;
-      // padding: 5px 20px 20px 20px;
     }
   }
 
@@ -130,7 +123,6 @@ const close = () => {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ffffff;
     display: flex;
     justify-content: flex-end;
     align-items: center;

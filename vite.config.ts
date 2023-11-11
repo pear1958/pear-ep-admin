@@ -7,7 +7,15 @@ import svgLoader from 'vite-svg-loader'
 import viteCompression from 'vite-plugin-compression'
 // 使用此插件 需要 删掉package.json 中的 "type": "module" 配置
 import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 import { formatEnv } from './src/utils/env'
+
+const pathSrc = resolve(__dirname, 'src')
 
 // https://cn.vitejs.dev/config/#conditional-config
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
@@ -21,7 +29,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   return {
     resolve: {
       alias: {
-        '@': resolve(__dirname, 'src')
+        '@': pathSrc
         // 'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
       }
     },
@@ -75,7 +83,34 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           threshold: 10240, // 体积大于 threshold 才会被压缩, 单位b  10kb
           algorithm: 'gzip', // 压缩算法
           ext: '.gz' // 生成的压缩后缀
-        })
+        }),
+      AutoImport({
+        // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+        imports: ['vue'],
+        resolvers: [
+          // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
+          ElementPlusResolver(),
+          // 自动导入图标组件
+          IconsResolver({
+            prefix: 'Icon'
+          })
+        ],
+        dts: resolve(pathSrc, 'types', 'auto-imports.d.ts')
+      }),
+      Components({
+        resolvers: [
+          // 自动注册图标组件
+          IconsResolver({
+            enabledCollections: ['ep']
+          }),
+          // 自动导入 Element Plus 组件
+          ElementPlusResolver()
+        ],
+        dts: resolve(pathSrc, 'types', 'components.d.ts')
+      }),
+      Icons({
+        autoInstall: true
+      })
     ],
     // 解决 Vite 启动完之后首页加载慢的问题
     optimizeDeps: {

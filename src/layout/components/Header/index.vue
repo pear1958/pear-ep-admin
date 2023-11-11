@@ -31,10 +31,8 @@
         </template>
       </el-dropdown>
 
-      <div class="header-icon flex-c">
-        <el-icon @click="openSetDrawer" :size="16">
-          <Setting />
-        </el-icon>
+      <div class="header-icon flex-c text-base">
+        <i-ep-setting @click="openSetDrawer" />
       </div>
     </div>
   </div>

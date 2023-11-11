@@ -17,10 +17,8 @@
       <template v-if="searchList.length">
         <div class="search-item" v-for="searchItem in searchList" @click="handleSelect(searchItem)">
           <div class="flex-c">
-            <span class="icon">
-              <el-icon>
-                <Document />
-              </el-icon>
+            <span class="icon" style="margin-top: -6px">
+              <i-ep-document />
             </span>
 
             <div class="breadcrumb-text">

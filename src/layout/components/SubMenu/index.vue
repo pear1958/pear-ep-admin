@@ -1,9 +1,7 @@
 <template>
   <template v-for="subItem in menuList" :key="subItem.path">
     <el-menu-item v-if="!subItem.children?.length" :index="subItem.path" @click="handleClickMenu(subItem)">
-      <el-icon>
-        <component :is="subItem.meta.icon"></component>
-      </el-icon>
+      <iconify-online :icon="subItem.meta.icon" class="text-base mr-1.5" />
 
       <template #title>
         <span>{{ subItem.meta.title }}</span>
@@ -12,9 +10,7 @@
 
     <el-sub-menu v-else :index="subItem.path">
       <template #title>
-        <el-icon>
-          <component :is="subItem.meta.icon"></component>
-        </el-icon>
+        <iconify-online :icon="subItem.meta.icon" class="text-base mr-1.5" />
 
         <span>{{ subItem.meta.title }}</span>
       </template>
@@ -29,10 +25,6 @@ import { useRouter } from 'vue-router'
 import SubMenu from './index.vue'
 
 defineProps<{ menuList: Menu.MenuOptions[] }>()
-
-// withDefaults(defineProps<{ menuList: Array<Menu.MenuOptions> | any }>(), {
-//   menuList: []
-// })
 
 const router = useRouter()
 

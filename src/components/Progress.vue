@@ -29,17 +29,14 @@ const progress = ref(0)
 onMounted(() => {
   const { isAnimate, time, percentage } = props
 
-  if (isAnimate) {
-    // 规定时间内加载完成
-    const perLengthExecTime = Math.ceil(time / percentage)
+  if (!isAnimate) return
 
-    const timer = setInterval(() => {
-      progress.value += 1
+  // 每百分之一需要执行多少秒
+  const perCentiExecTime = Math.ceil(time / percentage)
 
-      if (progress.value >= percentage) {
-        clearInterval(timer)
-      }
-    }, perLengthExecTime)
-  }
+  const timer = setInterval(() => {
+    progress.value += 1
+    if (progress.value >= percentage) clearInterval(timer)
+  }, perCentiExecTime)
 })
 </script>

@@ -79,7 +79,7 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
   // 动态设置标题
-  document.title = to.meta.title ? `${to.meta.title} - V-Admin` : 'V-Admin'
+  document.title = to.meta.title ? `${to.meta.title} - Ep-Admin` : 'Ep-Admin'
 
   usePermissionStore().setRouteName(to.name as string)
 

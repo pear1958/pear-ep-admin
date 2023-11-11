@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import DarkIcon from '@/components/DarkIcon/index.vue'
+import DarkIcon from './DarkIcon.vue'
 import emitter from '@/utils/mitt'
 import { useTheme } from '@/hooks/useTheme'
 import { useSystemStore } from '@/store/modules/system'

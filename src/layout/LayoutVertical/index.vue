@@ -4,7 +4,7 @@
       <!-- Logo -->
       <div class="logo flex-c">
         <logo-svg />
-        <span v-show="!isCollapse">V-Admin</span>
+        <span v-show="!isCollapse">Ep-Admin</span>
       </div>
 
       <div class="menu">

@@ -8,7 +8,7 @@
       "component": "/home/index",
       "meta": {
         "title": "首页",
-        "icon": "House"
+        "icon": "ep:house"
       }
     },
     {
@@ -17,7 +17,7 @@
       "redirect": "/systemManage/account",
       "meta": {
         "title": "系统管理",
-        "icon": "Setting"
+        "icon": "ep:setting"
       },
       "children": [
         {
@@ -73,7 +73,7 @@
       "name": "menu",
       "redirect": "/menu/menu1",
       "meta": {
-        "icon": "Files",
+        "icon": "ep:files",
         "title": "多级菜单"
       },
       "children": [
@@ -153,7 +153,7 @@
       "redirect": "/baidu",
       "meta": {
         "title": "外部链接",
-        "icon": "Document"
+        "icon": "ep:document"
       },
       "children": [
         {
@@ -188,7 +188,7 @@
       "redirect": "/able/file",
       "meta": {
         "title": "功能",
-        "icon": "Message"
+        "icon": "ep:message"
       },
       "children": [
         {
@@ -231,7 +231,7 @@
       "redirect": "/components/json-editor",
       "meta": {
         "title": "组件",
-        "icon": "Message"
+        "icon": "ep:message"
       },
       "children": [
         {
@@ -249,7 +249,7 @@
       "redirect": "/table/proTable",
       "meta": {
         "title": "表格",
-        "icon": "Message"
+        "icon": "ep:message"
       },
       "children": [
         {
@@ -268,7 +268,7 @@
       "redirect": "/menu/menuTest0",
       "meta": {
         "title": "测试滚动",
-        "icon": "Notification"
+        "icon": "ep:notification"
       },
       "children": [
         {
