@@ -2,11 +2,10 @@ import { createApp, h } from 'vue'
 import Dialog from './Dialog.vue'
 
 const openDialog = (options: any) => {
-  const { title, content, closeOnClickOverlay, ok, cancel } = options
+  const { title, content, closeOnClickMask, handleOk, cancel } = options
 
   const destroy = () => {
-    // @ts-ignore
-    app.unmount(div)
+    app.unmount()
     div.remove()
   }
 
@@ -21,13 +20,11 @@ const openDialog = (options: any) => {
         {
           visible: true,
           'onUpdate:visible': (newVisible: boolean) => {
-            if (!newVisible) {
-              destroy()
-            }
+            if (!newVisible) destroy()
           },
-          ok,
-          cancel,
-          closeOnClickOverlay
+          closeOnClickMask,
+          handleOk,
+          cancel
         },
         { title: () => title, content: () => content }
       )

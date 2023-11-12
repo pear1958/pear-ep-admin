@@ -1,7 +1,7 @@
 // fade
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,
@@ -45,4 +45,28 @@
 .breadcrumb-leave-active {
   opacity: 0;
   transform: translateX(10px);
+}
+
+// dialog
+.dialog-leave-active,
+.dialog-enter-active {
+  transition: all 0.2s;
+}
+
+.dialog-enter-from,
+.dialog-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -20px) !important;
+}
+
+// dialog-y
+.dialog-y-leave-active,
+.dialog-y-enter-active {
+  transition: all 0.2s;
+}
+
+.dialog-y-enter-from,
+.dialog-y-leave-to {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% - 20px)) !important;
 }

@@ -1,29 +1,32 @@
 <template>
-  <template v-if="visible">
-    <Teleport to="body">
-      <div class="dialog-overlay" @click="clickOverlay"></div>
+  <Teleport to="body">
+    <Transition name="fade">
+      <div class="dialog-mask" @click="clickMask" v-show="visible"></div>
+    </Transition>
 
-      <div class="dialog-fixed" :style="styles">
-        <div class="dialog">
-          <header>
-            <slot name="title" />
-            <span class="close-icon" @click="closeDialog">
-              <i-ep-close />
-            </span>
-          </header>
+    <Transition :name="!alignCenter ? 'dialog' : 'dialog-y'">
+      <div class="dialog" :style="styles" v-bind="$attrs" v-if="visible">
+        <header>
+          <slot name="title" v-if="slots.title" />
 
-          <main>
-            <slot name="content" />
-          </main>
+          <span class="title" v-else>{{ title }}</span>
 
-          <footer>
-            <div @click="cancel">取消</div>
-            <div type="primary" @click="ok">确认</div>
-          </footer>
-        </div>
+          <span class="close-icon" @click="closeDialog">
+            <i-ep-close />
+          </span>
+        </header>
+
+        <main>
+          <slot name="content" />
+        </main>
+
+        <footer>
+          <el-button @click="cancel">取消</el-button>
+          <el-button type="primary" @click="handleOk">确认</el-button>
+        </footer>
       </div>
-    </Teleport>
-  </template>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -35,12 +38,22 @@ defineOptions({
 
 const emit = defineEmits(['update:visible'])
 
+const slots = useSlots()
+
 const props = defineProps({
   visible: {
     type: Boolean,
     default: false
   },
-  closeOnClickOverlay: {
+  title: {
+    type: String,
+    default: ''
+  },
+  closeOnClickMask: {
+    type: Boolean,
+    default: true
+  },
+  alignCenter: {
     type: Boolean,
     default: false
   },
@@ -52,7 +65,7 @@ const props = defineProps({
     type: [String, Number],
     default: 130
   },
-  ok: {
+  handleOk: {
     type: Function
   },
   cancel: {
@@ -62,15 +75,16 @@ const props = defineProps({
 
 const styles = computed(() => ({
   minWidth: props.width + 'px',
-  top: props.top + 'px'
+  top: props.top + 'px',
+  ...(props.alignCenter ? { top: '50%', transform: 'translate(-50%, -50%)' } : {})
 }))
 
 const closeDialog = () => {
   emit('update:visible', false)
 }
 
-const clickOverlay = () => {
-  if (props.closeOnClickOverlay) {
+const clickMask = () => {
+  if (props.closeOnClickMask) {
     closeDialog()
   }
 }
@@ -80,18 +94,15 @@ const cancel = () => {
   closeDialog()
 }
 
-const ok = () => {
-  if (props.ok && props.ok() !== false) {
+const handleOk = () => {
+  if (props.handleOk && props.handleOk() !== false) {
     closeDialog()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$radius: 4px;
-$border-color: #d9d9d9;
-
-.dialog-overlay {
+.dialog-mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -99,35 +110,37 @@ $border-color: #d9d9d9;
   height: 100%;
   background: fade_out(black, 0.5);
   z-index: 30;
-  transition: all 2s;
 }
 
-.dialog-fixed {
+.dialog {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   z-index: 31;
-}
-
-.dialog {
   background: white;
-  border-radius: $radius;
+  border-radius: 4px;
   box-shadow: 0 0 3px fade_out(black, 0.5);
 
   > header {
     padding: 12px 16px;
-    border-bottom: 1px solid $border-color;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 20px;
 
+    .title {
+      font-size: 18px;
+      color: #303133;
+    }
+
     .close-icon {
       font-size: 16px;
       color: #000000;
+      transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
 
       &:hover {
-        color: blue;
+        color: var(--el-color-primary);
       }
     }
   }
@@ -137,12 +150,10 @@ $border-color: #d9d9d9;
   }
 
   > footer {
-    border-top: 1px solid $border-color;
-    padding: 12px 2px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 12px;
   }
 }
 </style>

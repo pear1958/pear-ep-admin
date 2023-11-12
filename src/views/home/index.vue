@@ -27,11 +27,7 @@
     <div class="mt-4">
       <el-button type="primary" @click="toggle">打开对话框</el-button>
 
-      <Dialog v-model:visible="visible" :closeOnClickOverlay="true" :ok="ok" :cancel="cancel">
-        <template v-slot:title>
-          <strong>标题3213</strong>
-        </template>
-
+      <Dialog v-model:visible="visible" title="测试标题" :handleOk="handleOk" :cancel="cancel">
         <template v-slot:content>
           <p>第一行</p>
           <p>第二行</p>
@@ -62,7 +58,7 @@ const toggle = () => {
   visible.value = true
 }
 
-const ok = () => {
+const handleOk = () => {
   console.log('确认')
   return true
 }
@@ -76,8 +72,7 @@ const showDialog = () => {
     title: '标题',
     content: '这里是内容',
     visible: true,
-    closeOnClickOverlay: true,
-    ok: () => {
+    handleOk: () => {
       console.log('确认')
       return true
     },
