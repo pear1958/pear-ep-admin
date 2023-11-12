@@ -24,11 +24,14 @@ import { registerGlobComp } from '@/components'
 import errorHandler from '@/utils/errorHandler'
 
 import i18n from '@/languages/index'
+import { setupDirectives } from './directives'
 
 const app = createApp(App)
 
 app.config.errorHandler = errorHandler
 
 registerGlobComp(app)
+
+setupDirectives(app)
 
 app.use(router).use(pinia).use(Colada).use(i18n).use(MotionPlugin).mount('#app')

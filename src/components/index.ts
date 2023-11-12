@@ -9,6 +9,7 @@ import TabItem from './Tabs/TabItem'
 import Dialog from './Dialog/Dialog.vue'
 import { openDialog } from './Dialog/openDialog'
 import Upload from './Upload/Upload.vue'
+import Charts from './Charts'
 
 const components = {
   SvgIcon,
@@ -24,4 +25,4 @@ export function registerGlobComp(app: App) {
   regisOfflineIcons()
 }
 
-export { ChooseArea, Progress, Tabs, TabItem, Dialog, openDialog, Upload }
+export { ChooseArea, Progress, Tabs, TabItem, Dialog, openDialog, Upload, Charts }
