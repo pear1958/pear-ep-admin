@@ -95,9 +95,8 @@ const cancel = () => {
 }
 
 const handleOk = () => {
-  if (props.handleOk && props.handleOk() !== false) {
-    closeDialog()
-  }
+  props.handleOk && props.handleOk()
+  closeDialog()
 }
 </script>
 

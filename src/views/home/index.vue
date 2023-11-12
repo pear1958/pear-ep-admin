@@ -74,7 +74,6 @@ const showDialog = () => {
     visible: true,
     handleOk: () => {
       console.log('确认')
-      return true
     },
     cancel: () => {
       console.log('取消')
