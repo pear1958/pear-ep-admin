@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ChooseArea: typeof import('./../components/ChooseArea/index.vue')['default']
     Dialog: typeof import('./../components/Dialog/Dialog.vue')['default']
+    Dragger: typeof import('./../components/Upload/Dragger.vue')['default']
     Drawer: typeof import('./../components/Drawer.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -42,12 +43,15 @@ declare module 'vue' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     IconifyOnline: typeof import('./../components/Icon/src/iconifyOnline.ts')['default']
     IEpClose: typeof import('~icons/ep/close')['default']
+    IEpDelete: typeof import('~icons/ep/delete')['default']
     IEpDocument: typeof import('~icons/ep/document')['default']
+    IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpSetting: typeof import('~icons/ep/setting')['default']
     Progress: typeof import('./../components/Progress.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
     Tabs: typeof import('./../components/Tabs/Tabs.vue')['default']
+    Upload: typeof import('./../components/Upload/Upload.vue')['default']
   }
 }

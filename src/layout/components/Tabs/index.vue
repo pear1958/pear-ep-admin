@@ -72,7 +72,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, onMounted, ref, unref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { type TabsPaneContext, ElMessage } from 'element-plus'
+import { type TabsPaneContext, ElMessage, TabPaneName } from 'element-plus'
 import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
 import Maximize from './Maximize.vue'
@@ -129,7 +129,7 @@ const tabClick = (tabItem: TabsPaneContext) => {
   router.push(fullPath)
 }
 
-const removeTab = (fullPath: string) => {
+const removeTab = (fullPath: TabPaneName) => {
   // 删除keepAlive
   const name = unref(tabList).find(item => item.fullPath == fullPath)?.name || ''
   name && systemStore.removeKeepAliveName(name)
@@ -141,7 +141,7 @@ const removeTab = (fullPath: string) => {
 
   // 删除Tab
   const isCurrentTab = fullPath === route.fullPath
-  systemStore.removeTab(fullPath, isCurrentTab)
+  systemStore.removeTab(fullPath as string, isCurrentTab)
 }
 
 const maximizeMain = () => {

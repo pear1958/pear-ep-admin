@@ -1,0 +1,76 @@
+.upload-box {
+  display: flex;
+  gap: 12px;
+
+  .uploaded {
+    width: 80px;
+    height: 80px;
+    @include flex();
+    border-radius: 6px;
+    border: 1px solid #dcdfe6;
+    position: relative;
+
+    &.active {
+      border: 2px solid #ff6c62;
+    }
+
+    &:hover .hover-del-icon {
+      opacity: 1;
+    }
+
+    .img {
+      max-width: 100%;
+      max-height: 100%;
+      cursor: pointer;
+    }
+
+    .replace-box {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      @include flex();
+      color: #ffffff;
+      height: 24px;
+      font-size: 12px;
+      cursor: pointer;
+      background-color: #303133cc;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .select-del-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      @include flex();
+      @include posi-rt();
+      cursor: pointer;
+      font-size: 12px;
+      color: #ffffff;
+      background-color: #ff6c62;
+    }
+
+    .hover-del-icon {
+      @include posi-rt();
+      font-size: 14px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease-in;
+
+      &:hover {
+        color: #f56c6c;
+      }
+    }
+  }
+
+  .upload {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    @include flex();
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 22px;
+  }
+}
