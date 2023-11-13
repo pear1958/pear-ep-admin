@@ -45,6 +45,6 @@ export default defineComponent({
       window.removeEventListener('resize', resizeChart)
     })
 
-    return () => <div class="chart w-full h-full " ref={chartRef} />
+    return () => <div class="chart w-full h-full" ref={chartRef} />
   }
 })

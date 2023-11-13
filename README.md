@@ -75,8 +75,8 @@ pnpm run build:pro
 - [x] 菜单栏搜索
 - [x] 面包屑 & Tab 支持 路由 query 参数
 - [x] 按钮权限指令封装
-- [ ] Echarts 组件
-- [ ] 迁移 websocket
+- [x] Echarts 组件
+- [x] 迁移 websocket
 - [ ] 通用文件下载
 - [ ] 优化 Tab 组件、支持鼠标右键菜单组件
 - [ ] 多种布局模式
