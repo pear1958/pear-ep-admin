@@ -33,7 +33,7 @@
           "name": "tabs",
           "component": "/components/tabs",
           "meta": {
-            "title": "Tabs"
+            "title": "标签页"
           }
         },
         {
@@ -41,7 +41,15 @@
           "name": "dialog",
           "component": "/components/dialog",
           "meta": {
-            "title": "Dialog"
+            "title": "对话框"
+          }
+        },
+        {
+          "path": "/components/collapse",
+          "name": "collapse",
+          "component": "/components/collapse",
+          "meta": {
+            "title": "折叠面板"
           }
         },
         {

@@ -10,6 +10,8 @@ import Dialog from './Dialog/Dialog.vue'
 import { openDialog } from './Dialog/openDialog'
 import Upload from './Upload/Upload.vue'
 import Charts from './Charts'
+import Collapse from './Collapse/Collapse.vue'
+import CollapseItem from './Collapse/CollapseItem.vue'
 
 const components = {
   SvgIcon,
@@ -25,4 +27,4 @@ export function registerGlobComp(app: App) {
   regisOfflineIcons()
 }
 
-export { ChooseArea, Progress, Tabs, TabItem, Dialog, openDialog, Upload, Charts }
+export { ChooseArea, Progress, Tabs, TabItem, Dialog, openDialog, Upload, Charts, Collapse, CollapseItem }

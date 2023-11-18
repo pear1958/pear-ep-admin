@@ -8,6 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ChooseArea: typeof import('./../components/ChooseArea/index.vue')['default']
+    Collapse: typeof import('./../components/Collapse/Collapse.vue')['default']
+    CollapseItem: typeof import('./../components/Collapse/CollapseItem.vue')['default']
     Dialog: typeof import('./../components/Dialog/Dialog.vue')['default']
     Dragger: typeof import('./../components/Upload/Dragger.vue')['default']
     Drawer: typeof import('./../components/Drawer.vue')['default']
@@ -44,6 +46,7 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     IconifyOnline: typeof import('./../components/Icon/src/iconifyOnline.ts')['default']
+    IEpArrowRight: typeof import('~icons/ep/arrow-right')['default']
     IEpClose: typeof import('~icons/ep/close')['default']
     IEpDelete: typeof import('~icons/ep/delete')['default']
     IEpDocument: typeof import('~icons/ep/document')['default']
