@@ -12,6 +12,108 @@
       }
     },
     {
+      "path": "/components",
+      "name": "Components",
+      "redirect": "/components/json-editor",
+      "meta": {
+        "title": "组件",
+        "icon": "ep:message"
+      },
+      "children": [
+        {
+          "path": "/components/drawer",
+          "name": "drawer",
+          "component": "/components/drawer",
+          "meta": {
+            "title": "抽屉"
+          }
+        },
+        {
+          "path": "/components/tabs",
+          "name": "tabs",
+          "component": "/components/tabs",
+          "meta": {
+            "title": "Tabs"
+          }
+        },
+        {
+          "path": "/components/dialog",
+          "name": "dialog",
+          "component": "/components/dialog",
+          "meta": {
+            "title": "Dialog"
+          }
+        },
+        {
+          "path": "/components/progress",
+          "name": "progress",
+          "component": "/components/progress",
+          "meta": {
+            "title": "Progress动画"
+          }
+        },
+        {
+          "path": "/components/chooseArea",
+          "name": "chooseArea",
+          "component": "/components/chooseArea",
+          "meta": {
+            "title": "省市区选择器"
+          }
+        },
+        {
+          "path": "/components/json-editor",
+          "name": "jsonEditor",
+          "component": "/components/jsonEditor",
+          "meta": {
+            "title": "json编辑器"
+          }
+        }
+      ]
+    },
+    {
+      "path": "/able",
+      "name": "Able",
+      "redirect": "/able/file",
+      "meta": {
+        "title": "功能",
+        "icon": "ep:message"
+      },
+      "children": [
+        {
+          "path": "/able/file",
+          "name": "File",
+          "component": "/able/file",
+          "meta": {
+            "title": "文件"
+          }
+        },
+        {
+          "path": "/able/charts",
+          "name": "Charts",
+          "component": "/able/charts",
+          "meta": {
+            "title": "图表"
+          }
+        },
+        {
+          "path": "/able/map",
+          "name": "Map",
+          "component": "/able/map",
+          "meta": {
+            "title": "地图"
+          }
+        },
+        {
+          "path": "/table",
+          "name": "InfiniteScrollTable",
+          "component": "/able/infiniteScroll",
+          "meta": {
+            "title": "表格无限滚动"
+          }
+        }
+      ]
+    },
+    {
       "path": "/systemManage",
       "name": "systemManage",
       "redirect": "/systemManage/account",
@@ -178,86 +280,6 @@
           "meta": {
             "title": "知乎",
             "link": "https://www.zhihu.com/"
-          }
-        }
-      ]
-    },
-    {
-      "path": "/able",
-      "name": "Able",
-      "redirect": "/able/file",
-      "meta": {
-        "title": "功能",
-        "icon": "ep:message"
-      },
-      "children": [
-        {
-          "path": "/able/file",
-          "name": "File",
-          "component": "/able/file/index",
-          "meta": {
-            "title": "文件"
-          }
-        },
-        {
-          "path": "/able/map",
-          "name": "Map",
-          "component": "/able/map/index",
-          "meta": {
-            "title": "地图"
-          }
-        },
-        {
-          "path": "/able/scroll",
-          "name": "Scroll",
-          "component": "/able/scroll/index",
-          "meta": {
-            "title": "滚动"
-          }
-        },
-        {
-          "path": "/table",
-          "name": "InfiniteScrollTable",
-          "component": "/able/infiniteScroll",
-          "meta": {
-            "title": "表格无限滚动"
-          }
-        }
-      ]
-    },
-    {
-      "path": "/components",
-      "name": "Components",
-      "redirect": "/components/json-editor",
-      "meta": {
-        "title": "组件",
-        "icon": "ep:message"
-      },
-      "children": [
-        {
-          "path": "/components/json-editor",
-          "name": "jsonEditor",
-          "component": "/components/jsonEditor",
-          "meta": {
-            "title": "json编辑器"
-          }
-        }
-      ]
-    },
-    {
-      "path": "/table",
-      "redirect": "/table/proTable",
-      "meta": {
-        "title": "表格",
-        "icon": "ep:message"
-      },
-      "children": [
-        {
-          "path": "/table/proTable",
-          "name": "proTable",
-          "component": "/table/proTable",
-          "meta": {
-            "title": "超级表格"
           }
         }
       ]

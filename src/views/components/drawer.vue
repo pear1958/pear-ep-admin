@@ -1,5 +1,5 @@
 <template>
-  <div class="test">
+  <div class="bg-white p-4">
     <el-button @click="visible = true" type="primary">打开Drawer</el-button>
 
     <Drawer v-model="visible" title="抽屉组件">
@@ -19,7 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import Drawer from '@/components/Drawer.vue'
 
 const visible = ref(false)

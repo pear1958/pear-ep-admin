@@ -9,6 +9,10 @@
 <script lang="ts" setup>
 import { Charts } from '@/components'
 
+defineOptions({
+  name: 'ChartsPage'
+})
+
 const mockOptions = {
   tooltip: {
     trigger: 'axis',
