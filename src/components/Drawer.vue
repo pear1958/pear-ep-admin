@@ -59,11 +59,12 @@ defineProps({
 
 const slots = useSlots()
 
-const emit = defineEmits(['update:modelValue', 'beforeClose'])
+const emit = defineEmits(['update:modelValue', 'beforeClose', 'close'])
 
 const close = () => {
   emit('beforeClose')
   emit('update:modelValue', false)
+  emit('close')
 }
 </script>
 
