@@ -32,6 +32,7 @@ const offlineIcons = {
   'menu-fold-outlined': menuFoldOutlined
 }
 
+// 在 src/layout/index.vue 中加载, 避免 Vite 首次启动慢
 export const regisOfflineIcons = () => {
   for (const [key, value] of Object.entries(offlineIcons)) {
     addIcon(key, value)

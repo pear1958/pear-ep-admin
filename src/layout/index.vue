@@ -8,10 +8,13 @@ import { computed, type Component } from 'vue'
 import LayoutVertical from './LayoutVertical/index.vue'
 import Setting from './components/Setting/index.vue'
 import { useSystemStore } from '@/store/modules/system'
+import { regisOfflineIcons } from '@/components/Icon'
 
 const layout = computed(() => useSystemStore().layout)
 
 const LayoutComponents: { [key: string]: Component } = {
   vertical: LayoutVertical
 }
+
+regisOfflineIcons()
 </script>

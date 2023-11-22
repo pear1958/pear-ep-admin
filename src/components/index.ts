@@ -1,6 +1,6 @@
 import { App } from 'vue'
 import SvgIcon from './SvgIcon.vue'
-import { IconifyOffline, IconifyOnline, regisOfflineIcons } from './Icon'
+import { IconifyOffline, IconifyOnline } from './Icon'
 
 import ChooseArea from './ChooseArea/index.vue'
 import Progress from './Progress.vue'
@@ -23,8 +23,6 @@ export function registerGlobComp(app: App) {
   for (const [key, component] of Object.entries(components)) {
     app.component(key, component)
   }
-
-  regisOfflineIcons()
 }
 
 export { ChooseArea, Progress, Tabs, TabItem, Dialog, openDialog, Upload, Charts, Collapse, CollapseItem }

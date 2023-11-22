@@ -115,7 +115,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     // 解决 Vite 启动完之后首页加载慢的问题
     optimizeDeps: {
       // 启动时 预加载这些包
-      include: ['pinia', 'mitt']
+      include: ['pinia', 'mitt', 'axios', 'vue-i18n'],
+      exclude: ['@iconify-icons/ep', '@iconify-icons/ant-design']
     },
     build: {
       // 关闭source-map 减小打包后的文件体积
