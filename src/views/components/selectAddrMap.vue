@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white p-4">
-    <mapAddrDrawer />
+    <mapAddrDrawer :visible="visible" />
 
     <el-button @click="openDrawer">点击打开</el-button>
   </div>
