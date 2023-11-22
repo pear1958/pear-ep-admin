@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import Drawer from '@/components/Drawer.vue'
+import { Drawer } from '@/components'
 
 const visible = ref(false)
 </script>

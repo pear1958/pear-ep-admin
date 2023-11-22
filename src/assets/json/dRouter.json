@@ -16,7 +16,7 @@
       "name": "Components",
       "redirect": "/components/json-editor",
       "meta": {
-        "title": "组件",
+        "title": "自定义组件",
         "icon": "ep:message"
       },
       "children": [
@@ -69,11 +69,19 @@
           }
         },
         {
-          "path": "/components/json-editor",
+          "path": "/components/jsonEditor",
           "name": "jsonEditor",
           "component": "/components/jsonEditor",
           "meta": {
             "title": "json编辑器"
+          }
+        },
+        {
+          "path": "/components/selectAddrMap",
+          "name": "selectAddrMap",
+          "component": "/components/selectAddrMap",
+          "meta": {
+            "title": "地图选点"
           }
         }
       ]

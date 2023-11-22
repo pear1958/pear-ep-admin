@@ -1,4 +1,5 @@
 import { App } from 'vue'
+
 import SvgIcon from './SvgIcon.vue'
 import { IconifyOffline, IconifyOnline } from './Icon'
 
@@ -12,6 +13,8 @@ import Upload from './Upload/Upload.vue'
 import Charts from './Charts'
 import Collapse from './Collapse/Collapse.vue'
 import CollapseItem from './Collapse/CollapseItem.vue'
+import Drawer from './Drawer.vue'
+import mapAddrDrawer from './Map/mapAddrDrawer.vue'
 
 const components = {
   SvgIcon,
@@ -25,4 +28,17 @@ export function registerGlobComp(app: App) {
   }
 }
 
-export { ChooseArea, Progress, Tabs, TabItem, Dialog, openDialog, Upload, Charts, Collapse, CollapseItem }
+export {
+  ChooseArea,
+  Progress,
+  Tabs,
+  TabItem,
+  Dialog,
+  openDialog,
+  Upload,
+  Charts,
+  Collapse,
+  CollapseItem,
+  Drawer,
+  mapAddrDrawer
+}

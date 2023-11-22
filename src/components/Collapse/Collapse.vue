@@ -22,7 +22,7 @@ const props = defineProps({
   }
 })
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   (e: 'update:modelValue', values: NameType[]): void
   (e: 'change', values: NameType[]): void
 }>()
@@ -61,9 +61,9 @@ const handleItemClick = (item: NameType) => {
     activeNames.value = _activeNames
   }
 
-  emits('update:modelValue', _activeNames)
+  emit('update:modelValue', _activeNames)
 
-  emits('change', _activeNames)
+  emit('change', _activeNames)
 }
 
 provide(collapseContextKey, {
