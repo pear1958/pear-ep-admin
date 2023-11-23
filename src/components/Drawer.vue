@@ -13,8 +13,8 @@
     >
       <div class="header">
         <div class="title">
-          <div v-if="!slots.title">{{ title }}</div>
-          <slot name="title" v-else></slot>
+          <slot name="title" v-if="slots.title" />
+          <div v-else>{{ title }}</div>
         </div>
 
         <i-ep-close @click="close" class="close-icon" />
@@ -28,8 +28,13 @@
         </el-scrollbar>
       </div>
 
-      <div class="footer" v-if="slots.footer">
-        <slot name="footer" />
+      <div class="footer">
+        <slot name="footer" v-if="slots.footer" />
+
+        <template v-else>
+          <el-button @click="cancel">取消</el-button>
+          <el-button type="primary" @click="confirm">确定</el-button>
+        </template>
       </div>
     </div>
   </Transition>
@@ -59,12 +64,21 @@ defineProps({
 
 const slots = useSlots()
 
-const emit = defineEmits(['update:modelValue', 'beforeClose', 'close'])
+const emit = defineEmits(['update:modelValue', 'beforeClose', 'close', 'confirm'])
 
 const close = () => {
   emit('beforeClose')
   emit('update:modelValue', false)
   emit('close')
+}
+
+const cancel = () => {
+  close()
+}
+
+const confirm = () => {
+  close()
+  emit('confirm')
 }
 </script>
 
@@ -91,7 +105,6 @@ const close = () => {
   .header {
     height: 55px;
     padding: 0 15px;
-    color: #72767b;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -104,7 +117,13 @@ const close = () => {
 
     .close-icon {
       font-size: 18px;
+      color: #72767b;
       cursor: pointer;
+      transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        color: var(--el-color-primary);
+      }
     }
   }
 

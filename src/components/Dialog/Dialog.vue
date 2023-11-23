@@ -8,7 +8,6 @@
       <div class="dialog" :style="styles" v-bind="$attrs" v-if="visible">
         <header>
           <slot name="title" v-if="slots.title" />
-
           <span class="title" v-else>{{ title }}</span>
 
           <span class="close-icon" @click="closeDialog">
@@ -135,8 +134,8 @@ const handleOk = () => {
     .close-icon {
       font-size: 16px;
       color: #000000;
-      transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
+      transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         color: var(--el-color-primary);

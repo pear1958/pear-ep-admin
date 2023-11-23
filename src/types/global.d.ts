@@ -34,6 +34,14 @@ declare interface tabItem {
   name: string
 }
 
+declare interface Window {
+  _AMapSecurityConfig: {
+    [key: string]: string
+  }
+}
+
+declare const AMap: Recordable
+
 // 声明文件中，declare 表示声明的意思
 // js中有的类型必须加declare，js不存在的类型不用加，如：interface、type
 
