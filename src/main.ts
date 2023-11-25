@@ -1,10 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
 import router from './router'
 import pinia from './store'
 
-import { MotionPlugin } from '@vueuse/motion'
 import Colada from 'colada-plugin'
 
 import '@/styles/index.scss'
@@ -34,4 +32,4 @@ registerGlobComp(app)
 
 setupDirectives(app)
 
-app.use(router).use(pinia).use(Colada).use(i18n).use(MotionPlugin).mount('#app')
+app.use(router).use(pinia).use(Colada).use(i18n).mount('#app')

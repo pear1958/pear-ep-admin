@@ -21,11 +21,11 @@
   </div>
 
   <div class="tabs-content">
-    <transition name="fade" mode="out-in" appear>
-      <div :key="current.props.title">
-        <component :is="current" :key="current.props.title" />
-      </div>
-    </transition>
+    <!-- <transition name="fade" mode="out-in" appear> -->
+    <div :key="current.props.title">
+      <component :is="current" :key="current.props.title" />
+    </div>
+    <!-- </transition> -->
   </div>
 </template>
 

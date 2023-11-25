@@ -20,17 +20,17 @@ defineOptions({
 
 const visible = ref(false)
 
-// const mapData: Ref<IMapData> = ref({
-//   addr: '',
-//   lng: '',
-//   lat: ''
-// })
-
-const mapData = ref({
-  addr: '四川省成都市武侯区桂溪街道天府三街中国建设银行(成都生产基地)',
-  lng: 104.058302,
-  lat: 30.546434
+const mapData: Ref<IMapData> = ref({
+  addr: '',
+  lng: '',
+  lat: ''
 })
+
+// const mapData = ref({
+//   addr: '四川省成都市武侯区桂溪街道天府三街中国建设银行(成都生产基地)',
+//   lng: 104.058302,
+//   lat: 30.546434
+// })
 
 const openDrawer = () => {
   visible.value = true

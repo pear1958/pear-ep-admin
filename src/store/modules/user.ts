@@ -21,8 +21,6 @@ export const useUserStore = defineStore({
           })
       })
     },
-    // async login(params) {
-    // }
     setToken(token: null | string) {
       this.token = token
     }

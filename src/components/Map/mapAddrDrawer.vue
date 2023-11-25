@@ -28,9 +28,10 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
 import AMapLoader from '@amap/amap-jsapi-loader'
+import { useConfigStore } from '@/store/modules/platformConfig'
 import { Drawer } from '@/components'
-import markerPng from '@/assets/imgs/marker.png'
 import { isObject } from '@/utils/is'
+import markerPng from '@/assets/imgs/marker.png'
 
 export type IMapData = {
   addr: string
@@ -106,13 +107,15 @@ const handleConfirm = () => {
 }
 
 function initMap(): Promise<void> {
+  const { securityJsCode, key } = useConfigStore().mapConfig
+
   return new Promise((resolve, reject) => {
     window._AMapSecurityConfig = {
-      securityJsCode: '46b9220493133ba0e092e87171cdafda'
+      securityJsCode
     }
 
     AMapLoader.load({
-      key: '2df8cde4c32f9b8407636e6a583f2764',
+      key,
       version: '2.0',
       plugins: ['AMap.Geocoder', 'AMap.AutoComplete']
     })

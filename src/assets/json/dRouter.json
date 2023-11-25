@@ -69,14 +69,6 @@
           }
         },
         {
-          "path": "/components/jsonEditor",
-          "name": "jsonEditor",
-          "component": "/components/jsonEditor",
-          "meta": {
-            "title": "json编辑器"
-          }
-        },
-        {
           "path": "/components/selectAddrMap",
           "name": "selectAddrMap",
           "component": "/components/selectAddrMap",

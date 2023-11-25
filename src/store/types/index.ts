@@ -25,3 +25,10 @@ export interface PermissState {
   } | null
   menuList: Menu.MenuOptions[] | any
 }
+
+export interface IConfigState {
+  mapConfig: {
+    key: string
+    securityJsCode: string
+  }
+}
