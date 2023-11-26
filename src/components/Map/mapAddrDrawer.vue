@@ -32,6 +32,7 @@ import { useConfigStore } from '@/store/modules/platformConfig'
 import { Drawer } from '@/components'
 import { isObject } from '@/utils/is'
 import markerPng from '@/assets/imgs/marker.png'
+import { deepClone } from '@/utils/func'
 
 export type IMapData = {
   addr: string
@@ -61,15 +62,15 @@ const props = defineProps({
     required: true
   },
   mapData: {
-    type: Object as PropType<IMapData>,
+    validator: () => true,
     required: true
   }
 })
 
 const mapRef = ref()
+const addr = ref('')
 let map: Recordable
 let geocoder: Recordable
-const addr = ref('')
 
 let mapData: IMapData = {
   addr: '',
@@ -83,22 +84,25 @@ watchEffect(async () => {
   if (props.visible) {
     await initMap()
 
-    if (!isObject(props.mapData) || !Object.keys(props.mapData).length) {
-      emit('update:mapData', mapData)
-    }
+    if (!isObject(props.mapData)) return
 
     // 编辑: 回填数据
-    const { addr: address, lng, lat } = props.mapData
+    mapData = deepClone(props.mapData) as Recordable as any
+
+    // Key 若不存在, 则赋初始值, 避免第一次点击确定返回的数据格式不对
+    if (!Reflect.has(mapData, 'lng')) mapData.lng = ''
+    if (!Reflect.has(mapData, 'lat')) mapData.lat = ''
+    if (!Reflect.has(mapData, 'addr')) mapData.addr = ''
+
+    const { addr: address, lng, lat } = mapData
     addr.value = address
     if (lng && lat) addMarker([Number(lng), Number(lat)], address)
-    mapData = props.mapData
 
     return
   }
 
   // 关闭抽屉: 销毁地图
   map?.destroy() && map?.clearEvents('click')
-  addr.value = ''
   options.value.splice(0)
 })
 
@@ -123,7 +127,7 @@ function initMap(): Promise<void> {
         map = new AMap.Map(mapRef.value, {
           zoom: 15,
           layers: [new AMap.TileLayer.Satellite(), new AMap.TileLayer.RoadNet()],
-          center: [props.mapData.lng || 104.060791, props.mapData.lat || 30.543995]
+          center: [(props.mapData as any)?.lng || 104.060791, (props.mapData as any)?.lat || 30.543995]
         })
 
         geocoder = new AMap.Geocoder()
@@ -131,7 +135,8 @@ function initMap(): Promise<void> {
         map.on('click', (event: Recordable) => {
           const lng = event.lnglat.getLng()
           const lat = event.lnglat.getLat()
-          const lngLat = [lng, lat]
+
+          const lngLat = [lng, lat] as [number, number]
 
           if (!lng || !lat) {
             ElMessage.warning('打点失败')
@@ -144,7 +149,7 @@ function initMap(): Promise<void> {
 
               map.clearMap()
 
-              addMarker(lngLat as [number, number], addr.value, false)
+              addMarker(lngLat, addr.value, false)
 
               mapData = {
                 addr: addr.value,
@@ -166,7 +171,7 @@ function initMap(): Promise<void> {
   })
 }
 
-const addMarker = (lngLat: [number, number], name: string, setCenter = true) => {
+const addMarker = (lngLat: [number, number], name: string | null, setCenter = true) => {
   const marker = new AMap.Marker({
     position: lngLat,
     icon: new AMap.Icon({
@@ -181,7 +186,7 @@ const addMarker = (lngLat: [number, number], name: string, setCenter = true) => 
   marker.setLabel({
     direction: 'top',
     offset: new AMap.Pixel(0, 9), // 设置文本标注偏移量
-    content: `<div>${name}</div>` // 设置文本标注内容
+    content: `<div>${name || ''}</div>` // 设置文本标注内容
   })
 
   map.add(marker)
