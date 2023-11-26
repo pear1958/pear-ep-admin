@@ -50,6 +50,7 @@ import {
   ElCol,
   ElAvatar,
   ElEmpty,
+  ElProgress,
   // 指令
   ElLoading,
   ElInfiniteScroll
@@ -107,7 +108,8 @@ const components = [
   ElRow,
   ElCol,
   ElAvatar,
-  ElEmpty
+  ElEmpty,
+  ElProgress
 ]
 
 export function useElementPlus(app: App) {
