@@ -1,8 +1,6 @@
 <template>
   <div class="max-close-icon" @click="exitMaximize">
-    <el-icon>
-      <Close />
-    </el-icon>
+    <IconifyOffline icon="close" />
   </div>
 </template>
 
@@ -69,7 +67,7 @@ watch(
     background-color: #73767a;
   }
 
-  :deep(.el-icon) {
+  :deep(.iconify) {
     position: relative;
     top: 68%;
     left: 32%;

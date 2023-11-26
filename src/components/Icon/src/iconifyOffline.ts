@@ -6,7 +6,8 @@ export default defineComponent({
   components: { Icon },
   props: {
     icon: {
-      default: null
+      type: String,
+      default: ''
     }
   },
   render() {

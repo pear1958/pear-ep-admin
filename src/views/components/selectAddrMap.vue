@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { mapAddrDrawer } from '@/components'
 import { IMapData } from '@/components/Map/mapAddrDrawer.vue'
 

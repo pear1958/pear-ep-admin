@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Upload } from '@/components'
 import { UploadFile } from '@/components/Upload/types'
 

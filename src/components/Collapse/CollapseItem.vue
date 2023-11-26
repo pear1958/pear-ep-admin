@@ -15,7 +15,7 @@
       @click="handleClick"
     >
       <slot name="title">{{ title }}</slot>
-      <i-ep-arrow-right class="header-angle" />
+      <IconifyOffline icon="arrow-right" class="header-angle" />
     </div>
 
     <Transition name="slide" v-on="transitionEvents">
@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed, inject } from 'vue'
 import { collapseContextKey } from './types'
 
 defineOptions({

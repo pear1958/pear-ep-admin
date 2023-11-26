@@ -5,6 +5,8 @@ import pinia from './store'
 
 import Colada from 'colada-plugin'
 
+import { useElementPlus } from '@/hooks/useElementPlus'
+
 import '@/styles/index.scss'
 
 // 注册使用 svg icon
@@ -13,6 +15,8 @@ import 'virtual:svg-icons-register'
 
 // 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/styles/index.scss整体css文件导致热更新慢的问题
 import '@/styles/tailwind.css'
+
+import 'element-plus/dist/index.css'
 
 // element-plus 内置暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
@@ -29,7 +33,7 @@ const app = createApp(App)
 app.config.errorHandler = errorHandler
 
 registerGlobComp(app)
-
 setupDirectives(app)
+useElementPlus(app)
 
 app.use(router).use(pinia).use(Colada).use(i18n).mount('#app')

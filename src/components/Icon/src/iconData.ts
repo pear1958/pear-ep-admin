@@ -15,6 +15,13 @@ import enterOutlined from '@iconify-icons/ant-design/enter-outlined'
 import menuUnfoldOutlined from '@iconify-icons/ant-design/menu-unfold-outlined'
 import menuFoldOutlined from '@iconify-icons/ant-design/menu-fold-outlined'
 
+import close from '@iconify-icons/ep/close'
+import arrowRight from '@iconify-icons/ep/arrow-right'
+import setting from '@iconify-icons/ep/setting'
+import document from '@iconify-icons/ep/document'
+import deleteIcon from '@iconify-icons/ep/delete'
+import plus from '@iconify-icons/ep/plus'
+
 const offlineIcons = {
   'reload-outlined': reloadOutlined,
   'close-outlined': closeOutlined,
@@ -29,7 +36,13 @@ const offlineIcons = {
   'search-outlined': searchOutlined,
   'enter-outlined': enterOutlined,
   'menu-unfold-outlined': menuUnfoldOutlined,
-  'menu-fold-outlined': menuFoldOutlined
+  'menu-fold-outlined': menuFoldOutlined,
+  close,
+  'arrow-right': arrowRight,
+  setting,
+  document,
+  delete: deleteIcon,
+  plus
 }
 
 // 在 src/layout/index.vue 中加载, 避免 Vite 首次启动慢

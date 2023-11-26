@@ -1,0 +1,123 @@
+import { App, Component } from 'vue'
+import {
+  ElTag,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElScrollbar,
+  ElSubMenu,
+  ElButton,
+  ElDivider,
+  ElCard,
+  ElDropdown,
+  ElDialog,
+  ElMenu,
+  ElMenuItem,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElIcon,
+  ElInput,
+  ElForm,
+  ElFormItem,
+  ElPopover,
+  ElPopper,
+  ElTooltip,
+  ElDrawer,
+  ElPagination,
+  ElAlert,
+  ElRadio,
+  ElRadioButton,
+  ElRadioGroup,
+  ElSwitch,
+  ElTabs,
+  ElTabPane,
+  ElCollapse,
+  ElCollapseItem,
+  ElTable,
+  ElTableColumn,
+  ElColorPicker,
+  ElSelect,
+  ElOption,
+  ElSteps,
+  ElStep,
+  ElTree,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElContainer,
+  ElRow,
+  ElCol,
+  ElAvatar,
+  ElEmpty,
+  // 指令
+  ElLoading,
+  ElInfiniteScroll
+} from 'element-plus'
+
+const directives = [ElLoading, ElInfiniteScroll]
+
+const components = [
+  ElTag,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElScrollbar,
+  ElSubMenu,
+  ElButton,
+  ElDivider,
+  ElCard,
+  ElDropdown,
+  ElDialog,
+  ElMenu,
+  ElMenuItem,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElIcon,
+  ElInput,
+  ElForm,
+  ElFormItem,
+  ElPopover,
+  ElPopper,
+  ElTooltip,
+  ElDrawer,
+  ElPagination,
+  ElAlert,
+  ElRadio,
+  ElRadioButton,
+  ElRadioGroup,
+  ElSwitch,
+  ElTabs,
+  ElTabPane,
+  ElCollapse,
+  ElCollapseItem,
+  ElTree,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElTable,
+  ElTableColumn,
+  ElColorPicker,
+  ElSelect,
+  ElOption,
+  ElSteps,
+  ElStep,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElContainer,
+  ElRow,
+  ElCol,
+  ElAvatar,
+  ElEmpty
+]
+
+export function useElementPlus(app: App) {
+  // 注册组件
+  components.forEach((component: Component) => {
+    app.component(component.name as string, component)
+  })
+
+  // 注册指令
+  directives.forEach(directive => {
+    app.use(directive)
+  })
+}

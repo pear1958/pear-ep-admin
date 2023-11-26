@@ -11,7 +11,7 @@
           <span class="title" v-else>{{ title }}</span>
 
           <span class="close-icon" @click="closeDialog">
-            <i-ep-close />
+            <IconifyOffline icon="close" />
           </span>
         </header>
 
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 
 defineOptions({
   name: 'Dialog'

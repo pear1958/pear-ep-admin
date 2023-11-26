@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Collapse, CollapseItem } from '@/components'
 
 defineOptions({

@@ -8,6 +8,7 @@
 
 <script lang="ts" setup>
 import { Charts } from '@/components'
+import { reactive } from 'vue'
 
 defineOptions({
   name: 'ChartsPage'

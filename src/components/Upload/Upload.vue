@@ -13,17 +13,17 @@
 
       <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="activeIndex == index">
         <!-- 红色背景, 白色叉叉的按钮 -->
-        <i-ep-close />
+        <IconifyOffline icon="close" />
       </div>
 
       <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
-        <i-ep-delete />
+        <IconifyOffline icon="delete" />
       </div>
     </div>
 
     <Dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
       <div class="upload" @click="handleClick">
-        <i-ep-plus />
+        <IconifyOffline icon="plus" />
       </div>
     </Dragger>
 
@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from 'vue'
+import { PropType, ref, unref } from 'vue'
 import axios, { AxiosProgressEvent } from 'axios'
 import { UploadFile } from './types'
 import { deepClone } from '@/utils/func'

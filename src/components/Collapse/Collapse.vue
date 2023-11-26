@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { PropType, provide, ref, watch } from 'vue'
 import { NameType, collapseContextKey } from './types'
 
 defineOptions({

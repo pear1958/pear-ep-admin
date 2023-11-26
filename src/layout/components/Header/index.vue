@@ -32,7 +32,7 @@
       </el-dropdown>
 
       <div class="header-icon flex-c text-base">
-        <i-ep-setting @click="openSetDrawer" />
+        <IconifyOffline icon="setting" @click="openSetDrawer" />
       </div>
     </div>
   </div>

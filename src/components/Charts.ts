@@ -1,5 +1,7 @@
+import { PropType, defineComponent, h, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import * as echarts from 'echarts'
 import type { ECharts } from 'echarts'
+import { throttle } from '@/utils'
 
 export default defineComponent({
   name: 'Charts',
@@ -18,10 +20,10 @@ export default defineComponent({
       chart.setOption(props.options)
     }
 
-    const resizeChart = () => {
+    const resizeChart = throttle(() => {
       if (!chart) return
       chart.resize()
-    }
+    }, 200)
 
     window.addEventListener('resize', resizeChart)
 

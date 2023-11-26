@@ -18,7 +18,7 @@
         <div class="search-item" v-for="searchItem in searchList" @click="handleSelect(searchItem)">
           <div class="flex-c">
             <span class="icon" style="margin-top: -6px">
-              <i-ep-document />
+              <IconifyOffline icon="document" />
             </span>
 
             <div class="breadcrumb-text">
