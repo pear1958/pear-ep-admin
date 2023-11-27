@@ -17,7 +17,7 @@ export default defineComponent({
     return h(
       Icon,
       {
-        icon: `${this.icon}`,
+        icon: this.icon,
         style: attrs?.style ? Object.assign(attrs.style, { outline: 'none' }) : { outline: 'none' },
         ...attrs
       },
