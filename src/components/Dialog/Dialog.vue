@@ -11,7 +11,7 @@
           <span class="title" v-else>{{ title }}</span>
 
           <span class="close-icon" @click="closeDialog">
-            <IconifyOffline icon="close" />
+            <IconOffline icon="close" />
           </span>
         </header>
 

@@ -2,9 +2,10 @@ import { h, defineComponent } from 'vue'
 import { Icon } from '@iconify/vue'
 
 export default defineComponent({
-  name: 'IconifyOffline',
+  name: 'IconOnline',
   components: { Icon },
   props: {
+    // 图标名称
     icon: {
       type: String,
       default: ''
@@ -14,9 +15,9 @@ export default defineComponent({
     const attrs = this.$attrs
 
     return h(
-      Icon as any,
+      Icon,
       {
-        icon: this.icon,
+        icon: `${this.icon}`,
         style: attrs?.style ? Object.assign(attrs.style, { outline: 'none' }) : { outline: 'none' },
         ...attrs
       },

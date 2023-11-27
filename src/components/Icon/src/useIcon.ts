@@ -1,6 +1,6 @@
 import { h, defineComponent, Component } from 'vue'
 import { iconType } from './types'
-import { IconifyOffline, IconifyOnline, IconFont } from '../index'
+import { IconOffline, IconOnline, IconFont } from '../index'
 
 /**
  * @description: 在函数中渲染图标组件, 支持传attr
@@ -46,7 +46,7 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     return defineComponent({
       name: 'Icon',
       render() {
-        const IconifyIcon = attrs && attrs['online'] ? IconifyOnline : IconifyOffline
+        const IconifyIcon = attrs && attrs['online'] ? IconOnline : IconOffline
 
         return h(IconifyIcon, {
           icon,

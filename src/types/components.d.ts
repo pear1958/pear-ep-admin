@@ -1,7 +1,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
-    IconifyOffline: typeof import('../components/Icon')['IconifyOffline']
-    IconifyOnline: typeof import('../components/Icon')['IconifyOnline']
+    IconOffline: typeof import('../components/Icon')['IconOffline']
+    IconOnline: typeof import('../components/Icon')['IconOnline']
     SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="header-icon" @click="toggle">
-    <IconifyOffline :icon="!isFullscreen ? 'fullscreen-outlined' : 'fullscreen-exit-outlined'" />
+    <IconOffline :icon="!isFullscreen ? 'fullscreen-outlined' : 'fullscreen-exit-outlined'" />
   </div>
 </template>
 

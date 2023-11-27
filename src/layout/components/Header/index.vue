@@ -19,12 +19,12 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="0">
-              <IconifyOffline icon="user-outlined" />
+              <IconOffline icon="user-outlined" />
               <span class="user-text">个人中心</span>
             </el-dropdown-item>
 
             <el-dropdown-item command="1">
-              <IconifyOffline icon="poweroff-outlined" />
+              <IconOffline icon="poweroff-outlined" />
               <span class="user-text">退出登录</span>
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -32,7 +32,7 @@
       </el-dropdown>
 
       <div class="header-icon flex-c text-base">
-        <IconifyOffline icon="setting" @click="openSetDrawer" />
+        <IconOffline icon="setting" @click="openSetDrawer" />
       </div>
     </div>
   </div>

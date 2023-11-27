@@ -3,7 +3,7 @@
     <div>角色管理 - iconify</div>
     <div class="test">
       <!-- <Icon :icon="verticalLeftOutlined" /> -->
-      <IconifyOffline icon="vertical-left-outlined" />
+      <IconOffline icon="vertical-left-outlined" />
       <el-button type="primary" :icon="useIcon('vertical-left-outlined', { color: 'red' })">切换角色</el-button>
     </div>
   </div>
