@@ -15,7 +15,7 @@
       @click="handleClick"
     >
       <slot name="title">{{ title }}</slot>
-      <IconOffline icon="arrow-right" class="header-angle" />
+      <Iconify icon="arrow-right" class="header-angle" />
     </div>
 
     <Transition name="slide" v-on="transitionEvents">

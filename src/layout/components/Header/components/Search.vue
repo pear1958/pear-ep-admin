@@ -1,6 +1,6 @@
 <template>
   <div class="header-icon" @click="showSearchPanel = true">
-    <IconOffline icon="search-outlined" />
+    <Iconify icon="search-outlined" />
   </div>
 
   <el-dialog v-model="showSearchPanel" :title="undefined" :footer="null" class="menu-dialog" :width="520">
@@ -18,7 +18,7 @@
         <div class="search-item" v-for="searchItem in searchList" @click="handleSelect(searchItem)">
           <div class="flex-c">
             <span class="icon" style="margin-top: -6px">
-              <IconOffline icon="document" />
+              <Iconify icon="document" />
             </span>
 
             <div class="breadcrumb-text">
@@ -31,7 +31,7 @@
           </div>
 
           <a class="icon">
-            <IconOffline icon="enter-outlined" color="var(--el-color-primary)" />
+            <Iconify icon="enter-outlined" color="var(--el-color-primary)" />
           </a>
         </div>
       </template>

@@ -1,6 +1,6 @@
 import { h, defineComponent, Component } from 'vue'
 import { iconType } from './types'
-import { IconOffline, IconOnline, IconFont } from '../index'
+import { Iconify, IconFont } from '../index'
 
 /**
  * @description: 在函数中渲染图标组件, 支持传attr
@@ -19,7 +19,7 @@ import { IconOffline, IconOnline, IconFont } from '../index'
 // 不传第二个参数, 默认就以 font-class 的形式渲染 IconFont
 // useIcon('IF-icon-water' || 'IF-icon-water svg' || 'IF-icon-water uni')
 
-// useIcon('ant-design:bar-chart-outlined', { online: true, color: 'red' })
+// useIcon('ant-design:bar-chart-outlined', { color: 'red' })
 
 // useIcon('vertical-left-outlined') || useIcon('vertical-left-outlined', { color: '#000' })
 
@@ -33,7 +33,7 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     const iconType = name.slice(name.indexOf(' ') + 1, name.length) // svg/uni || icon-water(将会走到iconfont的第三种情况, font-class)
 
     return defineComponent({
-      name: 'IconFont',
+      name: 'useIconFont',
       render() {
         return h(IconFont, {
           icon: iconName,
@@ -44,11 +44,9 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     })
   } else {
     return defineComponent({
-      name: 'Icon',
+      name: 'useIconify',
       render() {
-        const IconifyIcon = attrs && attrs['online'] ? IconOnline : IconOffline
-
-        return h(IconifyIcon, {
+        return h(Iconify, {
           icon,
           ...attrs
         })

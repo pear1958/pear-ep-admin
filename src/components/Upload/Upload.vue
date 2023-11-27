@@ -13,17 +13,17 @@
 
       <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="activeIndex == index">
         <!-- 红色背景, 白色叉叉的按钮 -->
-        <IconOffline icon="close" />
+        <Iconify icon="close" />
       </div>
 
       <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
-        <IconOffline icon="delete" />
+        <Iconify icon="delete" />
       </div>
     </div>
 
     <Dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
       <div class="upload" @click="handleClick">
-        <IconOffline icon="plus" />
+        <Iconify icon="plus" />
       </div>
     </Dragger>
 
