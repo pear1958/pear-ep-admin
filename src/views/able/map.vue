@@ -9,7 +9,6 @@ import { copyText } from '@/utils'
 
 function test() {
   copyText('2121wwwww12oooooooooww21')
-  // ElMessage.success('复制成功222')
 }
 </script>
 

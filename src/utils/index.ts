@@ -14,31 +14,32 @@ export const getImg = (name: string, dir: string = 'imgs') => {
   return new URL(`../assets/${dir}/${name}`, import.meta.url).href
 }
 
-export const debounce = (fn: Function, wait: number = 500) => {
-  let timer: number | null = null
+export const debounce = <T>(fn: Function, wait: number = 500) => {
+  let timer: NodeJS.Timeout | null = null
 
-  return () => {
-    if (timer !== null) clearTimeout(timer)
-    timer = setTimeout(fn, wait)
+  return (event: T) => {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => fn(event), wait)
   }
 }
 
-export const throttle = (fn: Function, delay: number = 500) => {
+export const throttle = <T>(fn: Function, delay: number = 500) => {
   let prev = Date.now()
 
-  return () => {
+  return (event: T) => {
     const now = Date.now()
 
     if (now - prev > delay) {
-      fn()
+      fn(event)
       prev = Date.now()
     }
   }
 }
 
 // 使用示例:
-// const handle = () => {
+// const handle = (event: any) => {
 //   console.log(Math.random())
+//   console.log(event)
 // }
 // window.addEventListener('resize', debounce(handle, 1000))
 // window.addEventListener('resize', throttle(handle, 1000))

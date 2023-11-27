@@ -11,7 +11,7 @@
         placeholder="输入查询或者点击选择"
         filterable
         remote
-        :remote-method="getAddrList"
+        :remote-method="debounce < string > (getAddrList, 300)"
         :style="{ width: '100%' }"
         @change="onChange"
       >
@@ -26,14 +26,15 @@
 </template>
 
 <script setup lang="ts">
+import { ref, unref, watchEffect } from 'vue'
 import { ElMessage } from 'element-plus'
 import AMapLoader from '@amap/amap-jsapi-loader'
 import { useConfigStore } from '@/store/modules/platformConfig'
 import { Drawer } from '@/components'
+import { debounce } from '@/utils'
 import { isObject } from '@/utils/is'
 import markerPng from '@/assets/imgs/marker.png'
 import { deepClone } from '@/utils/func'
-import { ref, unref, watchEffect } from 'vue'
 
 export type IMapData = {
   addr: string
@@ -197,6 +198,8 @@ const addMarker = (lngLat: [number, number], name: string | null, setCenter = tr
 
 // 获取输入提示信息
 const getAddrList = (query: string) => {
+  console.log('query', query)
+
   if (!query) {
     options.value = []
     return
@@ -209,6 +212,8 @@ const getAddrList = (query: string) => {
   // 搜索成功时，result即是对应的匹配数据
   autoComplete.search(query, (status: string, result: Recordable) => {
     const { tips } = result
+
+    console.log('result', result)
 
     if (!Array.isArray(tips)) return
 
