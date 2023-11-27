@@ -1,7 +1,8 @@
 import { App } from 'vue'
 
-import SvgIcon from './SvgIcon.vue'
+import svgIcon from './svgIcon.vue'
 import { Iconify } from './Icon'
+import imgViewer from './imgViewer'
 
 import ChooseArea from './ChooseArea/index.vue'
 import Progress from './Progress.vue'
@@ -17,8 +18,9 @@ import Drawer from './Drawer.vue'
 import mapAddrDrawer from './Map/mapAddrDrawer.vue'
 
 const components = {
-  SvgIcon,
-  Iconify
+  svgIcon,
+  Iconify,
+  imgViewer
 }
 
 export function registerGlobComp(app: App) {

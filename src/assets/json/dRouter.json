@@ -21,6 +21,30 @@
       },
       "children": [
         {
+          "path": "/components/fileUpload",
+          "name": "fileUpload",
+          "component": "/components/fileUpload",
+          "meta": {
+            "title": "文件上传"
+          }
+        },
+        {
+          "path": "/components/selectAddrMap",
+          "name": "selectAddrMap",
+          "component": "/components/selectAddrMap",
+          "meta": {
+            "title": "地图选点"
+          }
+        },
+        {
+          "path": "/components/charts",
+          "name": "Charts",
+          "component": "/components/charts",
+          "meta": {
+            "title": "图表"
+          }
+        },
+        {
           "path": "/components/drawer",
           "name": "drawer",
           "component": "/components/drawer",
@@ -67,14 +91,6 @@
           "meta": {
             "title": "省市区选择器"
           }
-        },
-        {
-          "path": "/components/selectAddrMap",
-          "name": "selectAddrMap",
-          "component": "/components/selectAddrMap",
-          "meta": {
-            "title": "地图选点"
-          }
         }
       ]
     },
@@ -88,19 +104,11 @@
       },
       "children": [
         {
-          "path": "/able/file",
-          "name": "File",
-          "component": "/able/file",
+          "path": "/table",
+          "name": "InfiniteScrollTable",
+          "component": "/able/infiniteScroll",
           "meta": {
-            "title": "文件"
-          }
-        },
-        {
-          "path": "/able/charts",
-          "name": "Charts",
-          "component": "/able/charts",
-          "meta": {
-            "title": "图表"
+            "title": "表格无限滚动"
           }
         },
         {
@@ -112,11 +120,19 @@
           }
         },
         {
-          "path": "/table",
-          "name": "InfiniteScrollTable",
-          "component": "/able/infiniteScroll",
+          "path": "/able/fileDownload",
+          "name": "fileDownload",
+          "component": "/able/fileDownload",
           "meta": {
-            "title": "表格无限滚动"
+            "title": "文件下载"
+          }
+        },
+        {
+          "path": "/error/404",
+          "name": "error404",
+          "component": "/error/404",
+          "meta": {
+            "title": "404"
           }
         }
       ]

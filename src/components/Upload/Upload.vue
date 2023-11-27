@@ -7,18 +7,33 @@
       :class="{ active: activeIndex == index }"
       @click="emit('update:activeIndex', index)"
     >
-      <img class="img" :src="item.src" />
+      <el-progress type="circle" :percentage="item.percent" v-if="['ready', 'uploading'].includes(item.status!)" />
 
-      <div class="replace-box" @click.stop="handleReplace(index)" v-if="showReplace">替换图片</div>
+      <template v-if="['success', undefined].includes(item.status!)">
+        <img class="img" :src="item.src" />
 
-      <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="activeIndex == index">
-        <!-- 红色背景, 白色叉叉的按钮 -->
-        <Iconify icon="close" />
-      </div>
+        <div class="replace-box" @click.stop="handleReplace(index)" v-if="showReplace">替换图片</div>
 
-      <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
-        <Iconify icon="delete" />
-      </div>
+        <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="activeIndex == index">
+          <!-- 红色背景, 白色叉叉的按钮 -->
+          <Iconify icon="close" />
+        </div>
+
+        <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
+          <Iconify icon="delete" />
+        </div>
+
+        <div class="hover-preview-icon" @click.stop="handlePreview(index)">
+          <Iconify icon="zoom-in" />
+        </div>
+      </template>
+
+      <el-progress
+        type="circle"
+        :percentage="item.percent"
+        status="exception"
+        v-if="['error'].includes(item.status!)"
+      />
     </div>
 
     <Dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
@@ -36,15 +51,18 @@
       :accept="accept"
       :multiple="false"
     />
+
+    <img-viewer v-model:visible="showViewer" :imgList="imgList" :initIndex="initIndex" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { PropType, ref, unref } from 'vue'
-import axios, { AxiosProgressEvent } from 'axios'
+import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
 import { UploadFile } from './types'
 import { deepClone } from '@/utils/func'
 import Dragger from './Dragger.vue'
+import { computed } from 'vue'
 
 defineOptions({
   name: 'Upload'
@@ -120,6 +138,10 @@ const props = defineProps({
   }
 })
 
+const showViewer = ref(false)
+const initIndex = ref(0)
+const imgList = computed(() => props.fileList.map(item => item.src))
+
 const emit = defineEmits<{
   (e: 'update:fileList', list: UploadFile[]): void
   (e: 'update:activeIndex', index: number): void
@@ -138,11 +160,8 @@ const handleClick = () => {
 // 点选文件
 const handleFileChange = (e: any) => {
   const files = e.target.files
-
   if (!files) return
-
   uploadFiles(files)
-
   unref(fileInputRef).value = ''
 }
 
@@ -154,13 +173,9 @@ const uploadFiles = (files: FileList) => {
       post(file)
       return
     }
-
     const result = props.beforeUpload(file)
-
     if (!result) return
-
     if (result instanceof Promise) result.then(processedFile => post(processedFile))
-
     post(file)
   })
 }
@@ -214,7 +229,7 @@ const post = (file: File) => {
 
     const { name, data, action, headers, withCredentials, onProgress, onSuccess, onError, onChange } = props
 
-    console.log('headers', headers)
+    // console.log('headers', headers)
 
     const formData = new FormData()
 
@@ -243,7 +258,7 @@ const post = (file: File) => {
           onProgress && onProgress(percent, _file)
         }
       })
-      .then((res: any) => {
+      .then((res: AxiosResponse) => {
         console.log('成功--', res)
 
         updateFileList(_file, { status: 'success', response: res.data })
@@ -254,7 +269,7 @@ const post = (file: File) => {
         onSuccess && onSuccess(res.data, _file)
         onChange && onChange(_file)
       })
-      .catch((err: any) => {
+      .catch((err: AxiosError) => {
         console.log('err', err)
 
         updateFileList(_file, { status: 'error', error: err })
@@ -289,6 +304,11 @@ const handleRemove = (index: number) => {
   const file = fileList.splice(index, 1)
   emit('update:fileList', fileList)
   props.onRemove && props.onRemove(file[0])
+}
+
+const handlePreview = (index: number) => {
+  initIndex.value = index
+  showViewer.value = true
 }
 </script>
 

@@ -51,6 +51,7 @@ import {
   ElAvatar,
   ElEmpty,
   ElProgress,
+  ElImageViewer,
   // 指令
   ElLoading,
   ElInfiniteScroll
@@ -109,7 +110,8 @@ const components = [
   ElCol,
   ElAvatar,
   ElEmpty,
-  ElProgress
+  ElProgress,
+  ElImageViewer
 ]
 
 export function useElementPlus(app: App) {

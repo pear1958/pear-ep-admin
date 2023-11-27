@@ -21,6 +21,7 @@ import setting from '@iconify-icons/ep/setting'
 import document from '@iconify-icons/ep/document'
 import deleteIcon from '@iconify-icons/ep/delete'
 import plus from '@iconify-icons/ep/plus'
+import zoomIn from '@iconify-icons/ep/zoom-in'
 
 const offlineIcons = {
   'reload-outlined': reloadOutlined,
@@ -42,7 +43,8 @@ const offlineIcons = {
   setting,
   document,
   delete: deleteIcon,
-  plus
+  plus,
+  'zoom-in': zoomIn
 }
 
 // 在 src/layout/index.vue 中加载, 避免 Vite 首次启动慢

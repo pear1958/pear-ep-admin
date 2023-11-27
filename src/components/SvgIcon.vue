@@ -7,6 +7,10 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 
+defineOptions({
+  name: 'svgIcon'
+})
+
 // 此组件 搭配 vite-plugin-svg-icons 插件使用   参见 vite.config.ts
 
 const props = defineProps({

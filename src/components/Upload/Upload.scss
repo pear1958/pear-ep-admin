@@ -2,7 +2,7 @@
   display: flex;
   gap: 12px;
 
-  .uploaded {
+  :deep(.uploaded) {
     width: 80px;
     height: 80px;
     @include flex();
@@ -14,8 +14,13 @@
       border: 2px solid #ff6c62;
     }
 
-    &:hover .hover-del-icon {
-      opacity: 1;
+    .el-progress-circle {
+      width: 56px !important;
+      height: 56px !important;
+    }
+
+    .el-progress__text {
+      font-size: 12px !important;
     }
 
     .img {
@@ -51,14 +56,33 @@
     }
 
     .hover-del-icon {
-      @include posi-rt();
+      @include posi-rt(3px, 3px);
       font-size: 14px;
       cursor: pointer;
       opacity: 0;
-      transition: all 0.3s ease-in;
+      transition: all 0.2s ease-in;
 
       &:hover {
         color: #f56c6c;
+      }
+    }
+
+    .hover-preview-icon {
+      @include posi-lt(3px, 3px);
+      font-size: 15px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        color: var(--el-color-primary);
+      }
+    }
+
+    &:hover {
+      .hover-del-icon,
+      .hover-preview-icon {
+        opacity: 1;
       }
     }
   }

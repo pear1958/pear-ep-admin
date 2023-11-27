@@ -1,26 +1,26 @@
 <template>
-  <div class="page-box mt-3 bg-white p-4">
+  <div class="page-box bg-white p-4">
     <Upload
       v-model:file-list="fileList"
       v-model:active-index="activeIndex"
       action="/dev-api/sourceData/document/uploadFile"
       :before-upload="beforeUpload"
       :on-change="onFileChange"
-      multiple
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { Upload } from '@/components'
 import { UploadFile } from '@/components/Upload/types'
 
-defineOptions({
-  name: 'File'
-})
+// const fileList: Ref<UploadFile[]> = ref([
+//   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }
+// ])
 
-const fileList = ref([])
+const fileList: Ref<UploadFile[]> = ref([])
+
 const activeIndex = ref(0)
 
 const beforeUpload = (file: File) => {

@@ -39,7 +39,7 @@
       <div class="empty" v-else>
         <el-empty description="暂无搜索结果" :image-size="64">
           <template #image>
-            <div style="font-size: 64px">
+            <div style="font-size: 64px" class="mb-1.5">
               <svg-icon name="empty" />
             </div>
           </template>
