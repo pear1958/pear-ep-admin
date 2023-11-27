@@ -8,7 +8,7 @@
       "component": "/home/index",
       "meta": {
         "title": "首页",
-        "icon": "ep:house"
+        "icon": "ep:home-filled"
       }
     },
     {
@@ -17,7 +17,7 @@
       "redirect": "/components/json-editor",
       "meta": {
         "title": "自定义组件",
-        "icon": "ep:message"
+        "icon": "ep:menu"
       },
       "children": [
         {
@@ -100,7 +100,7 @@
       "redirect": "/able/file",
       "meta": {
         "title": "功能",
-        "icon": "ep:message"
+        "icon": "ri:ubuntu-fill"
       },
       "children": [
         {
@@ -199,7 +199,7 @@
       "name": "menu",
       "redirect": "/menu/menu1",
       "meta": {
-        "icon": "ep:files",
+        "icon": "ep:histogram",
         "title": "多级菜单"
       },
       "children": [
@@ -279,7 +279,7 @@
       "redirect": "/baidu",
       "meta": {
         "title": "外部链接",
-        "icon": "ep:document"
+        "icon": "ep:monitor"
       },
       "children": [
         {
@@ -314,7 +314,7 @@
       "redirect": "/menu/menuTest0",
       "meta": {
         "title": "测试滚动",
-        "icon": "ep:notification"
+        "icon": "ep:tickets"
       },
       "children": [
         {
