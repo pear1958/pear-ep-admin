@@ -1,5 +1,5 @@
 <template>
-  <div>Menu222</div>
+  <div class="bg-white p-4">Menu222</div>
 </template>
 
 <script setup></script>

@@ -278,32 +278,26 @@
       "name": "link",
       "redirect": "/baidu",
       "meta": {
-        "title": "外部链接",
+        "title": "外部页面",
         "icon": "ep:monitor"
       },
       "children": [
         {
+          "path": "/bing",
+          "name": "bing",
+          "component": "/iframeView",
+          "meta": {
+            "title": "必应 ( 内嵌 )",
+            "iframeSrc": "https://cn.bing.com/",
+            "mainFull": true
+          }
+        },
+        {
           "path": "/baidu",
-          "name": "biadu",
+          "name": "baidu",
           "meta": {
-            "title": "百度",
+            "title": "百度 ( 外链 )",
             "link": "https://www.baidu.com"
-          }
-        },
-        {
-          "path": "/taobao",
-          "name": "taobao",
-          "meta": {
-            "title": "淘宝",
-            "link": "https://www.taobao.com/"
-          }
-        },
-        {
-          "path": "/zhihu",
-          "name": "zhihu",
-          "meta": {
-            "title": "知乎",
-            "link": "https://www.zhihu.com/"
           }
         }
       ]

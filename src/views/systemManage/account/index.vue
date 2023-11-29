@@ -1,7 +1,7 @@
 <template>
   <div class="page-box">
     <div>账号管理</div>
-    <div class="mt-20">
+    <div class="mt-4">
       <el-button @click="goNav1">点击跳转到子页面1</el-button>
     </div>
   </div>

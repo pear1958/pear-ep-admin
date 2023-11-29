@@ -34,7 +34,7 @@
 
       <Tabs />
 
-      <el-main class="content">
+      <el-main class="content" :style="{ padding: !route.meta?.mainFull ? '16px' : 0 }">
         <Main />
       </el-main>
     </el-container>
@@ -59,9 +59,7 @@ const route = useRoute()
 const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
 const sideBarWidth = computed(() => (isCollapse.value ? '64px' : '210px'))
 const activeKey = computed(() => route.path)
-
 const menuData = computed(() => filterMenuData(usePermissionStore().menuList))
-
 const isDark = computed(() => useSystemStore().isDark)
 
 function handleClick(key: string) {
