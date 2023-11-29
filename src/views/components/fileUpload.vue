@@ -1,8 +1,8 @@
 <template>
   <div class="page-box bg-white p-4">
     <Upload
-      v-model:active-index="activeIndex"
       v-model:file-list="fileList"
+      v-model:active-index="activeIndex"
       action="/dev-api/sourceData/document/uploadFile"
       :before-upload="beforeUpload"
       :on-change="onChange"

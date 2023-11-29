@@ -77,18 +77,20 @@ const props = defineProps({
     type: String,
     require: true
   },
+  // 当前选中图片的Index, 若 showActive 为false, 则不用传
   activeIndex: {
-    type: Number,
-    default: -1
+    type: Number
   },
   maxLength: {
     type: Number,
     default: 10
   },
+  // 是否显示替换图片按钮
   showReplace: {
     type: Boolean,
     default: false
   },
+  // 是否显示当前选中图片的样式
   showActive: {
     type: Boolean,
     default: false
@@ -140,6 +142,10 @@ const props = defineProps({
     type: String
   }
 })
+
+if (props.showActive && props.activeIndex == undefined) {
+  console.error('未绑定activeIndex')
+}
 
 const showViewer = ref(false)
 const initIndex = ref(0)
