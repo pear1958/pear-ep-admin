@@ -4,8 +4,8 @@
       v-for="(item, index) in fileList"
       :key="item.uid"
       class="uploaded"
-      :class="{ active: activeIndex == index }"
-      @click="emit('update:activeIndex', index)"
+      :class="{ active: showActive && activeIndex == index }"
+      @click="showActive && emit('update:activeIndex', index)"
     >
       <el-progress type="circle" :percentage="item.percent" v-if="['ready', 'uploading'].includes(item.status!)" />
 
@@ -14,7 +14,7 @@
 
         <div class="replace-box" @click.stop="handleReplace(index)" v-if="showReplace">替换图片</div>
 
-        <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="activeIndex == index">
+        <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="showActive && activeIndex == index">
           <!-- 红色背景, 白色叉叉的按钮 -->
           <Iconify icon="close" />
         </div>
@@ -57,12 +57,11 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, unref } from 'vue'
+import { PropType, ref, unref, computed } from 'vue'
 import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
+import Dragger from './Dragger.vue'
 import { UploadFile } from './types'
 import { deepClone } from '@/utils/func'
-import Dragger from './Dragger.vue'
-import { computed } from 'vue'
 
 defineOptions({
   name: 'Upload'
@@ -80,7 +79,7 @@ const props = defineProps({
   },
   activeIndex: {
     type: Number,
-    require: true
+    default: -1
   },
   maxLength: {
     type: Number,
@@ -88,7 +87,11 @@ const props = defineProps({
   },
   showReplace: {
     type: Boolean,
-    default: true
+    default: false
+  },
+  showActive: {
+    type: Boolean,
+    default: false
   },
   // 上传文件之前的钩子，参数为上传的文件，若返回 false 或者 Promise 则停止上传。
   beforeUpload: {
@@ -259,7 +262,7 @@ const post = (file: File) => {
         }
       })
       .then((res: AxiosResponse) => {
-        console.log('成功--', res)
+        console.log('--成功--', res)
 
         updateFileList(_file, { status: 'success', response: res.data })
 
@@ -292,13 +295,15 @@ const handleReplace = (index: number) => {
 const handleRemove = (index: number) => {
   const fileList = deepClone(props.fileList)
 
-  const isDelCurPrev = index < props.activeIndex!
-  const isDelCurAndLast = Boolean(index == props.activeIndex && index == fileList.length - 1 && fileList[index - 1])
+  if (props.showActive) {
+    const isDelCurPrev = index < props.activeIndex!
+    const isDelCurAndLast = Boolean(index == props.activeIndex && index == fileList.length - 1 && fileList[index - 1])
 
-  if (isDelCurPrev || isDelCurAndLast) {
-    let i = props.activeIndex!
-    i--
-    emit('update:activeIndex', i)
+    if (isDelCurPrev || isDelCurAndLast) {
+      let i = props.activeIndex!
+      i--
+      emit('update:activeIndex', i)
+    }
   }
 
   const file = fileList.splice(index, 1)

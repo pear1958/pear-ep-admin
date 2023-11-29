@@ -1,19 +1,28 @@
 <template>
   <div class="page-box bg-white p-4">
     <Upload
-      v-model:file-list="fileList"
       v-model:active-index="activeIndex"
+      v-model:file-list="fileList"
       action="/dev-api/sourceData/document/uploadFile"
       :before-upload="beforeUpload"
-      :on-change="onFileChange"
+      :on-change="onChange"
+      :on-success="onSuccess"
+      :on-error="onError"
+      :headers="{
+        key: 'xxxxx'
+      }"
+      showReplace
+      showActive
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Ref, ref } from 'vue'
+import { Ref, ref, unref } from 'vue'
 import { Upload } from '@/components'
 import { UploadFile } from '@/components/Upload/types'
+import { ElMessage } from 'element-plus'
+import { AxiosError } from 'axios'
 
 // const fileList: Ref<UploadFile[]> = ref([
 //   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }
@@ -36,8 +45,20 @@ const beforeUpload = (file: File) => {
   return true
 }
 
-const onFileChange = (file: UploadFile) => {
+const onChange = (file: UploadFile) => {
   console.log('onFileChange-size', file.size! / 1024)
+}
+
+const onSuccess = (data: Recordable | any, file: UploadFile) => {
+  if (!String(data?.code).startsWith('200')) {
+    ElMessage.error(data?.msg || '上传失败')
+    fileList.value = unref(fileList).filter(item => item.uid !== file.uid)
+  }
+}
+
+const onError = (err: AxiosError, file: UploadFile) => {
+  ElMessage.error('上传失败')
+  fileList.value = unref(fileList).filter(item => item.uid !== file.uid)
 }
 </script>
 

@@ -11,7 +11,8 @@
     position: relative;
 
     &.active {
-      border: 2px solid #ff6c62;
+      // border: 2px solid #ff6c62;
+      border: 2px solid var(--el-color-primary);
     }
 
     .el-progress-circle {
@@ -52,7 +53,8 @@
       cursor: pointer;
       font-size: 12px;
       color: #ffffff;
-      background-color: #ff6c62;
+      // background-color: #ff6c62;
+      background-color: var(--el-color-primary);
     }
 
     .hover-del-icon {
@@ -63,7 +65,8 @@
       transition: all 0.2s ease-in;
 
       &:hover {
-        color: #f56c6c;
+        // color: #f56c6c;
+        color: var(--el-color-primary);
       }
     }
 

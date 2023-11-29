@@ -40,7 +40,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           rewrite: path => path.replace(/^\/api/, '')
         },
         '/dev-api': {
-          target: 'https://cdpre.tfsmy.com/smart-front-gateway',
+          target: 'https://cdpre.tfsmy.com/citizen-code-gateway',
           changeOrigin: true,
           // secure: false,
           rewrite: path => {
