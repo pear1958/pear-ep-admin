@@ -6,6 +6,8 @@ import { usePermissionStore } from '@/store/modules/permission'
 import { useTheme } from '@/hooks/useTheme'
 import { AxiosCanceler } from '@/api/utils/axiosCancel'
 
+const IFrameView = () => import('@/layout/iframeView.vue')
+
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
 
@@ -44,8 +46,12 @@ function initRouter() {
   flatMenuList.forEach((item: any) => {
     item.children && delete item.children
 
-    if (item.component && typeof item.component == 'string') {
+    if (item.component && typeof item.component == 'string' && item.component !== '/iframeView') {
       item.component = modules['/src/views' + item.component + '.vue']
+    }
+
+    if (item.component == '/iframeView') {
+      item.component = IFrameView
     }
 
     if (item.meta?.isFull) {

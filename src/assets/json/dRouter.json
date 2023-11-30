@@ -14,7 +14,7 @@
     {
       "path": "/components",
       "name": "Components",
-      "redirect": "/components/json-editor",
+      "redirect": "/components/fileUpload",
       "meta": {
         "title": "自定义组件",
         "icon": "ep:menu"
@@ -97,14 +97,14 @@
     {
       "path": "/able",
       "name": "Able",
-      "redirect": "/able/file",
+      "redirect": "/able/table",
       "meta": {
         "title": "功能",
         "icon": "ri:ubuntu-fill"
       },
       "children": [
         {
-          "path": "/table",
+          "path": "/able/table",
           "name": "InfiniteScrollTable",
           "component": "/able/infiniteScroll",
           "meta": {
@@ -276,14 +276,14 @@
     {
       "path": "/link",
       "name": "link",
-      "redirect": "/baidu",
+      "redirect": "/link/bing",
       "meta": {
         "title": "外部页面",
         "icon": "ep:monitor"
       },
       "children": [
         {
-          "path": "/bing",
+          "path": "/link/bing",
           "name": "bing",
           "component": "/iframeView",
           "meta": {
@@ -293,7 +293,7 @@
           }
         },
         {
-          "path": "/baidu",
+          "path": "/link/baidu",
           "name": "baidu",
           "meta": {
             "title": "百度 ( 外链 )",
@@ -477,238 +477,6 @@
           "component": "/test/index",
           "meta": {
             "title": "菜单Test20"
-          }
-        },
-        {
-          "path": "/menu/menuTest21",
-          "name": "menuTest21",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test21"
-          }
-        },
-        {
-          "path": "/menu/menuTest22",
-          "name": "menuTest22",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test22"
-          }
-        },
-        {
-          "path": "/menu/menuTest23",
-          "name": "menuTest23",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test23"
-          }
-        },
-        {
-          "path": "/menu/menuTest24",
-          "name": "menuTest24",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test24"
-          }
-        },
-        {
-          "path": "/menu/menuTest25",
-          "name": "menuTest25",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test25"
-          }
-        },
-        {
-          "path": "/menu/menuTest26",
-          "name": "menuTest26",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test26"
-          }
-        },
-        {
-          "path": "/menu/menuTest27",
-          "name": "menuTest27",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test27"
-          }
-        },
-        {
-          "path": "/menu/menuTest28",
-          "name": "menuTest28",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test28"
-          }
-        },
-        {
-          "path": "/menu/menuTest29",
-          "name": "menuTest29",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test29"
-          }
-        },
-        {
-          "path": "/menu/menuTest30",
-          "name": "menuTest30",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test30"
-          }
-        },
-        {
-          "path": "/menu/menuTest31",
-          "name": "menuTest31",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test31"
-          }
-        },
-        {
-          "path": "/menu/menuTest32",
-          "name": "menuTest32",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test32"
-          }
-        },
-        {
-          "path": "/menu/menuTest33",
-          "name": "menuTest33",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test33"
-          }
-        },
-        {
-          "path": "/menu/menuTest34",
-          "name": "menuTest34",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test34"
-          }
-        },
-        {
-          "path": "/menu/menuTest35",
-          "name": "menuTest35",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test35"
-          }
-        },
-        {
-          "path": "/menu/menuTest36",
-          "name": "menuTest36",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test36"
-          }
-        },
-        {
-          "path": "/menu/menuTest37",
-          "name": "menuTest37",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test37"
-          }
-        },
-        {
-          "path": "/menu/menuTest38",
-          "name": "menuTest38",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test38"
-          }
-        },
-        {
-          "path": "/menu/menuTest39",
-          "name": "menuTest39",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test39"
-          }
-        },
-        {
-          "path": "/menu/menuTest40",
-          "name": "menuTest40",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test40"
-          }
-        },
-        {
-          "path": "/menu/menuTest41",
-          "name": "menuTest41",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test41"
-          }
-        },
-        {
-          "path": "/menu/menuTest42",
-          "name": "menuTest42",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test42"
-          }
-        },
-        {
-          "path": "/menu/menuTest43",
-          "name": "menuTest43",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test43"
-          }
-        },
-        {
-          "path": "/menu/menuTest44",
-          "name": "menuTest44",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test44"
-          }
-        },
-        {
-          "path": "/menu/menuTest45",
-          "name": "menuTest45",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test45"
-          }
-        },
-        {
-          "path": "/menu/menuTest46",
-          "name": "menuTest46",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test46"
-          }
-        },
-        {
-          "path": "/menu/menuTest47",
-          "name": "menuTest47",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test47"
-          }
-        },
-        {
-          "path": "/menu/menuTest48",
-          "name": "menuTest48",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test48"
-          }
-        },
-        {
-          "path": "/menu/menuTest49",
-          "name": "menuTest49",
-          "component": "/test/index",
-          "meta": {
-            "title": "菜单Test49"
           }
         }
       ]
