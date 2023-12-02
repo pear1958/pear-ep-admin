@@ -46,6 +46,10 @@ watch(
       margin-top: 0 !important;
       min-height: 100vh !important;
     }
+
+    .main {
+      min-height: calc(100vh - 32px) !important;
+    }
   }
 }
 </style>

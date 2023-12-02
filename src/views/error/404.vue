@@ -17,28 +17,38 @@ import noExist from '@/assets/imgs/404.svg?component'
 <style lang="scss" scoped>
 .page-box-404 {
   width: 100%;
-  height: 100%;
-  // height: calc(100vh - 48px - 42px - 40px);
+  height: calc(100vh - $headerHeight - $tabHeight - 32px);
 
   .desc {
     display: flex;
     flex-direction: column;
     margin-left: 120px;
+    color: var(--el-text-color-primary);
 
     h2 {
       font-size: 26px;
-      color: var(--el-text-color-primary);
     }
 
     h4 {
       margin: 25px 0 20px;
       font-size: 14px;
-      color: var(--el-text-color-primary);
     }
 
     .el-btn {
       width: 100px;
     }
   }
+}
+
+.dark .page-box-404 {
+  height: calc(100vh - $headerHeight - $tabHeight - 32px - 2px);
+}
+
+.main-maximize .page-box-404 {
+  height: calc(100vh - 32px);
+}
+
+.dark .main-maximize .page-box-404 {
+  height: calc(100vh - 32px - 2px);
 }
 </style>
