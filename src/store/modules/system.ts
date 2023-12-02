@@ -5,7 +5,8 @@ import piniaPersistConfig from '@/config/piniaPersist'
 
 export const useSystemStore = defineStore({
   id: 'system',
-  // 在@/layout/index.vue中, 监听数据改变, 并且同步到localStorage中
+  // 旧策略: 在@/layout/index.vue中, 监听数据改变, 并且同步到localStorage中
+  // now: 使用 persistedstate 插件自动完成本地储存
   state: (): SystemState => ({
     layout: 'vertical',
     sideBar: {

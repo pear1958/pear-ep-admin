@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-4">
+  <div class="bg-white dark:bg-dark p-4">
     <div v-for="item in 200" :key="item">Menu1</div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-4">
+  <div class="bg-white dark:bg-dark p-4">
     <choose-area @change="onChange" />
   </div>
 </template>

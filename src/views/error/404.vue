@@ -17,8 +17,8 @@ import noExist from '@/assets/imgs/404.svg?component'
 <style lang="scss" scoped>
 .page-box-404 {
   width: 100%;
-  // height: 100%;
-  height: calc(100vh - 48px - 42px - 40px);
+  height: 100%;
+  // height: calc(100vh - 48px - 42px - 40px);
 
   .desc {
     display: flex;
@@ -27,13 +27,13 @@ import noExist from '@/assets/imgs/404.svg?component'
 
     h2 {
       font-size: 26px;
-      color: rgba(0, 0, 0, 0.85);
+      color: var(--el-text-color-primary);
     }
 
     h4 {
       margin: 25px 0 20px;
       font-size: 14px;
-      color: rgba(0, 0, 0, 0.45);
+      color: var(--el-text-color-primary);
     }
 
     .el-btn {

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-4">
+  <div class="bg-white dark:bg-dark p-4">
     <div>Menu21</div>
   </div>
 </template>

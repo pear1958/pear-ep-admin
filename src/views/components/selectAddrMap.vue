@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-4">
+  <div class="bg-white dark:bg-dark p-4">
     <el-button @click="openDrawer">点击打开</el-button>
 
     <div class="my-5">

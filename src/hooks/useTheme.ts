@@ -44,6 +44,9 @@ export function useTheme() {
 
   // 页面初始化时, 还原 主题 & 暗黑模式
   const initThemeAndDark = () => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      systemStore.setDark(true)
+    }
     changeDark(systemStore.isDark)
     changeTheme(systemStore.themeColor)
   }

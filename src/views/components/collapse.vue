@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-4">
+  <div class="bg-white dark:bg-dark p-4">
     <Collapse v-model="openedValue">
       <CollapseItem name="a" title="Consistency">
         <div>11111111111</div>
