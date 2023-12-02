@@ -1,5 +1,5 @@
 <template>
-  <div class="full-main flex-c">
+  <div class="main-full flex-c">
     <noExist />
 
     <div class="desc">

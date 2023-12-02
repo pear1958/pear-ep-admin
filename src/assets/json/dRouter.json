@@ -112,6 +112,14 @@
           }
         },
         {
+          "path": "/able/contextMenu",
+          "name": "contextMenu",
+          "component": "/able/contextMenu",
+          "meta": {
+            "title": "右键菜单"
+          }
+        },
+        {
           "path": "/able/map",
           "name": "Map",
           "component": "/able/map",
@@ -282,6 +290,16 @@
         "icon": "ep:monitor"
       },
       "children": [
+        {
+          "path": "/link/vue",
+          "name": "vue",
+          "component": "/iframeView",
+          "meta": {
+            "title": "Vue官方文档 ( 内嵌 )",
+            "iframeSrc": "https://cn.vuejs.org/guide/introduction.html",
+            "mainFull": true
+          }
+        },
         {
           "path": "/link/bing",
           "name": "bing",

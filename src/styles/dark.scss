@@ -39,13 +39,13 @@ html.dark {
         background-color: $bg-color !important;
       }
 
-      .full-main {
+      .main-full {
         height: calc(100vh - $headerHeight - $tabHeight - 32px - 2px);
       }
     }
   }
 
-  .main-maximize .full-main {
+  .main-maximize .main-full {
     height: calc(100vh - 32px - 2px);
   }
 
