@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box-404 flex-c">
+  <div class="full-main flex-c">
     <noExist />
 
     <div class="desc">
@@ -15,40 +15,23 @@ import noExist from '@/assets/imgs/404.svg?component'
 </script>
 
 <style lang="scss" scoped>
-.page-box-404 {
-  width: 100%;
-  height: calc(100vh - $headerHeight - $tabHeight - 32px);
+.desc {
+  display: flex;
+  flex-direction: column;
+  margin-left: 120px;
+  color: var(--el-text-color-primary);
 
-  .desc {
-    display: flex;
-    flex-direction: column;
-    margin-left: 120px;
-    color: var(--el-text-color-primary);
-
-    h2 {
-      font-size: 26px;
-    }
-
-    h4 {
-      margin: 25px 0 20px;
-      font-size: 14px;
-    }
-
-    .el-btn {
-      width: 100px;
-    }
+  h2 {
+    font-size: 26px;
   }
-}
 
-.dark .page-box-404 {
-  height: calc(100vh - $headerHeight - $tabHeight - 32px - 2px);
-}
+  h4 {
+    margin: 25px 0 20px;
+    font-size: 14px;
+  }
 
-.main-maximize .page-box-404 {
-  height: calc(100vh - 32px);
-}
-
-.dark .main-maximize .page-box-404 {
-  height: calc(100vh - 32px - 2px);
+  .el-btn {
+    width: 100px;
+  }
 }
 </style>

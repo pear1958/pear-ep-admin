@@ -12,3 +12,11 @@ body {
 button:focus {
   outline: none;
 }
+
+.full-main {
+  height: calc(100vh - $headerHeight - $tabHeight - 32px);
+}
+
+.main-maximize .full-main {
+  height: calc(100vh - 32px);
+}

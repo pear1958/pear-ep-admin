@@ -34,12 +34,19 @@ html.dark {
     > .main {
       border-radius: 4px;
       border: 1px solid $border-color;
-      min-height: calc(100vh - $headerHeight - $tabHeight - 34px) !important;
 
       .page-box {
         background-color: $bg-color !important;
       }
+
+      .full-main {
+        height: calc(100vh - $headerHeight - $tabHeight - 32px - 2px);
+      }
     }
+  }
+
+  .main-maximize .full-main {
+    height: calc(100vh - 32px - 2px);
   }
 
   .tabs-box {
