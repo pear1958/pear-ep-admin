@@ -6,7 +6,7 @@
 
 #### 在线预览地址
 
-[点我预览](https://zhangzy56.github.io/V-Admin)
+[点我预览](https://v-geek.github.io/Ep-Admin)
 
 #### 登录相关
 
@@ -78,7 +78,6 @@ pnpm run build:pro
 - [x] Echarts 组件
 - [x] 迁移 websocket
 - [ ] 通用文件下载
-- [ ] 优化 Tab 组件、支持鼠标右键菜单组件
 - [ ] 多种布局模式
 - [ ] husky and Lint 等代码规范
 - [ ] 大屏和 gis Demo

@@ -89,6 +89,7 @@ function handleLogin() {
   background-size: 100% 100%;
   @include flex(flex-end);
   padding-right: 10vw;
+  box-sizing: border-box;
 
   .login-form {
     width: 400px;
