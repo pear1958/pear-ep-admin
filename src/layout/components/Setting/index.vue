@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import DarkIcon from './DarkIcon.vue'
 import emitter from '@/utils/mitt'
 import { useTheme } from '@/hooks/useTheme'
@@ -37,8 +37,10 @@ import { useSystemStore } from '@/store/modules/system'
 const systemStore = useSystemStore()
 
 const showDrawer = ref(false)
-const themeColor = computed(() => systemStore.themeColor)
-const menuAccordion = computed(() => systemStore.menuAccordion)
+
+// 不能使用 computed, warn: Write operation failed: computed value is readonly
+const themeColor = ref(systemStore.themeColor)
+const menuAccordion = ref(systemStore.menuAccordion)
 
 const preDefineColors = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
 
