@@ -1,10 +1,8 @@
-import { createPinia } from 'pinia'
+import { createPinia, PiniaPlugin } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { PiniaColadaPlugin } from 'colada-plugin'
 
 const pinia = createPinia()
 
-pinia.use(piniaPluginPersistedstate)
-pinia.use(PiniaColadaPlugin)
+pinia.use(piniaPluginPersistedstate as PiniaPlugin)
 
 export default pinia

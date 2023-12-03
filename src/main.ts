@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router'
 import pinia from './store'
 
-import Colada from 'colada-plugin'
-
 import { useElementPlus } from '@/hooks/useElementPlus'
 
 import '@/styles/index.scss'
@@ -36,4 +34,4 @@ registerGlobComp(app)
 setupDirectives(app)
 useElementPlus(app)
 
-app.use(router).use(pinia).use(Colada).use(i18n).mount('#app')
+app.use(router).use(pinia).use(i18n).mount('#app')
