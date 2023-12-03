@@ -242,4 +242,8 @@ function onDropDownClick(command: string, tab: tabItem | undefined, className?: 
 @import './index.scss';
 </style>
 
-<style lang="scss"></style>
+<style lang="scss">
+.xxxxaaa {
+  transition: none !important;
+}
+</style>

@@ -1,0 +1,49 @@
+.tabs-box {
+  height: $tabHeight;
+  line-height: $tabHeight;
+  top: $headerHeight;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  @include flex(space-between);
+  background-color: #ffffff;
+  padding: 1px 0;
+  border-top: 1px solid var(--el-border-color-light);
+  border-bottom: 1px solid var(--el-border-color-light);
+
+  .tabs {
+    width: calc(100% - 45px);
+    height: 100%;
+    border: 1px solid red;
+    @include flex();
+    gap: 12px;
+
+    .tab-item {
+    }
+  }
+
+  .more-button {
+    width: 45px;
+    height: 100%;
+    box-sizing: border-box;
+    border-left: 1px solid var(--el-border-color-light);
+    @include flex();
+
+    .dropdown-icon {
+      font-size: 17px;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      :deep(.el-icon) {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 14px;
+
+        &:hover {
+          border: none;
+        }
+      }
+    }
+  }
+}

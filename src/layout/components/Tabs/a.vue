@@ -2,42 +2,11 @@
   <Maximize v-if="mainMaximize" />
 
   <div class="tabs-box">
-    <el-tabs v-model="activeKey" type="card" @tab-click="tabClick" closable @tab-remove="removeTab">
-      <el-tab-pane v-for="(tab, index) in tabList" :key="tab.fullPath" :name="tab.fullPath">
-        <template #label>
-          <el-dropdown
-            trigger="contextmenu"
-            :popper-class="'dropdown-' + index"
-            @command="onDropDownClick($event, tab, 'dropdown-' + index)"
-          >
-            <span>{{ tab.title }}</span>
-
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">{{
-                  $t('tabs.refresh')
-                }}</el-dropdown-item>
-                <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab"
-                  >关闭当前</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('vertical-right-outlined')" command="closeLeftTab" divided
-                  >关闭左侧标签页</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab"
-                  >关闭右侧标签页</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided
-                  >关闭其它标签页</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab"
-                  >关闭所有标签页</el-dropdown-item
-                >
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </template>
-      </el-tab-pane>
-    </el-tabs>
+    <el-scrollbar>
+      <div class="tabs">
+        <div class="tab-item"></div>
+      </div>
+    </el-scrollbar>
 
     <div class="more-button">
       <el-dropdown @command="onDropDownClick($event, curTab)">
@@ -242,4 +211,8 @@ function onDropDownClick(command: string, tab: tabItem | undefined, className?: 
 @import './index.scss';
 </style>
 
-<style lang="scss"></style>
+<style lang="scss">
+.xxxxaaa {
+  transition: none !important;
+}
+</style>
