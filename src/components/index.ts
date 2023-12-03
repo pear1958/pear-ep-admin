@@ -1,7 +1,7 @@
 import { App } from 'vue'
 
 import svgIcon from './svgIcon.vue'
-import { Iconify } from './Icon'
+import { Iconify, useIcon, IconFont } from './Icon'
 import imgViewer from './imgViewer'
 
 import ChooseArea from './ChooseArea/index.vue'
@@ -30,6 +30,8 @@ export function registerGlobComp(app: App) {
 }
 
 export {
+  useIcon,
+  IconFont,
   ChooseArea,
   Progress,
   Tabs,

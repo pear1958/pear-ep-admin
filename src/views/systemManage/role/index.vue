@@ -1,21 +1,25 @@
 <template>
   <div>
-    <div>角色管理 - iconify</div>
-    <div class="test">
-      <!-- <Icon :icon="verticalLeftOutlined" /> -->
-      <Iconify icon="vertical-left-outlined" />
-      <el-button type="primary" :icon="useIcon('vertical-left-outlined', { color: 'red' })">切换角色</el-button>
-    </div>
+    <el-dropdown>
+      <span>Dropdown List </span>
+
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Action 1</el-dropdown-item>
+          <el-dropdown-item>Action 2</el-dropdown-item>
+          <el-dropdown-item>Action 3</el-dropdown-item>
+          <el-dropdown-item disabled>Action 4</el-dropdown-item>
+          <el-dropdown-item divided>Action 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useIcon } from '@/components/Icon/src/useIcon'
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
-.test {
-  color: yellow;
-  font-size: 30px;
+.el-tooltip__trigger {
+  outline: none;
 }
 </style>

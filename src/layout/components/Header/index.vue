@@ -91,6 +91,7 @@ function onClick(key: string) {
   padding-right: 14px;
   cursor: pointer;
   @include flex();
+  outline: none;
 
   .name {
     padding-left: 5px;

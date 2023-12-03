@@ -40,3 +40,10 @@ const changeLanguage = (lang: string) => {
   systemStore.setSystemState('language', lang as LanguageType)
 }
 </script>
+
+<style lang="scss" scoped>
+// 修复El-Plus的黑色边框Bug
+.header-icon {
+  outline: none;
+}
+</style>

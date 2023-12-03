@@ -77,13 +77,12 @@ import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
 import Maximize from './Maximize.vue'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
-import { useIcon } from '@/components/Icon/src/useIcon'
+import { useIcon } from '@/components'
 
 const route = useRoute()
 const router = useRouter()
 
 const systemStore = useSystemStore()
-const sideBarWidth = computed(() => (systemStore.sideBar.isCollapse ? '64px' : '210px'))
 const tabList = computed(() => systemStore.tabList)
 const mainMaximize = computed(() => systemStore.mainMaximize)
 
