@@ -22,6 +22,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const envConf = formatEnv(env)
 
   return {
+    base: './',
     resolve: {
       alias: {
         '@': pathSrc
