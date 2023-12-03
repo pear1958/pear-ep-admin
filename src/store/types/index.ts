@@ -16,6 +16,7 @@ export interface SystemState {
   isDark: boolean
   themeColor: string
   language: LanguageType
+  menuAccordion: boolean
 }
 
 export interface PermissState {

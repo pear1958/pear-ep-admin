@@ -10,26 +10,37 @@
 
     <div class="theme-item">
       <span>主题颜色</span>
-      <el-color-picker v-model="themeColor" :predefine="preDefineColors" />
+      <el-color-picker
+        v-model="themeColor"
+        :predefine="preDefineColors"
+        @change="color => color && useTheme().changeTheme(color)"
+      />
+    </div>
+
+    <div class="theme-item">
+      <span>菜单手风琴</span>
+      <el-switch
+        v-model="menuAccordion"
+        @change="bool => systemStore.setSystemState('menuAccordion', bool as boolean)"
+      />
     </div>
   </el-drawer>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, computed } from 'vue'
 import DarkIcon from './DarkIcon.vue'
 import emitter from '@/utils/mitt'
 import { useTheme } from '@/hooks/useTheme'
 import { useSystemStore } from '@/store/modules/system'
 
+const systemStore = useSystemStore()
+
 const showDrawer = ref(false)
-const themeColor = ref(useSystemStore().themeColor)
+const themeColor = computed(() => systemStore.themeColor)
+const menuAccordion = computed(() => systemStore.menuAccordion)
 
 const preDefineColors = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
-
-watch(themeColor, newVal => {
-  useTheme().changeTheme(newVal)
-})
 
 emitter.on('openSetDrawer', () => {
   showDrawer.value = true

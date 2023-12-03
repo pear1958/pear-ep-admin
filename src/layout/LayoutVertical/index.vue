@@ -15,7 +15,7 @@
             :router="false"
             :collapse="isCollapse"
             :collapse-transition="false"
-            unique-opened
+            :unique-opened="menuAccordion"
             :background-color="!isDark ? '#001529' : '#1f1f1f'"
             text-color="#ffffffa6"
             active-text-color="#ffffff"
@@ -56,11 +56,14 @@ import logoSvg from '@/assets/imgs/logo.svg?component'
 const router = useRouter()
 const route = useRoute()
 
-const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
+const systemStore = useSystemStore()
+
+const isCollapse = computed(() => systemStore.sideBar.isCollapse)
 const sideBarWidth = computed(() => (isCollapse.value ? '64px' : '210px'))
 const activeKey = computed(() => route.path)
 const menuData = computed(() => filterMenuData(usePermissionStore().menuList))
-const isDark = computed(() => useSystemStore().isDark)
+const isDark = computed(() => systemStore.isDark)
+const menuAccordion = computed(() => systemStore.menuAccordion)
 
 function handleClick(key: string) {
   // 获取点击的路由

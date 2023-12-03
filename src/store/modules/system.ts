@@ -21,7 +21,8 @@ export const useSystemStore = defineStore({
     isDark: false,
     themeColor: '#1890ff',
     // 当前系统语言
-    language: null
+    language: null,
+    menuAccordion: true
   }),
   actions: {
     setCollapse(value: boolean) {
