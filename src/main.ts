@@ -7,6 +7,8 @@ import { useElementPlus } from '@/hooks/useElementPlus'
 
 import '@/styles/index.scss'
 
+import directives from './directives'
+
 // 注册使用 svg icon
 // https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
 import 'virtual:svg-icons-register'
@@ -24,14 +26,12 @@ import { registerGlobComp } from '@/components'
 import errorHandler from '@/utils/errorHandler'
 
 import i18n from '@/languages/index'
-import { setupDirectives } from './directives'
 
 const app = createApp(App)
 
 app.config.errorHandler = errorHandler
 
 registerGlobComp(app)
-setupDirectives(app)
 useElementPlus(app)
 
-app.use(router).use(pinia).use(i18n).mount('#app')
+app.use(router).use(directives).use(pinia).use(i18n).mount('#app')
