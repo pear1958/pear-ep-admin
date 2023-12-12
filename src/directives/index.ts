@@ -1,11 +1,9 @@
 import { App, Directive } from 'vue'
 
 import auth from './modules/auth'
-import debounce from './modules/debounce'
 
 const directiveObj: { [key: string]: Directive } = {
-  auth,
-  debounce
+  auth
 }
 
 const directives = {

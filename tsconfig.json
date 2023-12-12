@@ -12,6 +12,8 @@
     // 发出额外的 JS 以简化对导入 CommonJS 模块的支持
     // eg: fs模块 import fs from 'fs'  https://juejin.cn/post/7138308695900815373
     "esModuleInterop": true,
+    // 避免Ts报错: "this" 隐式具有类型 "any", 因为它没有类型注释
+    "noImplicitThis": false,
     // 手动导入一些ts内置的声明文件  在 node_modules/typescript/lib目录下
     "lib": [
       "ESNext",
