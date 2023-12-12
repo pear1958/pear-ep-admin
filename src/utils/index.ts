@@ -23,6 +23,8 @@ export const debounce = <T>(fn: Function, wait: number = 500) => {
   }
 }
 
+// https://blog.csdn.net/xiaoyingyings/article/details/123405995
+// https://vue3js.cn/interview/JavaScript/debounce_throttle.html#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0
 export const throttle = <T>(fn: Function, delay: number = 500) => {
   let prev = Date.now()
 
