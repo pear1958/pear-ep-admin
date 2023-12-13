@@ -1,5 +1,5 @@
 import http from '@/api'
-import { Login } from '../type'
+import { Login } from '../types'
 
 import dRouter from '@/assets/json/dRouter.json'
 import buttonData from '@/assets/json/buttonData.json'

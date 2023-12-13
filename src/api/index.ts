@@ -4,7 +4,7 @@ import router from '@/router'
 import { httpResEnum } from '@/enums/httpEnum'
 import { useUserStore } from '@/store/modules/user'
 import { checkStatus } from './utils/checkStatus'
-import { CustomAxiosRequestConfig, ResultData } from './type'
+import { CustomAxiosRequestConfig, ResultData } from './types'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
 import { AxiosCanceler } from './utils/axiosCancel'
 
