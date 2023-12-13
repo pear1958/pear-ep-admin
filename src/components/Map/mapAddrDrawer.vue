@@ -1,10 +1,5 @@
 <template>
-  <Drawer
-    :modelValue="visible"
-    @update:modelValue="(val: boolean) => emit('update:visible', val)"
-    title="地址选择"
-    @confirm="handleConfirm"
-  >
+  <el-drawer :modelValue="visible" title="地址选择" @close="close" :size="422" class="addr-drawer">
     <div class="map-box">
       <el-select
         v-model="addr"
@@ -22,7 +17,12 @@
         <div id="mapDiv" ref="mapRef" />
       </div>
     </div>
-  </Drawer>
+
+    <template #footer>
+      <el-button @click="close">取消</el-button>
+      <el-button type="primary" @click="sure">确定</el-button>
+    </template>
+  </el-drawer>
 </template>
 
 <script setup lang="ts">
@@ -30,7 +30,6 @@ import { ref, unref, watchEffect } from 'vue'
 import { ElMessage } from 'element-plus'
 import AMapLoader from '@amap/amap-jsapi-loader'
 import { useConfigStore } from '@/store/modules/platformConfig'
-import { Drawer } from '@/components'
 import { debounce, deepClone } from '@/utils'
 import { isObject } from '@/utils/is'
 import markerPng from '@/assets/imgs/marker.png'
@@ -107,7 +106,12 @@ watchEffect(async () => {
   options.value.splice(0)
 })
 
-const handleConfirm = () => {
+const close = () => {
+  emit('update:visible', false)
+}
+
+const sure = () => {
+  close()
   emit('update:mapData', mapData)
 }
 
@@ -255,6 +259,23 @@ const onChange = (name: string) => {
     padding: 6px;
     width: 170px;
     white-space: normal;
+  }
+}
+</style>
+
+<style lang="scss">
+.addr-drawer {
+  .el-drawer__header {
+    color: #000000d9;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 16px;
+    margin-bottom: 0;
+  }
+
+  .el-drawer__footer {
+    border-top: 1px solid #f0f0f0;
+    padding: 16px;
+    padding-top: 16px;
   }
 }
 </style>

@@ -128,7 +128,7 @@ const confirm = () => {
   }
 
   .body {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 130px);
 
     .content-box {
       padding: 20px;
@@ -136,8 +136,7 @@ const confirm = () => {
   }
 
   .footer {
-    height: 55px;
-    padding: 0 16px;
+    padding: 16px;
     border-top: 1px solid #f0f0f0;
     position: absolute;
     left: 0;
