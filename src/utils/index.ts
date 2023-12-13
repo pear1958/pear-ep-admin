@@ -38,7 +38,7 @@ export function debounce<T = any>(fn: Function, delay: number = 500, immediate: 
 // https://blog.csdn.net/xiaoyingyings/article/details/123405995
 export function throttle<T = any>(fn: Function, delay: number = 500) {
   let timer: NodeJS.Timeout | null = null
-  let preTime = Date.now()
+  let preTime = 0
 
   // 将this放在函数参数列表上声明类型即可, 使用的时候this不会干扰形参传入顺序
   return function (...args: T[]) {
@@ -57,6 +57,7 @@ export function throttle<T = any>(fn: Function, delay: number = 500) {
       // 确保最后一次函数会执行
       timer = setTimeout(() => {
         fn.apply(context, args)
+        preTime = Date.now()
       }, remaining)
     }
   }

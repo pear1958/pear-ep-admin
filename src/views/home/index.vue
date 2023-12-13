@@ -21,7 +21,7 @@ function handleClick2() {
 }
 
 const debounceFn = debounce(handleClick1, 1000)
-const throttleFn = throttle(handleClick2, 2000)
+const throttleFn = throttle(handleClick2, 1000)
 
 // const handleFn = (event: any) => {
 //   console.log(Math.random())
