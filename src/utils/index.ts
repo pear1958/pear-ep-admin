@@ -56,8 +56,6 @@ export function throttle<T = any>(fn: Function, delay: number = 500) {
       // 确保最后一次函数会执行
       timer = setTimeout(() => {
         fn.apply(context, args)
-        // 修复下一次触发时间大于remaining, 导致单位时间delay内 触发多次的问题
-        preTime = Date.now()
       }, remaining)
     }
   }
