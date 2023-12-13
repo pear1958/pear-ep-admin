@@ -31,10 +31,9 @@ import { ElMessage } from 'element-plus'
 import AMapLoader from '@amap/amap-jsapi-loader'
 import { useConfigStore } from '@/store/modules/platformConfig'
 import { Drawer } from '@/components'
-import { debounce } from '@/utils'
+import { debounce, deepClone } from '@/utils'
 import { isObject } from '@/utils/is'
 import markerPng from '@/assets/imgs/marker.png'
-import { deepClone } from '@/utils/func'
 
 export type IMapData = {
   addr: string

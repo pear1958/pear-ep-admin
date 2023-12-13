@@ -1,4 +1,4 @@
-import { deepClone } from '@/utils/func'
+import { deepClone } from '@/utils'
 
 /**
  * @description 扁平化数组对象(主要用来处理路由菜单) 他的children不剔除, 只是把所有children下的元素 提到第一级来

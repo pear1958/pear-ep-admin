@@ -61,7 +61,7 @@ import { PropType, ref, unref, computed } from 'vue'
 import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
 import Dragger from './Dragger.vue'
 import { UploadFile } from './types'
-import { deepClone } from '@/utils/func'
+import { deepClone } from '@/utils'
 
 defineOptions({
   name: 'Upload'
