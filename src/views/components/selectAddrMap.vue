@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { mapAddrDrawer } from '@/components'
 import { IMapData } from '@/components/Map/mapAddrDrawer.vue'
 
@@ -21,9 +21,9 @@ defineOptions({
 
 const visible = ref(false)
 
-const mapData = ref(null)
+const mapData: Ref<IMapData | null> = ref(null)
 
-// const mapData = ref({
+// const mapData = ref<IMapData | null>({
 //   addr: '四川省成都市武侯区桂溪街道天府三街中国建设银行(成都生产基地)',
 //   lng: 104.058302,
 //   lat: 30.546434
