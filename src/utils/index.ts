@@ -19,7 +19,6 @@ export function debounce<T = any>(fn: Function, delay: number = 500, immediate: 
 
   return function (...args: T[]) {
     const context = this
-    console.log('context', context)
 
     if (timer) clearTimeout(timer)
 
@@ -41,12 +40,12 @@ export function throttle<T = any>(fn: Function, delay: number = 500) {
 
   // 将this放在函数参数列表上声明类型即可, 使用的时候this不会干扰形参传入顺序
   return function (...args: T[]) {
+    if (timer) clearTimeout(timer)
+
     const nowTime = Date.now()
     // 还有多少时间到下一次触发点, 保证最后一次函数会执行
     const remaining = delay - (nowTime - preTime)
     const context = this
-
-    if (timer) clearTimeout(timer)
 
     // 确保第一次函数会执行
     if (remaining <= 0) {
