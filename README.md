@@ -29,12 +29,13 @@
 
 #### 项目功能
 
+- 主题切换, 暗黑模式, 菜单栏搜索, 按钮权限指令封装
+- 原生 websocket 封装, Echarts 组件
 - 二次封装 el-progress 组件, 使其支持动画
 - 自定义 SvgIcon、Iconify 组件, 使用 SvgLoader 插件 图标随心使用
-- 自定义 Tabs、Dialog、Modal、Upload 等常用组件, 忘记实现思路, 看一下代码便知
-- 支持输入错误 url 打开 404 页面
-- 支持主题切换和暗黑模式
+- 自定义 Tabs、Dialog、Modal、Upload、地图选点 等常用组件, 忘记实现思路, 看一下代码便知
 
+- 支持输入错误 url 打开 404 页面
 - 使用 keepAlive 对页面进行缓存，支持多级嵌套页面缓存
 - 使用 Vue3.3 + Tsx 开发, 提升代码性能
 - 支持 路由权限拦截、页面按钮权限配置、路由懒加载、菜单动态权限
@@ -71,20 +72,19 @@ pnpm run build:pro
 
 #### todo-list
 
-- [x] 暗黑模式
-- [x] 菜单栏搜索
-- [x] 面包屑 & Tab 支持 路由 query 参数
-- [x] 按钮权限指令封装
-- [x] Echarts 组件
-- [x] 迁移 websocket
+- [ ] husky and Lint 等代码规范 ☆
 - [ ] 通用文件下载
 - [ ] 多种布局模式
-- [ ] husky and Lint 等代码规范
 - [ ] 大屏和 gis Demo
 - [ ] SearchTable
 - [ ] 监控视频 demo
 - [ ] 地图组件 & 视频组件
 - [ ] 低代码平台(组件)
+
+#### 待修复的 Bug
+
+- [ ] keep-alive 没生效 & 指定 二级页面返回的时候 可以取消 keep-alive
+- [ ] 菜单收起的时候, 图标部分被隐藏了
 
 #### 支持
 
