@@ -4,10 +4,13 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "serve": "vite",
     "build:dev": "vue-tsc && vite build --mode development",
     "build:test": "vue-tsc && vite build --mode test",
     "build:pro": "vite build --mode production",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "lint:lint-staged": "lint-staged"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
@@ -41,7 +44,10 @@
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.0.1",
     "fast-glob": "^3.2.12",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "postcss": "^8.4.31",
+    "prettier": "^3.1.1",
     "sass": "^1.61.0",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
