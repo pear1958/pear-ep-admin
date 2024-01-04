@@ -14,7 +14,8 @@
 - 账号: admin
 - 密码: 123456
 
-- 使用的 Node 版本: v16.14.2
+- 使用的 Node 版本: v19.1.0
+- 说明: lint-staged v15 版本需要 Node大于18.12.0 https://github.com/lint-staged/lint-staged
 
 #### 项目截图
 
