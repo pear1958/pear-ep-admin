@@ -5,5 +5,5 @@ export const test = () => {
 }
 
 export const test2 = () => {
-  console.log("test2-----");
+  console.log("test2---xx--");
 }
