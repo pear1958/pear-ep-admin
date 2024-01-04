@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   singleQuote: true,
   semi: false, // 在语句末尾添加分号
   printWidth: 120,
