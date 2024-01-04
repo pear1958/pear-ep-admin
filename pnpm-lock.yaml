@@ -121,9 +121,6 @@ devDependencies:
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.3.9)
-  vite-plugin-vue-setup-extend-plus:
-    specifier: ^0.1.0
-    version: registry.npmmirror.com/vite-plugin-vue-setup-extend-plus@0.1.0
   vite-svg-loader:
     specifier: ^4.0.0
     version: registry.npmmirror.com/vite-svg-loader@4.0.0
@@ -5224,12 +5221,6 @@ packages:
       vite: registry.npmmirror.com/vite@4.3.9(@types/node@18.16.16)(sass@1.62.1)
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  registry.npmmirror.com/vite-plugin-vue-setup-extend-plus@0.1.0:
-    resolution: {integrity: sha512-pa27KIsHIBvBMv4xz9uB3UCfAuP2tr7PLlFhCS9vw+aXd326LEHsvhqd3hCQDOR5MjlQVyQH6vwuGr3u+KRiiw==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/vite-plugin-vue-setup-extend-plus/-/vite-plugin-vue-setup-extend-plus-0.1.0.tgz}
-    name: vite-plugin-vue-setup-extend-plus
-    version: 0.1.0
     dev: true
 
   registry.npmmirror.com/vite-svg-loader@4.0.0:
