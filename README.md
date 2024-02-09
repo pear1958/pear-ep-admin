@@ -67,9 +67,14 @@ pnpm run dev
 
 - 打包
 
-```bash
+```
 pnpm run build:pro
 ```
+
+#### 项目说明
+
+- 使用 git cz 命令 需要先执行 pnpm i -g commitizen
+- 否则会提示 git: 'cz' is not a git command. See 'git --help'
 
 #### todo-list
 
