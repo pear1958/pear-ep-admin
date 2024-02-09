@@ -11,7 +11,8 @@
     "build:pro": "vite build --mode production",
     "preview": "vite preview",
     "prepare": "husky install",
-    "lint:lint-staged": "lint-staged"
+    "lint:lint-staged": "lint-staged",
+    "commit": "czg"
   },
   "config": {
     "commitizen": {

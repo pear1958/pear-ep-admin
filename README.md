@@ -76,6 +76,9 @@ pnpm run build:pro
 - 使用 git cz 命令 需要先执行 pnpm i -g commitizen
 - 否则会提示 git: 'cz' is not a git command. See 'git --help'
 
+- 使用 git czg 命令 需要先执行 pnpm i -g czg
+- 否则会提示 git: 'czg' is not a git command. See 'git --help'
+
 #### todo-list
 
 - [ ] 添加级联选择组件 & 可回填 & 多种模式
