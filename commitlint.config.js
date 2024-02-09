@@ -1,4 +1,5 @@
 /** @type {import("@commitlint/types").UserConfig} */
+/** @type {import('czg').UserConfig} */
 export default {
   // 完整格式:
   // <type>(<scope>): <subject>
@@ -63,7 +64,7 @@ export default {
     },
     types: [
       { value: 'feat', name: 'feat: 新增功能' },
-      { value: 'fix', name: '修复缺陷' },
+      { value: 'fix', name: 'fix: 修复缺陷' },
       { value: 'perf', name: 'perf: 性能优化' },
       {
         value: 'style',
