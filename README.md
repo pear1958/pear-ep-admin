@@ -73,7 +73,6 @@ pnpm run build:pro
 
 #### todo-list
 
-- [ ] husky and Lint 等代码规范 ☆
 - [ ] 添加级联选择组件 & 可回填 & 多种模式
 - [ ] 通用文件下载
 - [ ] 多种布局模式

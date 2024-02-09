@@ -100,6 +100,12 @@ devDependencies:
   cssnano:
     specifier: ^6.0.1
     version: 6.0.1(postcss@8.4.31)
+  cz-git:
+    specifier: ^1.8.0
+    version: 1.8.0
+  czg:
+    specifier: ^1.8.0
+    version: 1.8.0
   fast-glob:
     specifier: ^3.2.12
     version: registry.npmmirror.com/fast-glob@3.2.12
@@ -1392,6 +1398,17 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+
+  /cz-git@1.8.0:
+    resolution: {integrity: sha512-XL5nXiqbW10YswQqWODrbwyWhydw3mLhP8OBrXyl8u4sIjTf/6mhGsizd6FA2VgPc4tZaNGguFoUyDj7vIBouw==}
+    engines: {node: '>=v12.20.0'}
+    dev: true
+
+  /czg@1.8.0:
+    resolution: {integrity: sha512-vLX3AIUaE30C/qkeuL+g1fcdjZ72vBdON12E4V4vmuTKKe7OMoQ2MxBYbWhl5OP28+ggCrajxGBk6bdjIn5LgQ==}
+    engines: {node: '>=v12.20.0'}
+    hasBin: true
+    dev: true
 
   /dargs@7.0.0:
     resolution: {integrity: sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==}
