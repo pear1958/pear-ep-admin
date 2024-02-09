@@ -1,6 +1,15 @@
 /** @type {import("@commitlint/types").UserConfig} */
 /** @type {import('czg').UserConfig} */
-export default {
+
+const fs = require('fs')
+const path = require('path')
+
+const scopes = fs
+  .readdirSync(path.resolve(__dirname, 'src'), { withFileTypes: true })
+  .filter(dirent => dirent.isDirectory())
+  .map(dirent => dirent.name.replace(/s$/, ''))
+
+module.exports = {
   // 完整格式:
   // <type>(<scope>): <subject>
   // 空一行
@@ -104,6 +113,7 @@ export default {
         value: 'release',
         name: 'release: 发布新版本'
       }
-    ]
+    ],
+    scopes: [...scopes]
   }
 }

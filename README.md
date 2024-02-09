@@ -14,7 +14,6 @@
 - 账号: admin
 - 密码: 123456
 
-- 使用的 Node 版本: v19.1.0
 - 说明: lint-staged v15 版本需要 Node大于18.12.0 https://github.com/lint-staged/lint-staged
 
 #### 项目截图
@@ -70,14 +69,6 @@ pnpm run dev
 ```
 pnpm run build:pro
 ```
-
-#### 项目说明
-
-- 使用 git cz 命令 需要先执行 pnpm i -g commitizen
-- 否则会提示 git: 'cz' is not a git command. See 'git --help'
-
-- 使用 git czg 命令 需要先执行 pnpm i -g czg
-- 否则会提示 git: 'czg' is not a git command. See 'git --help'
 
 #### todo-list
 
