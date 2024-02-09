@@ -114,7 +114,12 @@ module.exports = {
         name: 'release: 发布新版本'
       }
     ],
-    scopes: [...scopes],
+    scopes: [
+      ...scopes,
+      { value: 'system', name: 'system: 系统相关' },
+      { value: 'home', name: 'home: 首页相关' },
+      { value: 'auth', name: 'account: 授权相关' }
+    ],
     // 设置 选择范围 中 为空选项(empty) 和 自定义选项(custom) 的 位置
     customScopesAlign: 'top',
     // 支持多选  使用 空格 选中
