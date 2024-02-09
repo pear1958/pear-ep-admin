@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "lint:lint-staged": "lint-staged",
-    "commit": "git add -A && czg"
+    "commit": "git add . && czg"
   },
   "config": {
     "commitizen": {
@@ -53,7 +53,6 @@
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.0.1",
-    "cz-git": "^1.8.0",
     "czg": "^1.8.0",
     "fast-glob": "^3.2.12",
     "husky": "^8.0.3",
