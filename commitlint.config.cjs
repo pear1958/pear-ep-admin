@@ -66,6 +66,9 @@ module.exports = {
       subject: '填写简短精炼的变更描述 :\n',
       body: '填写更加详细的变更描述（可选）。使用 "|" 换行 :\n',
       breaking: '列举非兼容性重大的变更（可选）。使用 "|" 换行 :\n',
+      footerPrefixsSelect: "112Select the ISSUES type of changeList by this change (optional):",
+      customFooterPrefixs: "222Input ISSUES prefix:",
+      footer: "333List any ISSUES by this change. E.g.: #31, #34:\n",
       confirmCommit: '是否提交或修改commit ?'
     },
     types: [
