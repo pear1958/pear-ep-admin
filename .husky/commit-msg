@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# --no-install: 让 npx 强制使用本地模块, 不下载远程模块
+npx --no-install commitlint --edit $1
