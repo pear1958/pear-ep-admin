@@ -117,7 +117,7 @@ module.exports = {
       ...scopes,
       { value: 'system', name: 'system: 系统相关' },
       { value: 'home', name: 'home: 首页相关' },
-      { value: 'auth', name: 'account: 授权相关Test' }
+      { value: 'auth', name: 'account: 授权相关Test111' }
     ],
     // 设置 选择范围 中 为空选项(empty) 和 自定义选项(custom) 的 位置
     customScopesAlign: 'top',
