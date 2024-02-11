@@ -1,5 +1,5 @@
 <template>
-  <Maximize v-if="mainMaximize" />
+  <maximize v-if="mainMaximize" />
 
   <div class="tabs-box">
     <el-tabs v-model="activeKey" type="card" @tab-click="tabClick" closable @tab-remove="removeTab">
@@ -14,24 +14,24 @@
 
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">{{
-                  $t('tabs.refresh')
-                }}</el-dropdown-item>
-                <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab"
-                  >关闭当前</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('vertical-right-outlined')" command="closeLeftTab" divided
-                  >关闭左侧标签页</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab"
-                  >关闭右侧标签页</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided
-                  >关闭其它标签页</el-dropdown-item
-                >
-                <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab"
-                  >关闭所有标签页</el-dropdown-item
-                >
+                <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">
+                  {{ $t('tabs.refresh') }}
+                </el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab">
+                  关闭当前
+                </el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('vertical-right-outlined')" command="closeLeftTab" divided>
+                  关闭左侧标签页
+                </el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab">
+                  关闭右侧标签页
+                </el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided>
+                  关闭其它标签页
+                </el-dropdown-item>
+                <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab">
+                  关闭所有标签页
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -49,18 +49,18 @@
           <el-dropdown-menu class="dropdown-menu">
             <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">刷新</el-dropdown-item>
             <el-dropdown-item :icon="useIcon('fullscreen-outlined')" command="maximizeMain">最大化</el-dropdown-item>
-            <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab" divided
-              >关闭当前</el-dropdown-item
-            >
-            <el-dropdown-item :icon="useIcon('vertical-right-outlined')" command="closeLeftTab"
-              >关闭左侧</el-dropdown-item
-            >
-            <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab"
-              >关闭右侧</el-dropdown-item
-            >
-            <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided
-              >关闭其它</el-dropdown-item
-            >
+            <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab" divided>
+              关闭当前
+            </el-dropdown-item>
+            <el-dropdown-item :icon="useIcon('vertical-right-outlined')" command="closeLeftTab">
+              关闭左侧
+            </el-dropdown-item>
+            <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab">
+              关闭右侧
+            </el-dropdown-item>
+            <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided>
+              关闭其它
+            </el-dropdown-item>
             <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab">关闭所有</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -75,9 +75,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { type TabsPaneContext, ElMessage, TabPaneName } from 'element-plus'
 import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
-import Maximize from './Maximize.vue'
+import maximize from './maximize.vue'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
-import { useIcon } from '@/components'
+import { useIcon } from '@/components/icon'
 
 const route = useRoute()
 const router = useRouter()

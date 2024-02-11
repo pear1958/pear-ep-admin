@@ -16,15 +16,15 @@
 
         <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="showActive && activeIndex == index">
           <!-- 红色背景, 白色叉叉的按钮 -->
-          <Iconify icon="close" />
+          <iconify icon="close" />
         </div>
 
         <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
-          <Iconify icon="delete" />
+          <iconify icon="delete" />
         </div>
 
         <div class="hover-preview-icon" @click.stop="handlePreview(index)">
-          <Iconify icon="zoom-in" />
+          <iconify icon="zoom-in" />
         </div>
       </template>
 
@@ -36,11 +36,11 @@
       />
     </div>
 
-    <Dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
+    <dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
       <div class="upload" @click="handleClick">
-        <Iconify icon="plus" />
+        <iconify icon="plus" />
       </div>
-    </Dragger>
+    </dragger>
 
     <input
       class="file-input"
@@ -59,12 +59,12 @@
 <script setup lang="ts">
 import { PropType, ref, unref, computed } from 'vue'
 import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
-import Dragger from './Dragger.vue'
+import dragger from './dragger.vue'
 import { UploadFile } from './types'
 import { deepClone } from '@/utils'
 
 defineOptions({
-  name: 'Upload'
+  name: 'upload'
 })
 
 const props = defineProps({
@@ -324,5 +324,5 @@ const handlePreview = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
-@import './Upload.scss';
+@import './index.scss';
 </style>

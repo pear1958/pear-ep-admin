@@ -1,6 +1,6 @@
 <template>
   <div class="collapse-icon" @click="toggleSidebar">
-    <Iconify :icon="isCollapse ? 'menu-unfold-outlined' : 'menu-fold-outlined'" class="trigger" />
+    <iconify :icon="isCollapse ? 'menu-unfold-outlined' : 'menu-fold-outlined'" class="trigger" />
   </div>
 </template>
 

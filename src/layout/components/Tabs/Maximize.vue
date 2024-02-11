@@ -1,6 +1,6 @@
 <template>
   <div class="max-close-icon" @click="exitMaximize">
-    <Iconify icon="close" />
+    <iconify icon="close" />
   </div>
 </template>
 

@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import DarkIcon from './DarkIcon.vue'
+import darkIcon from './darkIcon.vue'
 import emitter from '@/utils/mitt'
 import { useTheme } from '@/hooks/useTheme'
 import { useSystemStore } from '@/store/modules/system'

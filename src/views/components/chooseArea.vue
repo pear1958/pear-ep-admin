@@ -5,11 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { ChooseArea } from '@/components'
-
-defineOptions({
-  name: 'ChooseAreaPage'
-})
+import chooseArea from '@/components/chooseArea/index.vue'
 
 function onChange(params: any) {
   console.log('params', params)

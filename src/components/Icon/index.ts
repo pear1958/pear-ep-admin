@@ -1,7 +1,7 @@
-import Iconify from './src/iconify'
-import IconFont from './src/iconfont'
+import iconify from './src/iconify'
+import iconFont from './src/iconFont'
 
 import { regisOfflineIcons } from './src/iconData'
 import { useIcon } from './src/useIcon'
 
-export { Iconify, IconFont, regisOfflineIcons, useIcon }
+export { iconify, iconFont, regisOfflineIcons, useIcon }

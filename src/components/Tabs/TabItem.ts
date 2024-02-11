@@ -1,7 +1,7 @@
 import { defineComponent, h, Fragment } from 'vue'
 
 export default defineComponent({
-  name: 'TabItem',
+  name: 'tabItem',
   props: {
     title: {
       type: String,

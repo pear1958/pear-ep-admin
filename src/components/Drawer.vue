@@ -17,7 +17,7 @@
           <div v-else>{{ title }}</div>
         </div>
 
-        <Iconify icon="close" class="close-icon" @click="close" />
+        <iconify icon="close" class="close-icon" @click="close" />
       </div>
 
       <div class="body">

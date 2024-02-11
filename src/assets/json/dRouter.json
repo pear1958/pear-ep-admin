@@ -29,9 +29,9 @@
           }
         },
         {
-          "path": "/components/selectAddrMap",
-          "name": "selectAddrMap",
-          "component": "/components/selectAddrMap",
+          "path": "/components/mapAddrDrawer",
+          "name": "mapAddrDrawer",
+          "component": "/components/mapAddrDrawer",
           "meta": {
             "title": "地图选点"
           }

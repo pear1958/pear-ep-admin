@@ -1,34 +1,31 @@
 <template>
   <div class="bg-white dark:bg-dark p-4">
-    <Collapse v-model="openedValue">
-      <CollapseItem name="a" title="Consistency">
+    <collapse v-model="openedValue">
+      <collapse-item name="a" title="Consistency">
         <div>11111111111</div>
         <div>11111111111</div>
         <div>11111111111</div>
-      </CollapseItem>
+      </collapse-item>
 
-      <CollapseItem name="b" title="Feedback">
+      <collapse-item name="b" title="Feedback">
         <div>2222222222222</div>
         <div>2222222222222</div>
         <div>2222222222222</div>
-      </CollapseItem>
+      </collapse-item>
 
-      <CollapseItem name="c" title="Efficiency" disabled>
+      <collapse-item name="c" title="Efficiency" disabled>
         <div>33333333333333</div>
         <div>33333333333333</div>
         <div>33333333333333</div>
-      </CollapseItem>
-    </Collapse>
+      </collapse-item>
+    </collapse>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Collapse, CollapseItem } from '@/components'
-
-defineOptions({
-  name: 'Collapse'
-})
+import collapse from '@/components/collapse/collapse.vue'
+import collapseItem from '@/components/collapse/collapseItem.vue'
 
 const openedValue = ref(['a'])
 </script>

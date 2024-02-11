@@ -1,6 +1,6 @@
 <template>
   <div class="page-box bg-white dark:bg-dark p-4">
-    <Upload
+    <upload
       v-model:file-list="fileList"
       v-model:active-index="activeIndex"
       action="/dev-api/sourceData/document/uploadFile"
@@ -19,10 +19,10 @@
 
 <script setup lang="ts">
 import { Ref, ref, unref } from 'vue'
-import { Upload } from '@/components'
-import { UploadFile } from '@/components/Upload/types'
 import { ElMessage } from 'element-plus'
 import { AxiosError } from 'axios'
+import upload from '@/components/upload/index.vue'
+import { UploadFile } from '@/components/upload/types'
 
 // const fileList: Ref<UploadFile[]> = ref([
 //   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }

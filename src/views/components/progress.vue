@@ -9,11 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { Progress } from '@/components'
-
-defineOptions({
-  name: 'progressPage'
-})
+import Progress from '@/components/progress.vue'
 </script>
 
 <style lang="scss" scoped></style>

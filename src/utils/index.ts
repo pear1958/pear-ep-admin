@@ -108,8 +108,8 @@ export const copyText = async (text: string) => {
 }
 
 export function deepClone<T = any>(obj: T) {
-  if (obj instanceof Date) return new Date(obj)
-  if (obj instanceof RegExp) return new RegExp(obj)
+  if (obj instanceof Date) return new Date(obj) as T
+  if (obj instanceof RegExp) return new RegExp(obj) as T
 
   // 可能是对象或者普通的值  如果是函数的话是不需要深拷贝
   if (typeof obj !== 'object') return obj

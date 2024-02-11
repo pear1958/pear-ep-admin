@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div>
+      <el-checkbox v-model="checked1" label="Option 1" size="large" />
+      <el-checkbox v-model="checked2" label="Option 2" size="large" />
+    </div>
+
     <el-button type="primary" @click="test">测试</el-button>
     <el-button type="primary" @click="test2">测试2</el-button>
     <div v-for="item in 1000">哈哈哈</div>
@@ -13,13 +18,21 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getCompositionList } from '@/api/modules/user'
+
+const checked1 = ref(false)
+const checked2 = ref(false)
 
 const params = {
   current: 1,
   size: 10
 }
+
+defineOptions({
+  name: 'systemManageMenu'
+})
 
 const test = async () => {
   const res = await getCompositionList(params)

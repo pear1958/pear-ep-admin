@@ -17,11 +17,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Dialog, openDialog } from '@/components'
-
-defineOptions({
-  name: 'dialogPage'
-})
+import Dialog from '@/components/dialog/index.vue'
+import openDialog from '@/components/dialog/openDialog'
 
 const visible = ref(false)
 

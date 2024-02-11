@@ -1,6 +1,7 @@
 import { h, defineComponent, Component } from 'vue'
+import iconify from './iconify'
+import iconFont from './iconFont'
 import { iconType } from './types'
-import { Iconify, IconFont } from '../index'
 
 /**
  * @description: 在函数中渲染图标组件, 支持传attr
@@ -16,7 +17,7 @@ import { Iconify, IconFont } from '../index'
 // import './assets/iconfont/iconfont.js'
 // import './assets/iconfont/iconfont.css'
 
-// 不传第二个参数, 默认就以 font-class 的形式渲染 IconFont
+// 不传第二个参数, 默认就以 font-class 的形式渲染 iconFont
 // useIcon('IF-icon-water' || 'IF-icon-water svg' || 'IF-icon-water uni')
 
 // useIcon('ant-design:bar-chart-outlined', { color: 'red' })
@@ -35,10 +36,10 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     return defineComponent({
       name: 'useIconFont',
       render() {
-        return h(IconFont, {
+        return h(iconFont, {
           icon: iconName,
-          iconType, // 这两个属性合在一起就是传递给 IconFont 的 attrs
-          ...attrs // 解构 & 透传给 IconFont
+          iconType, // 这两个属性合在一起就是传递给 iconFont 的 attrs
+          ...attrs // 解构 & 透传给 iconFont
         })
       }
     })
@@ -46,7 +47,7 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     return defineComponent({
       name: 'useIconify',
       render() {
-        return h(Iconify, {
+        return h(iconify, {
           icon,
           ...attrs
         })

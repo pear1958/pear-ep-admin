@@ -1,14 +1,14 @@
 <template>
   <div class="bg-white dark:bg-dark py-10">
     <div class="w-full h-[500px]">
-      <Charts :options="options" />
+      <charts :options="options" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import { Charts } from '@/components'
+import charts from '@/components/charts'
 
 const mockOptions = {
   tooltip: {

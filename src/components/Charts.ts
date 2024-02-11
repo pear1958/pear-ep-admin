@@ -4,7 +4,7 @@ import type { ECharts } from 'echarts'
 import { throttle } from '@/utils'
 
 export default defineComponent({
-  name: 'Charts',
+  name: 'charts',
   props: {
     options: {
       type: Object as PropType<any>

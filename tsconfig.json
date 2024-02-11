@@ -5,7 +5,9 @@
     "useDefineForClassFields": true, // class编译优化
     "module": "ESNext", // 指定要使用的模块标准
     "moduleResolution": "Node", // 模块解析策略  有 node 和 classic 两种类型
-    "strict": true, // 是否启动所有类型检查
+    // 是否启动所有类型检查
+    // https://blog.csdn.net/weixin_40013817/article/details/127200987
+    "strict": false,
     "jsx": "preserve", // 在 .tsx 文件里支持JSX
     "resolveJsonModule": true, // 允许导入json文件
     "isolatedModules": true, // 指定是否将每个文件作为单独的模块

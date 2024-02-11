@@ -32,7 +32,7 @@
 - 主题切换, 暗黑模式, 菜单栏搜索, 按钮权限指令封装
 - 原生 websocket 封装, Echarts 组件
 - 二次封装 el-progress 组件, 使其支持动画
-- 自定义 SvgIcon、Iconify 组件, 使用 SvgLoader 插件 图标随心使用
+- 自定义 SvgIcon、iconify 组件, 使用 SvgLoader 插件 图标随心使用
 - 自定义 Tabs、Dialog、Modal、Upload、地图选点 等常用组件, 忘记实现思路, 看一下代码便知
 
 - 支持输入错误 url 打开 404 页面
@@ -83,7 +83,6 @@ pnpm run build:pro
 
 #### 待修复的 Bug
 
-- [ ] keep-alive 没生效 & 指定 二级页面返回的时候 可以取消 keep-alive
 - [ ] 菜单收起的时候, 图标部分被隐藏了
 
 #### 面试宝典地址

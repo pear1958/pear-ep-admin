@@ -1,14 +1,14 @@
 <template>
   <div class="header-box">
     <div class="header-left">
-      <Collapse />
-      <Breadcrumb />
+      <collapse />
+      <breadcrumb />
     </div>
 
     <div class="header-right">
-      <Search />
-      <Fullscreen />
-      <I18nIcon />
+      <search />
+      <fullscreen />
+      <i18nIcon />
 
       <el-dropdown @command="onClick">
         <div class="user">
@@ -19,12 +19,12 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="0">
-              <Iconify icon="user-outlined" />
+              <iconify icon="user-outlined" />
               <span class="user-text">个人中心</span>
             </el-dropdown-item>
 
             <el-dropdown-item command="1">
-              <Iconify icon="poweroff-outlined" />
+              <iconify icon="poweroff-outlined" />
               <span class="user-text">退出登录</span>
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -32,7 +32,7 @@
       </el-dropdown>
 
       <div class="header-icon flex-c text-base">
-        <Iconify icon="setting" @click="openSetDrawer" />
+        <iconify icon="setting" @click="openSetDrawer" />
       </div>
     </div>
   </div>
@@ -40,11 +40,11 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import Collapse from './components/Collapse.vue'
-import Breadcrumb from './components/Breadcrumb.vue'
-import Search from './components/Search.vue'
-import Fullscreen from './components/Fullscreen.vue'
-import I18nIcon from './components/I18nIcon.vue'
+import collapse from './components/collapse.vue'
+import breadcrumb from './components/breadcrumb.vue'
+import search from './components/search.vue'
+import fullscreen from './components/fullscreen.vue'
+import i18nIcon from './components/i18nIcon.vue'
 import emitter from '@/utils/mitt'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'

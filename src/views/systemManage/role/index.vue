@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dropdown>
-      <span>Dropdown List </span>
+      <span>Dropdown List</span>
 
       <template #dropdown>
         <el-dropdown-menu>
@@ -16,7 +16,11 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+defineOptions({
+  name: 'systemManageRole'
+})
+</script>
 
 <style lang="scss" scoped>
 .el-tooltip__trigger {

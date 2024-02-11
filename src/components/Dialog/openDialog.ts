@@ -1,5 +1,5 @@
 import { createApp, h, ref } from 'vue'
-import Dialog from './Dialog.vue'
+import dialog from './index.vue'
 
 const openDialog = (options: any) => {
   const { title, content, closeOnClickMask, alignCenter, width, top, handleOk, cancel } = options
@@ -26,7 +26,7 @@ const openDialog = (options: any) => {
   const app = createApp({
     render() {
       return h(
-        Dialog,
+        dialog,
         {
           visible: visible.value,
           'onUpdate:visible': (newVisible: boolean) => {
@@ -47,4 +47,4 @@ const openDialog = (options: any) => {
   app.mount(div)
 }
 
-export { openDialog }
+export default openDialog

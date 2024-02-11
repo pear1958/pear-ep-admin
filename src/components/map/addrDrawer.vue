@@ -6,7 +6,7 @@
         placeholder="输入查询或者点击选择"
         filterable
         remote
-        :remote-method="debounce < string > (getAddrList, 700)"
+        :remote-method="debounce<string>(getAddrList, 700)"
         :style="{ width: '100%' }"
         @change="onChange"
       >

@@ -11,7 +11,7 @@
           <span class="title" v-else>{{ title }}</span>
 
           <span class="close-icon" @click="closeDialog">
-            <Iconify icon="close" />
+            <iconify icon="close" />
           </span>
         </header>
 
@@ -32,7 +32,7 @@
 import { computed, useSlots } from 'vue'
 
 defineOptions({
-  name: 'Dialog'
+  name: 'dialog'
 })
 
 const emit = defineEmits(['update:visible'])

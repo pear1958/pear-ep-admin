@@ -2,7 +2,7 @@ import { h, defineComponent } from 'vue'
 import { Icon } from '@iconify/vue'
 
 export default defineComponent({
-  name: 'Iconify',
+  name: 'iconify',
   components: { Icon },
   props: {
     // 图标名称

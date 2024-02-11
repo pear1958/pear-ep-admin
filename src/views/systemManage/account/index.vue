@@ -10,6 +10,10 @@
 <script setup>
 import { useRouter } from 'vue-router'
 
+defineOptions({
+  name: 'systemManageAccount'
+})
+
 const router = useRouter()
 
 const goNav1 = () => {

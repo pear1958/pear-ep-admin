@@ -9,7 +9,7 @@ import { PropType, provide, ref, watch } from 'vue'
 import { NameType, collapseContextKey } from './types'
 
 defineOptions({
-  name: 'Collapse'
+  name: 'collapse'
 })
 
 const props = defineProps({
