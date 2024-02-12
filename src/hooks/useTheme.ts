@@ -1,19 +1,15 @@
+import { storeToRefs } from 'pinia'
 import { useSystemStore } from '@/store/modules/system'
 import { getDarkColor, getLightColor } from '@/utils/theme'
 
 export function useTheme() {
   const systemStore = useSystemStore()
+  const { isDark, themeColor } = storeToRefs(systemStore)
 
-  const changeDark = (isDark: boolean) => {
+  const changeDark = (dark: boolean) => {
     const html = document.documentElement as HTMLElement
-
-    // 添加暗黑模式的类名
-    html.classList[isDark ? 'add' : 'remove']('dark')
-
-    // if (isDark) html.setAttribute('class', 'dark')
-    // else html.setAttribute('class', '')
-
-    systemStore.setDark(isDark)
+    html.classList[dark ? 'add' : 'remove']('dark')
+    systemStore.setDark(dark)
   }
 
   const changeTheme = (color: string) => {
@@ -32,13 +28,13 @@ export function useTheme() {
     for (let i = 1; i <= 9; i++) {
       html.style.setProperty(
         `--el-color-primary-light-${i}`,
-        systemStore.isDark ? `${getDarkColor(color, i / 10)}` : `${getLightColor(color, i / 10)}`
+        isDark.value ? `${getDarkColor(color, i / 10)}` : `${getLightColor(color, i / 10)}`
       )
     }
 
     html.style.setProperty(
       '--el-color-primary-dark-2',
-      systemStore.isDark ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
+      isDark.value ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
     )
   }
 
@@ -47,8 +43,8 @@ export function useTheme() {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       systemStore.setDark(true)
     }
-    changeDark(systemStore.isDark)
-    changeTheme(systemStore.themeColor)
+    changeDark(isDark.value)
+    changeTheme(themeColor.value)
   }
 
   return {

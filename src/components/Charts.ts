@@ -1,6 +1,8 @@
-import { PropType, defineComponent, h, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { PropType, computed, defineComponent, h, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import * as echarts from 'echarts'
 import type { ECharts } from 'echarts'
+import { useSystemStore } from '@/store/modules/system'
 import { throttle } from '@/utils'
 
 export default defineComponent({
@@ -13,6 +15,9 @@ export default defineComponent({
   setup(props) {
     let chart: ECharts
     const chartRef = ref()
+    const systemStore = useSystemStore()
+    const isCollapse = computed(() => systemStore.sideBar.isCollapse)
+    const { mainMaximize } = storeToRefs(systemStore)
 
     const updateChart = () => {
       if (!chart) return
@@ -26,6 +31,14 @@ export default defineComponent({
     }, 200)
 
     window.addEventListener('resize', resizeChart)
+
+    watch(
+      () => [mainMaximize, isCollapse],
+      () => {
+        resizeChart()
+      },
+      { deep: true }
+    )
 
     watch(
       () => props.options,

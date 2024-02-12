@@ -70,8 +70,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, ref, unref, watch } from 'vue'
+import { nextTick, onMounted, ref, unref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { type TabsPaneContext, ElMessage, TabPaneName } from 'element-plus'
 import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
@@ -83,8 +84,8 @@ const route = useRoute()
 const router = useRouter()
 
 const systemStore = useSystemStore()
-const tabList = computed(() => systemStore.tabList)
-const mainMaximize = computed(() => systemStore.mainMaximize)
+
+const { tabList, mainMaximize } = storeToRefs(systemStore)
 
 // 默认值
 const activeKey = ref(route.fullPath)
@@ -241,5 +242,3 @@ function onDropDownClick(command: string, tab: tabItem | undefined, className?: 
 <style lang="scss" scoped>
 @import './index.scss';
 </style>
-
-<style lang="scss"></style>

@@ -5,30 +5,23 @@
 </template>
 
 <script lang="ts" setup>
-import { watch } from 'vue'
 import { useSystemStore } from '@/store/modules/system'
 
 const systemStore = useSystemStore()
+
+if (systemStore.mainMaximize) {
+  changeClass('add')
+}
+
+const exitMaximize = () => {
+  systemStore.setMainMaximize(false)
+  changeClass('remove')
+}
 
 function changeClass(method: 'add' | 'remove') {
   const app = document.getElementById('app') as HTMLDivElement
   app.classList[method]('main-maximize')
 }
-
-// 退出Main全屏
-function exitMaximize() {
-  systemStore.setMainMaximize(false)
-  changeClass('remove')
-}
-
-// 监听当前页是否全屏, 动态改变class
-watch(
-  () => systemStore.mainMaximize,
-  newVal => {
-    newVal && changeClass('add')
-  },
-  { immediate: true }
-)
 </script>
 
 <style lang="scss">
