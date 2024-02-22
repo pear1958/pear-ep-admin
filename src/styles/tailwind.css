@@ -7,11 +7,11 @@
     @apply flex justify-center items-center;
   }
 
-  .flex-bc {
+  .flex-between {
     @apply flex justify-between items-center;
   }
 
-  .flex-ec {
+  .flex-end {
     @apply flex justify-end items-center;
   }
 }
