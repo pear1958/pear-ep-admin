@@ -2,9 +2,9 @@
   <div class="bg-white dark:bg-dark p-4">
     <el-button type="primary" @click="toggle">打开对话框</el-button>
 
-    <div class="mt-4">
+    <!-- <div class="mt-4">
       <el-button type="primary" @click="showDialog">函数式调用对话框</el-button>
-    </div>
+    </div> -->
 
     <Dialog v-model:visible="visible" title="测试标题" :handleOk="handleOk" :cancel="cancel">
       <template v-slot:content>
