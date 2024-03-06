@@ -1,4 +1,4 @@
-import { ConfigEnv, defineConfig, loadEnv, UserConfig } from 'vite'
+import { type ConfigEnv, type UserConfigExport, loadEnv } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -10,7 +10,7 @@ import { formatEnv } from './src/utils/env'
 const pathSrc = resolve(__dirname, 'src')
 
 // https://cn.vitejs.dev/config/#conditional-config
-export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
+export default ({ mode }: ConfigEnv): UserConfigExport => {
   // 加载 envDir 中的 .env 文件, 默认情况下只有前缀为 VITE_ 的会被加载
   const env = loadEnv(mode, process.cwd())
 
@@ -23,7 +23,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '@': pathSrc
-        // 'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
       }
     },
     server: {
@@ -45,6 +44,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
             return path.replace('/dev-api', '')
           }
         }
+      },
+      // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布
+      warmup: {
+        clientFiles: ['./index.html', './src/{views,components}/*']
       }
     },
     css: {
@@ -99,4 +102,4 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }
     }
   }
-})
+}

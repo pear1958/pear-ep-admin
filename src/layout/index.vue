@@ -8,7 +8,7 @@ import { computed, type Component } from 'vue'
 import layoutVertical from './layoutVertical/index.vue'
 import setting from './components/setting/index.vue'
 import { useSystemStore } from '@/store/modules/system'
-import { regisOfflineIcons } from '@/components/Icon'
+import { regisOfflineIcons } from '@/components/icon'
 
 import { getPlatformConfig } from '@/config'
 import { useConfigStore } from '@/store/modules/platformConfig'
