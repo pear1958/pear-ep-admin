@@ -104,16 +104,6 @@
       },
       "children": [
         {
-          "path": "/link/checkPdf",
-          "name": "checkPdf",
-          "component": "/iframeView",
-          "meta": {
-            "title": "查看PDF",
-            "iframeSrc": "/static/html/pdfJs-old/web/viewer.html?file=https://cdn.jsdelivr.net/gh/mozilla/pdf.js@c6e8ca86/test/pdfs/calrgb.pdf",
-            "mainFull": true
-          }
-        },
-        {
           "path": "/able/table",
           "name": "InfiniteScrollTable",
           "component": "/able/infiniteScroll",
@@ -317,6 +307,16 @@
           "meta": {
             "title": "必应 ( 内嵌 )",
             "iframeSrc": "https://cn.bing.com/",
+            "mainFull": true
+          }
+        },
+        {
+          "path": "/checkPdf",
+          "name": "checkPdf",
+          "component": "/iframeView",
+          "meta": {
+            "title": "查看PDF ( 内嵌 )",
+            "iframeSrc": "https://cdn.jsdelivr.net/gh/mozilla/pdf.js@c6e8ca86/test/pdfs/calrgb.pdf",
             "mainFull": true
           }
         },
