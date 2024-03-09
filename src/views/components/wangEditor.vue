@@ -11,7 +11,7 @@ import wangEditor from '@/components/wangEditor.vue'
 const html = ref('')
 
 const onChange = (val: string) => {
-  console.log('val', val)
+  // console.log('val', val)
 }
 </script>
 

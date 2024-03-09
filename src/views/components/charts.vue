@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import charts from '@/components/charts'
+import charts from '@/components/charts.vue'
 
 const mockOptions = {
   tooltip: {
@@ -19,7 +19,15 @@ const mockOptions = {
   },
   xAxis: {
     type: 'category',
-    data: ['2022-05-17', '2022-05-18', '2022-05-19', '2022-05-20', '2022-05-21', '2022-05-22', '2022-05-23'],
+    data: [
+      '2022-05-17',
+      '2022-05-18',
+      '2022-05-19',
+      '2022-05-20',
+      '2022-05-21',
+      '2022-05-22',
+      '2022-05-23'
+    ],
     axisTick: {
       show: false
     }

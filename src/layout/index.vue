@@ -10,7 +10,7 @@ import setting from './components/setting/index.vue'
 import { useSystemStore } from '@/store/modules/system'
 import { regisOfflineIcons } from '@/components/icon'
 
-import { getPlatformConfig } from '@/config'
+import { getPlatformConfig } from '@/config/platform'
 import { useConfigStore } from '@/store/modules/platformConfig'
 
 const layout = computed(() => useSystemStore().layout)

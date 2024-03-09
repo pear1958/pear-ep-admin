@@ -3,14 +3,12 @@
     <upload
       v-model:file-list="fileList"
       v-model:active-index="activeIndex"
-      action="/dev-api/sourceData/document/uploadFile"
+      :action="uploadUrl"
       :before-upload="beforeUpload"
       :on-change="onChange"
       :on-success="onSuccess"
       :on-error="onError"
-      :headers="{
-        key: 'xxxxx'
-      }"
+      :headers="uploadHeaders"
       showReplace
       showActive
     />
@@ -22,7 +20,8 @@ import { Ref, ref, unref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { AxiosError } from 'axios'
 import upload from '@/components/upload/index.vue'
-import { UploadFile } from '@/components/upload/types'
+import type { UploadFile } from '@/components/upload/types'
+import { uploadUrl, uploadHeaders } from '@/config'
 
 // const fileList: Ref<UploadFile[]> = ref([
 //   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }

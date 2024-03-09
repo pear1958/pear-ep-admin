@@ -2,7 +2,7 @@ import { App } from 'vue'
 
 import svgIcon from './svgIcon.vue'
 import { iconify } from './icon'
-import imgViewer from './imgViewer'
+import imgViewer from './imgViewer.vue'
 
 const components = {
   svgIcon,

@@ -7,14 +7,24 @@
       :class="{ active: showActive && activeIndex == index }"
       @click="showActive && emit('update:activeIndex', index)"
     >
-      <el-progress type="circle" :percentage="item.percent" v-if="['ready', 'uploading'].includes(item.status!)" />
+      <el-progress
+        type="circle"
+        :percentage="item.percent"
+        v-if="['ready', 'uploading'].includes(item.status!)"
+      />
 
       <template v-if="['success', undefined].includes(item.status!)">
         <img class="img" :src="item.src" />
 
-        <div class="replace-box" @click.stop="handleReplace(index)" v-if="showReplace">替换图片</div>
+        <div class="replace-box" @click.stop="handleReplace(index)" v-if="showReplace">
+          替换图片
+        </div>
 
-        <div class="select-del-icon" @click.stop="handleRemove(index)" v-if="showActive && activeIndex == index">
+        <div
+          class="select-del-icon"
+          @click.stop="handleRemove(index)"
+          v-if="showActive && activeIndex == index"
+        >
           <!-- 红色背景, 白色叉叉的按钮 -->
           <iconify icon="close" />
         </div>
@@ -236,7 +246,17 @@ const post = (file: File) => {
     // 重置为初始值
     uploadType = 'add'
 
-    const { name, data, action, headers, withCredentials, onProgress, onSuccess, onError, onChange } = props
+    const {
+      name,
+      data,
+      action,
+      headers,
+      withCredentials,
+      onProgress,
+      onSuccess,
+      onError,
+      onChange
+    } = props
 
     // console.log('headers', headers)
 
@@ -303,7 +323,9 @@ const handleRemove = (index: number) => {
 
   if (props.showActive) {
     const isDelCurPrev = index < props.activeIndex!
-    const isDelCurAndLast = Boolean(index == props.activeIndex && index == fileList.length - 1 && fileList[index - 1])
+    const isDelCurAndLast = Boolean(
+      index == props.activeIndex && index == fileList.length - 1 && fileList[index - 1]
+    )
 
     if (isDelCurPrev || isDelCurAndLast) {
       let i = props.activeIndex!
