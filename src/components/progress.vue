@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
-let props = defineProps({
+const props = defineProps({
   // 进度条进度
   percentage: {
     type: Number,

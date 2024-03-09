@@ -91,6 +91,14 @@
           "meta": {
             "title": "省市区选择器"
           }
+        },
+        {
+          "path": "/components/wangEditor",
+          "name": "wangEditor",
+          "component": "/components/wangEditor",
+          "meta": {
+            "title": "富文本编辑器(支持图片)"
+          }
         }
       ]
     },
