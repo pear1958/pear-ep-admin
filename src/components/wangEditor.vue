@@ -19,11 +19,11 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, ref, shallowRef, unref, watch, watchEffect } from 'vue'
+import { ElMessage } from 'element-plus'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
 import { InsertFnType } from '@/types/wangEditor'
-import { uploadUrl } from '@/config'
-import { ElMessage } from 'element-plus'
+import { uploadHeaders, uploadUrl } from '@/config'
 
 defineOptions({
   name: 'wangEditor'
@@ -42,7 +42,9 @@ const editorRef = shallowRef()
 
 const html = ref('')
 const mode = 'default'
-const toolbarConfig = {}
+const toolbarConfig = {
+  excludeKeys: ['group-video']
+}
 const editorConfig = ref({
   placeholder: '请输入内容...',
   MENU_CONF: {
@@ -56,39 +58,35 @@ const editorConfig = ref({
       allowedFileTypes: [],
       // 自定义增加 http-header
       headers: {
-        'you-key': 'Bearer xxxxx'
+        ...uploadHeaders
       },
       // 跨域是否传递 cookie ，默认为 false
       withCredentials: true,
       // 上传之前触发
-      onBeforeUpload(file: File) {
-        console.log('file', file)
-        return file
-      },
-      onSuccess(file: File, res: any) {
-        console.log('上传成功', file, res)
-      },
-      onFailed(file: File, res: any) {
-        console.log('上传失败', file, res)
-      },
-      onError(file: File, err: any, res: any) {
-        console.log('上传出错', file, err, res)
-      },
+      // onBeforeUpload(file: File) {
+      //   return file
+      // },
       // 自定义插入图片
       customInsert(res: any, insertFn: InsertFnType) {
-        console.log('res', res)
-
         const { code, msg, data } = res || {}
 
         if (!String(code).startsWith('2')) {
           return ElMessage.error(msg || '上传失败')
         }
 
-        const { url, name: alt } = data || {}
+        const { url, origin: alt } = data || {}
 
         const href = url || 'https://www.baidu.com/' // 查看链接
 
         insertFn(url, alt, href)
+      },
+      onSuccess(file: File, res: any) {
+        console.log('上传成功', res)
+      },
+      // 上传错误, timeout | 断网 | 500 等等
+      onError(file: File, err: any) {
+        ElMessage.error('上传失败')
+        console.log('上传失败', err)
       }
     }
   }
