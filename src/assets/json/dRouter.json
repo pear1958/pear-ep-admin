@@ -16,7 +16,7 @@
       "name": "Components",
       "redirect": "/components/fileUpload",
       "meta": {
-        "title": "自定义组件",
+        "title": "常用组件",
         "icon": "ep:menu"
       },
       "children": [
@@ -97,7 +97,7 @@
           "name": "wangEditor",
           "component": "/components/wangEditor",
           "meta": {
-            "title": "富文本编辑器(支持图片)"
+            "title": "富文本编辑器"
           }
         }
       ]

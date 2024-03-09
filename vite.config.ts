@@ -30,18 +30,16 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       host: true, // 监听本地所有IP
       port: envConf.VITE_PORT,
       proxy: {
-        '/api': {
-          // target: 'http://10.10.10.185:9501',
-          target: 'https://cdpre.tfsmy.com/smart-front-gateway',
+        [env.VITE_API_BASE_URL]: {
+          target: 'xxxxxxx',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '')
         },
-        '/dev-api': {
-          target: 'https://cdpre.tfsmy.com/citizen-code-gateway',
+        [env.VITE_FILE_BASE_URL]: {
+          target: env.VITE_FILE_PROXY_URL,
           changeOrigin: true,
-          // secure: false,
           rewrite: path => {
-            return path.replace('/dev-api', '')
+            return path.replace(env.VITE_FILE_BASE_URL, '')
           }
         }
       },

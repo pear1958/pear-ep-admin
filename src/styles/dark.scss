@@ -80,4 +80,8 @@ html.dark {
   .header-icon {
     color: var(--el-text-color-regular) !important;
   }
+
+  .wang-editor {
+    filter: invert(0.9) hue-rotate(180deg);
+  }
 }
