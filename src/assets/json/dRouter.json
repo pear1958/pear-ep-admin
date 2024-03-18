@@ -29,6 +29,14 @@
           }
         },
         {
+          "path": "/components/imgCropper",
+          "name": "imgCropper",
+          "component": "/components/imgCropper",
+          "meta": {
+            "title": "图片裁剪"
+          }
+        },
+        {
           "path": "/components/mapAddrDrawer",
           "name": "mapAddrDrawer",
           "component": "/components/mapAddrDrawer",

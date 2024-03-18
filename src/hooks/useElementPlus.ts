@@ -51,6 +51,7 @@ import {
   ElAvatar,
   ElEmpty,
   ElProgress,
+  ElImage,
   ElImageViewer,
   // 指令
   ElLoading,
@@ -111,6 +112,7 @@ const components = [
   ElAvatar,
   ElEmpty,
   ElProgress,
+  ElImage,
   ElImageViewer
 ]
 
