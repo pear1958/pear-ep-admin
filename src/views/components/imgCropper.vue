@@ -1,14 +1,17 @@
 <template>
-  <div>
-    <imgCropper @change="onChange" @error="onError" @ready="showImg = true" />
+  <div class="flex items-center gap-8">
+    <!-- 1280 x 720 -->
+    <imgCropper :src="picture" @change="onChange" @error="onError" @ready="showImg = true" />
 
-    <div v-if="imgData" class="mt-1 w-[500px]">
-      <div class="h-[350px]" v-if="showImg">
+    <div v-if="imgData" class="mt-3 w-[400px]">
+      <div class="h-[280px] flex-c" v-if="showImg">
         <el-image v-if="base64Url" :src="base64Url" fit="contain" />
       </div>
-      <p class="text-center">图像大小：{{ imgData.width }} × {{ imgData.height }}像素</p>
+      <p class="text-center">
+        图像大小：{{ parseInt(imgData.width) }} x {{ parseInt(imgData.height) }} 像素
+      </p>
       <p class="text-center mt-[3px]">
-        文件大小：{{ imgData.size / 1000 + 'KB' }} ({{ imgData.size }} 字节)
+        文件大小：{{ (imgData.size / 1000).toFixed(2) + 'KB' }} ({{ imgData.size }} 字节)
       </p>
     </div>
   </div>
@@ -17,6 +20,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import imgCropper from '@/components/imgCropper.vue'
+import picture from '@/assets/imgs/picture.jpg'
 
 const base64Url = ref('')
 const imgData = ref()
