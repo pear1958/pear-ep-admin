@@ -1,11 +1,11 @@
 <template>
   <div class="w-[500px] h-[350px]">
-    <img src="../assets/imgs/picture.jpg" ref="imgRef" class="img" />
+    <img src="../assets/imgs/picture.jpg" ref="imgRef" class="img" v-show="isReady" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, unref, onMounted, onUnmounted } from 'vue'
+import { ref, unref, onMounted, onUnmounted, PropType } from 'vue'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import { debounce } from '@/utils'
@@ -14,23 +14,59 @@ defineOptions({
   name: 'imgCropper'
 })
 
-const emit = defineEmits(['change', 'error'])
+const props = defineProps({
+  options: {
+    type: Object as PropType<Cropper.Options>,
+    default: () => ({})
+  }
+})
+
+const emit = defineEmits(['change', 'error', 'ready'])
 
 const imgRef = ref()
 const cropper = ref<Cropper>()
 const base64Url = ref()
+const isReady = ref(false)
 
 onMounted(() => {
   initCropper()
 })
 
-const defaultOptions: Cropper.Options = {}
+const defaultOptions: Cropper.Options = {
+  // aspectRatio: 1,
+  // zoomable: true,
+  // zoomOnTouch: true,
+  // zoomOnWheel: true,
+  // cropBoxMovable: true,
+  // cropBoxResizable: true,
+  // toggleDragModeOnDblclick: true,
+  // autoCrop: true,
+  // background: true,
+  // highlight: true,
+  // center: true,
+  // responsive: true,
+  // restore: true,
+  // checkCrossOrigin: true,
+  // checkOrientation: true,
+  // scalable: true,
+  // modal: true,
+  // guides: true,
+  // movable: true,
+  // rotatable: true
+}
 
 const initCropper = () => {
   if (!imgRef.value) return
 
   cropper.value = new Cropper(imgRef.value, {
     ...defaultOptions,
+    ready() {
+      isReady.value = true
+      handleCroped()
+      setTimeout(() => {
+        emit('ready', cropper.value)
+      }, 400)
+    },
     crop() {
       debounceHandleCroped()
     },
@@ -39,7 +75,8 @@ const initCropper = () => {
     },
     cropmove() {
       debounceHandleCroped()
-    }
+    },
+    ...props.options
   })
 }
 
@@ -78,6 +115,7 @@ function handleCroped() {
 
 onUnmounted(() => {
   unref(cropper)?.destroy()
+  isReady.value = false
   cropper.value = null
   base64Url.value = ''
 })

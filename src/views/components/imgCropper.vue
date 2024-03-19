@@ -1,9 +1,9 @@
 <template>
   <div>
-    <imgCropper @change="onChange" @error="onError" />
+    <imgCropper @change="onChange" @error="onError" @ready="showImg = true" />
 
     <div v-if="imgData" class="mt-1 w-[500px]">
-      <div class="h-[350px]">
+      <div class="h-[350px]" v-if="showImg">
         <el-image v-if="base64Url" :src="base64Url" fit="contain" />
       </div>
       <p class="text-center">图像大小：{{ imgData.width }} × {{ imgData.height }}像素</p>
@@ -20,6 +20,7 @@ import imgCropper from '@/components/imgCropper.vue'
 
 const base64Url = ref('')
 const imgData = ref()
+const showImg = ref(false)
 
 const onChange = data => {
   console.log('onChange', data)

@@ -14,7 +14,7 @@ export const getImg = (name: string, dir: string = 'imgs') => {
   return new URL(`../assets/${dir}/${name}`, import.meta.url).href
 }
 
-export function debounce<T = any>(fn: Function, delay: number = 500, immediate: boolean = true) {
+export function debounce<T = any>(fn: Function, delay: number = 500, immediate: boolean = false) {
   let timer: NodeJS.Timeout | null = null
 
   return function (...args: T[]) {
