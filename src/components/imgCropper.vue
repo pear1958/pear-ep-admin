@@ -1,6 +1,6 @@
 <template>
   <div class="w-[400px]">
-    <div class="h-[280px]">
+    <div :class="{ circle }">
       <img :src="src" ref="imgRef" class="img" v-show="isReady" />
     </div>
 
@@ -10,6 +10,7 @@
       <el-button @click="handleOper('rotate', 45)">顺时针旋转</el-button>
       <el-button @click="handleOper('rotate', -45)">逆时针旋转</el-button>
       <el-button @click="handleOper('reset')">重置</el-button>
+      <el-button @click="downloadByBase64(base64Url.value, 'cropping.png')">下载</el-button>
     </div>
   </div>
 </template>
@@ -57,10 +58,13 @@ onMounted(() => {
   initCropper()
 })
 
+const downloadByBase64 = (base64Url: string, fileName: string) => {}
+
 const initCropper = () => {
   if (!imgRef.value) return
   cropper.value = new Cropper(imgRef.value, {
     ...props.options,
+    aspectRatio: 1,
     ready() {
       isReady.value = true
       handleCroped()
@@ -85,7 +89,14 @@ const debounceHandleCroped = debounce(handleCroped, 80)
 function handleCroped() {
   if (!cropper.value) return
 
-  const canvas = props.circle ? getRoundedCanvas() : unref(cropper).getCroppedCanvas()
+  let canvas = unref(cropper).getCroppedCanvas({
+    width: 200,
+    height: 200
+  })
+
+  if (props.circle) {
+    canvas = getRoundedCanvas(canvas)
+  }
 
   // https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toBlob
   canvas.toBlob(blob => {
@@ -113,8 +124,7 @@ function handleCroped() {
   })
 }
 
-function getRoundedCanvas() {
-  const sourceCanvas = unref(cropper)!.getCroppedCanvas()
+function getRoundedCanvas(sourceCanvas) {
   const canvas = document.createElement('canvas')
   const context = canvas.getContext('2d')!
   const width = sourceCanvas.width
@@ -156,5 +166,14 @@ onUnmounted(() => {
 .img {
   display: block;
   max-width: 100%;
+}
+</style>
+
+<style>
+.circle {
+  .cropper-view-box,
+  .cropper-face {
+    border-radius: 50%;
+  }
 }
 </style>

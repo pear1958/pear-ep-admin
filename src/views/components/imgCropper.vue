@@ -1,15 +1,15 @@
 <template>
-  <div class="flex items-center gap-8">
+  <div>
     <!-- 1280 x 720 -->
-    <imgCropper :src="picture" @change="onChange" @error="onError" @ready="showImg = true" />
+    <imgCropper :src="picture" @change="onChange" @error="onError" @ready="showImg = true" circle />
 
     <div v-if="imgData" class="mt-3 w-[400px]">
       <div class="h-[280px] flex-c" v-if="showImg">
         <el-image v-if="base64Url" :src="base64Url" fit="contain" />
       </div>
-      <p class="text-center">
+      <!-- <p class="text-center">
         图像大小：{{ parseInt(imgData.width) }} x {{ parseInt(imgData.height) }} 像素
-      </p>
+      </p> -->
       <p class="text-center mt-[3px]">
         文件大小：{{ (imgData.size / 1000).toFixed(2) + 'KB' }} ({{ imgData.size }} 字节)
       </p>
