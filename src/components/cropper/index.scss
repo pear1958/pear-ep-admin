@@ -1,0 +1,14 @@
+@import 'cropperjs/dist/cropper.css';
+
+.img {
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.circle {
+  .cropper-view-box,
+  .cropper-face {
+    border-radius: 50%;
+  }
+}

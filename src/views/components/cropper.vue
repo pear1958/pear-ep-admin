@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- 1280 x 720 -->
-    <imgCropper :src="picture" @change="onChange" @error="onError" @ready="showImg = true" circle />
+    <!-- 1280 x 720 circle -->
+    <cropper :src="picture" @change="onChange" @error="onError" @ready="showImg = true" />
 
     <div v-if="imgData" class="mt-3 w-[400px]">
       <div class="h-[280px] flex-c" v-if="showImg">
@@ -19,8 +19,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import imgCropper from '@/components/imgCropper.vue'
+import cropper from '@/components/cropper/index.vue'
 import picture from '@/assets/imgs/picture.jpg'
+// import picture from '@/assets/imgs/bg-x.jpg'
+// import picture from '@/assets/imgs/avatar.jpg'
 
 const base64Url = ref('')
 const imgData = ref()

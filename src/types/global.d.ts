@@ -1,4 +1,7 @@
+declare type Nullable<T> = T | null
 declare type Recordable<T = any> = Record<string, T>
+
+declare type TargetContext = '_self' | '_blank'
 
 declare namespace Menu {
   interface MenuOptions {

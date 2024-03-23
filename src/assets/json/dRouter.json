@@ -29,9 +29,9 @@
           }
         },
         {
-          "path": "/components/imgCropper",
-          "name": "imgCropper",
-          "component": "/components/imgCropper",
+          "path": "/components/cropper",
+          "name": "cropper",
+          "component": "/components/cropper",
           "meta": {
             "title": "图片裁剪"
           }

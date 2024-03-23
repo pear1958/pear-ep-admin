@@ -1,16 +1,17 @@
 <template>
-  <div class="w-[400px]">
-    <div :class="{ circle }">
+  <div>
+    <div :class="{ circle }" class="w-[400px] h-[280px]">
       <img :src="src" ref="imgRef" class="img" v-show="isReady" />
     </div>
 
     <div class="mt-4 flex-c gap-y-2.5 flex-wrap">
+      <el-button>上传图片</el-button>
       <el-button @click="handleOper('scaleX')">水平翻转</el-button>
       <el-button @click="handleOper('scaleY')">垂直翻转</el-button>
       <el-button @click="handleOper('rotate', 45)">顺时针旋转</el-button>
       <el-button @click="handleOper('rotate', -45)">逆时针旋转</el-button>
       <el-button @click="handleOper('reset')">重置</el-button>
-      <el-button @click="downloadByBase64(base64Url.value, 'cropping.png')">下载</el-button>
+      <el-button @click="handleDownload">下载</el-button>
     </div>
   </div>
 </template>
@@ -18,7 +19,8 @@
 <script setup lang="ts">
 import { ref, unref, onMounted, onUnmounted, PropType } from 'vue'
 import Cropper from 'cropperjs'
-import 'cropperjs/dist/cropper.css'
+import './index.scss'
+import { downloadByBase64 } from '@/utils/file'
 import { debounce } from '@/utils'
 
 // 常用需求
@@ -26,7 +28,7 @@ import { debounce } from '@/utils'
 // 2.指定裁剪框的宽高, 裁剪出指定 px 的图片
 
 defineOptions({
-  name: 'imgCropper'
+  name: 'cropper'
 })
 
 const props = defineProps({
@@ -58,13 +60,20 @@ onMounted(() => {
   initCropper()
 })
 
-const downloadByBase64 = (base64Url: string, fileName: string) => {}
-
 const initCropper = () => {
   if (!imgRef.value) return
+
+  const options = Object.assign(
+    {
+      aspectRatio: 1, // 若规定了, 则裁剪框的比例将和此一样, X Y 将不能随意缩放
+      viewMode: 2, // 将裁剪框限制为不超过画布的大小, 图片只能放大不能缩小
+      autoCropArea: 1 // 定义自动裁剪区域大小 百分比 介于 0 和 1 之间的数字
+    },
+    props.options
+  ) as Cropper.Options
+
   cropper.value = new Cropper(imgRef.value, {
-    ...props.options,
-    aspectRatio: 1,
+    ...options,
     ready() {
       isReady.value = true
       handleCroped()
@@ -152,6 +161,11 @@ const handleOper = (eventName: string, arg?: number | number[]) => {
   unref(cropper)[eventName](arg)
 }
 
+const handleDownload = () => {
+  console.log('base64Url.value', base64Url.value)
+  downloadByBase64(base64Url.value, 'cropping.png')
+}
+
 onUnmounted(() => {
   unref(cropper)?.destroy()
   isReady.value = false
@@ -161,19 +175,3 @@ onUnmounted(() => {
   scaleY = 1
 })
 </script>
-
-<style lang="scss" scoped>
-.img {
-  display: block;
-  max-width: 100%;
-}
-</style>
-
-<style>
-.circle {
-  .cropper-view-box,
-  .cropper-face {
-    border-radius: 50%;
-  }
-}
-</style>
