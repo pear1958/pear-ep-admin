@@ -3,7 +3,7 @@
     <upload
       v-model:file-list="fileList"
       v-model:active-index="activeIndex"
-      :action="uploadUrl"
+      :action="uploadAction"
       :before-upload="beforeUpload"
       :on-change="onChange"
       :on-success="onSuccess"
@@ -26,6 +26,8 @@ import { uploadUrl, uploadHeaders } from '@/config'
 // const fileList: Ref<UploadFile[]> = ref([
 //   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }
 // ])
+
+const uploadAction = `${import.meta.env.VITE_API_BASE_URL}/${uploadUrl}`
 
 const fileList: Ref<UploadFile[]> = ref([])
 

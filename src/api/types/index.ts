@@ -7,6 +7,14 @@ export interface ResultData<T> {
   [key: string]: any
 }
 
+export interface IUpload {
+  name: string
+  origin: string
+  url: string
+}
+
+export type IUploadResult = ResultData<IUpload>
+
 export namespace Login {
   export interface reqForm {
     username: string

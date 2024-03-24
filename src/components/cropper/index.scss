@@ -1,6 +1,20 @@
 @import 'cropperjs/dist/cropper.css';
 
-.img {
+.upload-box {
+  .el-upload--picture-card {
+    --el-upload-picture-card-size: 110px;
+  }
+
+  .el-upload-list--picture-card .el-upload-list__item {
+    --el-upload-list-picture-card-size: 110px;
+  }
+
+  .hide-upload-btn .el-upload--picture-card {
+    display: none !important;
+  }
+}
+
+.native-img {
   display: block;
   max-width: 100%;
   object-fit: contain;
@@ -11,4 +25,11 @@
   .cropper-face {
     border-radius: 50%;
   }
+}
+
+.preview-img-box {
+  border-radius: 4px;
+  box-shadow:
+    rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }

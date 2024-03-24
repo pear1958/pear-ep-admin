@@ -11,11 +11,11 @@ import { AxiosCanceler } from './utils/axiosCancel'
 const axiosCanceler = new AxiosCanceler()
 
 const config = {
-  baseURL: import.meta.env.VITE_API_BASE_URL as string,
-  timeout: httpResEnum.TIMEOUT as number,
-  headers: {
-    adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
-  }
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  timeout: httpResEnum.TIMEOUT
+  // headers: {
+  //   adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
+  // }
 }
 
 class Http {
@@ -72,7 +72,7 @@ class Http {
         }
 
         // 全局错误信息拦截
-        if (data.code !== httpResEnum.SUCCESS) {
+        if (!String(data.code).startsWith('2')) {
           ElMessage.error(data.msg)
           return Promise.reject(data)
         }
@@ -105,8 +105,8 @@ class Http {
     return this.service.get(url, { params, ...config })
   }
 
-  post<T>(url: string, params?: object, config = {}): Promise<ResultData<T>> {
-    return this.service.post(url, params, config)
+  post<T>(url: string, data?: object, config = {}): Promise<ResultData<T>> {
+    return this.service.post(url, data, config)
   }
 
   put<T>(url: string, params?: object, config = {}): Promise<ResultData<T>> {
@@ -117,7 +117,7 @@ class Http {
     return this.service.delete(url, { params, ...config })
   }
 
-  download<T>(url: string, params?: object, config = {}): Promise<BlobPart> {
+  download(url: string, params?: object, config = {}): Promise<BlobPart> {
     return this.service.post(url, params, { ...config, responseType: 'blob' })
   }
 }

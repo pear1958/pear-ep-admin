@@ -29,11 +29,11 @@
           }
         },
         {
-          "path": "/components/cropper",
-          "name": "cropper",
-          "component": "/components/cropper",
+          "path": "/components/uploadCropper",
+          "name": "uploadCropper",
+          "component": "/components/uploadCropper",
           "meta": {
-            "title": "图片裁剪"
+            "title": "上传裁剪"
           }
         },
         {
@@ -149,6 +149,30 @@
           "component": "/able/fileDownload",
           "meta": {
             "title": "文件下载"
+          }
+        },
+        {
+          "path": "/able/checkWord",
+          "name": "checkWord",
+          "component": "/able/checkWord",
+          "meta": {
+            "title": "word预览"
+          }
+        },
+        {
+          "path": "/able/checkExcel",
+          "name": "checkExcel",
+          "component": "/able/checkExcel",
+          "meta": {
+            "title": "excel预览"
+          }
+        },
+        {
+          "path": "/able/checkPdf",
+          "name": "checkPdf",
+          "component": "/able/checkPdf",
+          "meta": {
+            "title": "Pdf预览"
           }
         },
         {
@@ -327,12 +351,12 @@
           }
         },
         {
-          "path": "/checkPdf",
-          "name": "checkPdf",
+          "path": "/link/checkPdf",
+          "name": "linkCheckPdf",
           "component": "/iframeView",
           "meta": {
             "title": "查看PDF ( 内嵌 )",
-            "iframeSrc": "https://cdn.jsdelivr.net/gh/mozilla/pdf.js@c6e8ca86/test/pdfs/calrgb.pdf",
+            "iframeSrc": "http://static.shanhuxueyuan.com/test.pdf",
             "mainFull": true
           }
         },

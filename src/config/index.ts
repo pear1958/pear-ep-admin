@@ -1,5 +1,5 @@
-export const uploadUrl = `${import.meta.env.VITE_FILE_BASE_URL}/sourceData/document/uploadFile`
+export const uploadUrl = '/sourceData/document/uploadFile'
 
 export const uploadHeaders = {
-  'you-key': 'xxxx'
+  'xxx-xxx': 'xxxxxxxxxxxx'
 }

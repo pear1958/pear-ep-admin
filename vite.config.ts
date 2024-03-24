@@ -31,16 +31,9 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       port: envConf.VITE_PORT,
       proxy: {
         [env.VITE_API_BASE_URL]: {
-          target: 'xxxxxxx',
+          target: env.VITE_PROXY_URL,
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '')
-        },
-        [env.VITE_FILE_BASE_URL]: {
-          target: env.VITE_FILE_PROXY_URL,
-          changeOrigin: true,
-          rewrite: path => {
-            return path.replace(env.VITE_FILE_BASE_URL, '')
-          }
+          rewrite: path => path.replace(env.VITE_API_BASE_URL, '')
         }
       },
       // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布

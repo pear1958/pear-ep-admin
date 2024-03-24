@@ -18,6 +18,8 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "^2.1.0",
+    "@vue-office/docx": "^1.6.0",
+    "@vue-office/excel": "^1.7.2",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "animate.css": "^4.1.1",
