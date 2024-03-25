@@ -74,7 +74,7 @@ import { UploadFile } from './types'
 import { deepClone } from '@/utils'
 
 defineOptions({
-  name: 'upload'
+  name: 'gkUpload'
 })
 
 const props = defineProps({

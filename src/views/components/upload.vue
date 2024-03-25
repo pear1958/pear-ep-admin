@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import upload from '@/components/upload/index.vue'
 
 const form = reactive({

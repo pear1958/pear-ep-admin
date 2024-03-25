@@ -14,26 +14,26 @@
     {
       "path": "/components",
       "name": "Components",
-      "redirect": "/components/fileUpload",
+      "redirect": "/components/gkUpload",
       "meta": {
         "title": "常用组件",
         "icon": "ep:menu"
       },
       "children": [
         {
-          "path": "/components/fileUpload",
-          "name": "fileUpload",
-          "component": "/components/fileUpload",
+          "path": "/components/gkUpload",
+          "name": "gkUpload",
+          "component": "/components/gkUpload",
           "meta": {
-            "title": "文件上传"
+            "title": "图片上传组件(自定义)"
           }
         },
         {
-          "path": "/components/uploadCropper",
-          "name": "uploadCropper",
-          "component": "/components/uploadCropper",
+          "path": "/components/upload",
+          "name": "upload",
+          "component": "/components/upload",
           "meta": {
-            "title": "上传裁剪"
+            "title": "图片上传(支持裁剪, 二次封装el-upload)"
           }
         },
         {
@@ -53,33 +53,33 @@
           }
         },
         {
-          "path": "/components/drawer",
-          "name": "drawer",
-          "component": "/components/drawer",
+          "path": "/components/gkDrawer",
+          "name": "gkDrawer",
+          "component": "/components/gkDrawer",
           "meta": {
             "title": "抽屉"
           }
         },
         {
-          "path": "/components/tabs",
-          "name": "tabs",
-          "component": "/components/tabs",
+          "path": "/components/gkTabs",
+          "name": "gkTabs",
+          "component": "/components/gkTabs",
           "meta": {
             "title": "标签页"
           }
         },
         {
-          "path": "/components/dialog",
-          "name": "dialog",
-          "component": "/components/dialog",
+          "path": "/components/gkDialog",
+          "name": "gkDialog",
+          "component": "/components/gkDialog",
           "meta": {
             "title": "对话框"
           }
         },
         {
-          "path": "/components/collapse",
-          "name": "collapse",
-          "component": "/components/collapse",
+          "path": "/components/gkCollapse",
+          "name": "gkCollapse",
+          "component": "/components/gkCollapse",
           "meta": {
             "title": "折叠面板"
           }
