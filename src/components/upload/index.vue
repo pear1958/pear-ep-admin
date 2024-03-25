@@ -1,65 +1,34 @@
 <template>
   <div class="upload-box">
-    <div
-      v-for="(item, index) in fileList"
-      :key="item.uid"
-      class="uploaded"
-      :class="{ active: showActive && activeIndex == index }"
-      @click="showActive && emit('update:activeIndex', index)"
+    <el-upload
+      v-model:file-list="fileList"
+      :list-type="listType"
+      :action="uploadAction"
+      :before-upload="beforeUpload"
+      :on-success="handleSucess"
+      :on-remove="handleRemove"
+      :on-preview="handlePreview"
+      :on-error="handleError"
+      :multiple="multiple"
+      :limit="limit"
+      v-bind="$attrs"
+      :class="{
+        'hide-upload-btn': isMaxLimit
+      }"
     >
-      <el-progress
-        type="circle"
-        :percentage="item.percent"
-        v-if="['ready', 'uploading'].includes(item.status!)"
-      />
+      <el-icon>
+        <Plus />
+      </el-icon>
+    </el-upload>
 
-      <template v-if="['success', undefined].includes(item.status!)">
-        <img class="img" :src="item.src" />
-
-        <div class="replace-box" @click.stop="handleReplace(index)" v-if="showReplace">
-          替换图片
-        </div>
-
-        <div
-          class="select-del-icon"
-          @click.stop="handleRemove(index)"
-          v-if="showActive && activeIndex == index"
-        >
-          <!-- 红色背景, 白色叉叉的按钮 -->
-          <iconify icon="close" />
-        </div>
-
-        <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
-          <iconify icon="delete" />
-        </div>
-
-        <div class="hover-preview-icon" @click.stop="handlePreview(index)">
-          <iconify icon="zoom-in" />
-        </div>
-      </template>
-
-      <el-progress
-        type="circle"
-        :percentage="item.percent"
-        status="exception"
-        v-if="['error'].includes(item.status!)"
-      />
-    </div>
-
-    <dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
-      <div class="upload" @click="handleClick">
-        <iconify icon="plus" />
-      </div>
-    </dragger>
-
-    <input
-      class="file-input"
-      style="display: none"
-      ref="fileInputRef"
-      @change="handleFileChange"
-      type="file"
-      :accept="accept"
-      :multiple="false"
+    <cropper-dialog
+      ref="cropperRef"
+      v-if="enableCropper"
+      :circle="cropperParams.circle"
+      :options="cropperParams.options"
+      :canvasWidth="cropperParams.canvasWidth"
+      :canvasHeight="cropperParams.canvasHeight"
+      @confirm="onCropperConfirm"
     />
 
     <img-viewer v-model:visible="showViewer" :imgList="imgList" :initIndex="initIndex" />
@@ -67,284 +36,242 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, unref, computed } from 'vue'
-import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
-import dragger from './dragger.vue'
-import { UploadFile } from './types'
-import { deepClone } from '@/utils'
+import { ref, nextTick, PropType, unref, computed, watch, Ref } from 'vue'
+import { ElMessage, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
+import { Plus } from '@element-plus/icons-vue'
+import './index.scss'
+import { uploadUrl } from '@/config'
+import { isNumber, isString } from '@/utils/is'
+import { IUploadResult } from '@/api/types'
+import { validSize } from './utils'
+import cropperDialog from './cropperDialog.vue'
+import { ICropperParams, IFile } from './types'
 
 defineOptions({
-  name: 'upload'
+  name: 'uploadCropper'
 })
 
 const props = defineProps({
-  fileList: {
-    type: Array as PropType<UploadFile[]>,
-    default: []
-  },
-  // 上传的地址
-  action: {
-    type: String,
+  modelValue: {
+    type: [String, Array], // string | array | null | undefined
     require: true
   },
-  // 当前选中图片的Index, 若 showActive 为false, 则不用传
-  activeIndex: {
-    type: Number
-  },
-  maxLength: {
-    type: Number,
-    default: 10
-  },
-  // 是否显示替换图片按钮
-  showReplace: {
-    type: Boolean,
-    default: false
-  },
-  // 是否显示当前选中图片的样式
-  showActive: {
-    type: Boolean,
-    default: false
-  },
-  // 上传文件之前的钩子，参数为上传的文件，若返回 false 或者 Promise 则停止上传。
-  beforeUpload: {
-    type: Function as PropType<(file: File) => boolean | Promise<File>>
-  },
-  // 文件上传时的钩子
-  onProgress: {
-    type: Function as PropType<(percentage: number, file: UploadFile) => void>
-  },
-  // 文件上传成功时的钩子
-  onSuccess: {
-    type: Function as PropType<(data: any, file: UploadFile) => void>
-  },
-  // 文件上传失败时的钩子
-  onError: {
-    type: Function as PropType<(err: any, file: UploadFile) => void>
-  },
-  // 文件状态改变时的钩子，上传成功或者失败时都会被调用
-  onChange: {
-    type: Function as PropType<(file: UploadFile) => void>
-  },
-  // 文件列表移除文件时的钩子
-  onRemove: {
-    type: Function as PropType<(file: UploadFile) => void>
-  },
-  // 设置上传的请求头部
-  headers: {
-    type: Object
-  },
-  // 上传的文件字段名
-  name: {
+  // v-model绑定值的格式
+  format: {
     type: String,
-    default: 'file'
+    default: 'string' // string | array | jsonArray
   },
-  // 上传时附带的额外参数
-  data: {
-    type: Object
+  // format为string时的分隔符
+  separator: {
+    type: String,
+    default: ','
   },
-  // 支持发送 cookie 凭证信息
-  withCredentials: {
+  listType: {
+    type: String as PropType<'picture' | 'text' | 'picture-card'>,
+    default: 'picture-card'
+  },
+  limit: {
+    type: Number,
+    default: null
+  },
+  multiple: {
     type: Boolean,
     default: false
   },
-  // 可选参数, 接受上传的文件类型
-  accept: {
-    type: String
+  fileType: {
+    type: String as PropType<'img' | 'file' | 'video'>,
+    default: 'img'
+  },
+  // 上传前需要效验的类型
+  typeList: {
+    type: Array,
+    default: () => []
+  },
+  // 效验指定宽高的图片
+  imgSize: {
+    type: Array as PropType<number[]>,
+    default: () => []
+  },
+  // 效验指定宽高比的图片
+  ratioList: {
+    type: Array as PropType<number[]>,
+    default: () => []
+  },
+  enableCropper: {
+    type: Boolean,
+    default: false
+  },
+  cropperParams: {
+    type: Object as PropType<ICropperParams>,
+    default: () => ({})
   }
 })
 
-if (props.showActive && props.activeIndex == undefined) {
-  console.error('未绑定activeIndex')
-}
+const emit = defineEmits(['update:modelValue', 'change'])
 
+const uploadAction = `${import.meta.env.VITE_API_BASE_URL}/${uploadUrl}`
+
+const cropperRef = ref()
+
+const fileList: Ref<(IFile | UploadUserFile)[]> = ref([])
+const isMaxLimit = ref(false)
 const showViewer = ref(false)
 const initIndex = ref(0)
-const imgList = computed(() => props.fileList.map(item => item.src))
+const imgList = computed(() => unref(fileList).map(item => item.url))
 
-const emit = defineEmits<{
-  (e: 'update:fileList', list: UploadFile[]): void
-  (e: 'update:activeIndex', index: number): void
-}>()
+watch(
+  () => props.modelValue,
+  newVal => {
+    // 默认处理成数组的格式
+    if (props.format === 'string' && isString(newVal) && newVal.length) {
+      newVal = newVal.split(props.separator)
+    }
 
-let uploadType: 'add' | 'replace' = 'add'
-let replaceIndex: number
+    if (props.format === 'jsonArray' && isString(newVal) && newVal.length) {
+      try {
+        newVal = JSON.parse(newVal)
+      } catch (e) {
+        newVal = []
+      }
+    }
 
-const fileInputRef = ref()
-
-// 触发文件上传
-const handleClick = () => {
-  unref(fileInputRef).click()
-}
-
-// 点选文件
-const handleFileChange = (e: any) => {
-  const files = e.target.files
-  if (!files) return
-  uploadFiles(files)
-  unref(fileInputRef).value = ''
-}
-
-const uploadFiles = (files: FileList) => {
-  const postFiles = Array.from(files)
-
-  postFiles.forEach(file => {
-    if (!props.beforeUpload) {
-      post(file)
+    // 新增 v-model 绑定的值可能为 null | undefined
+    if (!Array.isArray(newVal) || !newVal.length) {
+      fileList.value = [] // 新增时清空数据
+      isMaxLimit.value = false
       return
     }
-    const result = props.beforeUpload(file)
-    if (!result) return
-    if (result instanceof Promise) result.then(processedFile => post(processedFile))
-    post(file)
-  })
-}
 
-// 更新上传的 文件列表 中文件的状态
-const updateFileList = (updateFile: UploadFile, updateObj: Partial<UploadFile>) => {
-  const fileList = props.fileList.map((file: UploadFile) => {
-    return file.uid === updateFile.uid ? { ...file, ...updateObj } : file
-  })
+    // 编辑时回填数据
+    if (!unref(fileList).length) {
+      fileList.value = (newVal as string[]).map(url => ({
+        name: url.slice(url.lastIndexOf('/') + 1), // fileName
+        url
+      }))
+    }
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 
-  emit('update:fileList', fileList)
-}
+const tip = computed(() => {
+  const obj = {
+    img: '图片',
+    file: '文件',
+    video: '视频'
+  }
+  const typeCn = obj[props.fileType]
+  return `不是 ${props.typeList.join(', ')} 类型的${typeCn}, 请上传正确的${typeCn}类型`
+})
 
-// 调用http上传文件
-const post = (file: File) => {
-  const _file: UploadFile = {
-    uid: Date.now() + 'upload-file',
-    name: file.name,
-    size: file.size,
-    percent: 0,
-    status: 'ready',
-    raw: file,
-    src: '',
-    response: null
+const beforeUpload = async (file: UploadRawFile) => {
+  if (!props.enableCropper) {
+    if (props.multiple) {
+      console.log('启用图片裁剪时, 不支持多选文件, 请将multiple设置为false')
+      return false
+    }
+
+    // 效验文件类型
+    if (props.typeList.length) {
+      const fileName = file.name
+      const suffix = fileName.substring(fileName.lastIndexOf('.'))
+
+      if (!props.typeList.includes(suffix)) {
+        ElMessage.warning(tip.value)
+        return false
+      }
+    }
+
+    // 效验图片宽高  具体尺寸 | 比例
+    if (props.imgSize.length || props.ratioList.length === 2) {
+      const valid = await validSize(props, file)
+      return valid
+    }
+
+    return true
   }
 
   const reader = new FileReader()
-
   reader.readAsDataURL(file)
-
-  reader.onload = (res: ProgressEvent<FileReader>) => {
-    const base64Url = res.target?.result as string
-    _file.src = base64Url
-
-    // console.log('_file', _file)
-
-    const fileList = deepClone(props.fileList)
-
-    if (uploadType == 'add') {
-      fileList.push(_file)
-    }
-
-    if (uploadType == 'replace') {
-      fileList[replaceIndex] = _file
-    }
-
-    emit('update:fileList', fileList)
-
-    // 重置为初始值
-    uploadType = 'add'
-
-    const {
-      name,
-      data,
-      action,
-      headers,
-      withCredentials,
-      onProgress,
-      onSuccess,
-      onError,
-      onChange
-    } = props
-
-    // console.log('headers', headers)
-
-    const formData = new FormData()
-
-    formData.append(name, file)
-
-    if (data) Object.keys(data).forEach(key => formData.append(key, data[key]))
-
-    axios
-      .post(action as string, formData, {
-        headers: {
-          ...headers,
-          'Content-Type': 'multipart/form-data'
-        },
-        // 是否默认携带本地cookie
-        withCredentials,
-        onUploadProgress: (event: AxiosProgressEvent) => {
-          const percent = Math.round((event.loaded * 100) / (event.total as number)) || 0 // eg: 72
-
-          // console.log('percent', percent)
-
-          updateFileList(_file, { percent, status: 'uploading' })
-
-          _file.status = 'uploading'
-          _file.percent = percent
-
-          onProgress && onProgress(percent, _file)
-        }
-      })
-      .then((res: AxiosResponse) => {
-        console.log('--成功--', res)
-
-        updateFileList(_file, { status: 'success', response: res.data })
-
-        _file.status = 'success'
-        _file.response = res.data
-
-        onSuccess && onSuccess(res.data, _file)
-        onChange && onChange(_file)
-      })
-      .catch((err: AxiosError) => {
-        console.log('err', err)
-
-        updateFileList(_file, { status: 'error', error: err })
-
-        _file.status = 'error'
-        _file.error = err
-
-        onError && onError(err, _file)
-        onChange && onChange(_file)
-      })
+  reader.onload = e => {
+    // 显示需要裁剪的图片
+    unref(cropperRef).setUploadBase64(e.target?.result as string)
   }
+  reader.onloadend = async () => {
+    unref(cropperRef).openDialog()
+    await nextTick()
+    unref(cropperRef).initCropper()
+  }
+  return false
 }
 
-const handleReplace = (index: number) => {
-  replaceIndex = index
-  uploadType = 'replace'
-  handleClick()
-}
-
-const handleRemove = (index: number) => {
-  const fileList = deepClone(props.fileList)
-
-  if (props.showActive) {
-    const isDelCurPrev = index < props.activeIndex!
-    const isDelCurAndLast = Boolean(
-      index == props.activeIndex && index == fileList.length - 1 && fileList[index - 1]
-    )
-
-    if (isDelCurPrev || isDelCurAndLast) {
-      let i = props.activeIndex!
-      i--
-      emit('update:activeIndex', i)
-    }
+const emitData = () => {
+  if (isNumber(props.limit)) {
+    isMaxLimit.value = unref(fileList).length >= props.limit ? true : false
   }
 
-  const file = fileList.splice(index, 1)
-  emit('update:fileList', fileList)
-  props.onRemove && props.onRemove(file[0])
+  let data: string | string[] = unref(fileList).map(item => {
+    return (item.response as IUploadResult).data.url
+  })
+
+  if (props.format === 'string') {
+    data = data.join(props.separator)
+  }
+
+  if (props.format === 'jsonArray') {
+    data = JSON.stringify(data)
+  }
+
+  console.log('--data--', data)
+
+  emit('update:modelValue', data)
+  emit('change', data)
 }
 
-const handlePreview = (index: number) => {
-  initIndex.value = index
+const handleSucess = (res: IUploadResult, uploadFile: UploadFile) => {
+  console.log('res', res)
+
+  if (!String(res?.code).startsWith('2')) {
+    ElMessage.error(res.msg || '服务器开小差了, 请稍后再试')
+
+    unref(fileList).forEach((item, index) => {
+      if (item.uid === uploadFile.uid) {
+        unref(fileList).splice(index, 1)
+      }
+    })
+
+    return
+  }
+
+  emitData()
+}
+
+const handleRemove = () => {
+  emitData()
+}
+
+const handlePreview = (file: IFile) => {
+  if (props.listType === 'text') {
+    return window.open(file.response.data.url, '_blank')
+  }
+
+  unref(fileList).forEach((item, index) => {
+    if (item.uid === file.uid) {
+      initIndex.value = index
+    }
+  })
+
   showViewer.value = true
 }
-</script>
 
-<style lang="scss" scoped>
-@import './index.scss';
-</style>
+const handleError = (err: Error) => {
+  console.log('err', err)
+  ElMessage.error('上传失败, 服务器开小差了')
+}
+
+const onCropperConfirm = (file: { name: string; url: string }) => {
+  unref(fileList).push(file)
+}
+</script>

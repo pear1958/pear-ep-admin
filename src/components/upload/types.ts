@@ -1,13 +1,11 @@
-export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
+import { UploadFile } from 'element-plus'
+import { IUploadResult } from '@/api/types'
 
-export interface UploadFile {
-  uid?: string
-  name: string
-  size?: number
-  percent?: number
-  status?: UploadFileStatus
-  raw?: File
-  response?: any
-  error?: any
-  src: string
+export type IFile = UploadFile & { response: IUploadResult }
+
+export interface ICropperParams {
+  circle: boolean
+  options: Recordable
+  canvasWidth?: number
+  canvasHeight?: number
 }
