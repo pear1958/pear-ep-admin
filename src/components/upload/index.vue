@@ -17,9 +17,11 @@
         'hide-upload-btn': isMaxLimit
       }"
     >
-      <el-icon>
+      <el-icon v-if="listType === 'picture-card'">
         <Plus />
       </el-icon>
+
+      <el-button type="primary" v-else>点击上传</el-button>
     </el-upload>
 
     <cropper-dialog
@@ -118,7 +120,9 @@ const fileList: Ref<(IFile | UploadUserFile)[]> = ref([])
 const isMaxLimit = ref(false)
 const showViewer = ref(false)
 const initIndex = ref(0)
-const imgList = computed(() => unref(fileList).map(item => item.url))
+const imgList = computed(() => {
+  return unref(fileList).map(item => (item.response as IUploadResult)?.data?.url || item.url)
+})
 
 watch(
   () => props.modelValue,
@@ -150,6 +154,8 @@ watch(
         name: url.slice(url.lastIndexOf('/') + 1), // fileName
         url
       }))
+
+      checkIsMaxLimit()
     }
   },
   {
@@ -209,10 +215,14 @@ const beforeUpload = async (file: UploadRawFile) => {
   return false
 }
 
-const emitData = () => {
+function checkIsMaxLimit() {
   if (isNumber(props.limit)) {
     isMaxLimit.value = unref(fileList).length >= props.limit ? true : false
   }
+}
+
+const emitData = () => {
+  checkIsMaxLimit()
 
   let data: string | string[] = unref(fileList).map(item => {
     return (item.response as IUploadResult)?.data.url || item.url
@@ -256,7 +266,8 @@ const handleRemove = () => {
 
 const handlePreview = (file: IFile) => {
   if (props.listType === 'text') {
-    return window.open(file.response.data.url, '_blank')
+    window.open(file.response?.data?.url || file.url, '_blank')
+    return
   }
 
   unref(fileList).forEach((item, index) => {

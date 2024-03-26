@@ -2,9 +2,16 @@
   <div>
     <el-card class="max-w-[780px]">
       <template #header>
-        <span>绑定值为数组</span>
+        <span>上传文件(docx,xlsx,pdf支持预览)</span>
       </template>
-      <upload v-model="form.imgList1" @change="onChange" />
+      <upload v-model="form.fileList" @change="onChange" listType="text" />
+    </el-card>
+
+    <el-card class="mt-4 max-w-[780px]">
+      <template #header>
+        <span>绑定值为数组, 最多只能上传两个文件</span>
+      </template>
+      <upload v-model="form.imgList1" @change="onChange" :limit="2" />
     </el-card>
 
     <el-card class="mt-4 max-w-[780px]">
@@ -54,21 +61,26 @@ import { reactive } from 'vue'
 import upload from '@/components/upload/index.vue'
 
 const form = reactive({
+  fileList: [
+    'http://static.shanhuxueyuan.com/test6.docx',
+    'http://static.shanhuxueyuan.com/demo/excel.xlsx',
+    'http://static.shanhuxueyuan.com/test.pdf'
+  ],
   imgList1: [
-    'https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/0A/90/rCtnGGYCjvCAPgvXAAnTMO5EEro169.png',
-    'https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/0A/90/rCtnGGYCkXmAWyHQAAKfUV2AO1M484.png'
+    'https://img0.baidu.com/it/u=330524821,4207987&fm=253&fmt=auto&app=138&f=JPEG?w=751&h=500',
+    'https://img0.baidu.com/it/u=2795038425,3941086437&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500'
   ],
   imgList2:
-    'https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/0A/90/rCtnGGYCkamAEoJDAAULtNInT-Q076.png,https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/0D/9D/rCtnG2YCkcCABVMjAAXzBnvuujc946.png',
+    'https://i2.chinanews.com.cn/simg/cmszt/2024/03/26/39c42d4afcb246e0b26d01af86a9a243.jpg,https://i2.chinanews.com.cn/simg/hd/2024/03/25/smimg_336e7c3c56fc4130a2cc7ccae8509b4a.jpg',
   imgList3: JSON.stringify([
-    'https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/11/D7/rCtnGWYCkfaAXAfzAABGvc75hus208.png',
-    'https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/11/D7/rCtnGWYCkfyAf37TAAD8jP-A8a8391.png'
+    'https://img2.baidu.com/it/u=2778611073,2074698038&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
+    'https://img2.baidu.com/it/u=3599450674,621577378&fm=253&fmt=auto&app=120&f=JPEG?w=1202&h=676'
   ]),
   imgList4: [
-    'https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/0A/90/rCtnGGYClgOAX-8hAAY04aWV9Rc191.jpg'
+    'https://img2.baidu.com/it/u=2374940886,2056353464&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500'
   ],
   imgList5: [
-    'https://tfsmy.chengdu.gov.cn/xcimage-static/group1/M00/11/D7/rCtnGWYCkpeAL3TmAAAmWJwBlUk295.png'
+    'https://img2.baidu.com/it/u=2182508616,3868332223&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800'
   ]
 })
 
