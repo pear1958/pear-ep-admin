@@ -27,7 +27,7 @@ import { uploadUrl, uploadHeaders } from '@/config'
 //   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }
 // ])
 
-const uploadAction = `${import.meta.env.VITE_API_BASE_URL}/${uploadUrl}`
+const uploadAction = import.meta.env.VITE_API_BASE_URL + uploadUrl
 
 const fileList: Ref<UploadFile[]> = ref([])
 

@@ -122,3 +122,7 @@ export function deepClone<T = any>(obj: T) {
 
   return cloneObj as T
 }
+
+export const delay = (waitTime: number) => {
+  return new Promise(resolve => setTimeout(resolve, waitTime))
+}

@@ -33,7 +33,9 @@
               <template v-if="canvasWidth && canvasHeight">
                 图像大小：{{ canvasWidth }} x {{ canvasHeight }} 像素
               </template>
-              <template v-else>图像大小：{{ imgData.width }} x {{ imgData.height }} 像素</template>
+              <template v-else>
+                图像大小：{{ Math.round(imgData.width) }} x {{ Math.round(imgData.height) }} 像素
+              </template>
             </div>
 
             <div class="text-center mt-3">
@@ -111,7 +113,7 @@ const initCropper = () => {
 
   const options = Object.assign(
     {
-      aspectRatio: 1, // 若规定了, 则裁剪框的比例将和此一样, X Y 将不能随意缩放
+      // aspectRatio: 1, // 若规定了, 则裁剪框的比例将和此一样, X Y 将不能随意缩放
       viewMode: 2, // 将裁剪框限制为不超过画布的大小, 图片只能放大不能缩小
       autoCropArea: 1 // 定义自动裁剪区域大小 百分比 介于 0 和 1 之间的数字
     },

@@ -4,6 +4,7 @@
       v-model:file-list="fileList"
       :list-type="listType"
       :action="uploadAction"
+      :headers="uploadHeaders"
       :before-upload="beforeUpload"
       :on-success="handleSucess"
       :on-remove="handleRemove"
@@ -40,7 +41,7 @@ import { ref, nextTick, PropType, unref, computed, watch, Ref } from 'vue'
 import { ElMessage, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import './index.scss'
-import { uploadUrl } from '@/config'
+import { uploadUrl, uploadHeaders } from '@/config'
 import { isNumber, isString } from '@/utils/is'
 import { IUploadResult } from '@/api/types'
 import { validSize } from './utils'
@@ -59,7 +60,7 @@ const props = defineProps({
   // v-model绑定值的格式
   format: {
     type: String,
-    default: 'string' // string | array | jsonArray
+    default: 'array' // string | array | jsonArray
   },
   // format为string时的分隔符
   separator: {
@@ -103,13 +104,13 @@ const props = defineProps({
   },
   cropperParams: {
     type: Object as PropType<ICropperParams>,
-    default: () => ({})
+    default: () => ({}) as ICropperParams
   }
 })
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const uploadAction = `${import.meta.env.VITE_API_BASE_URL}/${uploadUrl}`
+const uploadAction = import.meta.env.VITE_API_BASE_URL + uploadUrl
 
 const cropperRef = ref()
 
@@ -137,6 +138,7 @@ watch(
 
     // 新增 v-model 绑定的值可能为 null | undefined
     if (!Array.isArray(newVal) || !newVal.length) {
+      newVal = []
       fileList.value = [] // 新增时清空数据
       isMaxLimit.value = false
       return
@@ -213,7 +215,7 @@ const emitData = () => {
   }
 
   let data: string | string[] = unref(fileList).map(item => {
-    return (item.response as IUploadResult).data.url
+    return (item.response as IUploadResult)?.data.url || item.url
   })
 
   if (props.format === 'string') {
@@ -224,7 +226,7 @@ const emitData = () => {
     data = JSON.stringify(data)
   }
 
-  console.log('--data--', data)
+  // console.log('--data--', data)
 
   emit('update:modelValue', data)
   emit('change', data)
@@ -273,5 +275,6 @@ const handleError = (err: Error) => {
 
 const onCropperConfirm = (file: { name: string; url: string }) => {
   unref(fileList).push(file)
+  emitData()
 }
 </script>

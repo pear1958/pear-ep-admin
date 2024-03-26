@@ -21,19 +21,11 @@
       },
       "children": [
         {
-          "path": "/components/gkUpload",
-          "name": "gkUpload",
-          "component": "/components/gkUpload",
-          "meta": {
-            "title": "图片上传组件(自定义)"
-          }
-        },
-        {
           "path": "/components/upload",
           "name": "upload",
           "component": "/components/upload",
           "meta": {
-            "title": "图片上传(支持裁剪, 二次封装el-upload)"
+            "title": "图片上传(支持裁剪)"
           }
         },
         {
@@ -106,6 +98,14 @@
           "component": "/components/wangEditor",
           "meta": {
             "title": "富文本编辑器"
+          }
+        },
+        {
+          "path": "/components/gkUpload",
+          "name": "gkUpload",
+          "component": "/components/gkUpload",
+          "meta": {
+            "title": "图片上传(自定义)"
           }
         }
       ]
