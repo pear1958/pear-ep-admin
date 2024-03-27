@@ -87,10 +87,6 @@ pnpm run build:pro
 
 - [ ] 菜单收起的时候, 图标部分被隐藏了
 
-#### 面试宝典地址
-
-https://www.kancloud.cn/hanxuming/realquestionsforfrontend/3213257
-
 #### 支持
 
 如果觉得本项目还不错或在工作中有所启发，请在 Github 帮助开发者点亮星星，这是对开发者最大的支持和鼓励！
