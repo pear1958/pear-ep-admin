@@ -29,6 +29,14 @@
           }
         },
         {
+          "path": "/components/area",
+          "name": "area",
+          "component": "/components/area",
+          "meta": {
+            "title": "省市区选择(接口数据)"
+          }
+        },
+        {
           "path": "/components/mapAddrDrawer",
           "name": "mapAddrDrawer",
           "component": "/components/mapAddrDrawer",
@@ -89,7 +97,7 @@
           "name": "chooseArea",
           "component": "/components/chooseArea",
           "meta": {
-            "title": "省市区选择器"
+            "title": "省市区选择(前端数据)"
           }
         },
         {

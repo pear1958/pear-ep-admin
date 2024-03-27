@@ -10,3 +10,7 @@ export const uploadFile = (formData: Recordable) => {
     }
   })
 }
+
+export const getOrganization = (params: { level: number; pcode?: string }) => {
+  return http.get('/console/orgNationwide/getOrganization', params)
+}

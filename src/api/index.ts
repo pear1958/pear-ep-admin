@@ -101,19 +101,19 @@ class Http {
   // config: https://axios-http.com/zh/docs/req_config
 
   // 常用请求方法封装
-  get<T>(url: string, params?: object, config = {}): Promise<ResultData<T>> {
+  get<T = any>(url: string, params?: object, config = {}): Promise<ResultData<T>> {
     return this.service.get(url, { params, ...config })
   }
 
-  post<T>(url: string, data?: object, config = {}): Promise<ResultData<T>> {
+  post<T = any>(url: string, data?: object, config = {}): Promise<ResultData<T>> {
     return this.service.post(url, data, config)
   }
 
-  put<T>(url: string, params?: object, config = {}): Promise<ResultData<T>> {
+  put<T = any>(url: string, params?: object, config = {}): Promise<ResultData<T>> {
     return this.service.put(url, params, config)
   }
 
-  delete<T>(url: string, params?: any, config = {}): Promise<ResultData<T>> {
+  delete<T = any>(url: string, params?: any, config = {}): Promise<ResultData<T>> {
     return this.service.delete(url, { params, ...config })
   }
 
