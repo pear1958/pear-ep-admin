@@ -40,6 +40,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick, PropType, unref, computed, watch, Ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { ElMessage, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import './index.scss'
@@ -264,10 +265,25 @@ const handleRemove = () => {
   emitData()
 }
 
+const router = useRouter()
+
 const handlePreview = (file: IFile) => {
   if (props.listType === 'text') {
-    window.open(file.response?.data?.url || file.url, '_blank')
-    return
+    const url = file.response?.data?.url || file.url
+    const lastIndex = url.lastIndexOf('.')
+    const suffix = url.slice(lastIndex)
+
+    if (['.docx', '.doc'].includes(suffix)) {
+      localStorage.setItem('wordUrl', url)
+      return router.push('/able/checkWord')
+    }
+
+    if (suffix === '.xlsx') {
+      localStorage.setItem('excelUrl', url)
+      return router.push('/able/checkExcel')
+    }
+
+    return window.open(url, '_blank')
   }
 
   unref(fileList).forEach((item, index) => {

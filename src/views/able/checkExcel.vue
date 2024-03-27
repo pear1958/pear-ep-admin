@@ -10,7 +10,9 @@ defineOptions({
   name: 'checkExcel'
 })
 
-const excelUrl = 'http://static.shanhuxueyuan.com/demo/excel.xlsx'
+// const excelUrl = 'http://static.shanhuxueyuan.com/demo/excel.xlsx'
+
+const excelUrl = localStorage.getItem('excelUrl')
 
 const rendered = () => {
   console.log('渲染完成')

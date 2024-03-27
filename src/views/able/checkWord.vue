@@ -10,7 +10,9 @@ defineOptions({
   name: 'checkWord'
 })
 
-const wordUrl = 'http://static.shanhuxueyuan.com/test6.docx'
+// 'http://static.shanhuxueyuan.com/test6.docx'
+
+const wordUrl = localStorage.getItem('wordUrl')
 
 const rendered = () => {
   console.log('渲染完成')

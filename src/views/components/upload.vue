@@ -5,6 +5,10 @@
         <span>上传文件(docx,xlsx,pdf支持预览)</span>
       </template>
       <upload v-model="form.fileList" @change="onChange" listType="text" />
+      <div class="mt-1">
+        <div>绑定的数据：</div>
+        <div class="mt-1">{{ form.fileList }}</div>
+      </div>
     </el-card>
 
     <el-card class="mt-4 max-w-[780px]">
@@ -12,6 +16,10 @@
         <span>绑定值为数组, 最多只能上传两个文件</span>
       </template>
       <upload v-model="form.imgList1" @change="onChange" :limit="2" />
+      <div class="mt-1">
+        <div>绑定的数据：</div>
+        <div class="mt-1">{{ form.imgList1 }}</div>
+      </div>
     </el-card>
 
     <el-card class="mt-4 max-w-[780px]">
@@ -19,6 +27,10 @@
         <span>绑定值为字符串, 逗号(,)分割</span>
       </template>
       <upload v-model="form.imgList2" format="string" @change="onChange" />
+      <div class="mt-1">
+        <div>绑定的数据：</div>
+        <div class="mt-1 break-words">{{ form.imgList2 }}</div>
+      </div>
     </el-card>
 
     <el-card class="mt-4 max-w-[780px]">
@@ -26,6 +38,10 @@
         <span>绑定值为字符串数组</span>
       </template>
       <upload v-model="form.imgList3" format="jsonArray" @change="onChange" />
+      <div class="mt-1">
+        <div>绑定的数据：</div>
+        <div class="mt-1">{{ form.imgList3 }}</div>
+      </div>
     </el-card>
 
     <el-card class="mt-4 max-w-[780px]">
@@ -33,6 +49,10 @@
         <span>图片裁剪(默认与图片比例一样, 自定义裁剪区域大小)</span>
       </template>
       <upload v-model="form.imgList4" @change="onChange" enable-cropper />
+      <div class="mt-1">
+        <div>绑定的数据：</div>
+        <div class="mt-1">{{ form.imgList4 }}</div>
+      </div>
     </el-card>
 
     <el-card class="mt-4 max-w-[780px]">
@@ -52,6 +72,10 @@
           canvasHeight: 200
         }"
       />
+      <div class="mt-1">
+        <div>绑定的数据：</div>
+        <div class="mt-1">{{ form.imgList5 }}</div>
+      </div>
     </el-card>
   </div>
 </template>

@@ -156,7 +156,8 @@
           "name": "checkWord",
           "component": "/able/checkWord",
           "meta": {
-            "title": "word预览"
+            "title": "文件查看(word)",
+            "showInMenu": false
           }
         },
         {
@@ -164,15 +165,8 @@
           "name": "checkExcel",
           "component": "/able/checkExcel",
           "meta": {
-            "title": "excel预览"
-          }
-        },
-        {
-          "path": "/able/checkPdf",
-          "name": "checkPdf",
-          "component": "/able/checkPdf",
-          "meta": {
-            "title": "Pdf预览"
+            "title": "文件查看(excel)",
+            "showInMenu": false
           }
         },
         {

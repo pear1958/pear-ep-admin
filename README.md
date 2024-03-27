@@ -35,6 +35,7 @@
 - 自定义 SvgIcon、iconify 组件, 使用 SvgLoader 插件 图标随心使用
 - 自定义 Tabs、Dialog、Modal、Upload、地图选点 等常用组件, 忘记实现思路, 看一下代码便知
 - 通用文件下载
+- 二次封装文件上传组件, 支持图片裁剪
 
 - 支持输入错误 url 打开 404 页面
 - 使用 keepAlive 对页面进行缓存，支持多级嵌套页面缓存
@@ -75,8 +76,6 @@ pnpm run build:pro
 
 #### todo-list
 
-- [ ] 图片裁剪组件
-- [ ] 封装图片上传组件 避免每次都要声明fileList等
 - [ ] 添加级联选择组件 & 可回填 & 单选|多选 - 主要用在省市区选择中
 - [ ] searchTable优化
 - [ ] 多种布局模式
