@@ -54,6 +54,7 @@ import {
   ElImage,
   ElImageViewer,
   ElUpload,
+  ElCascader,
   // 指令
   ElLoading,
   ElInfiniteScroll
@@ -115,7 +116,8 @@ const components = [
   ElProgress,
   ElImage,
   ElImageViewer,
-  ElUpload
+  ElUpload,
+  ElCascader
 ]
 
 export function useElementPlus(app: App) {

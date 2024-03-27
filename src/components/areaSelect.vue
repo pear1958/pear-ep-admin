@@ -60,6 +60,7 @@ import { ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import { deepClone } from '@/utils'
 import { getOrganization } from '@/api/modules/common'
+import { onMounted } from 'vue'
 
 defineOptions({
   name: 'areaSelect'
@@ -107,7 +108,9 @@ const provinceLoading = ref(false)
 const cityLoading = ref(false)
 const countyLoading = ref(false)
 
-getInitProvince()
+onMounted(() => {
+  getInitProvince()
+})
 
 async function getInitProvince() {
   try {
@@ -125,6 +128,9 @@ async function getInitProvince() {
   }
 }
 
+/**
+ * 编辑时数据回填
+ */
 watch(
   () => props.modelValue,
   (newVal, oldVal) => {
