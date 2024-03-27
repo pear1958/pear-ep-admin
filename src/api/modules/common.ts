@@ -11,6 +11,7 @@ export const uploadFile = (formData: Recordable) => {
   })
 }
 
+// 获取省市区
 export const getOrganization = (params: { level: number; pcode?: string }) => {
   return http.get('/console/orgNationwide/getOrganization', params)
 }

@@ -31,7 +31,7 @@ class Http {
         const { token } = useUserStore()
 
         // 将当前请求添加到 pending 中
-        axiosCanceler.addPending(config)
+        // axiosCanceler.addPending(config)
 
         // showLoading: 默认为false, 即不显示全局Loading
         config.showLoading && showFullScreenLoading()
@@ -51,7 +51,7 @@ class Http {
         const { data } = response
 
         // 在请求结束后, 移除本次请求
-        axiosCanceler.removePending(config)
+        // axiosCanceler.removePending(config)
 
         hideFullScreenLoading()
 

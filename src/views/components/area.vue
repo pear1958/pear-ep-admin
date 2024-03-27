@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <el-card>
+    <el-card>
       <template #header>
         <span>省市区(下拉选择)</span>
       </template>
@@ -13,7 +13,7 @@
           <div class="mt-2">{{ form1 }}</div>
         </div>
       </div>
-    </el-card> -->
+    </el-card>
 
     <el-card class="mt-4">
       <template #header>
