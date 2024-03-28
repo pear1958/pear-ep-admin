@@ -6,6 +6,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import svgLoader from 'vite-svg-loader'
 import viteCompression from 'vite-plugin-compression'
 import { formatEnv } from './src/utils/env'
+import { viteBuildInfo } from './build/info'
 
 const pathSrc = resolve(__dirname, 'src')
 
@@ -61,6 +62,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       }),
       // 加载SVG文件作为Vue组件
       svgLoader(),
+      viteBuildInfo(),
       // 优化 首屏加载慢 等用户体验, 配置 Nginx 即可
       envConf.VITE_OPEN_GZIP &&
         viteCompression({
