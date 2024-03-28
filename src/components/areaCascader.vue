@@ -112,7 +112,7 @@ const onChange = (data: string[]) => {
   props.modelValue[provinceKey] = data[0]
   props.modelValue[cityKey] = data[1]
   props.modelValue[countyKey] = data[2]
-  emit('change', data)
+  emit('change', props.modelValue)
 }
 </script>
 
