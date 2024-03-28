@@ -1,11 +1,11 @@
 import type { Plugin } from 'vite'
-import dayjs, { type Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
 import gradientString from 'gradient-string'
 import boxen, { type Options as BoxenOptions } from 'boxen'
 // import { getPackageSize } from './utils'
 
 // 青色 - 品红色
-const startMsg = gradientString('cyan', 'magenta').multiline(`欢迎使用 ep-admin 开源项目`)
+const startMsg = gradientString('cyan', 'magenta').multiline(`欢迎使用 Ep-Admin`)
 
 const boxenOptions: BoxenOptions = {
   padding: 0.5,
@@ -15,8 +15,8 @@ const boxenOptions: BoxenOptions = {
 
 export function viteBuildInfo(): Plugin {
   let config: { command: string }
-  let startTime: Dayjs
-  let endTime: Dayjs
+  let startTime: number
+  let endTime: number
   let outDir: string
 
   return {
@@ -32,15 +32,14 @@ export function viteBuildInfo(): Plugin {
       console.log(boxMsg)
 
       if (config.command === 'build') {
-        startTime = dayjs(new Date())
+        startTime = new Date().getTime()
       }
     },
     closeBundle() {
       if (config.command === 'build') {
-        endTime = dayjs(new Date())
+        endTime = new Date().getTime()
 
-        // const buildTime = dayjs.duration(endTime.diff(startTime)).format('mm分ss秒')
-        const buildTime = '30s'
+        const buildTime = dayjs(endTime - startTime).format('mm分ss秒')
 
         const graStr = gradientString('cyan', 'magenta').multiline(
           `恭喜打包完成, 总用时${buildTime}, 打包后的大小为3MB`
@@ -53,7 +52,6 @@ export function viteBuildInfo(): Plugin {
         // getPackageSize({
         //   folder: outDir,
         //   callback: (size: string) => {
-
         //   }
         // })
       }
