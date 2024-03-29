@@ -5,6 +5,7 @@ import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useTheme } from '@/hooks/useTheme'
 import { AxiosCanceler } from '@/api/utils/axiosCancel'
+import { is403 } from './utils'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
@@ -107,6 +108,8 @@ router.beforeEach(async (to, from, next) => {
     return next({ path: '/login', replace: true })
   }
 
+  const params403 = { path: '/error/403', replace: true, query: to.query }
+
   // 首次进入系统 || 刷新页面   获取菜单数据 & 初始化路由
   if (!userInfo || !menuList.length || !buttonData) {
     // 需要捕获 getAuthData 的reject
@@ -124,6 +127,10 @@ router.beforeEach(async (to, from, next) => {
           return next({ path: to.fullPath, replace: true, query: to.query })
         }
 
+        // if (is403(to)) {
+        //   return next(params403)
+        // }
+
         // 首次登录, 使浏览器的后退按钮无法点击
         // hack写法: 可以确保addRoute()时动态添加的路由已经被完全加载上去
         // next({ ...to}) 能保证找不到路由的时候重新执行beforeEach钩子
@@ -132,11 +139,14 @@ router.beforeEach(async (to, from, next) => {
       }
     } catch (error) {
       console.log('error', error)
-
       localStorage.clear()
       return next('/login')
     }
   }
+
+  // if (is403(to)) {
+  //   return next(params403)
+  // }
 
   // 正常跳转
   next()

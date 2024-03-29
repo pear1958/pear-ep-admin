@@ -56,14 +56,6 @@ export default {
         title: '文件查看(excel)',
         showInMenu: false
       }
-    },
-    {
-      path: '/error/404',
-      name: 'error404',
-      component: '/error/404',
-      meta: {
-        title: '404'
-      }
     }
   ]
 }

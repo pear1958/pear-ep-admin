@@ -1,18 +1,18 @@
+import { usePermissionStore } from '@/store/modules/permission'
 import { deepClone } from '@/utils'
+import { RouteLocationNormalized } from 'vue-router'
 
 /**
  * @description 扁平化数组对象(主要用来处理路由菜单) 他的children不剔除, 只是把所有children下的元素 提到第一级来
  * @param {Array} menuList 所有菜单列表
  * @return Array
  */
-export function getFlatArr(menuList: MenuList) {
-  let newMenuList = JSON.parse(JSON.stringify(menuList))
+export function getFlatArr(menuList: MenuList): MenuList {
+  const newMenuList = JSON.parse(JSON.stringify(menuList))
 
   return newMenuList.reduce((pre: MenuList, current: MenuItem) => {
     let flatArr = [...pre, current]
-
     if (current.children) flatArr = [...flatArr, ...getFlatArr(current.children)]
-
     return flatArr
   }, [])
 }
@@ -66,4 +66,16 @@ const routeModules: Recordable<{ default: MenuItem }> =
     eager: true
   }) || {}
 
-export const allMenuList = Object.values(routeModules).map(module => module.default)
+const allMenuList = Object.values(routeModules).map(module => module.default)
+
+const flatAllMenuList = getFlatArr(allMenuList)
+
+export const is403 = (to: RouteLocationNormalized) => {
+  const flatMenuList = usePermissionStore().flatMenuListGet
+
+  const noAuth =
+    flatAllMenuList.some((item: MenuItem) => item.path === to.path) &&
+    !flatMenuList.some((item: MenuItem) => item.path === to.path)
+
+  return noAuth
+}
