@@ -178,6 +178,14 @@
           }
         },
         {
+          "path": "/error/403",
+          "name": "error403",
+          "component": "/error/403",
+          "meta": {
+            "title": "403"
+          }
+        },
+        {
           "path": "/error/404",
           "name": "error404",
           "component": "/error/404",

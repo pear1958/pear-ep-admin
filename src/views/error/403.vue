@@ -1,17 +1,17 @@
 <template>
   <div class="main-full flex-c">
-    <noExist />
+    <noAuth />
 
     <div class="desc">
-      <h2>404</h2>
-      <h4>抱歉, 你访问的页面不存在。</h4>
+      <h2>403</h2>
+      <h4>抱歉, 你无权访问该页面</h4>
       <el-button type="primary" @click="$router.push('/home')">返回首页</el-button>
     </div>
   </div>
 </template>
 
 <script setup>
-import noExist from '@/assets/imgs/404.svg?component'
+import noAuth from '@/assets/imgs/403.svg?component'
 </script>
 
 <style lang="scss" scoped>
