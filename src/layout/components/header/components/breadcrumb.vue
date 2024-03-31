@@ -1,7 +1,9 @@
 <template>
   <el-breadcrumb separator="/" class="bread-box">
     <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="item.path">
-      <a @click="handleNav(item)" v-if="index < breadcrumbList.length - 1" class="link">{{ item.meta.title }}</a>
+      <a @click="handleNav(item)" v-if="index < breadcrumbList.length - 1" class="link">
+        {{ item.meta.title }}
+      </a>
       <!-- 最后一个面包屑不能点击 -->
       <span v-else class="text">{{ item.meta.title }}</span>
     </el-breadcrumb-item>
@@ -17,9 +19,11 @@ const route = useRoute()
 const router = useRouter()
 
 const breadcrumbList = computed(() => {
+  const name = unref(route.name)
+
   // 这里必须使用 unref
-  if (unref(route.name) === '404') {
-    return [{ meta: { title: '404' } }]
+  if (['403', '404'].includes(name)) {
+    return [{ meta: { title: name } }]
   } else {
     return usePermissionStore().breadcrumbListGet(route.path)
   }
@@ -51,11 +55,13 @@ function storeQueryRoute(curRoute) {
 watch(
   () => router.currentRoute.value,
   curRoute => {
-    if (curRoute.name === '404') {
+    if (['403', '404'].includes(curRoute.name)) {
       return
     }
 
-    const oldTopRoute = localStorage.getItem('topRoute') ? JSON.parse(localStorage.getItem('topRoute')) : null
+    const oldTopRoute = localStorage.getItem('topRoute')
+      ? JSON.parse(localStorage.getItem('topRoute'))
+      : null
     const curTopRouteName = unref(breadcrumbList)[0].name
 
     // 路由跳转时: 祖先变了(当前路由 的祖先元素不是 以前储存的最顶级路由), 清空数据

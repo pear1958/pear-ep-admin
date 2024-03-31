@@ -66,16 +66,17 @@ const routeModules: Recordable<{ default: MenuItem }> =
     eager: true
   }) || {}
 
-const allMenuList = Object.values(routeModules).map(module => module.default)
+// 原始静态路由 - 未做任何处理
+const routes = Object.values(routeModules).map(module => module.default)
 
-const flatAllMenuList = getFlatArr(allMenuList)
+const flatRoutes = getFlatArr(routes)
 
-export const is403 = (to: RouteLocationNormalized) => {
-  const flatMenuList = usePermissionStore().flatMenuListGet
+export const check403 = (to: RouteLocationNormalized) => {
+  const flatAuthRoutes = usePermissionStore().flatMenuListGet
 
-  const noAuth =
-    flatAllMenuList.some((item: MenuItem) => item.path === to.path) &&
-    !flatMenuList.some((item: MenuItem) => item.path === to.path)
+  const is403 =
+    flatRoutes.some((item: MenuItem) => item.path === to.path) &&
+    !flatAuthRoutes.some((item: MenuItem) => item.path === to.path)
 
-  return noAuth
+  return is403
 }
