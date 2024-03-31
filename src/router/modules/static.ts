@@ -22,10 +22,9 @@ export const staticRouter: RouteRecordRaw[] = [
       {
         path: '/error/403',
         name: '403',
-        component: import('@/views/error/403.vue'),
+        component: () => import('@/views/error/403.vue'),
         meta: {
-          title: '403',
-          showInMenu: false
+          title: '403'
         }
       }
     ]
