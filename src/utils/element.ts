@@ -17,7 +17,7 @@ export function confirmModal(
 }
 
 export const mobileValidator = (rule: any, value: any, callback: Function) => {
-  if (/^1\d{10}$/i.test(value) || /^(\d{3,4}-)?\d{7,8}$/.test(value)) {
+  if (/^1\d{10}$/i.test(value) || /^(\d{3,4}(-)?)?\d{7,8}$/.test(value)) {
     callback()
   } else {
     callback(new Error('请输入正确的手机号格式'))
