@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { staticRouter, notFoundRouter } from './modules/static'
+import { staticRouter } from './modules/static'
+import { notFoundRouter } from './modules/error'
 import NProgress from '@/config/progress'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'

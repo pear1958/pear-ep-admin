@@ -1,6 +1,6 @@
+import { RouteLocationNormalized } from 'vue-router'
 import { usePermissionStore } from '@/store/modules/permission'
 import { deepClone } from '@/utils'
-import { RouteLocationNormalized } from 'vue-router'
 
 /**
  * @description 扁平化数组对象(主要用来处理路由菜单) 他的children不剔除, 只是把所有children下的元素 提到第一级来
@@ -62,7 +62,7 @@ export function filterMenuData(menuData: MenuList) {
  * 如何排除文件请看：https://cn.vitejs.dev/guide/features.html#negative-patterns
  */
 const routeModules: Recordable<{ default: MenuItem }> =
-  import.meta.glob(['./modules/**/*.ts', '!./modules/**/static.ts'], {
+  import.meta.glob(['./modules/**/*.ts', '!./modules/**/static.ts', '!./modules/**/error.ts'], {
     eager: true
   }) || {}
 
