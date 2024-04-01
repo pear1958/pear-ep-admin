@@ -7,6 +7,7 @@ import svgLoader from 'vite-svg-loader'
 import viteCompression from 'vite-plugin-compression'
 import { formatEnv } from './src/utils/env'
 import { viteBuildInfo } from './build/info'
+import { include, exclude } from './build/optimize'
 
 const pathSrc = resolve(__dirname, 'src')
 
@@ -74,9 +75,8 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     ],
     // 解决 Vite 启动完之后首页加载慢的问题
     optimizeDeps: {
-      // 启动时 预加载这些包
-      include: ['pinia', 'mitt', 'axios', 'vue-i18n'],
-      exclude: ['@iconify-icons/ep', '@iconify-icons/ant-design']
+      include, // 启动时 预加载这些包
+      exclude
     },
     build: {
       // 关闭source-map 减小打包后的文件体积
