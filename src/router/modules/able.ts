@@ -8,6 +8,11 @@ export default {
   },
   children: [
     {
+      path: '/able/mock403',
+      name: 'mock403',
+      component: '/able/infiniteScroll'
+    },
+    {
       path: '/able/table',
       name: 'InfiniteScrollTable',
       component: '/able/infiniteScroll',

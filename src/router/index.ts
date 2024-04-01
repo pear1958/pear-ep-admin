@@ -5,7 +5,7 @@ import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useTheme } from '@/hooks/useTheme'
 import { AxiosCanceler } from '@/api/utils/axiosCancel'
-import { is403 } from './utils'
+import { check403 } from './utils'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
@@ -61,7 +61,6 @@ function initRouter() {
     }
   })
 
-  // 所有常量路由
   // 添加 404 路由: notFoundRouter
   // 并且避免报错: [Vue Router warn]: No match found for location with path "/home"
   router.removeRoute('404')
@@ -122,19 +121,19 @@ router.beforeEach(async (to, from, next) => {
       } else {
         initRouter()
 
+        // 第一次触发动态路由还未完全添加, 第二次动态路由才完全添加到路由列表
+        // 第一次所有的路由都会被404拦截到, 这里处理第一次的路由跳转
         if (to.name === '404') {
-          // 动态添加路由后，此处应当重定向到fullPath，否则会加载404页面内容
+          if (check403(to)) {
+            return next(params403)
+          }
           return next({ path: to.fullPath, replace: true, query: to.query })
         }
 
-        // if (is403(to)) {
-        //   return next(params403)
-        // }
-
         // 首次登录, 使浏览器的后退按钮无法点击
         // hack写法: 可以确保addRoute()时动态添加的路由已经被完全加载上去
-        // next({ ...to}) 能保证找不到路由的时候重新执行beforeEach钩子
-        // next({ replace: true}) 保证刷新时不允许用户后退
+        // ...to 能保证找不到路由的时候重新执行beforeEach钩子
+        // replace: true 保证刷新时不允许用户后退
         return next({ ...to, replace: true })
       }
     } catch (error) {
@@ -144,11 +143,10 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
-  // if (is403(to)) {
-  //   return next(params403)
-  // }
+  if (check403(to)) {
+    return next(params403)
+  }
 
-  // 正常跳转
   next()
 })
 

@@ -4,13 +4,27 @@
     <el-table mb-1 :data="[]" />
     <el-pagination :total="100" class="mt-15" />
 
+    <el-button type="primary" class="mt-4" @click="mock403">403页面</el-button>
+    <el-button type="primary" class="mt-4" @click="mock404">404页面</el-button>
+
     <el-button type="primary" class="mt-4" @click="debounceFn">测试防抖</el-button>
     <el-button type="primary" class="mt-4" @click="throttleFn">测试节流</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { debounce, throttle } from '@/utils'
+
+const router = useRouter()
+
+const mock403 = () => {
+  router.push('/able/mock403')
+}
+
+const mock404 = () => {
+  router.push('/no-exist-path-1255')
+}
 
 function handleClick1() {
   console.log('test-test-1')

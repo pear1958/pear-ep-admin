@@ -18,7 +18,16 @@ export const staticRouter: RouteRecordRaw[] = [
     name: 'layout',
     component: () => import('@/layout/index.vue'),
     redirect: '/home',
-    children: []
+    children: [
+      {
+        path: '/error/403',
+        name: '403',
+        component: () => import('@/views/error/403.vue'),
+        meta: {
+          title: '403'
+        }
+      }
+    ]
   }
 ]
 
@@ -36,7 +45,6 @@ export const notFoundRouter = {
       component: () => import('@/views/error/404.vue'),
       meta: {
         title: '404',
-        hideBreadcrumb: true,
         showInMenu: false
       }
     }
