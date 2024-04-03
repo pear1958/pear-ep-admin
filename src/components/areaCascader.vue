@@ -106,13 +106,22 @@ function getNodes(params: IParams): Promise<CascaderOption[]> {
   })
 }
 
-const onChange = (data: string[]) => {
-  if (!data?.length) return
+const onChange = (value: string[]) => {
+  if (!value?.length) return
+
   const { provinceKey, cityKey, countyKey } = props
-  props.modelValue[provinceKey] = data[0]
-  props.modelValue[cityKey] = data[1]
-  props.modelValue[countyKey] = data[2]
-  emit('change', props.modelValue)
+
+  const data = {
+    provinceKey: value[0],
+    cityKey: value[1],
+    countyKey: value[2]
+  }
+
+  props.modelValue[provinceKey] = value[0]
+  props.modelValue[cityKey] = value[1]
+  props.modelValue[countyKey] = value[2]
+
+  emit('change', data)
 }
 </script>
 

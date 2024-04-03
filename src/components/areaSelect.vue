@@ -56,11 +56,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import { deepClone } from '@/utils'
 import { getOrganization } from '@/api/modules/common'
-import { onMounted } from 'vue'
 
 defineOptions({
   name: 'areaSelect'
@@ -92,9 +90,6 @@ const props = defineProps({
     default: 'countyCode'
   }
 })
-
-// 储存剩余的参数
-const restData = ref({})
 
 const province = ref('')
 const city = ref('')
@@ -136,19 +131,10 @@ watch(
   (newVal, oldVal) => {
     if (!newVal) return
 
-    const { provinceKey, cityKey, countyKey } = props
-
     if (Object.keys(newVal).length) {
-      province.value = newVal[provinceKey]
-      city.value = newVal[cityKey]
-      county.value = newVal[countyKey]
-
-      const tempData = deepClone(newVal)
-      delete tempData[provinceKey]
-      delete tempData[cityKey]
-      delete tempData[countyKey]
-
-      restData.value = tempData
+      province.value = newVal[props.provinceKey]
+      city.value = newVal[props.cityKey]
+      county.value = newVal[props.countyKey]
     }
 
     if (province.value && !oldVal) {
@@ -239,8 +225,7 @@ const emitData = () => {
   const data = {
     [provinceKey]: province.value,
     [cityKey]: city.value,
-    [countyKey]: county.value,
-    ...restData.value
+    [countyKey]: county.value
   }
 
   props.modelValue[provinceKey] = province.value
