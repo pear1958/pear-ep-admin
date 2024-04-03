@@ -1,5 +1,3 @@
-import type { MenuList, TabList } from '@/types/system'
-
 export interface userState {
   token: null | string
   userInfo: null | object

@@ -1,4 +1,15 @@
-import { RouteMeta } from 'vue-router'
+declare interface RouteMeta extends Record<string | number | symbol, unknown> {
+  icon: string
+  title: string
+  activeMenu?: string
+  isLink?: string
+  isHide: boolean
+  isFull: boolean
+  isAffix: boolean
+  isKeepAlive: boolean
+  showInMenu?: boolean
+  rank?: number
+}
 
 declare interface MenuItem {
   path: string
