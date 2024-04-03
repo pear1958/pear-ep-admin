@@ -1,6 +1,10 @@
 <template>
   <template v-for="subItem in menuList" :key="subItem.path">
-    <el-menu-item v-if="!subItem.children?.length" :index="subItem.path" @click="handleClickMenu(subItem)">
+    <el-menu-item
+      v-if="!subItem.children?.length"
+      :index="subItem.path"
+      @click="handleClickMenu(subItem)"
+    >
       <iconify :icon="subItem.meta.icon" class="text-base mr-1.5" />
 
       <template #title>
@@ -24,11 +28,11 @@
 import { useRouter } from 'vue-router'
 import SubMenu from './index.vue'
 
-defineProps<{ menuList: Menu.MenuOptions[] }>()
+defineProps<{ menuList: MenuList }>()
 
 const router = useRouter()
 
-const handleClickMenu = (subItem: Menu.MenuOptions) => {
+const handleClickMenu = (subItem: MenuItem) => {
   if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank')
 
   router.push(subItem.path)

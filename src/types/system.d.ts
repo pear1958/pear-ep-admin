@@ -1,36 +1,23 @@
-declare namespace Menu {
-  interface MenuOptions {
-    path: string
-    name: string
-    component?: string | (() => Promise<any>)
-    redirect?: string
-    meta: MetaProps
-    children?: MenuOptions[]
-  }
+import { RouteMeta } from 'vue-router'
 
-  interface MetaProps {
-    icon: string
-    title: string
-    activeMenu?: string
-    isLink?: string
-    isHide: boolean
-    isFull: boolean
-    isAffix: boolean
-    isKeepAlive: boolean
-    showInMenu?: boolean
-    rank?: number
-  }
+declare interface MenuItem {
+  path: string
+  name: string
+  component?: string | (() => Promise<any>)
+  redirect?: string
+  meta: RouteMeta
+  children?: MenuItem[]
 }
-
-declare type MenuItem = Menu.MenuOptions
 
 declare type MenuList = MenuItem[]
 
-declare interface tabItem {
+declare interface TabItem {
   title: string
   fullPath: string
   name: string
 }
+
+declare type TabList = TabItem[]
 
 declare interface Window {
   _AMapSecurityConfig: {

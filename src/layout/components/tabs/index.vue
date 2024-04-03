@@ -20,13 +20,21 @@
                 <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab">
                   关闭当前
                 </el-dropdown-item>
-                <el-dropdown-item :icon="useIcon('vertical-right-outlined')" command="closeLeftTab" divided>
+                <el-dropdown-item
+                  :icon="useIcon('vertical-right-outlined')"
+                  command="closeLeftTab"
+                  divided
+                >
                   关闭左侧标签页
                 </el-dropdown-item>
                 <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab">
                   关闭右侧标签页
                 </el-dropdown-item>
-                <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided>
+                <el-dropdown-item
+                  :icon="useIcon('column-width-outlined')"
+                  command="closeOtherTab"
+                  divided
+                >
                   关闭其它标签页
                 </el-dropdown-item>
                 <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab">
@@ -47,8 +55,12 @@
 
         <template #dropdown>
           <el-dropdown-menu class="dropdown-menu">
-            <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">刷新</el-dropdown-item>
-            <el-dropdown-item :icon="useIcon('fullscreen-outlined')" command="maximizeMain">最大化</el-dropdown-item>
+            <el-dropdown-item :icon="useIcon('reload-outlined')" command="refresh">
+              刷新
+            </el-dropdown-item>
+            <el-dropdown-item :icon="useIcon('fullscreen-outlined')" command="maximizeMain">
+              最大化
+            </el-dropdown-item>
             <el-dropdown-item :icon="useIcon('close-outlined')" command="closeCurrentTab" divided>
               关闭当前
             </el-dropdown-item>
@@ -58,10 +70,16 @@
             <el-dropdown-item :icon="useIcon('vertical-left-outlined')" command="closeRightTab">
               关闭右侧
             </el-dropdown-item>
-            <el-dropdown-item :icon="useIcon('column-width-outlined')" command="closeOtherTab" divided>
+            <el-dropdown-item
+              :icon="useIcon('column-width-outlined')"
+              command="closeOtherTab"
+              divided
+            >
               关闭其它
             </el-dropdown-item>
-            <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab">关闭所有</el-dropdown-item>
+            <el-dropdown-item :icon="useIcon('minus-outlined')" command="closeAllTab">
+              关闭所有
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -79,6 +97,7 @@ import emitter from '@/utils/mitt'
 import maximize from './maximize.vue'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
 import { useIcon } from '@/components/icon'
+import type { TabItem } from '@/types/system'
 
 const route = useRoute()
 const router = useRouter()
@@ -93,7 +112,7 @@ const activeKey = ref(route.fullPath)
 // Tabs（白名单地址，不需要添加到 tabs 的路由地址）
 const NAME_WHITE_LIST = ['403', '404', '500', 'login']
 
-const curTab = ref<tabItem>()
+const curTab = ref<TabItem>()
 
 onMounted(() => {
   useTabsDrag()
@@ -161,7 +180,7 @@ const closeCurrentTab = () => {
   removeTab(route.fullPath)
 }
 
-const closeLeftTab = (tab: tabItem) => {
+const closeLeftTab = (tab: TabItem) => {
   if (unref(tabList).length === 1) {
     ElMessage.info('左侧没有其它页面了~')
     return
@@ -179,7 +198,7 @@ const closeLeftTab = (tab: tabItem) => {
   systemStore.removeLeftKeepAliveName(tab.name)
 }
 
-const closeRightTab = (tab: tabItem) => {
+const closeRightTab = (tab: TabItem) => {
   if (unref(tabList).length === 1) {
     ElMessage.info('右侧没有其它页面了~')
     return
@@ -197,7 +216,7 @@ const closeRightTab = (tab: tabItem) => {
   systemStore.removeRightKeepAliveName(tab.name)
 }
 
-const closeOtherTab = (tab: tabItem) => {
+const closeOtherTab = (tab: TabItem) => {
   if (unref(tabList).length === 1) {
     ElMessage.info('当前没有其它页面了~')
     return
@@ -226,7 +245,7 @@ const methodObj = {
 
 type methodName = keyof typeof methodObj
 
-function onDropDownClick(command: string, tab: tabItem | undefined, className?: string) {
+function onDropDownClick(command: string, tab: TabItem | undefined, className?: string) {
   if (!command || !tab) return
 
   // 解决 dropdown 闪烁到最左侧的Bug

@@ -36,7 +36,7 @@ export const usePermissionStore = defineStore({
             const menuData = res.data ?? []
             this.menuList.push(...menuData)
             // 菜单排序
-            // this.menuList.sort((a: Menu.MenuOptions, b: Menu.MenuOptions) => a.meta.rank! - b.meta.rank!)
+            // this.menuList.sort((a: MenuItem, b: MenuItem) => a.meta.rank! - b.meta.rank!)
             resolve(true)
           })
           .catch(() => {

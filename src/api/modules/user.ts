@@ -12,7 +12,7 @@ export const loginApi = (params: Login.reqForm) => {
 
 // 获取菜单权限列表
 export const getMenuListApi = () => {
-  // return http.get<Menu.MenuOptions[]>('/menu/list')
+  // return http.get<MenuList>('/menu/list')
   return Promise.resolve(dRouter)
 }
 

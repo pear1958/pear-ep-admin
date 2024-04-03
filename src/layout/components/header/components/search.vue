@@ -3,7 +3,13 @@
     <iconify icon="search-outlined" />
   </div>
 
-  <el-dialog v-model="showSearchPanel" :title="undefined" :footer="null" class="menu-dialog" :width="520">
+  <el-dialog
+    v-model="showSearchPanel"
+    :title="undefined"
+    :footer="null"
+    class="menu-dialog"
+    :width="520"
+  >
     <el-input
       v-model="searchKey"
       :prefix-icon="Search"
@@ -86,7 +92,7 @@ onBeforeUnmount(() => {
 
 // 默认的菜单搜索所有数据
 const getAllSearchList = () =>
-  usePermissionStore().flatMenuListGet.map((item: Menu.MenuOptions) => {
+  usePermissionStore().flatMenuListGet.map((item: MenuItem) => {
     return usePermissionStore().breadcrumbListGet(item.path)
   })
 
@@ -128,7 +134,9 @@ function searchMenu(queryString: string) {
   })
 
   searchList.value =
-    key === '' ? [] : getAllSearchList().filter((item: MenuList, index: number) => indexList.includes(index))
+    key === ''
+      ? []
+      : getAllSearchList().filter((item: MenuList, index: number) => indexList.includes(index))
 }
 
 function handleSelect(data: MenuList) {

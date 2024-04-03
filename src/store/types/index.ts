@@ -1,3 +1,5 @@
+import type { MenuList, TabList } from '@/types/system'
+
 export interface userState {
   token: null | string
   userInfo: null | object
@@ -9,9 +11,11 @@ export type LanguageType = 'zh' | 'en' | null
 
 export interface SystemState {
   layout: LayoutType
-  sideBar: any
+  sideBar: {
+    isCollapse: boolean
+  }
   keepAliveNameList: string[]
-  tabList: any[]
+  tabList: TabList
   mainMaximize: boolean
   isDark: boolean
   themeColor: string
@@ -24,7 +28,7 @@ export interface PermissState {
   buttonData: {
     [key: string]: string[]
   } | null
-  menuList: Menu.MenuOptions[] | any
+  menuList: MenuList | any
 }
 
 export interface IConfigState {

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import router from '@/router/index'
 import { SystemState } from '../types'
 import piniaPersistConfig from '@/config/piniaPersist'
+import type { TabItem } from '@/types/system'
 
 export const useSystemStore = defineStore({
   id: 'system',
@@ -53,9 +54,9 @@ export const useSystemStore = defineStore({
       this.keepAliveNameList.splice(delIndex + 1)
     },
     // 新增Tab
-    addTab(tabItem: any) {
+    addTab(tabItem: TabItem) {
       // 该Tab没被添加过 才添加
-      if (!this.tabList.some(item => item.fullPath === tabItem.fullPath)) {
+      if (!this.tabList.some((item: TabItem) => item.fullPath === tabItem.fullPath)) {
         this.tabList.push(tabItem)
       }
     },
@@ -65,7 +66,7 @@ export const useSystemStore = defineStore({
 
       // 如果删除的是当前Tab: 默认切换到下一个Tab
       if (isCurrent) {
-        tabList.forEach((item, index) => {
+        tabList.forEach((item: TabItem, index: number) => {
           if (item.fullPath !== fullPath) return
           const nextShowTab = tabList[index + 1] || tabList[index - 1]
           // 删除的是唯一的一个Tab, 则不需要切换Tab
@@ -74,20 +75,20 @@ export const useSystemStore = defineStore({
         })
       }
 
-      const delIndex = tabList.findIndex(item => item.fullPath === fullPath)
+      const delIndex = tabList.findIndex((item: TabItem) => item.fullPath === fullPath)
       tabList.splice(delIndex, 1)
     },
     // 删除多个Tab
     // 不传fullPath则是 删除所有Tab
     removeMultipleTab(fullPath?: string) {
-      this.tabList = this.tabList.filter(item => item.fullPath === fullPath)
+      this.tabList = this.tabList.filter((item: TabItem) => item.fullPath === fullPath)
     },
     removeLeftTab(fullPath: string) {
-      const delIndex = this.tabList.findIndex(item => item.fullPath === fullPath)
+      const delIndex = this.tabList.findIndex((item: TabItem) => item.fullPath === fullPath)
       this.tabList.splice(0, delIndex)
     },
     removeRightTab(fullPath: string) {
-      const delIndex = this.tabList.findIndex(item => item.fullPath === fullPath)
+      const delIndex = this.tabList.findIndex((item: TabItem) => item.fullPath === fullPath)
       this.tabList.splice(delIndex + 1)
     },
     sortTabs(oldIndex: number, newIndex: number) {
@@ -104,6 +105,7 @@ export const useSystemStore = defineStore({
     setThemeColor(color: string) {
       this.themeColor = color
     },
+    // args[0]: 要设置的key  args[1]: 要设置的value
     setSystemState(...args: ObjToKeyValArray<SystemState>) {
       this.$patch({ [args[0]]: args[1] })
     }
