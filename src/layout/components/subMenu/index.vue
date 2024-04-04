@@ -5,7 +5,7 @@
       :index="subItem.path"
       @click="handleClickMenu(subItem)"
     >
-      <iconify :icon="subItem.meta.icon" class="text-base mr-1.5" />
+      <iconify :icon="subItem.meta.icon" :class="['text-base', { 'mr-1.5': !isCollapse }]" />
 
       <template #title>
         <span>{{ subItem.meta.title }}</span>
@@ -14,7 +14,7 @@
 
     <el-sub-menu v-else :index="subItem.path">
       <template #title>
-        <iconify :icon="subItem.meta.icon" class="text-base mr-1.5" />
+        <iconify :icon="subItem.meta.icon" :class="['text-base', { 'mr-1.5': !isCollapse }]" />
 
         <span>{{ subItem.meta.title }}</span>
       </template>
@@ -25,12 +25,16 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import SubMenu from './index.vue'
+import { useSystemStore } from '@/store/modules/system'
 
 defineProps<{ menuList: MenuList }>()
 
 const router = useRouter()
+
+const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
 
 const handleClickMenu = (subItem: MenuItem) => {
   if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank')

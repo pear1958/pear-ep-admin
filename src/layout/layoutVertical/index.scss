@@ -53,6 +53,15 @@
       .el-menu-item.is-active {
         background-color: var(--el-color-primary) !important;
       }
+
+      // 解决菜单收起图标不显示的bug
+      .el-menu--collapse {
+        .el-menu-tooltip__trigger,
+        .el-sub-menu__title {
+          padding: 0;
+          justify-content: center;
+        }
+      }
     }
   }
 

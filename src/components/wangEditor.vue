@@ -22,12 +22,13 @@ import { onBeforeUnmount, ref, shallowRef, unref, watch, watchEffect } from 'vue
 import { ElMessage } from 'element-plus'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
-import { InsertFnType } from '@/types/wangEditor'
 import { uploadHeaders, uploadUrl } from '@/config'
 
 defineOptions({
   name: 'wangEditor'
 })
+
+type InsertFnType = (url: string, alt: string, href: string) => void
 
 const props = defineProps({
   modelValue: {
