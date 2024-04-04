@@ -5,18 +5,30 @@
       :index="subItem.path"
       @click="handleClickMenu(subItem)"
     >
-      <iconify :icon="subItem.meta.icon" :class="['text-base', { 'mr-1.5': !isCollapse }]" />
+      <iconify
+        :icon="subItem.meta.icon"
+        :class="['text-base', { 'mr-1.5': !isCollapse }]"
+        v-if="subItem.meta.icon"
+      />
 
       <template #title>
-        <span>{{ subItem.meta.title }}</span>
+        <span :class="['ellipsis', { 'flex-1': !isCollapse }]">
+          {{ subItem.meta.title }}
+        </span>
       </template>
     </el-menu-item>
 
     <el-sub-menu v-else :index="subItem.path">
       <template #title>
-        <iconify :icon="subItem.meta.icon" :class="['text-base', { 'mr-1.5': !isCollapse }]" />
+        <iconify
+          :icon="subItem.meta.icon"
+          :class="['text-base', { 'mr-1.5': !isCollapse }]"
+          v-if="subItem.meta.icon"
+        />
 
-        <span>{{ subItem.meta.title }}</span>
+        <span :class="['ellipsis', { 'flex-1': !isCollapse }]">
+          {{ subItem.meta.title }}
+        </span>
       </template>
 
       <SubMenu :menuList="subItem.children" />

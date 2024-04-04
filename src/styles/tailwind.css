@@ -14,4 +14,8 @@
   .flex-end {
     @apply flex justify-end items-center;
   }
+
+  .ellipsis {
+    @apply text-ellipsis overflow-hidden whitespace-nowrap;
+  }
 }
