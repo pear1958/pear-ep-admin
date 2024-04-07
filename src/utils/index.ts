@@ -126,3 +126,10 @@ export function deepClone<T = any>(obj: T) {
 export const delay = (waitTime: number) => {
   return new Promise(resolve => setTimeout(resolve, waitTime))
 }
+
+/**
+ * @description: 生成随机数[min, max], 可以取到两边
+ */
+export function getRandomIntBetween(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
