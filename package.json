@@ -31,6 +31,7 @@
     "element-plus": "^2.3.14",
     "hotkeys-js": "^3.10.2",
     "mitt": "^3.0.0",
+    "mqtt": "^5.5.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.33",
     "pinia-plugin-persistedstate": "^3.1.0",
