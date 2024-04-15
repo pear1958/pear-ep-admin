@@ -2,7 +2,7 @@
   <div>
     <el-card class="max-w-[780px]">
       <template #header>
-        <span>上传文件(docx,xlsx,pdf支持预览)</span>
+        <span>上传文件(docx, xlsx, pdf支持预览)</span>
       </template>
       <upload v-model="form.fileList" @change="onChange" listType="text" />
       <div class="mt-1">
