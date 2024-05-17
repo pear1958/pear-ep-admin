@@ -97,7 +97,6 @@ import emitter from '@/utils/mitt'
 import maximize from './maximize.vue'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
 import { useIcon } from '@/components/icon'
-import type { TabItem } from '@/types/system'
 
 const route = useRoute()
 const router = useRouter()

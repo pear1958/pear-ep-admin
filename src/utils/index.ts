@@ -1,10 +1,9 @@
 import { ElMessage } from 'element-plus'
 
 /**
- * @description 获取浏览器默认语言
- * @returns {String}
+ * 获取浏览器默认语言
  */
-export function getBrowserLang() {
+export function getBrowserLang(): 'zh' | 'en' {
   let browserLang = navigator.language ? navigator.language : navigator.browserLanguage
   return ['cn', 'zh', 'zh-cn'].includes(browserLang.toLowerCase()) ? 'zh' : 'en'
 }
@@ -132,4 +131,38 @@ export const delay = (waitTime: number) => {
  */
 export function getRandomIntBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+export function isType(val: unknown) {
+  if (val === null) return 'null'
+  if (typeof val !== 'object') return typeof val
+  else return Object.prototype.toString.call(val).slice(8, -1).toLocaleLowerCase()
+}
+
+/**
+ * 判断两个对象是否相同
+ */
+export function isEqualObject(a: Recordable, b: Recordable): Boolean {
+  if (!a || !b) return false
+
+  const aProps = Object.getOwnPropertyNames(a)
+  const bProps = Object.getOwnPropertyNames(b)
+
+  if (aProps.length != bProps.length) return false
+
+  for (let i = 0; i < aProps.length; i++) {
+    const propName = aProps[i]
+    const aPropVal = a[propName]
+    const bPropVal = b[propName]
+
+    if (!b.hasOwnProperty(propName)) return false
+
+    if (aPropVal instanceof Object) {
+      if (!isEqualObject(aPropVal, bPropVal)) return false
+    } else if (aPropVal !== bPropVal) {
+      return false
+    }
+  }
+
+  return true
 }
