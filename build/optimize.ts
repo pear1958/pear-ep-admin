@@ -9,7 +9,8 @@ export const include = [
   'cropperjs',
   '@vue-office/docx',
   '@vue-office/excel',
-  '@amap/amap-jsapi-loader'
+  '@amap/amap-jsapi-loader',
+  'lodash-es'
 ]
 
 export const exclude = ['@iconify-icons/ep', '@iconify-icons/ant-design']
