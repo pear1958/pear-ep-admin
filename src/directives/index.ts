@@ -1,9 +1,11 @@
 import { App, Directive } from 'vue'
 
 import auth from './modules/auth'
+import waterMark from './modules/waterMark'
 
 const directiveObj: { [key: string]: Directive } = {
-  auth
+  auth,
+  waterMark
 }
 
 const directives = {

@@ -160,21 +160,11 @@
           }
         },
         {
-          "path": "/able/checkWord",
-          "name": "checkWord",
-          "component": "/able/checkWord",
+          "path": "/able/waterMark",
+          "name": "waterMark",
+          "component": "/able/waterMark",
           "meta": {
-            "title": "文件查看(word)",
-            "showInMenu": false
-          }
-        },
-        {
-          "path": "/able/checkExcel",
-          "name": "checkExcel",
-          "component": "/able/checkExcel",
-          "meta": {
-            "title": "文件查看(excel)",
-            "showInMenu": false
+            "title": "水印"
           }
         }
       ]

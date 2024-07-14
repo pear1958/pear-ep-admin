@@ -1,20 +1,14 @@
 <template>
-  <el-card>
-    <template #header>
-      <span class="text-[16px]">wangEditor编辑器使用示例</span>
-    </template>
-
-    <div class="wang-editor">
-      <Toolbar class="toolbar" :editor="editorRef" :defaultConfig="toolbarConfig" :mode="mode" />
-      <Editor
-        style="height: 500px; overflow-y: hidden"
-        v-model="html"
-        :defaultConfig="editorConfig"
-        :mode="mode"
-        @onCreated="handleCreated"
-      />
-    </div>
-  </el-card>
+  <div class="wang-editor">
+    <Toolbar class="toolbar" :editor="editorRef" :defaultConfig="toolbarConfig" :mode="mode" />
+    <Editor
+      style="height: 500px; overflow-y: hidden"
+      v-model="html"
+      :defaultConfig="editorConfig"
+      :mode="mode"
+      @onCreated="handleCreated"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">

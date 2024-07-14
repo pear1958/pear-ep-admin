@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import router from '@/router/index'
 import { SystemState } from '../types'
-import piniaPersistConfig from '@/config/piniaPersist'
+import piniaPersistConfig from '../utils/persist'
 
 export const useSystemStore = defineStore({
   id: 'system',

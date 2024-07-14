@@ -154,6 +154,7 @@ function handleCroped() {
     options = {
       width: props.canvasWidth,
       height: props.canvasHeight
+      // fillColor: '#ee3264'
     }
   }
 

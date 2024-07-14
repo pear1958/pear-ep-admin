@@ -13,3 +13,8 @@ declare module 'hotkeys-js'
 declare module 'qs'
 declare module 'el-table-infinite-scroll'
 declare module 'v-contextmenu'
+
+declare module 'virtual:*' {
+  const result: any
+  export default result
+}
