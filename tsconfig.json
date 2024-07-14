@@ -8,7 +8,7 @@
     // 是否启动所有类型检查
     // https://blog.csdn.net/weixin_40013817/article/details/127200987
     "strict": false,
-    "jsx": "preserve", // 在 .tsx 文件里支持JSX
+    "jsx": "preserve", // https://www.typescriptlang.org/tsconfig/#jsx 
     "resolveJsonModule": true, // 允许导入json文件
     "isolatedModules": true, // 指定是否将每个文件作为单独的模块
     // 发出额外的 JS 以简化对导入 CommonJS 模块的支持

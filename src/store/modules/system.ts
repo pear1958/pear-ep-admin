@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import router from '@/router/index'
 import { SystemState } from '../types'
 import piniaPersistConfig from '@/config/piniaPersist'
-import type { TabItem } from '@/types/system'
 
 export const useSystemStore = defineStore({
   id: 'system',
