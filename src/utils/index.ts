@@ -166,3 +166,11 @@ export function isEqualObject(a: Recordable, b: Recordable): Boolean {
 
   return true
 }
+
+export const sleep = (time: number, fn?: Function, ...args: any[]): Promise<void> =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      fn && fn(...args)
+      resolve()
+    }, time)
+  })

@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import charts from '@/components/charts.vue'
+import charts from '@/components/charts'
 
 const mockOptions = {
   tooltip: {
