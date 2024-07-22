@@ -1,19 +1,22 @@
 import { PropType, computed, defineComponent, h, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import * as echarts from 'echarts'
-import type { ECharts } from 'echarts'
+import { EChartsType } from 'echarts/core'
+// import * as echarts from 'echarts'
+import echarts from './config'
 import { useSystemStore } from '@/store/modules/system'
 import { throttle } from '@/utils'
+import { ChartOption } from './type'
 
 export default defineComponent({
   name: 'charts',
   props: {
     options: {
-      type: Object as PropType<any>
+      type: Object as PropType<ChartOption>,
+      default: () => ({})
     }
   },
   setup(props) {
-    let chart: ECharts
+    let chart: EChartsType
     const chartRef = ref()
     const isCollapse = computed(() => systemStore.sideBar.isCollapse)
     const systemStore = useSystemStore()
@@ -32,13 +35,11 @@ export default defineComponent({
 
     window.addEventListener('resize', resizeChart)
 
-    watch(
-      () => [mainMaximize, isCollapse],
-      () => {
-        resizeChart()
-      },
-      { deep: true }
-    )
+    watch(mainMaximize, resizeChart)
+
+    watch(isCollapse, () => {
+      setTimeout(resizeChart, 300)
+    })
 
     watch(
       () => props.options,

@@ -6,7 +6,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import svgLoader from 'vite-svg-loader'
 import viteCompression from 'vite-plugin-compression'
 import { formatEnv } from './src/utils/env'
-import { viteBuildInfo } from './build/info'
+import { viteBuildInfo } from './src/utils/vitePlugins/buildInfo'
 import { include, exclude } from './build/optimize'
 
 const pathSrc = resolve(__dirname, 'src')

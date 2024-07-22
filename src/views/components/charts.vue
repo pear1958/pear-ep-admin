@@ -9,8 +9,9 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import charts from '@/components/charts'
+import { ChartOption } from '@/components/charts/type'
 
-const mockOptions = {
+const mockOptions: ChartOption = {
   tooltip: {
     trigger: 'axis',
     axisPointer: {

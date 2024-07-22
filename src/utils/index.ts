@@ -174,3 +174,12 @@ export const sleep = (time: number, fn?: Function, ...args: any[]): Promise<void
       resolve()
     }, time)
   })
+
+export const def = (obj: object, key: string | symbol, value: any) => {
+  Object.defineProperty(obj, key, {
+    writable: true,
+    enumerable: true,
+    configurable: true,
+    value
+  })
+}
