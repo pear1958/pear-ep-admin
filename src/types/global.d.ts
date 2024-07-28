@@ -43,3 +43,10 @@ declare interface ComponentElRef<T extends HTMLElement = HTMLDivElement> {
 declare type ComponentRef<T extends HTMLElement = HTMLDivElement> = ComponentElRef<T> | null
 
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
+
+/**
+ * 用法示例: type A = ToInterface<'userId' | 'userName' | 'hobby', string>
+ */
+declare type ToInterface<T extends string | number | symbol, U> = {
+  [P in T]: U
+}
