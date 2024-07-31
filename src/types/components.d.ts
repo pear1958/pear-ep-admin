@@ -1,8 +1,8 @@
 declare module 'vue' {
   export interface GlobalComponents {
-    iconify: (typeof import('../components/icon'))['iconify']
-    svgIcon: (typeof import('../components/svgIcon.vue'))['default']
-    imgViewer: (typeof import('../components/imgViewer'))['default']
+    Iconify: (typeof import('../components/Global/components/Icon'))['Iconify']
+    SvgIcon: (typeof import('../components/Global/components/SvgIcon.vue'))['default']
+    ImgViewer: (typeof import('../components/Global/components/ImgViewer'))['default']
   }
 }
 

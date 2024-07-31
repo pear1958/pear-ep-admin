@@ -50,7 +50,7 @@
     <div class="more-button">
       <el-dropdown @command="onDropDownClick($event, curTab)">
         <span class="dropdown-icon">
-          <svg-icon name="arrow-down" />
+          <SvgIcon name="arrow-down" />
         </span>
 
         <template #dropdown>
@@ -96,7 +96,7 @@ import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
 import maximize from './maximize.vue'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
-import { useIcon } from '@/components/icon'
+import { useIcon } from '@/components/Global/components/Icon'
 
 const route = useRoute()
 const router = useRouter()

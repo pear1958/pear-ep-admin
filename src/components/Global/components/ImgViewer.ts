@@ -2,7 +2,7 @@ import { PropType, defineComponent, h, watchEffect } from 'vue'
 import { ElImageViewer } from 'element-plus'
 
 export default defineComponent({
-  name: 'imgViewer',
+  name: 'ImgViewer',
   props: {
     visible: {
       type: Boolean,

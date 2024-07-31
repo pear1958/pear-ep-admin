@@ -1,7 +1,7 @@
 import { h, defineComponent, Component } from 'vue'
-import iconify from './iconify'
-import iconFont from './iconFont'
-import { iconType } from './types'
+import Iconify from './Iconify'
+import IconFont from './IconFont'
+import { IconType } from './types'
 
 /**
  * @description: 在函数中渲染图标组件, 支持传attr
@@ -24,7 +24,7 @@ import { iconType } from './types'
 
 // useIcon('vertical-left-outlined') || useIcon('vertical-left-outlined', { color: '#000' })
 
-export function useIcon(icon: any, attrs?: iconType): Component {
+export function useIcon(icon: any, attrs?: IconType): Component {
   const ifReg = /^IF-/
 
   // iconfont 图标
@@ -36,7 +36,7 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     return defineComponent({
       name: 'useIconFont',
       render() {
-        return h(iconFont, {
+        return h(IconFont, {
           icon: iconName,
           iconType, // 这两个属性合在一起就是传递给 iconFont 的 attrs
           ...attrs // 解构 & 透传给 iconFont
@@ -47,7 +47,7 @@ export function useIcon(icon: any, attrs?: iconType): Component {
     return defineComponent({
       name: 'useIconify',
       render() {
-        return h(iconify, {
+        return h(Iconify, {
           icon,
           ...attrs
         })

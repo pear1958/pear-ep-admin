@@ -56,6 +56,7 @@ import {
   ElUpload,
   ElCascader,
   ElText,
+  ElSpace,
   // 指令
   ElLoading,
   ElInfiniteScroll
@@ -119,10 +120,11 @@ const components = [
   ElImageViewer,
   ElUpload,
   ElCascader,
-  ElText
+  ElText,
+  ElSpace
 ]
 
-export function useElementPlus(app: App) {
+export function setupElementPlus(app: App) {
   // 注册组件
   components.forEach((component: Component) => {
     app.component(component.name as string, component)

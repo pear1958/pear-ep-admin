@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import Progress from '@/components/progress.vue'
+import Progress from '@/components/Progress.vue'
 </script>
 
 <style lang="scss" scoped></style>

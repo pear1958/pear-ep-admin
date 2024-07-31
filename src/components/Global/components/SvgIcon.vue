@@ -8,7 +8,7 @@
 import { computed } from 'vue'
 
 defineOptions({
-  name: 'svgIcon'
+  name: 'SvgIcon'
 })
 
 // 此组件 搭配 vite-plugin-svg-icons 插件使用   参见 vite.config.ts

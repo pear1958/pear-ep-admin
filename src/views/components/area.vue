@@ -34,8 +34,8 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import areaSelect from '@/components/areaSelect.vue'
-import areaCascader from '@/components/areaCascader.vue'
+import AreaSelect from '@/components/AreaSelect.vue'
+import AreaCascader from '@/components/AreaCascader.vue'
 
 const form1 = reactive({
   key1: 'test-1',

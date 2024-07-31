@@ -24,7 +24,7 @@
       <el-button type="primary" v-else>点击上传</el-button>
     </el-upload>
 
-    <cropper-dialog
+    <CropperDialog
       ref="cropperRef"
       v-if="enableCropper"
       :circle="cropperParams.circle"
@@ -34,7 +34,7 @@
       @confirm="onCropperConfirm"
     />
 
-    <img-viewer v-model:visible="showViewer" :imgList="imgList" :initIndex="initIndex" />
+    <ImgViewer v-model:visible="showViewer" :imgList="imgList" :initIndex="initIndex" />
   </div>
 </template>
 
@@ -48,7 +48,7 @@ import { uploadUrl, uploadHeaders } from '@/config'
 import { isNumber, isString } from '@/utils/is'
 import { IUploadResult } from '@/api/types'
 import { validSize } from './utils'
-import cropperDialog from './cropperDialog.vue'
+import CropperDialog from './CropperDialog.vue'
 import { ICropperParams, IFile } from './types'
 
 defineOptions({

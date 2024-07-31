@@ -1,11 +1,11 @@
 <template>
   <div class="bg-white dark:bg-dark p-4">
-    <choose-area @change="onChange" />
+    <ChooseArea @change="onChange" />
   </div>
 </template>
 
 <script setup lang="ts">
-import chooseArea from '@/components/chooseArea/index.vue'
+import ChooseArea from '@/components/ChooseArea/index.vue'
 
 function onChange(params: any) {
   console.log('params', params)

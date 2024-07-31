@@ -10,7 +10,7 @@ import { ElMessage, CascaderProps, CascaderOption } from 'element-plus'
 import { getOrganization } from '@/api/modules/common'
 
 defineOptions({
-  name: 'areaCascader'
+  name: 'AreaCascader'
 })
 
 interface IParams {

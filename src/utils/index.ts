@@ -1,4 +1,5 @@
 import { ElMessage } from 'element-plus'
+import { isString } from './is'
 
 /**
  * 获取浏览器默认语言
@@ -182,4 +183,15 @@ export const def = (obj: object, key: string | symbol, value: any) => {
     configurable: true,
     value
   })
+}
+
+/**
+ * @description 处理 prop, 当 prop 为多级嵌套时 -> 返回最后一级 prop
+ * */
+export function handleProp(prop: string): string {
+  if (!isString(prop)) throw new Error('prop传递错误')
+  if (prop === '') throw new Error('prop不能为空')
+  const propArr = prop.split('.')
+  if (propArr.length === 1) return prop
+  return propArr[propArr.length - 1]
 }

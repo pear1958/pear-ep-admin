@@ -61,7 +61,7 @@ import { ElMessage } from 'element-plus'
 import { getOrganization } from '@/api/modules/common'
 
 defineOptions({
-  name: 'areaSelect'
+  name: 'AreaSelect'
 })
 
 interface IOption {

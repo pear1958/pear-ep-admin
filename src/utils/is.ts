@@ -116,3 +116,7 @@ export function isNullAndUnDef(val: unknown): val is null | undefined {
 export function isNullOrUnDef(val: unknown): val is null | undefined {
   return isUnDef(val) || isNull(val)
 }
+
+export function isEmpty(val: any) {
+  return [null, undefined, ''].includes(val)
+}

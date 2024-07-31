@@ -19,8 +19,8 @@
 import { Ref, ref, unref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { AxiosError } from 'axios'
-import gkUpload from '@/components/gkUpload/index.vue'
-import type { UploadFile } from '@/components/gkUpload/types'
+import gkUpload from '@/components/common/gkUpload/index.vue'
+import type { UploadFile } from '@/components/common/gkUpload/types'
 import { uploadUrl, uploadHeaders } from '@/config'
 
 // const fileList: Ref<UploadFile[]> = ref([

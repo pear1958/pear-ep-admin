@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import pinia from './store'
 
-import { useElementPlus } from '@/hooks/useElementPlus'
+import { setupElementPlus } from '@/plugins/elementPlus'
 
 import '@/styles/index.scss'
 
@@ -21,7 +21,7 @@ import 'element-plus/dist/index.css'
 // element-plus 内置暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
-import { registerGlobComp } from '@/components'
+import { registerGlobComp } from '@/components/Global'
 
 import errorHandler from '@/utils/errorHandler'
 
@@ -32,6 +32,6 @@ const app = createApp(App)
 app.config.errorHandler = errorHandler
 
 registerGlobComp(app)
-useElementPlus(app)
+setupElementPlus(app)
 
 app.use(router).use(directives).use(pinia).use(i18n).mount('#app')

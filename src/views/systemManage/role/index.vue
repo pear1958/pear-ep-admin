@@ -1,61 +1,25 @@
 <template>
-  <div class="page-box bg-white">
-    <!-- <div>测试高度</div>
-    <div>测试高度</div>
-    <div>测试高度</div> -->
-
-    <el-table :data="tableData" border>
-      <el-table-column fixed prop="date" label="Date" width="150" />
-      <el-table-column prop="name" label="Name" width="120" />
-      <el-table-column prop="state" label="State" width="120" />
-      <el-table-column prop="city" label="City" width="120" />
-      <el-table-column prop="address" label="Address" width="600" />
-      <el-table-column prop="zip" label="Zip" width="120" />
-      <el-table-column fixed="right" label="Operations" min-width="120">
-        <template #default="scope">
-          <el-button link type="primary">Remove</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <div class="p-4 flex-end">
-      <el-pagination background layout="prev, pager, next" :total="1000" />
-    </div>
-  </div>
+  <TablePro :columns="columns" />
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
+<script lang="tsx" setup>
+import { reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import TablePro from '@/components/Base/TablePro/index.vue'
 
-defineOptions({
-  name: 'role'
-})
-
-const data = Array(150)
-  .fill('')
-  .map((item, index) => ({
-    date: '2016-05-01',
-    name: index,
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036'
-  }))
-
-const tableData = ref(data)
+const columns = ref([
+  {
+    prop: 'username',
+    label: '用户姓名',
+    search: { el: 'input', tooltip: '我是搜索提示' }
+  },
+  { prop: 'idCard', label: '身份证号', search: { el: 'input' } },
+  { prop: 'email', label: '邮箱', search: { el: 'input' } },
+  { prop: 'address', label: '居住地址', search: { el: 'input' } },
+  { prop: 'address1', label: '居住地址1', search: { el: 'input' } },
+  { prop: 'address2', label: '居住地址2', search: { el: 'input' } },
+  { prop: 'address3', label: '居住地址3', search: { el: 'input' } }
+])
 </script>
 
-<style lang="scss" scoped>
-.page-box {
-  height: 100%;
-  // border: 1px solid red;
-  box-sizing: border-box;
-  height: calc(100vh - $headerHeight - $tabHeight - 2 * $mainPadding);
-  display: flex;
-  flex-direction: column;
-
-  :deep(.el-table) {
-    flex: 1;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

@@ -1,13 +1,13 @@
 import { App } from 'vue'
 
-import svgIcon from './svgIcon.vue'
-import { iconify } from './icon'
-import imgViewer from './imgViewer'
+import SvgIcon from './components/SvgIcon.vue'
+import { Iconify } from './components/Icon'
+import ImgViewer from './components/ImgViewer'
 
 const components = {
-  svgIcon,
-  iconify,
-  imgViewer
+  SvgIcon,
+  Iconify,
+  ImgViewer
 }
 
 export function registerGlobComp(app: App) {
