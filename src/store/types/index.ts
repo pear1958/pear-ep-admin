@@ -22,7 +22,6 @@ export interface SystemState {
 }
 
 export interface PermissState {
-  curRouteName: string
   buttonData: {
     [key: string]: string[]
   } | null

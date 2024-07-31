@@ -5,11 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeMount, provide, watch } from 'vue'
+import { computed, onBeforeMount, provide, watch, ComputedRef } from 'vue'
 import { isArray, isNumber, isObject } from '@/utils/is'
 import { GridProps } from './type'
 import { useGrid } from './hooks'
-import { ComputedRef } from 'vue'
 
 defineOptions({
   name: 'Grid'

@@ -86,8 +86,6 @@ router.beforeEach(async (to, from, next) => {
   // 动态设置标题
   document.title = to.meta.title ? `${to.meta.title} - Ep-Admin` : 'Ep-Admin'
 
-  usePermissionStore().setRouteName(to.name as string)
-
   // 页面初始化时, 还原 主题 & 暗黑模式
   useTheme().initThemeAndDark()
 
