@@ -24,8 +24,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import gkCollapse from '@/components/common/gkCollapse/collapse.vue'
-import gkCollapseItem from '@/components/common/gkCollapse/collapseItem.vue'
+import gkCollapse from '@/components/Common/gkCollapse/collapse.vue'
+import gkCollapseItem from '@/components/Common/gkCollapse/collapseItem.vue'
 
 const openedValue = ref(['a'])
 </script>

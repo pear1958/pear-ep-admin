@@ -17,8 +17,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import gkDialog from '@/components/common/gkDialog/index.vue'
-import openDialog from '@/components/common/gkDialog/openDialog'
+import gkDialog from '@/components/Common/gkDialog/index.vue'
+import openDialog from '@/components/Common/gkDialog/openDialog'
 
 const visible = ref(false)
 
