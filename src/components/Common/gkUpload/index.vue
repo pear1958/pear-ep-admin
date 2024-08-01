@@ -26,15 +26,15 @@
           v-if="showActive && activeIndex == index"
         >
           <!-- 红色背景, 白色叉叉的按钮 -->
-          <iconify icon="close" />
+          <Iconify icon="close" />
         </div>
 
         <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
-          <iconify icon="delete" />
+          <Iconify icon="delete" />
         </div>
 
         <div class="hover-preview-icon" @click.stop="handlePreview(index)">
-          <iconify icon="zoom-in" />
+          <Iconify icon="zoom-in" />
         </div>
       </template>
 
@@ -46,11 +46,11 @@
       />
     </div>
 
-    <dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
+    <Dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
       <div class="upload" @click="handleClick">
-        <iconify icon="plus" />
+        <Iconify icon="plus" />
       </div>
-    </dragger>
+    </Dragger>
 
     <input
       class="file-input"
@@ -62,19 +62,19 @@
       :multiple="false"
     />
 
-    <img-viewer v-model:visible="showViewer" :imgList="imgList" :initIndex="initIndex" />
+    <ImgViewer v-model:visible="showViewer" :imgList="imgList" :initIndex="initIndex" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { PropType, ref, unref, computed } from 'vue'
 import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
-import dragger from './dragger.vue'
+import Dragger from './Dragger.vue'
 import { UploadFile } from './types'
 import { deepClone } from '@/utils'
 
 defineOptions({
-  name: 'gkUpload'
+  name: 'GkUpload'
 })
 
 const props = defineProps({

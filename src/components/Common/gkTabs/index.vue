@@ -31,10 +31,10 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, unref, useSlots, watchEffect } from 'vue'
-import tabItem from './tabItem'
+import TabItem from './TabItem'
 
 defineOptions({
-  name: 'gkTabs'
+  name: 'GkTabs'
 })
 
 const props = defineProps({
@@ -78,7 +78,7 @@ const defaults = slots.default()
 // console.log('tabItem', tabItem)
 
 defaults.forEach((slot: any) => {
-  if (slot.type !== tabItem) {
+  if (slot.type !== TabItem) {
     throw new Error('Tabs标签内只能包含 tabItem 标签')
   }
 })

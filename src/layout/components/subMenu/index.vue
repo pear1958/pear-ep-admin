@@ -5,7 +5,7 @@
       :index="subItem.path"
       @click="handleClickMenu(subItem)"
     >
-      <iconify
+      <Iconify
         :icon="subItem.meta.icon"
         :class="['text-base', { 'mr-1.5': !isCollapse }]"
         v-if="subItem.meta.icon"
@@ -20,7 +20,7 @@
 
     <el-sub-menu v-else :index="subItem.path">
       <template #title>
-        <iconify
+        <Iconify
           :icon="subItem.meta.icon"
           :class="['text-base', { 'mr-1.5': !isCollapse }]"
           v-if="subItem.meta.icon"

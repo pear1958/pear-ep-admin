@@ -1,6 +1,6 @@
 <template>
   <div class="header-icon" @click="showSearchPanel = true">
-    <iconify icon="search-outlined" />
+    <Iconify icon="search-outlined" />
   </div>
 
   <el-dialog
@@ -24,7 +24,7 @@
         <div class="search-item" v-for="searchItem in searchList" @click="handleSelect(searchItem)">
           <div class="flex-c">
             <span class="icon" style="margin-top: -6px">
-              <iconify icon="document" />
+              <Iconify icon="document" />
             </span>
 
             <div class="breadcrumb-text">
@@ -37,7 +37,7 @@
           </div>
 
           <a class="icon">
-            <iconify icon="enter-outlined" color="var(--el-color-primary)" />
+            <Iconify icon="enter-outlined" color="var(--el-color-primary)" />
           </a>
         </div>
       </template>

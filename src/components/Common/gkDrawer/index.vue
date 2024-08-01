@@ -17,7 +17,7 @@
           <div v-else>{{ title }}</div>
         </div>
 
-        <iconify icon="close" class="close-icon" @click="close" />
+        <Iconify icon="close" class="close-icon" @click="close" />
       </div>
 
       <div class="body">
@@ -42,6 +42,10 @@
 
 <script setup lang="ts">
 import { useSlots } from 'vue'
+
+defineOptions({
+  name: 'GkDrawer'
+})
 
 defineProps({
   modelValue: {

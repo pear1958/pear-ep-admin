@@ -1,7 +1,6 @@
 import { PropType, computed, defineComponent, h, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { EChartsType } from 'echarts/core'
-// import * as echarts from 'echarts'
 import echarts from './config'
 import { useSystemStore } from '@/store/modules/system'
 import { throttle } from '@/utils'

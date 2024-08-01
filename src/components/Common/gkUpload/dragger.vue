@@ -13,6 +13,10 @@
 <script lang="ts" setup>
 import { PropType, ref } from 'vue'
 
+defineOptions({
+  name: 'Dragger'
+})
+
 const isOver = ref(false)
 
 const props = defineProps({

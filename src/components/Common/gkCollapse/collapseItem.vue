@@ -15,7 +15,7 @@
       @click="handleClick"
     >
       <slot name="title">{{ title }}</slot>
-      <iconify icon="arrow-right" class="header-angle" />
+      <Iconify icon="arrow-right" class="header-angle" />
     </div>
 
     <Transition name="slide" v-on="transitionEvents">
@@ -33,7 +33,7 @@ import { computed, inject } from 'vue'
 import { collapseContextKey } from './types'
 
 defineOptions({
-  name: 'gkCollapseItem'
+  name: 'GkCollapseItem'
 })
 
 const props = defineProps({

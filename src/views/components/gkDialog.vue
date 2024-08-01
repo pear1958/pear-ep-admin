@@ -6,19 +6,19 @@
       <el-button type="primary" @click="showDialog">函数式调用对话框</el-button>
     </div> -->
 
-    <gk-dialog v-model:visible="visible" title="测试标题" :handleOk="handleOk" :cancel="cancel">
+    <GkDialog v-model:visible="visible" title="测试标题" :handleOk="handleOk" :cancel="cancel">
       <template v-slot:content>
         <p>第一行</p>
         <p>第二行</p>
       </template>
-    </gk-dialog>
+    </GkDialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import gkDialog from '@/components/Common/gkDialog/index.vue'
-import openDialog from '@/components/Common/gkDialog/openDialog'
+import GkDialog from '@/components/Common/GkDialog/index.vue'
+import openDialog from '@/components/Common/GkDialog/openDialog'
 
 const visible = ref(false)
 
