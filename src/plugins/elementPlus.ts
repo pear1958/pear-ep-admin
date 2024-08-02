@@ -57,6 +57,9 @@ import {
   ElCascader,
   ElText,
   ElSpace,
+  ElTreeSelect,
+  ElDatePicker,
+  ElSelectV2,
   // 指令
   ElLoading,
   ElInfiniteScroll
@@ -121,7 +124,10 @@ const components = [
   ElUpload,
   ElCascader,
   ElText,
-  ElSpace
+  ElSpace,
+  ElTreeSelect,
+  ElDatePicker,
+  ElSelectV2
 ]
 
 export function setupElementPlus(app: App) {

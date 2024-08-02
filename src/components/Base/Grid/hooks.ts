@@ -101,9 +101,10 @@ export const useGrid = () => {
 
         return prev
       }, 0)
+
       if (!find) hiddenIndex.value = -1
-    } catch (e) {
-      console.warn(e)
+    } catch (err) {
+      // console.warn(err)
     }
   }
 

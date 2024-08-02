@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="search-form-box">
     <el-form :model="searchParams">
       <Grid ref="gridRef" :collapsed="collapsed" :gap="[0, 30]" :cols="searchCols">
         <GridItem
@@ -10,17 +10,21 @@
         >
           <el-form-item>
             <template #label>
-              <el-space :size="4">
+              <div class="gap-1 flex-c">
                 <span>{{ `${column.search?.label ?? column.label}` }}</span>
+
                 <el-tooltip
                   v-if="column.search?.tooltip"
                   effect="dark"
                   :content="column.search?.tooltip"
                   placement="top"
                 >
-                  (?)
+                  <el-icon class="cursor-pointer" :size="14">
+                    <QuestionFilled />
+                  </el-icon>
                 </el-tooltip>
-              </el-space>
+              </div>
+
               <span>&nbsp;:</span>
             </template>
 
@@ -29,7 +33,7 @@
         </GridItem>
 
         <GridItem suffix>
-          <div class="flex-end">
+          <div class="flex-end mb-[18px]">
             <el-button type="primary" :icon="Search" @click="search">搜索</el-button>
             <el-button :icon="Delete" @click="reset">重置</el-button>
             <el-button type="primary" link @click="collapsed = !collapsed" v-if="showCollapse">
@@ -47,16 +51,23 @@
 
 <script setup lang="ts">
 import { computed, ref, unref } from 'vue'
-import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
+import { Delete, Search, ArrowDown, ArrowUp, QuestionFilled } from '@element-plus/icons-vue'
 import Grid from '../Grid/index.vue'
 import GridItem from '../Grid/GridItem.vue'
 import SearchFormItem from './SearchFormItem.vue'
 import { BreakPoint } from '../Grid/type'
-import { SearchFormProps } from './type'
 
 defineOptions({
   name: 'SearchParam'
 })
+
+interface SearchFormProps {
+  searchParams?: Recordable // v-model的搜索参数
+  columns?: any[] // 搜索配置列
+  search: (params: Recordable | null) => void
+  reset: (params: Recordable | null) => void
+  searchCols: number | Record<BreakPoint, number>
+}
 
 const props = withDefaults(defineProps<SearchFormProps>(), {
   searchParams: () => ({}),
@@ -104,3 +115,13 @@ const showCollapse = computed(() => {
   return show
 })
 </script>
+
+<style lang="scss" scoped>
+.search-form-box {
+  :deep(.el-form) {
+    .el-form-item__content > * {
+      width: 100%;
+    }
+  }
+}
+</style>

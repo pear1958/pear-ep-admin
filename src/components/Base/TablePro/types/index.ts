@@ -1,13 +1,6 @@
 import { Ref, VNode } from 'vue'
 import { TableColumnCtx } from 'element-plus'
-import { BreakPoint, Responsive } from '../Grid/type'
-
-export interface TableProProps {
-  // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
-  searchCols?: number | Record<BreakPoint, number>
-  // 列配置项
-  columns: ColumnProps[]
-}
+import { BreakPoint, Responsive } from '../../Grid/type'
 
 export type SearchType =
   | 'input'
@@ -32,7 +25,7 @@ export interface EnumProps {
 }
 
 export type SearchRenderScope = {
-  searchParam: { [key: string]: any }
+  searchParams: Recordable
   placeholder: string
   clearable: boolean
   options: EnumProps[]
@@ -58,23 +51,28 @@ export interface fieldNames {
   children?: string
 }
 
-export type RenderScope<T> = {
-  row: T
+export interface HeaderRenderScope<T = any> extends Recordable {
   $index: number
   column: TableColumnCtx<T>
-  [key: string]: any
+}
+
+export interface RenderScope<T> extends HeaderRenderScope<T> {
+  row: T
 }
 
 export type TypeProps = 'index' | 'selection' | 'radio' | 'expand' | 'sort'
 
 export interface ColumnProps<T = any>
   extends Partial<Omit<TableColumnCtx<T>, 'type' | 'children' | 'renderCell' | 'renderHeader'>> {
+  type?: TypeProps // 列类型
   search?: SearchProps // 搜索项配置
   fieldNames?: fieldNames // 指定 label && value && children 的 key 值
   isShow?: boolean // 是否显示在表格当中
   isSetting?: boolean // 是否在 ColSetting 中可配置
-  _children?: ColumnProps<T>[] // 多级表头
+  children?: ColumnProps<T>[] // 多级表头
   isFilterEnum?: boolean // 当前单元格值是否根据 enum 格式化（示例：enum 只作为搜索项数据）
+  headerRender?: (scope: HeaderRenderScope<T>) => VNode // 自定义表头内容渲染（tsx语法）
   render?: (scope: RenderScope<T>) => VNode | string // 自定义单元格内容渲染（tsx语法）
-  type?: TypeProps // 列类型
+  enum?: EnumProps[] | Ref<EnumProps[]> // 枚举字典
+  tag?: boolean | Ref<boolean> // 是否是标签展示
 }

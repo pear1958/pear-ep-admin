@@ -1,10 +1,10 @@
 <template>
   <component
     :is="column.search?.render ?? `el-${column.search?.el}`"
-    v-bind="{ ...handleSearchProps, placeholder, searchParams, clearable }"
+    v-bind="{ ...handleSearchProps, ...placeholder, searchParams, clearable }"
     v-model.trim="searchParams[column.search?.key ?? handleProp(column.prop!)]"
-    :data="column.search?.el === 'tree-select' ? columnEnum : []"
-    :options="['cascader', 'select-v2'].includes(column.search?.el!) ? columnEnum : []"
+    :data="column.search?.el === 'tree-select' ? columnEnumData : []"
+    :options="['cascader', 'select-v2'].includes(column.search?.el!) ? columnEnumData : []"
   >
     <template v-if="column.search?.el === 'cascader'" #default="{ data }">
       <span>{{ data[fieldNames.label] }}</span>
@@ -12,7 +12,7 @@
 
     <template v-if="column.search?.el === 'select'">
       <el-option
-        v-for="(item, index) in columnEnum"
+        v-for="(item, index) in columnEnumData"
         :label="item[fieldNames.label]"
         :value="item[fieldNames.value]"
         :key="index"
@@ -25,13 +25,18 @@
 
 <script setup lang="ts">
 import { computed, inject, ref, toRef, unref } from 'vue'
-import { SearchFormItemProps } from './type'
 import { handleProp } from '@/utils'
 import { isEmpty } from '@/utils/is'
+import { ColumnProps } from '../TablePro/types'
 
 defineOptions({
   name: 'SearchFormItem'
 })
+
+interface SearchFormItemProps {
+  column: ColumnProps
+  searchParams: Recordable
+}
 
 const props = defineProps<SearchFormItemProps>()
 
@@ -73,8 +78,8 @@ const placeholder = computed(() => {
     search?.props?.isRange
   ) {
     return {
-      rangeSeparator: search?.props?.rangeSeparator ?? '至',
       startPlaceholder: search?.props?.startPlaceholder ?? '开始时间',
+      rangeSeparator: search?.props?.rangeSeparator ?? '至',
       endPlaceholder: search?.props?.endPlaceholder ?? '结束时间'
     }
   }
@@ -83,7 +88,9 @@ const placeholder = computed(() => {
     search?.props?.placeholder ??
     (search?.el?.includes('input') ? '请输入' : '请选择') + unref(column).label
 
-  return placeholder
+  return {
+    placeholder
+  }
 })
 
 // 没有默认值时, 才显示清除按钮
@@ -92,10 +99,10 @@ const clearable = computed(() => {
   return search?.props?.clearable ?? isEmpty(search?.defaultValue)
 })
 
-// 接收 enumMap, el 为 select-v2 需单独处理 enumData
+// el 为 select-v2 时需单独处理 enumData
 const enumMap = inject('enumMap', ref(new Map()))
 
-const columnEnum = computed(() => {
+const columnEnumData = computed(() => {
   const { column } = props
 
   let enumData = unref(enumMap).get(column.prop)

@@ -41,9 +41,7 @@ watch(
       return
     }
 
-    if (parseInt(attrs.index) >= Number(newVal[0])) {
-      visible.value = false
-    }
+    visible.value = parseInt(attrs.index) < Number(newVal[0])
   },
   { immediate: true }
 )

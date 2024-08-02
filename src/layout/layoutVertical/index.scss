@@ -66,6 +66,10 @@
   }
 
   .right-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
     > .header {
       background-color: #ffffff;
       height: $headerHeight;
@@ -73,9 +77,8 @@
     }
 
     > .content {
-      min-height: calc(100vh - $headerHeight - $tabHeight);
+      flex: 1;
       background-color: $mainBgColor;
-      box-sizing: border-box;
       // 防止切换路由时出现 x y 轴的滚动条
       overflow-x: hidden;
     }

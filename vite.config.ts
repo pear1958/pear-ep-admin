@@ -32,10 +32,15 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       host: true, // 监听本地所有IP
       port: envConf.VITE_PORT,
       proxy: {
-        [env.VITE_API_BASE_URL]: {
-          target: env.VITE_PROXY_URL,
+        // [env.VITE_API_BASE_URL]: {
+        //   target: env.VITE_PROXY_URL,
+        //   changeOrigin: true,
+        //   rewrite: path => path.replace(env.VITE_API_BASE_URL, '')
+        // },
+        '/api': {
+          target: 'https://mock.mengxuegu.com/mock/629d727e6163854a32e8307e',
           changeOrigin: true,
-          rewrite: path => path.replace(env.VITE_API_BASE_URL, '')
+          rewrite: path => path.replace('/api', '')
         }
       },
       // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布

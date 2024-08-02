@@ -31,13 +31,3 @@
 .hover\:el-color-primary:hover {
   color: var(--el-color-primary);
 }
-
-.card {
-  box-sizing: border-box;
-  padding: 20px;
-  overflow-x: hidden;
-  background-color: var(--el-bg-color);
-  border: 1px solid var(--el-border-color-light);
-  border-radius: 6px;
-  box-shadow: 0 0 12px rgb(0 0 0 / 5%);
-}

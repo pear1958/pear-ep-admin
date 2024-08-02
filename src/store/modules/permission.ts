@@ -9,7 +9,9 @@ export const usePermissionStore = defineStore({
     // 菜单权限
     menuList: [],
     // 用户所有的按钮权限
-    buttonData: null
+    buttonData: null,
+    // 当前页面的 route name, 用来做按钮权限筛选
+    curRouteName: ''
   }),
   getters: {
     // 扁平化之后的一维数组路由, 主要用来添加动态路由
@@ -23,6 +25,9 @@ export const usePermissionStore = defineStore({
     }
   },
   actions: {
+    setRouteName(name: string) {
+      this.curRouteName = name
+    },
     // 获取侧边栏菜单数据
     getMenuList() {
       return new Promise((resolve, reject) => {

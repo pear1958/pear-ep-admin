@@ -1,13 +1,11 @@
 <template>
-  <div class="main">
-    <router-view v-slot="{ Component, route }">
-      <transition appear name="fade-transform" mode="out-in">
-        <keep-alive :include="keepAliveNameList">
-          <component :is="Component" :key="route.path" v-if="routerShow" />
-        </keep-alive>
-      </transition>
-    </router-view>
-  </div>
+  <router-view v-slot="{ Component, route }">
+    <transition appear name="fade-transform" mode="out-in">
+      <keep-alive :include="keepAliveNameList">
+        <component :is="Component" :key="route.path" v-if="routerShow" />
+      </keep-alive>
+    </transition>
+  </router-view>
 </template>
 
 <script lang="ts" setup>
@@ -25,10 +23,3 @@ emitter.on('refreshPage', val => {
   routerShow.value = val as boolean
 })
 </script>
-
-<style lang="scss" scoped>
-.main {
-  min-height: calc(100vh - $headerHeight - $tabHeight - 32px);
-  box-sizing: border-box;
-}
-</style>

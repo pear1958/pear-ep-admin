@@ -33,3 +33,8 @@ interface TableParams {
 export const getCompositionList = (params: TableParams) => {
   return http.get<any>('/component/componentProduct', params)
 }
+
+// 获取用户列表
+export const getUserList = (params: any) => {
+  return http.post(`/geeker/user/list`, params)
+}

@@ -120,3 +120,7 @@ export function isNullOrUnDef(val: unknown): val is null | undefined {
 export function isEmpty(val: any) {
   return [null, undefined, ''].includes(val)
 }
+
+export function objIsEmpty(val: object) {
+  return !!Object.keys(val).length
+}
