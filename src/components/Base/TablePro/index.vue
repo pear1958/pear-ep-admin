@@ -52,6 +52,7 @@
       :row-key="rowKey"
       @selection-change="onSelectChange"
       v-loading="loading"
+      class="table-box"
     >
       <!-- 默认插槽 -->
       <slot />

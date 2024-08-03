@@ -38,15 +38,7 @@ html.dark {
       .page-box {
         background-color: $bg-color !important;
       }
-
-      .main-full {
-        height: calc(100vh - $headerHeight - $tabHeight - 32px - 2px);
-      }
     }
-  }
-
-  .main-maximize .main-full {
-    height: calc(100vh - 32px - 2px);
   }
 
   .tabs-box {

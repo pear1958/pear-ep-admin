@@ -1,6 +1,6 @@
 <template>
-  <div class="main-full flex-c">
-    <noExist />
+  <div class="h-full flex-c">
+    <NoExistImg />
 
     <div class="desc">
       <h2>404</h2>
@@ -11,7 +11,11 @@
 </template>
 
 <script setup>
-import noExist from '@/assets/imgs/404.svg?component'
+import NoExistImg from '@/assets/imgs/404.svg?component'
+
+defineOptions({
+  name: 'Error404'
+})
 </script>
 
 <style lang="scss" scoped>

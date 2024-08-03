@@ -1,5 +1,5 @@
 <template>
-  <el-drawer :modelValue="visible" title="地址选择" @close="close" :size="422" class="addr-drawer">
+  <el-drawer :modelValue="visible" title="地址选择" @close="close" :size="422">
     <div class="map-box">
       <el-select
         v-model="addr"
@@ -10,7 +10,12 @@
         :style="{ width: '100%' }"
         @change="onChange"
       >
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
       </el-select>
 
       <div class="mt-1.5">
@@ -132,7 +137,10 @@ function initMap(): Promise<void> {
         map = new AMap.Map(mapRef.value, {
           zoom: 15,
           layers: [new AMap.TileLayer.Satellite(), new AMap.TileLayer.RoadNet()],
-          center: [(props.mapData as any)?.lng || 104.060791, (props.mapData as any)?.lat || 30.543995]
+          center: [
+            (props.mapData as any)?.lng || 104.060791,
+            (props.mapData as any)?.lat || 30.543995
+          ]
         })
 
         geocoder = new AMap.Geocoder()
@@ -259,23 +267,6 @@ const onChange = (name: string) => {
     padding: 6px;
     width: 170px;
     white-space: normal;
-  }
-}
-</style>
-
-<style lang="scss">
-.addr-drawer {
-  .el-drawer__header {
-    color: #000000d9;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 16px;
-    margin-bottom: 0;
-  }
-
-  .el-drawer__footer {
-    border-top: 1px solid #f0f0f0;
-    padding: 16px;
-    padding-top: 16px;
   }
 }
 </style>

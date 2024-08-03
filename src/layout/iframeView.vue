@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="loading" class="content-full overflow-hidden">
+  <div v-loading="loading" class="h-full overflow-hidden">
     <iframe :src="iframeSrc" class="w-full h-full" frameborder="0" ref="iframeRef" />
   </div>
 </template>

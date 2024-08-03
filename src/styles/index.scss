@@ -2,6 +2,7 @@
 @import './common.scss';
 @import './dark.scss';
 @import './transition.scss';
+@import './element.scss';
 
 @import '../assets/fonts/index.scss';
 
@@ -11,22 +12,4 @@ body {
 
 button:focus {
   outline: none;
-}
-
-.content-full {
-  height: calc(100vh - $headerHeight - $tabHeight);
-}
-
-.main-full {
-  height: calc(100vh - $headerHeight - $tabHeight - 32px);
-}
-
-.main-maximize {
-  .content-full {
-    height: 100vh;
-  }
-
-  .main-full {
-    height: calc(100vh - 32px);
-  }
 }

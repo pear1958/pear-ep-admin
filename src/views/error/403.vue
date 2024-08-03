@@ -1,6 +1,6 @@
 <template>
-  <div class="main-full flex-c">
-    <noAuth />
+  <div class="h-full flex-c">
+    <NoAuthImg />
 
     <div class="desc">
       <h2>403</h2>
@@ -11,7 +11,11 @@
 </template>
 
 <script setup>
-import noAuth from '@/assets/imgs/403.svg?component'
+import NoAuthImg from '@/assets/imgs/403.svg?component'
+
+defineOptions({
+  name: 'Error403'
+})
 </script>
 
 <style lang="scss" scoped>

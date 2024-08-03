@@ -325,6 +325,33 @@
       ]
     },
     {
+      "path": "/error",
+      "name": "Error",
+      "redirect": "/error/403",
+      "meta": {
+        "title": "错误页面",
+        "icon": "ri:information-line"
+      },
+      "children": [
+        {
+          "path": "/error/403",
+          "name": "Error403",
+          "component": "/error/403",
+          "meta": {
+            "title": "403"
+          }
+        },
+        {
+          "path": "/error/404",
+          "name": "Error404",
+          "component": "/error/404",
+          "meta": {
+            "title": "404"
+          }
+        }
+      ]
+    },
+    {
       "path": "/link",
       "name": "link",
       "redirect": "/link/bing",
