@@ -25,9 +25,7 @@ import { ColumnProps } from '../types'
 
 defineOptions({ name: 'ColSetting' })
 
-// defineProps<{ settingColumns: ColumnProps[] }>()
-
-const settingColumns = ref([])
+defineProps<{ settingColumns: ColumnProps[] }>()
 
 const visible = ref<boolean>(false)
 

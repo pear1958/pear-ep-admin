@@ -1,6 +1,6 @@
 import { type InternalAxiosRequestConfig } from 'axios'
 
-export interface ResultData<T> {
+export interface ResultData<T = any> {
   code: string
   msg: string
   data: T

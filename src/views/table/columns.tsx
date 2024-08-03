@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { ElMessage } from 'element-plus'
 import { ColumnProps, HeaderRenderScope } from '@/components/Base/TablePro/types'
+import { getUserGender, getUserStatus } from '@/api/modules/user'
 
 // 表格配置项
 export const columns = reactive<ColumnProps[]>([
@@ -26,17 +27,21 @@ export const columns = reactive<ColumnProps[]>([
   {
     prop: 'gender',
     label: '性别',
-    // 字典数据 - 本地数据
-    enum: [
-      {
-        genderLabel: '男',
-        genderValue: 1
-      },
-      {
-        genderLabel: '女',
-        genderValue: 2
-      }
-    ],
+    // --------------- 字典请求不带参数 -------------------------
+    enum: getUserGender,
+    // --------------- 字典请求携带参数 ------------------------
+    // enum: () => getUserGender({ id: 1 }),
+    // --------------- 字典数据 - 本地数据 -------------------
+    // enum: [
+    //   {
+    //     genderLabel: '男',
+    //     genderValue: 1
+    //   },
+    //   {
+    //     genderLabel: '女',
+    //     genderValue: 2
+    //   }
+    // ],
     search: { el: 'select', props: { filterable: true } },
     fieldNames: { label: 'genderLabel', value: 'genderValue' }
   },
@@ -63,18 +68,19 @@ export const columns = reactive<ColumnProps[]>([
   {
     prop: 'status',
     label: '用户状态',
-    enum: [
-      {
-        userLabel: '启用',
-        userStatus: 1,
-        tagType: 'success'
-      },
-      {
-        userLabel: '禁用',
-        userStatus: 0,
-        tagType: 'danger'
-      }
-    ],
+    enum: getUserStatus,
+    // enum: [
+    //   {
+    //     userLabel: '启用',
+    //     userStatus: 1,
+    //     tagType: 'success'
+    //   },
+    //   {
+    //     userLabel: '禁用',
+    //     userStatus: 0,
+    //     tagType: 'danger'
+    //   }
+    // ],
     search: { el: 'select', props: { filterable: true } },
     fieldNames: { label: 'userLabel', value: 'userStatus' },
     render: scope => {

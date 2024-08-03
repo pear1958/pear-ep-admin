@@ -39,3 +39,13 @@ export const getUserList = (params: any) => {
   return http.post(`/geeker/user/list`, params)
   // return Promise.resolve({ list: [], total: 0 })
 }
+
+// 获取用户性别字典
+export const getUserGender = () => {
+  return http.get(`/geeker/user/gender`)
+}
+
+// 获取用户状态字典
+export const getUserStatus = () => {
+  return http.get(`/geeker/user/status`)
+}

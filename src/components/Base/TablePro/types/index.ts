@@ -43,6 +43,7 @@ export interface SearchProps extends Partial<Record<BreakPoint, Responsive>> {
   offset?: number // 搜索字段左侧偏移列数
   defaultValue?: string | number | boolean | any[] | Ref<any> // 搜索项默认值
   render?: (scope: SearchRenderScope) => VNode // 自定义搜索内容渲染（tsx语法）
+  noEnum?: boolean // 不使用枚举, 默认为false
 }
 
 export interface fieldNames {
@@ -73,6 +74,8 @@ export interface ColumnProps<T = any>
   isFilterEnum?: boolean // 当前单元格值是否根据 enum 格式化（示例：enum 只作为搜索项数据）
   headerRender?: (scope: HeaderRenderScope<T>) => VNode // 自定义表头内容渲染（tsx语法）
   render?: (scope: RenderScope<T>) => VNode | string // 自定义单元格内容渲染（tsx语法）
-  enum?: EnumProps[] | Ref<EnumProps[]> // 枚举字典
+  enum?: EnumProps[] | PromiseFn // 枚举字典
   tag?: boolean | Ref<boolean> // 是否是标签展示
 }
+
+export type EnumMap = Map<string, Recordable[]>

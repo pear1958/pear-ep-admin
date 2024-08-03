@@ -129,21 +129,22 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, toRef, unref, provide, onMounted } from 'vue'
+import { computed, ref, toRef, unref, provide, onMounted, Ref, watch } from 'vue'
 import { ElTable } from 'element-plus'
 import { Refresh, Operation, Search, DCaret } from '@element-plus/icons-vue'
 import Sortable from 'sortablejs'
 import SearchForm from '../SearchForm/index.vue'
 import { useSelection } from './hooks/useSelection'
 import { useTable } from './hooks/useTable'
-import { ColumnProps, TypeProps } from './types'
+import { ColumnProps, EnumMap, TypeProps } from './types'
 import { BreakPoint } from '../Grid/type'
-import { isArray, isEmpty } from '@/utils/is'
+import { isArray, isEmpty, isFunction } from '@/utils/is'
 import { handleProp } from '@/utils'
 import { genUUID } from '@/utils/uuid'
 import TableColWrapper from './components/TableColWrapper.vue'
 import Pagination from './components/Pagination.vue'
 import ColSetting from './components/ColSetting.vue'
+import { ResultData } from '@/api/types'
 
 export interface TableProProps {
   columns: ColumnProps[] // 列配置项  ==> 必传
@@ -173,7 +174,7 @@ const props = withDefaults(defineProps<TableProProps>(), {
 })
 
 const emit = defineEmits<{
-  search: []
+  search: [Recordable]
   reset: []
   dragSort: [{ newIndex?: number; oldIndex?: number }]
 }>()
@@ -187,6 +188,7 @@ const {
   loading,
   pageParams,
   searchParams,
+  totalParams,
   searchInitParams,
   initTable,
   getTableList,
@@ -200,7 +202,7 @@ const showSearch = ref(true)
 
 const _search = () => {
   search()
-  emit('search')
+  emit('search', totalParams)
 }
 
 const _reset = () => {
@@ -211,7 +213,7 @@ const _reset = () => {
 const tableColumns = toRef<ColumnProps[]>(props.columns)
 
 // 定义 enumMap 存储 字典 值
-const enumMap = ref(new Map<string, Recordable[]>())
+const enumMap: Ref<EnumMap> = ref(new Map())
 
 provide('enumMap', enumMap)
 
@@ -226,7 +228,7 @@ const flatColumns = computed(() => flatColumnsFunc(tableColumns.value))
 
 // 扁平化 columns 的方法
 const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) => {
-  columns.forEach(async col => {
+  columns.forEach(col => {
     if (col.children?.length) flatArr.push(...flatColumnsFunc(col.children))
 
     flatArr.push(col)
@@ -236,13 +238,41 @@ const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) =>
     col.isSetting = col.isSetting ?? true
     col.isFilterEnum = col.isFilterEnum ?? true
 
-    // 设置 enumMap
-    if (isArray(col.enum)) {
-      unref(enumMap).set(col.prop!, unref(col.enum!))
-    }
+    col.enum && setEnumMap(col)
   })
 
   return flatArr.filter(item => !item.children?.length)
+}
+
+/**
+ * 函数不会重复执行 & 数组相同不同重复设置
+ * 如果需要更新 enum 的值, 请重新设置 enum 的值为数组
+ */
+const setEnumMap = ({ prop, enum: enumValue }: ColumnProps) => {
+  // 如果当前 enumMap 存在相同的值 return
+  if (
+    unref(enumMap).has(prop) &&
+    (isFunction(enumValue) || unref(enumMap).get(prop) === enumValue)
+  ) {
+    return
+  }
+
+  // 当前 enum 为静态数据，则直接存储到 enumMap
+  if (isArray(enumValue)) unref(enumMap).set(prop, enumValue)
+
+  // 下面的http是异步的, 避免 tableColumns 改变, 重复执行请求, 下次进来就被上面第一个判断给拦截了
+  unref(enumMap).set(prop, [])
+
+  if (isFunction(enumValue)) {
+    enumValue()
+      .then((res: ResultData<Recordable[]>) => {
+        const { data } = res
+        Array.isArray(data) && unref(enumMap).set(prop, data)
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
+  }
 }
 
 // 设置 搜索表单默认排序 && 搜索表单项的默认值
@@ -317,7 +347,6 @@ const dragSort = () => {
   })
 }
 
-// 暴露给父组件的参数和方法 (外部需要什么，都可以从这里暴露出去)
 defineExpose({
   tableRef,
   radio,
@@ -325,6 +354,7 @@ defineExpose({
   loading,
   pageParams,
   searchParams,
+  totalParams,
   searchInitParams,
   isSelected,
   selectList,

@@ -5,6 +5,7 @@
     :api="api"
     :fixedParams="fixedParams"
     :dataCallback="dataCallback"
+    @search="onSearch"
   >
     <!-- 表格 header 按钮 -->
     <template #tableHeader="scope">
@@ -47,10 +48,8 @@
 </template>
 
 <script setup lang="tsx" name="useProTable">
-import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, unref } from 'vue'
 import { ElMessage } from 'element-plus'
-import TablePro from '@/components/Base/TablePro/index.vue'
 import {
   CirclePlus,
   Delete,
@@ -60,11 +59,12 @@ import {
   View,
   Refresh
 } from '@element-plus/icons-vue'
+import TablePro from '@/components/Base/TablePro/index.vue'
 import { getUserList } from '@/api/modules/user'
 import { columns } from './columns'
 
 const tableProRef = ref()
-const fixedParams = reactive({ type: 1 })
+const fixedParams = reactive({ fixed: 'test' })
 
 const api = (params: any) => {
   const newParams = JSON.parse(JSON.stringify(params))
@@ -79,5 +79,10 @@ const dataCallback = (data: any) => {
     list: data.list,
     total: data.total
   }
+}
+
+const onSearch = (params: Recordable) => {
+  console.log('onSearch - params', params.value)
+  console.log('tableProRef', unref(tableProRef))
 }
 </script>
