@@ -1,14 +1,14 @@
 <template>
   <div class="header-box">
     <div class="header-left">
-      <collapse />
-      <breadcrumb />
+      <Collapse />
+      <Breadcrumb />
     </div>
 
     <div class="header-right">
-      <search />
-      <fullscreen />
-      <i18nIcon />
+      <Search />
+      <Fullscreen />
+      <I18nIcon />
 
       <el-dropdown @command="onClick">
         <div class="user">
@@ -40,11 +40,11 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import collapse from './components/collapse.vue'
-import breadcrumb from './components/breadcrumb.vue'
-import search from './components/search.vue'
-import fullscreen from './components/fullscreen.vue'
-import i18nIcon from './components/i18nIcon.vue'
+import Collapse from './components/Collapse.vue'
+import Breadcrumb from './components/Breadcrumb.vue'
+import Search from './components/Search.vue'
+import Fullscreen from './components/Fullscreen.vue'
+import I18nIcon from './components/I18nIcon.vue'
 import emitter from '@/utils/mitt'
 import { useUserStore } from '@/store/modules/user'
 import { usePermissionStore } from '@/store/modules/permission'

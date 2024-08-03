@@ -1,12 +1,12 @@
 <template>
   <component :is="LayoutComponents[layout]" />
-  <setting />
+  <Setting />
 </template>
 
 <script lang="ts" setup>
 import { computed, type Component } from 'vue'
 import layoutVertical from './layoutVertical/index.vue'
-import setting from './components/setting/index.vue'
+import Setting from './components/Setting/index.vue'
 import { useSystemStore } from '@/store/modules/system'
 import { regisOfflineIcons } from '@/plugins/iconify'
 
@@ -15,7 +15,7 @@ import { useConfigStore } from '@/store/modules/platformConfig'
 
 const layout = computed(() => useSystemStore().layout)
 
-const LayoutComponents: { [key: string]: Component } = {
+const LayoutComponents: Recordable<Component> = {
   vertical: layoutVertical
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <maximize v-if="mainMaximize" />
+  <Maximize v-if="mainMaximize" />
 
   <div class="tabs-box">
     <el-tabs v-model="activeKey" type="card" @tab-click="tabClick" closable @tab-remove="removeTab">
@@ -94,7 +94,7 @@ import { storeToRefs } from 'pinia'
 import { type TabsPaneContext, ElMessage, TabPaneName } from 'element-plus'
 import { useSystemStore } from '@/store/modules/system'
 import emitter from '@/utils/mitt'
-import maximize from './maximize.vue'
+import Maximize from './Maximize.vue'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
 import { useIcon } from '@/components/Global/components/Icon'
 

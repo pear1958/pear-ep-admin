@@ -1,9 +1,8 @@
 <template>
   <el-container class="layout-box">
     <el-aside :width="sideBarWidth" class="sider" id="sider">
-      <!-- Logo -->
       <div class="logo flex-c">
-        <logo-svg />
+        <LogoSvg />
         <span v-show="!isCollapse">Ep-Admin</span>
       </div>
 
@@ -21,7 +20,7 @@
             active-text-color="#ffffff"
             @select="handleClick"
           >
-            <subMenu :menuList="menuData" />
+            <SubMenu :menuList="menuData" />
           </el-menu>
         </el-scrollbar>
       </div>
@@ -32,7 +31,7 @@
         <Header />
       </el-header>
 
-      <tabs />
+      <Tabs />
 
       <el-main class="content" :style="{ padding: !route.meta?.mainFull ? '16px' : 0 }">
         <Main />
@@ -47,11 +46,11 @@ import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 import { filterMenuData } from '@/router/utils'
 import { useSystemStore } from '@/store/modules/system'
 import { usePermissionStore } from '@/store/modules/permission'
-import subMenu from '../components/subMenu/index.vue'
-import Header from '../components/header/index.vue'
-import tabs from '../components/tabs/index.vue'
-import Main from '../components/main/index.vue'
-import logoSvg from '@/assets/imgs/logo.svg?component'
+import SubMenu from '../components/SubMenu/index.vue'
+import Header from '../components/Header/index.vue'
+import Tabs from '../components/Tabs/index.vue'
+import Main from '../components/Main/index.vue'
+import LogoSvg from '@/assets/imgs/logo.svg?component'
 
 const router = useRouter()
 const route = useRoute()

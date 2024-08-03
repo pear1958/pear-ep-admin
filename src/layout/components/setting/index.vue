@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import darkIcon from './darkIcon.vue'
+import DarkIcon from './DarkIcon.vue'
 import emitter from '@/utils/mitt'
 import { useTheme } from '@/hooks/useTheme'
 import { useSystemStore } from '@/store/modules/system'
@@ -42,7 +42,15 @@ const showDrawer = ref(false)
 const themeColor = ref(systemStore.themeColor)
 const menuAccordion = ref(systemStore.menuAccordion)
 
-const preDefineColors = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
+const preDefineColors = ref([
+  '#1890ff',
+  '#ff4500',
+  '#ff8c00',
+  '#ffd700',
+  '#90ee90',
+  '#00ced1',
+  '#c71585'
+])
 
 emitter.on('openSetDrawer', () => {
   showDrawer.value = true
