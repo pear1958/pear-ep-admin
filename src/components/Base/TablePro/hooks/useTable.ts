@@ -1,14 +1,25 @@
 import { reactive, toRefs } from 'vue'
 import { Table } from '../types/table'
 import { isEmpty, objIsEmpty } from '@/utils/is'
+import { getValueByCasKey } from '@/utils'
 
 export function useTable(
   api?: (params: any) => Promise<any> | null,
   fixedParams: Recordable = {}, // 其它固定参数
-  apiIsPage: boolean = true,
+  pagination: boolean = true,
+  paramsKeyMap?: Table.ParamsKeyMap,
   dataCallBack?: (data: any) => any,
   requestError?: (error: any) => void
 ) {
+  const _paramsKeyMap = {
+    pageNumKey: 'pageNum',
+    pageSizeKey: 'pageSize',
+    listKey: 'list',
+    totalKey: 'total'
+  }
+
+  paramsKeyMap && Object.assign(_paramsKeyMap, paramsKeyMap)
+
   const state = reactive<Table.StateProps>({
     tableData: [],
     loading: false,
@@ -33,14 +44,16 @@ export function useTable(
   const getTableList = async () => {
     if (!api) return
 
+    const { pageNumKey, pageSizeKey, listKey, totalKey } = _paramsKeyMap
+
     try {
       Object.assign(
         state.totalParams,
         fixedParams,
-        apiIsPage
+        pagination
           ? {
-              pageNum: state.pageParams.pageNum,
-              pageSize: state.pageParams.pageSize
+              [pageNumKey]: state.pageParams.pageNum,
+              [pageSizeKey]: state.pageParams.pageSize
             }
           : {}
       )
@@ -51,10 +64,10 @@ export function useTable(
 
       dataCallBack && (data = dataCallBack(data))
 
-      state.tableData = apiIsPage ? data.list : data
+      state.tableData = pagination ? getValueByCasKey(data, listKey) : data
 
-      if (apiIsPage) {
-        state.pageParams.total = data.total
+      if (pagination) {
+        state.pageParams.total = getValueByCasKey(data, totalKey)
       }
     } catch (err) {
       requestError && requestError(err)

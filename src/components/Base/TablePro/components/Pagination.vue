@@ -12,16 +12,12 @@
 </template>
 
 <script setup lang="ts">
+import { Table } from '../types/table'
+
 defineOptions({ name: 'Pagination' })
 
-interface PageParams {
-  pageNum: number
-  pageSize: number
-  total: number
-}
-
 defineProps<{
-  pageParams: PageParams
+  pageParams: Table.PageParams
   handleSizeChange: (size: number) => void
   handleCurrentChange: (current: number) => void
 }>()

@@ -145,6 +145,7 @@ import TableColWrapper from './components/TableColWrapper.vue'
 import Pagination from './components/Pagination.vue'
 import ColSetting from './components/ColSetting.vue'
 import { ResultData } from '@/api/types'
+import { Table } from './types/table'
 
 export interface TableProProps {
   columns: ColumnProps[] // 列配置项  ==> 必传
@@ -159,6 +160,7 @@ export interface TableProProps {
   toolButton?: ('refresh' | 'setting' | 'search')[] | boolean // 是否显示表格功能按钮 ==> 非必传（默认为true）
   rowKey?: string // 行数据的 Key, 用来优化 Table 的渲染, 当表格数据多选时, 所指定的 id ==> 非必传（默认为 id）
   searchCols?: number | Record<BreakPoint, number> // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
+  paramsKeyMap?: Table.ParamsKeyMap
 }
 
 // 接受父组件参数, 配置默认值
@@ -196,7 +198,14 @@ const {
   reset,
   handleSizeChange,
   handleCurrentChange
-} = useTable(props.api, props.fixedParams, props.pagination, props.dataCallback, props.requestError)
+} = useTable(
+  props.api,
+  props.fixedParams,
+  props.pagination,
+  props.paramsKeyMap,
+  props.dataCallback,
+  props.requestError
+)
 
 const showSearch = ref(true)
 

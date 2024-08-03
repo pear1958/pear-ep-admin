@@ -195,3 +195,8 @@ export function handleProp(prop: string): string {
   if (propArr.length === 1) return prop
   return propArr[propArr.length - 1]
 }
+
+export const getValueByCasKey = <T = any>(data: Recordable, key: string) => {
+  key.split('.').forEach(key => (data = data[key]))
+  return data as T
+}

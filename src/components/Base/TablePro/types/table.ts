@@ -14,4 +14,8 @@ export namespace Table {
     totalParams: Recordable
     icon?: Recordable
   }
+
+  export interface ParamsKeyMap extends Partial<PageParams> {
+    total?: number
+  }
 }
