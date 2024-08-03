@@ -48,4 +48,9 @@
       font-size: 15px !important;
     }
   }
+
+  // 解决表格数据为空时样式不居中问题(仅在element-plus中)
+  .el-table__empty-block {
+    position: absolute;
+  }
 }

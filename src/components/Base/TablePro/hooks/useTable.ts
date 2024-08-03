@@ -11,6 +11,7 @@ export function useTable(
 ) {
   const state = reactive<Table.StateProps>({
     tableData: [],
+    loading: false,
     pageParams: {
       pageNum: 1,
       pageSize: 10,
@@ -44,6 +45,8 @@ export function useTable(
           : {}
       )
 
+      state.loading = true
+
       let { data } = await api(state.totalParams)
 
       dataCallBack && (data = dataCallBack(data))
@@ -55,6 +58,8 @@ export function useTable(
       }
     } catch (err) {
       requestError && requestError(err)
+    } finally {
+      state.loading = false
     }
   }
 

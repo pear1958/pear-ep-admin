@@ -37,4 +37,5 @@ export const getCompositionList = (params: TableParams) => {
 // 获取用户列表
 export const getUserList = (params: any) => {
   return http.post(`/geeker/user/list`, params)
+  // return Promise.resolve({ list: [], total: 0 })
 }

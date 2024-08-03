@@ -51,6 +51,7 @@
       :border="border"
       :row-key="rowKey"
       @selection-change="onSelectChange"
+      v-loading="loading"
     >
       <!-- 默认插槽 -->
       <slot />
@@ -100,14 +101,12 @@
 
       <!-- 无数据 -->
       <template #empty>
-        <slot name="empty">
-          <img
-            src="@/assets/imgs/notData.png"
-            class="w-[50px] h-[50px] rounded-full"
-            alt="notData"
-          />
-          <div>暂无数据</div>
-        </slot>
+        <div class="leading-7">
+          <slot name="empty">
+            <img src="@/assets/imgs/notData.png" alt="notData" />
+            <div>暂无数据</div>
+          </slot>
+        </div>
       </template>
     </el-table>
 
@@ -184,6 +183,7 @@ const { onSelectChange, selectList, selectIdList, isSelected } = useSelection(pr
 // 表格操作 Hooks
 const {
   tableData,
+  loading,
   pageParams,
   searchParams,
   searchInitParams,
@@ -319,8 +319,9 @@ const dragSort = () => {
 // 暴露给父组件的参数和方法 (外部需要什么，都可以从这里暴露出去)
 defineExpose({
   tableRef,
-  tableData: processTableData,
   radio,
+  tableData: processTableData,
+  loading,
   pageParams,
   searchParams,
   searchInitParams,

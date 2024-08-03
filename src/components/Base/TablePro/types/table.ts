@@ -6,7 +6,8 @@ export namespace Table {
   }
 
   export interface StateProps {
-    tableData: any[]
+    tableData: Recordable[]
+    loading: boolean
     pageParams: PageParams
     searchParams: Recordable
     searchInitParams: Recordable
