@@ -13,7 +13,13 @@
       <el-button type="primary" :icon="Upload" plain>批量添加用户</el-button>
       <el-button type="primary" :icon="Download" plain>导出用户数据</el-button>
       <el-button type="primary" plain>To 子集详情页面</el-button>
-      <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected">
+      <el-button
+        type="danger"
+        :icon="Delete"
+        plain
+        :disabled="!scope.isSelected"
+        @click="batchDelete(scope.selectIdList)"
+      >
         批量删除用户
       </el-button>
     </template>
@@ -30,14 +36,12 @@
       </el-button>
     </template>
 
-    <!-- createTime -->
     <template #createTime="scope">
       <el-button type="primary" link @click="ElMessage.success('我是通过作用域插槽渲染的内容')">
         {{ scope.row.createTime }}
       </el-button>
     </template>
 
-    <!-- 表格操作 -->
     <template #operation="scope">
       <el-button type="primary" link :icon="View">查看</el-button>
       <el-button type="primary" link :icon="EditPen">编辑</el-button>
@@ -60,8 +64,9 @@ import {
   Refresh
 } from '@element-plus/icons-vue'
 import TablePro from '@/components/Base/TablePro/index.vue'
-import { getUserList } from '@/api/modules/user'
+import { deleteUser, getUserList } from '@/api/modules/user'
 import { columns } from './columns'
+import { handleData } from '@/utils/element'
 
 const tableProRef = ref()
 const fixedParams = reactive({ fixed: 'test' })
@@ -79,6 +84,12 @@ const dataCallback = (data: any) => {
     list: data.list,
     total: data.total
   }
+}
+
+const batchDelete = async (id: string[]) => {
+  await handleData(deleteUser, { id }, '温馨提示', '是否删除所选用户信息', '删除成功')
+  unref(tableProRef)?.clearSelection()
+  unref(tableProRef)?.getTableList()
 }
 
 const onSearch = (params: Recordable) => {

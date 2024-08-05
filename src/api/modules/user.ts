@@ -49,3 +49,8 @@ export const getUserGender = () => {
 export const getUserStatus = () => {
   return http.get(`/geeker/user/status`)
 }
+
+// 删除用户
+export const deleteUser = (params: { id: string[] }) => {
+  return http.post(`/geeker/user/delete`, params)
+}

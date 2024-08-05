@@ -1,8 +1,8 @@
-import { ElMessageBox, type MessageBoxState } from 'element-plus'
+import { ElMessage, ElMessageBox, type MessageBoxState } from 'element-plus'
 
 export function confirmModal(
   message = '当前操作存在风险, 是否继续？',
-  title = '',
+  title = '温馨提示',
   type: MessageBoxState['type'] = 'warning',
   confirmButtonText = '确定',
   cancelButtonText = '取消',
@@ -12,7 +12,32 @@ export function confirmModal(
     type,
     confirmButtonText,
     cancelButtonText,
-    dangerouslyUseHTMLString: isHtml
+    dangerouslyUseHTMLString: isHtml,
+    draggable: true
+  })
+}
+
+export const handleData = (
+  api: PromiseFn,
+  params: any = {},
+  title = '温馨提示',
+  message = '',
+  succMsg = '操作成功',
+  type: MessageBoxState['type'] = 'warning',
+  confirmButtonText = '确定',
+  cancelButtonText = '取消',
+  isHtml = false
+) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await confirmModal(message, title, type, confirmButtonText, cancelButtonText, isHtml)
+      const res = await api(params)
+      if (!String(res?.code).startsWith('2')) return reject(res)
+      ElMessage.success(succMsg)
+      resolve(true)
+    } catch (err) {
+      reject(err)
+    }
   })
 }
 

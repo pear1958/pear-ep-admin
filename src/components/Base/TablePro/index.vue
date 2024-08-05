@@ -13,9 +13,9 @@
       <div class="flex flex-wrap gap-y-[15px] gap-x-3">
         <slot
           name="tableHeader"
-          :selected-list="selectList"
-          :selected-list-ids="selectIdList"
-          :is-selected="isSelected"
+          :isSelected="isSelected"
+          :selectList="selectList"
+          :selectIdList="selectIdList"
         />
       </div>
 
