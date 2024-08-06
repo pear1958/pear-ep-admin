@@ -13,8 +13,10 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { debounce, throttle } from '@/utils'
+import microApp from '@micro-zoe/micro-app'
 
 const router = useRouter()
 
@@ -36,6 +38,10 @@ function handleClick2() {
 
 const debounceFn = debounce(handleClick1, 1000)
 const throttleFn = throttle(handleClick2, 1000)
+
+onMounted(() => {
+  console.log(microApp.getGlobalData())
+})
 
 // const handleFn = (event: any) => {
 //   console.log(Math.random())

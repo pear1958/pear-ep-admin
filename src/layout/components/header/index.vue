@@ -40,6 +40,7 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
+import microApp from '@micro-zoe/micro-app'
 import Collapse from './components/Collapse.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import Search from './components/Search.vue'
@@ -66,6 +67,7 @@ function onClick(key: string) {
       localStorage.clear()
       usePermissionStore().$reset()
       useUserStore().$reset()
+      microApp.clearGlobalData()
       router.push('/login')
       break
   }

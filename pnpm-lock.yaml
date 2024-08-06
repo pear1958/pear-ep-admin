@@ -11,6 +11,9 @@ dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.1.0
     version: 2.1.0(vue@3.3.4)
+  '@micro-zoe/micro-app':
+    specifier: 1.0.0-rc.6
+    version: 1.0.0-rc.6
   '@vue-office/docx':
     specifier: ^1.6.0
     version: 1.6.0(vue-demi@0.14.8)(vue@3.3.4)
@@ -1005,6 +1008,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+
+  /@micro-zoe/micro-app@1.0.0-rc.6:
+    resolution: {integrity: sha512-5HrbNXBciPbSifZthFdIjOpeZZ0SD8zvvY7+0VRxbA9RDL9JJo81PsoYxoDKh895fsGd8ZFHiaSc0X5cuQHPhg==}
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

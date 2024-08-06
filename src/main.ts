@@ -27,6 +27,10 @@ import errorHandler from '@/utils/errorHandler'
 
 import i18n from '@/languages/index'
 
+import microApp from '@micro-zoe/micro-app'
+
+microApp.start()
+
 const app = createApp(App)
 
 app.config.errorHandler = errorHandler
