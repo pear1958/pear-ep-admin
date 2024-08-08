@@ -31,3 +31,16 @@
 .hover\:el-color-primary:hover {
   color: var(--el-color-primary);
 }
+
+.header-icon {
+  display: inline-flex;
+  font-size: 16px;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s !important;
+  color: #000 !important;
+
+  &:hover {
+    color: var(--el-color-primary) !important;
+  }
+}

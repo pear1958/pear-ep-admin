@@ -1,5 +1,5 @@
 <template>
-  <el-config-provider :locale="locale">
+  <el-config-provider :locale="locale" :size="componentSize">
     <router-view></router-view>
   </el-config-provider>
 </template>
@@ -30,6 +30,6 @@ const locale = computed(() => {
   if (['zh', null].includes(systemStore.language)) return zhCn
   if (systemStore.language == 'en') return en
 })
-</script>
 
-<style scoped></style>
+const componentSize = computed(() => systemStore.componentSize)
+</script>

@@ -3,7 +3,9 @@ export interface userState {
   userInfo: null | object
 }
 
-type LayoutType = 'vertical' | 'classic' | 'transverse' | 'columns'
+export type LayoutType = 'vertical' | 'classic' | 'transverse' | 'columns'
+
+export type ComponentSize = 'small' | 'default' | 'large'
 
 export type LanguageType = 'zh' | 'en' | null
 
@@ -19,6 +21,7 @@ export interface SystemState {
   themeColor: string
   language: LanguageType
   menuAccordion: boolean
+  componentSize: ComponentSize
 }
 
 export interface PermissState {
