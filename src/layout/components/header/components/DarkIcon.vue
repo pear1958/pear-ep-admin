@@ -1,5 +1,13 @@
 <template>
-  <el-switch v-model="isDark" inline-prompt :active-icon="Sunny" :inactive-icon="Moon" @change="onDarkChange" />
+  <div class="header-icon">
+    <el-switch
+      v-model="isDark"
+      inline-prompt
+      :active-icon="Sunny"
+      :inactive-icon="Moon"
+      @change="onDarkChange"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>

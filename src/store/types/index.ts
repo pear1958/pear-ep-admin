@@ -22,6 +22,8 @@ export interface SystemState {
   language: LanguageType
   menuAccordion: boolean
   componentSize: ComponentSize
+  grayMode: boolean
+  weakMode: boolean
 }
 
 export interface PermissState {

@@ -4,7 +4,7 @@ import { getDarkColor, getLightColor } from '@/utils/theme'
 
 export function useTheme() {
   const systemStore = useSystemStore()
-  const { isDark, themeColor } = storeToRefs(systemStore)
+  const { isDark, themeColor, grayMode, weakMode } = storeToRefs(systemStore)
 
   const changeDark = (dark: boolean) => {
     const html = document.documentElement as HTMLElement
@@ -13,7 +13,7 @@ export function useTheme() {
   }
 
   const changeTheme = (color: string) => {
-    systemStore.setThemeColor(color)
+    if (!color) return
 
     const html = document.documentElement as HTMLElement
 
@@ -36,20 +36,39 @@ export function useTheme() {
       '--el-color-primary-dark-2',
       isDark.value ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
     )
+
+    systemStore.setThemeColor(color)
   }
 
-  // 页面初始化时, 还原 主题 & 暗黑模式
+  // 页面初始化时, 还原 主题 & 暗黑模式 等
   const initThemeAndDark = () => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       systemStore.setDark(true)
     }
     changeDark(isDark.value)
     changeTheme(themeColor.value)
+    if (grayMode.value) changeGrayOrWeak('gray', true)
+    if (weakMode.value) changeGrayOrWeak('weak', true)
+  }
+
+  const changeGrayOrWeak = (type: 'gray' | 'weak', value: boolean) => {
+    if (!value) return document.body.removeAttribute('style')
+
+    const styles = {
+      gray: 'filter: grayscale(1)',
+      weak: 'filter: invert(80%)'
+    }
+
+    document.body.setAttribute('style', styles[type])
+
+    const propName = type === 'gray' ? 'weakMode' : 'grayMode'
+    systemStore.setSystemState(propName, false)
   }
 
   return {
     changeDark,
     changeTheme,
-    initThemeAndDark
+    initThemeAndDark,
+    changeGrayOrWeak
   }
 }

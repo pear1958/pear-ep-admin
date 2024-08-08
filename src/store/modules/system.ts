@@ -23,7 +23,9 @@ export const useSystemStore = defineStore({
     // 当前系统语言
     language: null,
     menuAccordion: true,
-    componentSize: 'default'
+    componentSize: 'default',
+    grayMode: false,
+    weakMode: false
   }),
   actions: {
     setCollapse(value: boolean) {

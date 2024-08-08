@@ -9,6 +9,7 @@
       <Search />
       <ComponentSize />
       <Fullscreen />
+      <DarkIcon />
       <I18nIcon />
 
       <el-dropdown @command="onClick">
@@ -46,6 +47,7 @@ import Breadcrumb from './components/Breadcrumb.vue'
 import Search from './components/Search.vue'
 import ComponentSize from './components/ComponentSize.vue'
 import Fullscreen from './components/Fullscreen.vue'
+import DarkIcon from './components/DarkIcon.vue'
 import I18nIcon from './components/I18nIcon.vue'
 import emitter from '@/utils/mitt'
 import { useUserStore } from '@/store/modules/user'
