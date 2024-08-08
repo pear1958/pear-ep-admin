@@ -1,28 +1,26 @@
 <template>
   <el-drawer v-model="showDrawer" title="项目设置" :size="380" class="setting-drawer">
-    <el-divider>主题设置</el-divider>
+    <div class="flex flex-col gap-[14px] box">
+      <el-divider>主题设置</el-divider>
 
-    <div class="flex flex-col gap-[14px]">
-      <div class="flex-between">
+      <div>
         <span>主题颜色</span>
         <el-color-picker v-model="themeColor" :predefine="colorList" @change="changeTheme" />
       </div>
 
-      <div class="flex-between">
+      <div>
         <span>灰色模式</span>
         <el-switch v-model="grayMode" @change="changeGrayOrWeak('gray', !!$event)" />
       </div>
 
-      <div class="flex-between">
+      <div>
         <span>色弱模式</span>
         <el-switch v-model="weakMode" @change="changeGrayOrWeak('weak', !!$event)" />
       </div>
-    </div>
 
-    <el-divider>界面设置</el-divider>
+      <el-divider>界面设置</el-divider>
 
-    <div class="flex flex-col gap-[14px]">
-      <div class="flex-between">
+      <div>
         <span>菜单手风琴</span>
         <el-switch v-model="menuAccordion" />
       </div>
@@ -52,7 +50,17 @@ emitter.on('openSetDrawer', () => {
 </script>
 
 <style lang="scss">
-.setting-drawer .el-drawer__body {
-  padding-top: 12px;
+.setting-drawer {
+  .el-drawer__body {
+    padding-top: 26px;
+  }
+
+  .box > div:not(.el-divider) {
+    @include flex(space-between);
+  }
+
+  .el-divider--horizontal {
+    margin: 10px 0;
+  }
 }
 </style>
