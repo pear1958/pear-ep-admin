@@ -52,7 +52,7 @@ emitter.on('openSetDrawer', () => {
 <style lang="scss">
 .setting-drawer {
   .el-drawer__body {
-    padding-top: 26px;
+    padding-top: 24px;
   }
 
   .box > div:not(.el-divider) {
@@ -60,7 +60,7 @@ emitter.on('openSetDrawer', () => {
   }
 
   .el-divider--horizontal {
-    margin: 10px 0;
+    margin: 12px 0;
   }
 }
 </style>
