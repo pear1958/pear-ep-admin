@@ -105,6 +105,8 @@ const goLogin = () => {
 }
 
 const unLock = async () => {
+  if (loading.value) return
+
   if (!password.value) {
     return ElMessage.warning('请输入锁屏密码或用户密码')
   }

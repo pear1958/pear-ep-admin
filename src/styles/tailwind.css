@@ -11,6 +11,10 @@
     @apply flex flex-col justify-center items-center;
   }
 
+  .inline-flex-c {
+    @apply inline-flex justify-center items-center;
+  }
+
   .flex-between {
     @apply flex justify-between items-center;
   }
