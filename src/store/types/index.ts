@@ -1,6 +1,11 @@
 export interface userState {
   token: null | string
-  userInfo: null | object
+  userInfo: null | UserInfo
+}
+
+export interface UserInfo {
+  username: 'Admin'
+  [key: string]: any
 }
 
 export type LayoutType = 'vertical' | 'classic' | 'transverse' | 'columns'
@@ -39,4 +44,13 @@ export interface IConfigState {
     key: string
     securityJsCode: string
   }
+}
+
+export interface LockState {
+  lockInfo: LockInfo
+}
+
+export interface LockInfo {
+  isLock?: boolean
+  password?: string | undefined
 }

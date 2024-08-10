@@ -7,6 +7,10 @@
     @apply flex justify-center items-center;
   }
 
+  .flex-c-col {
+    @apply flex flex-col justify-center items-center;
+  }
+
   .flex-between {
     @apply flex justify-between items-center;
   }
@@ -17,5 +21,17 @@
 
   .ellipsis {
     @apply text-ellipsis overflow-hidden whitespace-nowrap;
+  }
+
+  .posi-lt {
+    @apply absolute left-0 top-0;
+  }
+
+  .fixed-lt {
+    @apply fixed left-0 top-0;
+  }
+
+  .wh-full {
+    @apply w-full h-full;
   }
 }

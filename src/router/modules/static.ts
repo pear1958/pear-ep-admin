@@ -20,5 +20,13 @@ export const staticRouter: RouteRecordRaw[] = [
     component: () => import('@/layout/index.vue'),
     redirect: '/home',
     children: [noAuthRouter]
+  },
+  {
+    path: '/lock',
+    name: 'lock',
+    component: () => import('@/views/system/lock/index.vue'),
+    meta: {
+      title: '锁屏'
+    }
   }
 ]

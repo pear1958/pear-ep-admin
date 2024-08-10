@@ -14,7 +14,7 @@ if (systemStore.mainMaximize) {
 }
 
 const exitMaximize = () => {
-  systemStore.setMainMaximize(false)
+  systemStore.setState('mainMaximize', false)
   changeClass('remove')
 }
 

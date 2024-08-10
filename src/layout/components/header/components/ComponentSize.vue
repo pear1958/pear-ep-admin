@@ -35,6 +35,6 @@ const componentSizeList = [
 ]
 
 const setComponentSize = (value: ComponentSize) => {
-  systemStore.setSystemState('componentSize', value)
+  systemStore.setState('componentSize', value)
 }
 </script>

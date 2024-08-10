@@ -10,6 +10,7 @@
       <ComponentSize />
       <Fullscreen />
       <DarkIcon />
+      <Lock />
       <I18nIcon />
 
       <el-dropdown @command="onClick">
@@ -41,36 +42,32 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import Collapse from './components/Collapse.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import Search from './components/Search.vue'
 import ComponentSize from './components/ComponentSize.vue'
 import Fullscreen from './components/Fullscreen.vue'
 import DarkIcon from './components/DarkIcon.vue'
+import Lock from './components/Lock.vue'
 import I18nIcon from './components/I18nIcon.vue'
 import emitter from '@/utils/mitt'
 import { useUserStore } from '@/store/modules/user'
-import { usePermissionStore } from '@/store/modules/permission'
 import avatarUrl from '@/assets/imgs/avatar.jpg'
 
 const openSetDrawer = () => {
   emitter.emit('openSetDrawer')
 }
 
-const router = useRouter()
-
 function onClick(key: string) {
   switch (key) {
     case '0':
       // router.push('/userCenter/index')
+      ElMessage.info('开发中...')
       break
 
     case '1':
-      localStorage.clear()
-      usePermissionStore().$reset()
-      useUserStore().$reset()
-      router.push('/login')
+      useUserStore().logout()
       break
   }
 }

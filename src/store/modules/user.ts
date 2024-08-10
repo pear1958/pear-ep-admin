@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 import { userState } from '../types'
 import { getUserInfoApi } from '@/api/modules/user'
+import { Login } from '@/api/types'
+import { usePermissionStore } from './permission'
+import router from '@/router'
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -23,6 +26,15 @@ export const useUserStore = defineStore({
     },
     setToken(token: null | string) {
       this.token = token
+    },
+    login(params: Login.reqForm) {
+      return Promise.resolve({ code: 200, data: true })
+    },
+    logout() {
+      localStorage.clear()
+      usePermissionStore().$reset()
+      this.$reset()
+      router.push('/login')
     }
   }
 })

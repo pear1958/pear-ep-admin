@@ -22,7 +22,7 @@ onMounted(() => {
   // 初始化语言
   i18n.locale.value = lang
   // 首次加载可能为null, 因此需要设置
-  systemStore.setSystemState('language', lang)
+  systemStore.setState('language', lang)
 })
 
 // 设置 element-plus 的语言

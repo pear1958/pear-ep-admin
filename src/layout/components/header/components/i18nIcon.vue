@@ -37,7 +37,7 @@ const languageList = [
 
 const changeLanguage = (lang: string) => {
   i18n.locale.value = lang
-  systemStore.setSystemState('language', lang as LanguageType)
+  systemStore.setState('language', lang as LanguageType)
 }
 </script>
 

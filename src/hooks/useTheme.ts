@@ -9,7 +9,7 @@ export function useTheme() {
   const changeDark = (dark: boolean) => {
     const html = document.documentElement as HTMLElement
     html.classList[dark ? 'add' : 'remove']('dark')
-    systemStore.setDark(dark)
+    systemStore.setState('isDark', dark)
   }
 
   const changeTheme = (color: string) => {
@@ -37,13 +37,13 @@ export function useTheme() {
       isDark.value ? `${getLightColor(color, 0.2)}` : `${getDarkColor(color, 0.3)}`
     )
 
-    systemStore.setThemeColor(color)
+    systemStore.setState('themeColor', color)
   }
 
   // 页面初始化时, 还原 主题 & 暗黑模式 等
   const initThemeAndDark = () => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      systemStore.setDark(true)
+      systemStore.setState('isDark', true)
     }
     changeDark(isDark.value)
     changeTheme(themeColor.value)
@@ -62,7 +62,7 @@ export function useTheme() {
     document.body.setAttribute('style', styles[type])
 
     const propName = type === 'gray' ? 'weakMode' : 'grayMode'
-    systemStore.setSystemState(propName, false)
+    systemStore.setState(propName, false)
   }
 
   return {

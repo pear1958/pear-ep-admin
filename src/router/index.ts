@@ -7,6 +7,9 @@ import { usePermissionStore } from '@/store/modules/permission'
 import { useTheme } from '@/hooks/useTheme'
 import { AxiosCanceler } from '@/api/utils/axiosCancel'
 import { check403 } from './utils'
+import { useLockStore } from '@/store/modules/lock'
+import { isEmpty } from '@/utils/is'
+import { LOGIN_PATH, LOCK_PATH } from '@/config/constant'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
@@ -77,6 +80,7 @@ router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('token')
   const { userInfo } = useUserStore()
   const { menuList, buttonData } = usePermissionStore()
+  const { isLock } = useLockStore().lockInfo || {}
 
   // 在路由跳转之前, 清除所有请求
   axiosCanceler.removeAllPending()
@@ -94,7 +98,7 @@ router.beforeEach(async (to, from, next) => {
   // 没有token, 访问登陆页 -> 直接放行
   // 有token, 访问登陆页 -> 留在 当前页
   // https://router.vuejs.org/zh/guide/advanced/navigation-guards.html
-  if (to.path === '/login') {
+  if (to.path === LOGIN_PATH) {
     if (token) {
       return next(from.fullPath)
     } else {
@@ -103,12 +107,21 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
+  if (to.path === LOCK_PATH && !isLock) {
+    return next({ path: from.fullPath })
+  }
+
   // 非登录页且没有token
   if (!token) {
-    return next({ path: '/login', replace: true })
+    return next({ path: LOGIN_PATH, replace: true })
   }
 
   const params403 = { path: '/error/403', replace: true, query: to.query }
+
+  // 锁屏页面点击返回
+  if (isLock && from.path === LOCK_PATH) {
+    return next(false)
+  }
 
   // 首次进入系统 || 刷新页面   获取菜单数据 & 初始化路由
   if (!userInfo || !menuList.length || !buttonData) {
@@ -118,7 +131,7 @@ router.beforeEach(async (to, from, next) => {
 
       // 当按钮 || 菜单请求出错, 重定向到登录页
       if (!reqSucc) {
-        return next('/login')
+        return next(LOGIN_PATH)
       } else {
         initRouter()
 
@@ -140,7 +153,7 @@ router.beforeEach(async (to, from, next) => {
     } catch (error) {
       console.log('error', error)
       localStorage.clear()
-      return next('/login')
+      return next(LOGIN_PATH)
     }
   }
 

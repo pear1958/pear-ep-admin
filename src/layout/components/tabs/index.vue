@@ -163,7 +163,7 @@ const removeTab = (fullPath: TabPaneName) => {
 }
 
 const maximizeMain = () => {
-  systemStore.setMainMaximize(true)
+  systemStore.setState('mainMaximize', true)
 }
 
 // 刷新当前Tab
@@ -222,12 +222,12 @@ const closeOtherTab = (tab: TabItem) => {
   }
 
   systemStore.removeMultipleTab(tab ? tab.fullPath : route.fullPath)
-  systemStore.setKeepAliveName(tab ? [tab.name] : ([route.name] as string[]))
+  systemStore.setState('keepAliveNameList', tab ? [tab.name] : ([route.name] as string[]))
 }
 
 const closeAllTab = () => {
   systemStore.removeMultipleTab()
-  systemStore.setKeepAliveName([])
+  systemStore.setState('keepAliveNameList', [])
   // Tabs组件会监听到路由的变化, 自动添加Tab
   router.push('/home')
 }

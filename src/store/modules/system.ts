@@ -43,10 +43,6 @@ export const useSystemStore = defineStore({
       const delIndex = this.findIndex(name)
       this.keepAliveNameList.splice(delIndex, 1)
     },
-    // 批量更新缓存路由
-    setKeepAliveName(nameList: string[]) {
-      this.keepAliveNameList = nameList
-    },
     removeLeftKeepAliveName(name: string) {
       const delIndex = this.findIndex(name)
       this.keepAliveNameList.splice(0, delIndex)
@@ -98,17 +94,8 @@ export const useSystemStore = defineStore({
       this.tabList.splice(oldIndex, 1)
       this.tabList.splice(newIndex, 0, currentTab)
     },
-    setMainMaximize(value: boolean) {
-      this.mainMaximize = value
-    },
-    setDark(val: boolean) {
-      this.isDark = val
-    },
-    setThemeColor(color: string) {
-      this.themeColor = color
-    },
     // args[0]: 要设置的key  args[1]: 要设置的value
-    setSystemState(...args: ObjToKeyValArray<SystemState>) {
+    setState(...args: ObjToKeyValArray<SystemState>) {
       this.$patch({ [args[0]]: args[1] })
     }
   },
