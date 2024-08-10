@@ -41,24 +41,6 @@
   transform: translateX(30px);
 }
 
-// fade-bottom
-.fade-bottom-enter-active,
-.fade-bottom-leave-active {
-  transition:
-    opacity 0.25s,
-    transform 0.3s;
-}
-
-.fade-bottom-enter-from {
-  transform: translateY(-10%);
-  opacity: 0;
-}
-
-.fade-bottom-leave-to {
-  transform: translateY(10%);
-  opacity: 0;
-}
-
 // drawer
 .drawer-enter-active,
 .drawer-leave-active {
