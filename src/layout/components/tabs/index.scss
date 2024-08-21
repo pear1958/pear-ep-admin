@@ -1,7 +1,6 @@
 .tabs-box {
   height: $tabHeight;
   line-height: $tabHeight;
-  top: $headerHeight;
   box-sizing: border-box;
   transition: all 0.2s;
   @include flex(space-between);

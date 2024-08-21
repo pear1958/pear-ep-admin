@@ -33,9 +33,5 @@ defineOptions({
     margin: 25px 0 20px;
     font-size: 14px;
   }
-
-  .el-btn {
-    width: 100px;
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="header-icon">
+  <div class="px-2.5">
     <el-switch
       v-model="isDark"
       inline-prompt
