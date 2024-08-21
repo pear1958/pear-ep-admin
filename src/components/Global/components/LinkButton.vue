@@ -23,7 +23,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .link-btn {
-  @apply text-text_color_primary cursor-pointer transition-colors;
+  @apply text-base-color cursor-pointer transition-colors;
 
   &:hover {
     color: var(--el-color-primary) !important;

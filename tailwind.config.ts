@@ -13,7 +13,7 @@ export default {
       colors: {
         dark: '#1f1f1f',
         primary: 'var(--el-color-primary)',
-        text_color_primary: 'var(--el-text-color-primary)'
+        'base-color': 'var(--el-text-color-primary)'
       }
     }
   },
