@@ -28,7 +28,7 @@ import {
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 
 // 引入 Canvas 渲染器
-import { CanvasRenderer } from 'echarts/renderers'
+import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
 
 // 注册必须的组件
 echarts.use([
@@ -51,7 +51,8 @@ echarts.use([
   GaugeChart,
   LabelLayout,
   UniversalTransition,
-  CanvasRenderer
+  CanvasRenderer,
+  SVGRenderer
 ])
 
 export default echarts

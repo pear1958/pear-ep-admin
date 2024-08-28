@@ -56,6 +56,3 @@ const mockOptions: ChartOption = {
 
 const options = reactive(mockOptions)
 </script>
-
-<style lang="scss" scoped></style>
-@/components/Charts@/components/Charts/type

@@ -189,7 +189,7 @@ const closeLeftTab = (tab: TabItem) => {
   const curIndex = systemStore.findIndex(route.name as string)
 
   // 删除的Tab在当前Tab的右侧, 则默认跳转到当前鼠标右键的Tab
-  if (tab.name !== route.name && mouseRightIndex > curIndex) {
+  if (mouseRightIndex > curIndex) {
     router.push(tab.fullPath)
   }
 
@@ -207,7 +207,7 @@ const closeRightTab = (tab: TabItem) => {
   const curIndex = systemStore.findIndex(route.name as string)
 
   // 删除的Tab在当前Tab的左侧, 则默认跳转到当前鼠标右键的Tab
-  if (tab.name !== route.name && mouseRightIndex < curIndex) {
+  if (mouseRightIndex < curIndex) {
     router.push(tab.fullPath)
   }
 
@@ -219,6 +219,13 @@ const closeOtherTab = (tab: TabItem) => {
   if (unref(tabList).length === 1) {
     ElMessage.info('当前没有其它页面了~')
     return
+  }
+
+  const mouseRightIndex = systemStore.findIndex(tab.name)
+  const curIndex = systemStore.findIndex(route.name as string)
+
+  if (mouseRightIndex !== curIndex) {
+    router.push(tab.fullPath)
   }
 
   systemStore.removeMultipleTab(tab ? tab.fullPath : route.fullPath)
