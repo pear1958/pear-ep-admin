@@ -1,31 +1,31 @@
 <template>
   <div class="bg-white dark:bg-dark p-4">
-    <GkCollapse v-model="openedValue">
-      <GkCollapseItem name="a" title="Consistency">
+    <Collapse v-model="openedValue">
+      <CollapseItem name="a" title="Consistency">
         <div>11111111111</div>
         <div>11111111111</div>
         <div>11111111111</div>
-      </GkCollapseItem>
+      </CollapseItem>
 
-      <GkCollapseItem name="b" title="Feedback">
+      <CollapseItem name="b" title="Feedback">
         <div>2222222222222</div>
         <div>2222222222222</div>
         <div>2222222222222</div>
-      </GkCollapseItem>
+      </CollapseItem>
 
-      <GkCollapseItem name="c" title="Efficiency" disabled>
+      <CollapseItem name="c" title="Efficiency" disabled>
         <div>33333333333333</div>
         <div>33333333333333</div>
         <div>33333333333333</div>
-      </GkCollapseItem>
-    </GkCollapse>
+      </CollapseItem>
+    </Collapse>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import GkCollapse from '@/components/UI/GkCollapse/index.vue'
-import GkCollapseItem from '@/components/UI/GkCollapse/CollapseItem.vue'
+import Collapse from '@/components/UI/Collapse/index.vue'
+import CollapseItem from '@/components/UI/Collapse/CollapseItem.vue'
 
 const openedValue = ref(['a'])
 </script>

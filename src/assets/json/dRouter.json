@@ -14,7 +14,7 @@
     {
       "path": "/components",
       "name": "Components",
-      "redirect": "/components/gkUpload",
+      "redirect": "/components/upload",
       "meta": {
         "title": "常用组件",
         "icon": "ep:menu"
@@ -45,38 +45,6 @@
           }
         },
         {
-          "path": "/components/gkDrawer",
-          "name": "gkDrawer",
-          "component": "/components/gkDrawer",
-          "meta": {
-            "title": "抽屉"
-          }
-        },
-        {
-          "path": "/components/gkTabs",
-          "name": "gkTabs",
-          "component": "/components/gkTabs",
-          "meta": {
-            "title": "标签页"
-          }
-        },
-        {
-          "path": "/components/gkDialog",
-          "name": "gkDialog",
-          "component": "/components/gkDialog",
-          "meta": {
-            "title": "对话框"
-          }
-        },
-        {
-          "path": "/components/gkCollapse",
-          "name": "gkCollapse",
-          "component": "/components/gkCollapse",
-          "meta": {
-            "title": "折叠面板"
-          }
-        },
-        {
           "path": "/components/progress",
           "name": "progress",
           "component": "/components/progress",
@@ -98,14 +66,6 @@
           "component": "/components/wangEditor",
           "meta": {
             "title": "富文本编辑器"
-          }
-        },
-        {
-          "path": "/components/gkUpload",
-          "name": "gkUpload",
-          "component": "/components/gkUpload",
-          "meta": {
-            "title": "图片上传(自定义)"
           }
         }
       ]
@@ -141,6 +101,56 @@
           "meta": {
             "title": "地图",
             "mainFull": true
+          }
+        }
+      ]
+    },
+    {
+      "path": "/ui",
+      "redirect": "/ui/drawer",
+      "meta": {
+        "title": "UI组件",
+        "icon": "ant-design:area-chart-outlined"
+      },
+      "children": [
+        {
+          "path": "/ui/drawer",
+          "name": "Drawer",
+          "component": "/ui/drawer",
+          "meta": {
+            "title": "抽屉"
+          }
+        },
+        {
+          "path": "/ui/tabs",
+          "name": "Tabs",
+          "component": "/ui/tabs",
+          "meta": {
+            "title": "标签页"
+          }
+        },
+        {
+          "path": "/ui/dialog",
+          "name": "Dialog",
+          "component": "/ui/dialog",
+          "meta": {
+            "title": "对话框"
+          }
+        },
+        {
+          "path": "/ui/collapse",
+          "name": "Collapse",
+          "component": "/ui/collapse",
+          "meta": {
+            "title": "折叠面板"
+          }
+        },
+        {
+          "path": "/ui/upload",
+          "name": "Upload",
+          "component": "/ui/upload",
+          "meta": {
+            "title": "图片上传(自定义)"
           }
         }
       ]

@@ -44,7 +44,7 @@
 import { useSlots } from 'vue'
 
 defineOptions({
-  name: 'GkDrawer'
+  name: 'Drawer'
 })
 
 defineProps({

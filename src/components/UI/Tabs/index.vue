@@ -34,7 +34,7 @@ import { computed, onMounted, ref, unref, useSlots, watchEffect } from 'vue'
 import TabItem from './TabItem'
 
 defineOptions({
-  name: 'GkTabs'
+  name: 'Tabs'
 })
 
 const props = defineProps({

@@ -1,0 +1,19 @@
+<template>
+  <div class="bg-white dark:bg-dark p-4">
+    <Tabs v-model:selected="title">
+      <TabItem title="体育新闻">体育新闻-xxxxxxxxx</TabItem>
+      <TabItem title="财经新闻">财经新闻-yyyyyyyyy</TabItem>
+      <TabItem title="普通新闻">普通新闻-zzzzzzzzz</TabItem>
+    </Tabs>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import Tabs from '@/components/UI/Tabs/index.vue'
+import TabItem from '@/components/UI/Tabs/TabItem'
+
+const title = ref('体育新闻')
+</script>
+
+<style lang="scss" scoped></style>

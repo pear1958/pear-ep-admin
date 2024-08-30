@@ -32,7 +32,7 @@
 import { computed, useSlots } from 'vue'
 
 defineOptions({
-  name: 'GkDialog'
+  name: 'Dialog'
 })
 
 const emit = defineEmits(['update:visible'])

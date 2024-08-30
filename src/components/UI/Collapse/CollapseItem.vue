@@ -33,7 +33,7 @@ import { computed, inject } from 'vue'
 import { collapseContextKey } from './types'
 
 defineOptions({
-  name: 'GkCollapseItem'
+  name: 'CollapseItem'
 })
 
 const props = defineProps({

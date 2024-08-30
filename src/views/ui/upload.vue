@@ -1,6 +1,6 @@
 <template>
   <div class="page-box bg-white dark:bg-dark p-4">
-    <GkUpload
+    <Upload
       v-model:file-list="fileList"
       v-model:active-index="activeIndex"
       :action="uploadAction"
@@ -19,8 +19,8 @@
 import { Ref, ref, unref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { AxiosError } from 'axios'
-import GkUpload from '@/components/UI/GkUpload/index.vue'
-import type { UploadFile } from '@/components/UI/GkUpload/types'
+import Upload from '@/components/UI/Upload/index.vue'
+import type { UploadFile } from '@/components/UI/Upload/types'
 import { uploadUrl, uploadHeaders } from '@/config'
 
 // const fileList: Ref<UploadFile[]> = ref([
