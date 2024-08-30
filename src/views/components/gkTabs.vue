@@ -10,8 +10,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import GkTabs from '@/components/Common/GkTabs/index.vue'
-import GkTabItem from '@/components/Common/GkTabs/TabItem'
+import GkTabs from '@/components/UI/GkTabs/index.vue'
+import GkTabItem from '@/components/UI/GkTabs/TabItem'
 
 const title = ref('体育新闻')
 </script>

@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import GkDrawer from '@/components/Common/GkDrawer/index.vue'
+import GkDrawer from '@/components/UI/GkDrawer/index.vue'
 
 const visible = ref(false)
 </script>
