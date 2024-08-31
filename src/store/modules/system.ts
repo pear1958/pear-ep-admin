@@ -25,7 +25,9 @@ export const useSystemStore = defineStore({
     menuAccordion: true,
     componentSize: 'default',
     grayMode: false,
-    weakMode: false
+    weakMode: false,
+    enableMainLoading: false,
+    mainLoading: false
   }),
   actions: {
     setCollapse(value: boolean) {
@@ -97,6 +99,15 @@ export const useSystemStore = defineStore({
     // args[0]: 要设置的key  args[1]: 要设置的value
     setState(...args: ObjToKeyValArray<SystemState>) {
       this.$patch({ [args[0]]: args[1] })
+    },
+    async setMainLoading(loading: boolean) {
+      if (loading) {
+        this.setState('mainLoading', true)
+      } else {
+        setTimeout(() => {
+          this.setState('mainLoading', false)
+        }, 170)
+      }
     }
   },
   persist: piniaPersistConfig('systemConfig')

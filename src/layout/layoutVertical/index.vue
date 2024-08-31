@@ -33,7 +33,11 @@
 
       <Tabs />
 
-      <el-main class="content" :style="{ padding: !route.meta?.mainFull ? '16px' : 0 }">
+      <el-main
+        class="content"
+        :style="{ padding: !route.meta?.mainFull ? '16px' : 0 }"
+        v-loading="enableMainLoading && mainLoading"
+      >
         <Main />
       </el-main>
     </el-container>
@@ -43,6 +47,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { filterMenuData } from '@/router/utils'
 import { useSystemStore } from '@/store/modules/system'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -57,12 +62,12 @@ const route = useRoute()
 
 const systemStore = useSystemStore()
 
+const { isDark, menuAccordion, enableMainLoading, mainLoading } = storeToRefs(systemStore)
+
 const isCollapse = computed(() => systemStore.sideBar.isCollapse)
 const sideBarWidth = computed(() => (isCollapse.value ? '64px' : '210px'))
 const activeKey = computed(() => route.path)
 const menuData = computed(() => filterMenuData(usePermissionStore().menuList))
-const isDark = computed(() => systemStore.isDark)
-const menuAccordion = computed(() => systemStore.menuAccordion)
 
 function handleClick(key: string) {
   // 获取点击的路由

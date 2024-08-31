@@ -24,6 +24,11 @@
         <span>菜单手风琴</span>
         <el-switch v-model="menuAccordion" />
       </div>
+
+      <div>
+        <span>切换loading</span>
+        <el-switch v-model="enableMainLoading" />
+      </div>
     </div>
   </el-drawer>
 </template>
@@ -40,7 +45,8 @@ const { changeTheme, changeGrayOrWeak } = useTheme()
 
 const showDrawer = ref(false)
 
-const { themeColor, menuAccordion, grayMode, weakMode } = storeToRefs(systemStore)
+const { themeColor, menuAccordion, grayMode, weakMode, enableMainLoading } =
+  storeToRefs(systemStore)
 
 const colorList = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
 

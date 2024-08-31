@@ -9,6 +9,7 @@ import { AxiosCanceler } from '@/api/utils/axiosCancel'
 import { check403 } from './utils'
 import { useLockStore } from '@/store/modules/lock'
 import { LOGIN_PATH, LOCK_PATH } from '@/config/constant'
+import { useSystemStore } from '@/store/modules/system'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')
@@ -88,6 +89,10 @@ router.beforeEach(async (to, from, next) => {
 
   // 动态设置标题
   document.title = to.meta.title ? `${to.meta.title} - Ep-Admin` : 'Ep-Admin'
+
+  if (useSystemStore().enableMainLoading) {
+    useSystemStore().setMainLoading(true)
+  }
 
   usePermissionStore().setRouteName(to.name as string)
 
@@ -172,6 +177,10 @@ export function resetRouter() {
 
 router.afterEach(() => {
   NProgress.done()
+
+  if (useSystemStore().enableMainLoading) {
+    useSystemStore().setMainLoading(false)
+  }
 })
 
 export default router

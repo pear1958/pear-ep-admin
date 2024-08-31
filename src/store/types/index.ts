@@ -29,6 +29,8 @@ export interface SystemState {
   componentSize: ComponentSize
   grayMode: boolean
   weakMode: boolean
+  enableMainLoading: boolean
+  mainLoading: boolean
 }
 
 export interface PermissState {
