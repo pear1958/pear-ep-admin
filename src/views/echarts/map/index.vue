@@ -1,17 +1,18 @@
 <template>
   <div class="bg-white dark:bg-dark w-full h-full echarts-box">
-    <ECharts :options="options" mapName="china" :mapJson="mapJson" />
+    <ECharts :options="options" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import * as echarts from 'echarts'
 import ECharts from '@/components/Base/ECharts'
-// 数据来源: https://datav.aliyun.com/portal/school/atlas/area_selector
-import jsonData from './json/china-province.json'
+import { GeoJson } from '@/components/Base/ECharts/type'
 import { options } from './config'
-import type { GeoJson } from '@/components/Base/ECharts/type'
+// 数据来源: https://datav.aliyun.com/portal/school/atlas/area_selector
+import mapJson from './json/china-province.json'
 
-const mapJson = jsonData as GeoJson
+echarts.registerMap('china', mapJson as GeoJson)
 </script>
 
 <style lang="scss" scoped>

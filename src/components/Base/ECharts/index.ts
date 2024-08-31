@@ -1,35 +1,18 @@
 import { PropType, computed, defineComponent, h, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import * as echarts from 'echarts'
+import { EChartsOption } from 'echarts'
 // import { EChartsType } from 'echarts/core'
 // import echarts from './config'
 import { useSystemStore } from '@/store/modules/system'
 import { throttle } from '@/utils'
-import { ChartOption, GeoJson } from './type'
-import { isObject } from '@/utils/is'
 
 export default defineComponent({
   name: 'ECharts',
   props: {
     options: {
-      type: Object as PropType<ChartOption>,
+      type: Object as PropType<EChartsOption>,
       default: () => ({})
-    },
-    themeName: {
-      type: String,
-      default: null
-    },
-    themeConfig: {
-      type: Object,
-      default: () => null
-    },
-    mapName: {
-      type: String,
-      default: null
-    },
-    mapJson: {
-      type: Object as PropType<GeoJson>,
-      default: () => null
     }
   },
   setup(props) {
@@ -70,14 +53,6 @@ export default defineComponent({
     )
 
     onMounted(() => {
-      const { themeName, themeConfig, mapName, mapJson } = props
-
-      if (themeName && isObject(themeConfig)) {
-        echarts.registerTheme(themeName, themeConfig)
-      }
-      if (mapName && mapJson) {
-        echarts.registerMap(mapName, mapJson)
-      }
       chart = echarts.init(chartRef.value)
       chart.setOption(props.options)
     })

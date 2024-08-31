@@ -1,6 +1,6 @@
-import { ChartOption } from '@/components/Base/ECharts/type'
+import { EChartsOption } from 'echarts'
 
-export const mockOptions: ChartOption = {
+export const options: EChartsOption = {
   tooltip: {
     trigger: 'axis',
     axisPointer: {

@@ -7,9 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
 import ECharts from '@/components/Base/ECharts'
-import { mockOptions } from './config'
-
-const options = reactive(mockOptions)
+import { options } from './config'
 </script>

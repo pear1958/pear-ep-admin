@@ -1,5 +1,5 @@
 import * as echarts from 'echarts'
-import { ChartOption } from '@/components/Base/ECharts/type'
+import { EChartsOption } from 'echarts'
 
 export const planePath =
   'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z'
@@ -71,10 +71,62 @@ export const data = [
   }
 ]
 
+export const customData = [
+  {
+    name: '黄金用户',
+    children: [
+      [114.31, 30.52, 100], // 武汉
+      [124.37, 40.13, 120], // 丹东
+      [114.87, 40.82, 140], // 张家口
+      [114.07, 22.62, 180] // 深圳
+    ]
+  },
+  {
+    name: '白金用户',
+    children: [
+      [119.64, 29.12, 158], // 金华
+      [108.95, 34.27, 198] // 西安
+    ]
+  },
+  {
+    name: '砖石用户',
+    children: [
+      [104.06, 30.67, 256] // 成都
+    ]
+  }
+]
+
+const scatterSeries: EChartsOption['series'] = customData.map(item => {
+  return {
+    name: item.name, // 系列名称
+    type: 'effectScatter',
+    coordinateSystem: 'geo', // 该系列使用的坐标系
+    // 涟漪特效相关配置
+    rippleEffect: {
+      scale: 5, // 动画中波纹的最大缩放比例
+      brushType: 'stroke' // 波纹的绘制方式
+    },
+    data: item.children,
+    encode: {
+      tooltip: 2 // 哪个维度在 tooltip 中显示
+    },
+    symbolSize: function (params: number[]) {
+      return params[2] / 10 // 默认为10
+    }
+  }
+})
+
 /** @type EChartsOption */
-export const options: ChartOption = {
-  tooltip: {
-    trigger: 'item'
+export const options: EChartsOption = {
+  tooltip: {},
+  legend: {
+    left: '5%',
+    bottom: '5%',
+    orient: 'vertical',
+    data: customData.map(item => item.name),
+    textStyle: {
+      color: '#ffffff'
+    }
   },
   geo: {
     map: 'china',
@@ -87,7 +139,7 @@ export const options: ChartOption = {
       min: 0.8
     },
     tooltip: {
-      show: false
+      show: true
     },
     label: {
       show: true,
@@ -190,6 +242,7 @@ export const options: ChartOption = {
         curveness: 0.2 // 线的曲度, 支持从 0 到 1 的值, 值越大曲度越大
       },
       data
-    }
+    },
+    ...scatterSeries
   ]
 }
