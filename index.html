@@ -27,17 +27,14 @@
         }
         .dot {
           position: relative;
-          box-sizing: border-box;
-          display: inline-block;
           width: 32px;
           height: 32px;
-          font-size: 32px;
           transform: rotate(45deg);
           animation: ant-rotate 1.2s infinite linear;
         }
         .dot i {
           position: absolute;
-          display: block;
+          display: inline-block;
           width: 14px;
           height: 14px;
           background-color: #409eff;
@@ -62,8 +59,8 @@
           animation-delay: 0.8s;
         }
         .dot i:nth-child(4) {
-          bottom: 0;
           left: 0;
+          bottom: 0;
           animation-delay: 1.2s;
         }
         @keyframes ant-rotate {
