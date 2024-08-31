@@ -27,25 +27,6 @@
   <img alt="Ep-Admin" width="100%" src="https://github.com/zhangzy56/V-Admin/blob/master/src/assets/readme/admin-5.png">
 </p>
 
-#### 项目功能
-
-- 主题切换, 暗黑模式, 菜单栏搜索, 按钮权限指令封装
-- 原生 websocket 封装, Echarts 组件
-- 二次封装 el-progress 组件, 使其支持动画
-- 自定义 SvgIcon、iconify 组件, 使用 SvgLoader 插件 图标随心使用
-- 自定义 Tabs、Dialog、Modal、Upload、地图选点 等常用组件, 忘记实现思路, 看一下代码便知
-- 通用文件下载
-- 二次封装文件上传组件, 支持图片裁剪
-- 省市区 级联选择 组件, 省市区 select联动 选择组件, 新增, 编辑 v-model一键绑定
-
-- 支持输入错误 url 打开 404 页面
-- 使用 keepAlive 对页面进行缓存，支持多级嵌套页面缓存
-- 使用 Vue3.3 + Tsx 开发, 提升代码性能
-- 支持 路由权限拦截、页面按钮权限配置、路由懒加载、菜单动态权限
-- 点击 Tab 和面包屑进行跳转时, query 不会丢失
-
-- 更多功能正在持续完善中...
-
 ## 安装使用
 
 - 获取项目代码
@@ -77,9 +58,10 @@ pnpm run build:pro
 
 #### todo-list
 
-- [ ] searchTable优化
 - [ ] 多种布局模式
 - [ ] 使用 spring-cloud 开发后端接口
+- [ ] 暗黑模式 变量使用方式 优化
+- [ ] 修复 keep-alive 的 Bug
 
 #### 支持
 

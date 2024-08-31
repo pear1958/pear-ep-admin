@@ -8,7 +8,6 @@ import { useTheme } from '@/hooks/useTheme'
 import { AxiosCanceler } from '@/api/utils/axiosCancel'
 import { check403 } from './utils'
 import { useLockStore } from '@/store/modules/lock'
-import { isEmpty } from '@/utils/is'
 import { LOGIN_PATH, LOCK_PATH } from '@/config/constant'
 
 // 引入 views 文件夹下所有 vue 文件

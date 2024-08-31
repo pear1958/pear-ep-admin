@@ -1,5 +1,5 @@
 import { createApp, h, ref } from 'vue'
-import GkDialog from './index.vue'
+import Dialog from './index.vue'
 
 const openDialog = (options: any) => {
   const { title, content, closeOnClickMask, alignCenter, width, top, handleOk, cancel } = options
@@ -26,7 +26,7 @@ const openDialog = (options: any) => {
   const app = createApp({
     render() {
       return h(
-        GkDialog,
+        Dialog,
         {
           visible: visible.value,
           'onUpdate:visible': (newVisible: boolean) => {
