@@ -118,7 +118,9 @@ const scatterSeries: EChartsOption['series'] = customData.map(item => {
 
 /** @type EChartsOption */
 export const options: EChartsOption = {
-  tooltip: {},
+  tooltip: {
+    trigger: 'item'
+  },
   legend: {
     left: '5%',
     bottom: '5%',

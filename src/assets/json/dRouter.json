@@ -71,6 +71,52 @@
       ]
     },
     {
+      "path": "/map",
+      "name": "Map",
+      "redirect": "/map/ol",
+      "meta": {
+        "icon": "ant-design:environment-outlined",
+        "title": "地图"
+      },
+      "children": [
+        {
+          "path": "/map/ol",
+          "redirect": "/map/ol/index",
+          "meta": {
+            "title": "openLayers"
+          },
+          "children": [
+            {
+              "path": "/map/ol/index",
+              "name": "OpenLayersIndex",
+              "component": "/map/openLayers/index",
+              "meta": {
+                "title": "示例",
+                "mainFull": true
+              }
+            }
+          ]
+        },
+        {
+          "path": "/map/cesium",
+          "redirect": "/map/cesium/index",
+          "meta": {
+            "title": "Cesium"
+          },
+          "children": [
+            {
+              "path": "/map/cesium/index",
+              "name": "CesiumIndex",
+              "component": "/map/cesium/index",
+              "meta": {
+                "title": "示例"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "path": "/echarts",
       "redirect": "/echarts/base",
       "meta": {
@@ -110,7 +156,7 @@
       "redirect": "/ui/drawer",
       "meta": {
         "title": "UI组件",
-        "icon": "ant-design:area-chart-outlined"
+        "icon": "ant-design:bulb-outlined"
       },
       "children": [
         {
