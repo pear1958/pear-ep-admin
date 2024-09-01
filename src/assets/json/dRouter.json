@@ -13,7 +13,6 @@
     },
     {
       "path": "/components",
-      "name": "Components",
       "redirect": "/components/upload",
       "meta": {
         "title": "常用组件",
@@ -34,14 +33,6 @@
           "component": "/components/area",
           "meta": {
             "title": "省市区选择(接口数据)"
-          }
-        },
-        {
-          "path": "/components/mapAddrDrawer",
-          "name": "mapAddrDrawer",
-          "component": "/components/mapAddrDrawer",
-          "meta": {
-            "title": "地图选点"
           }
         },
         {
@@ -72,7 +63,6 @@
     },
     {
       "path": "/map",
-      "name": "Map",
       "redirect": "/map/ol",
       "meta": {
         "icon": "ant-design:environment-outlined",
@@ -80,18 +70,35 @@
       },
       "children": [
         {
-          "path": "/map/ol",
-          "redirect": "/map/ol/index",
+          "path": "/map/aMap",
+          "redirect": "/map/aMap/mapAddrDrawer",
           "meta": {
-            "title": "openLayers"
+            "title": "高德地图"
           },
           "children": [
             {
-              "path": "/map/ol/index",
-              "name": "OpenLayersIndex",
-              "component": "/map/openLayers/index",
+              "path": "/map/aMap/mapAddrDrawer",
+              "name": "MapAddrDrawer",
+              "component": "/map/aMap/mapAddrDrawer",
               "meta": {
-                "title": "示例",
+                "title": "地图选点"
+              }
+            }
+          ]
+        },
+        {
+          "path": "/map/echarts",
+          "redirect": "/map/echarts/base",
+          "meta": {
+            "title": "ECharts地图"
+          },
+          "children": [
+            {
+              "path": "/map/echarts/base",
+              "name": "EChartsMapBase",
+              "component": "/map/echarts/base/index",
+              "meta": {
+                "title": "地图",
                 "mainFull": true
               }
             }
@@ -111,6 +118,92 @@
               "meta": {
                 "title": "示例",
                 "mainFull": true
+              }
+            }
+          ]
+        },
+        {
+          "path": "/map/ol",
+          "redirect": "/map/ol/index",
+          "meta": {
+            "title": "openLayers"
+          },
+          "children": [
+            {
+              "path": "/map/ol/index",
+              "name": "OpenLayersIndex",
+              "component": "/map/openLayers/index",
+              "meta": {
+                "title": "示例",
+                "mainFull": true
+              }
+            }
+          ]
+        },
+        {
+          "path": "/map/leaflet",
+          "redirect": "/map/leaflet/index",
+          "meta": {
+            "title": "Leaflet"
+          },
+          "children": [
+            {
+              "path": "/map/leaflet/index",
+              "name": "LeafletIndex",
+              "component": "/map/leaflet/index",
+              "meta": {
+                "title": "示例"
+              }
+            }
+          ]
+        },
+        {
+          "path": "/map/mapbox",
+          "redirect": "/map/mapbox/index",
+          "meta": {
+            "title": "Mapbox"
+          },
+          "children": [
+            {
+              "path": "/map/mapbox/index",
+              "name": "MapboxIndex",
+              "component": "/map/mapbox/index",
+              "meta": {
+                "title": "示例"
+              }
+            }
+          ]
+        },
+        {
+          "path": "/map/arcGis",
+          "redirect": "/map/arcGis/index",
+          "meta": {
+            "title": "arcGis"
+          },
+          "children": [
+            {
+              "path": "/map/arcGis/index",
+              "name": "ArcGisIndex",
+              "component": "/map/arcGis/index",
+              "meta": {
+                "title": "示例"
+              }
+            }
+          ]
+        },
+        {
+          "path": "/map/antV",
+          "redirect": "/map/antV/index",
+          "meta": {
+            "title": "AntV"
+          },
+          "children": [
+            {
+              "path": "/map/antV/index",
+              "name": "AntVIndex",
+              "component": "/map/antV/index",
+              "meta": {
+                "title": "示例"
               }
             }
           ]
@@ -139,15 +232,6 @@
           "component": "/echarts/theme/index",
           "meta": {
             "title": "自定义主题"
-          }
-        },
-        {
-          "path": "/echarts/map",
-          "name": "EChartsMap",
-          "component": "/echarts/map/index",
-          "meta": {
-            "title": "地图",
-            "mainFull": true
           }
         }
       ]
@@ -204,7 +288,6 @@
     },
     {
       "path": "/table",
-      "name": "Table",
       "redirect": "/table/tablePro",
       "meta": {
         "title": "表格",
@@ -223,7 +306,6 @@
     },
     {
       "path": "/able",
-      "name": "Able",
       "redirect": "/able/table",
       "meta": {
         "title": "功能",
@@ -247,14 +329,6 @@
           }
         },
         {
-          "path": "/able/map",
-          "name": "Map",
-          "component": "/able/map",
-          "meta": {
-            "title": "地图"
-          }
-        },
-        {
           "path": "/able/fileDownload",
           "name": "fileDownload",
           "component": "/able/fileDownload",
@@ -274,7 +348,6 @@
     },
     {
       "path": "/systemManage",
-      "name": "systemManage",
       "redirect": "/systemManage/account",
       "meta": {
         "title": "系统管理",
@@ -331,7 +404,6 @@
     },
     {
       "path": "/menu",
-      "name": "menu",
       "redirect": "/menu/menu1",
       "meta": {
         "icon": "ep:histogram",
@@ -348,7 +420,6 @@
         },
         {
           "path": "/menu/menu2",
-          "name": "menu2",
           "redirect": "/menu/menu2/menu21",
           "meta": {
             "title": "菜单2"
@@ -364,7 +435,6 @@
             },
             {
               "path": "/menu/menu2/menu22",
-              "name": "menu22",
               "redirect": "/menu/menu2/menu22/menu221",
               "meta": {
                 "title": "菜单2-2"
@@ -410,7 +480,6 @@
     },
     {
       "path": "/error",
-      "name": "Error",
       "redirect": "/error/403",
       "meta": {
         "title": "错误页面",
@@ -437,7 +506,6 @@
     },
     {
       "path": "/link",
-      "name": "link",
       "redirect": "/link/bing",
       "meta": {
         "title": "外部页面",
