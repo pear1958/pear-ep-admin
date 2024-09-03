@@ -57,6 +57,10 @@ import Tabs from '../components/Tabs/index.vue'
 import Main from '../components/Main/index.vue'
 import LogoSvg from '@/assets/imgs/logo.svg?component'
 
+defineOptions({
+  name: 'LayoutVertical'
+})
+
 const router = useRouter()
 const route = useRoute()
 

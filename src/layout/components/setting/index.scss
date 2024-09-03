@@ -2,8 +2,9 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 22px;
+  justify-content: center;
+  row-gap: 24px;
+  column-gap: 32px;
 
   .layout-item {
     position: relative;
@@ -52,7 +53,6 @@
   .layout-vertical {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
 
     .layout-dark {
       width: 20%;
@@ -75,7 +75,7 @@
   .layout-columns {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+
     .layout-dark {
       width: 14%;
     }

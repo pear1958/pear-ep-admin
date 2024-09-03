@@ -7,6 +7,7 @@
 import { computed, type Component } from 'vue'
 import LayoutVertical from './LayoutVertical/index.vue'
 import LayoutColumns from './LayoutColumns/index.vue'
+import LayoutMix from './LayoutMix/index.vue'
 import Setting from './components/Setting/index.vue'
 import useSystemStore from '@/store/modules/system'
 import { regisOfflineIcons } from '@/plugins/iconify'
@@ -18,7 +19,8 @@ const layout = computed(() => useSystemStore().layout)
 
 const LayoutComponents: Recordable<Component> = {
   vertical: LayoutVertical,
-  columns: LayoutColumns
+  columns: LayoutColumns,
+  mix: LayoutMix
 }
 
 regisOfflineIcons()

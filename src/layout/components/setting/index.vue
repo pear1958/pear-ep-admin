@@ -4,9 +4,9 @@
       <el-divider>布局模式</el-divider>
 
       <div class="layout-box">
-        <el-tooltip effect="dark" content="纵向" placement="top" :show-after="200">
+        <el-tooltip effect="dark" content="纵向菜单" placement="top" :show-after="200">
           <div
-            :class="['layout-item layout-vertical', { 'is-active': layout == 'vertical' }]"
+            :class="['layout-item layout-vertical', { 'is-active': layout === 'vertical' }]"
             @click="setLayout('vertical')"
           >
             <div class="layout-dark"></div>
@@ -14,25 +14,41 @@
               <div class="layout-light"></div>
               <div class="layout-content"></div>
             </div>
-            <el-icon v-if="layout == 'vertical'">
+            <el-icon v-if="layout === 'vertical'">
               <CircleCheckFilled />
             </el-icon>
           </div>
         </el-tooltip>
 
-        <el-tooltip effect="dark" content="分栏" placement="top" :show-after="200">
+        <el-tooltip effect="dark" content="分栏菜单" placement="top" :show-after="200">
           <div
-            :class="['layout-item layout-columns', { 'is-active': layout == 'columns' }]"
+            :class="['layout-item layout-columns', { 'is-active': layout === 'columns' }]"
             @click="setLayout('columns')"
           >
             <div class="layout-dark"></div>
             <div class="layout-light"></div>
             <div class="layout-content"></div>
-            <el-icon v-if="layout == 'columns'">
+            <el-icon v-if="layout === 'columns'">
               <CircleCheckFilled />
             </el-icon>
           </div>
         </el-tooltip>
+
+        <el-tooltip effect="dark" content="混合菜单" placement="top" :show-after="200">
+          <div
+            :class="['layout-item layout-columns', { 'is-active': layout === 'mix' }]"
+            @click="setLayout('mix')"
+          >
+            <div class="layout-dark"></div>
+            <div class="layout-light"></div>
+            <div class="layout-content"></div>
+            <el-icon v-if="layout === 'mix'">
+              <CircleCheckFilled />
+            </el-icon>
+          </div>
+        </el-tooltip>
+
+        <div class="layout-item invisible"></div>
       </div>
 
       <el-divider>主题设置</el-divider>
