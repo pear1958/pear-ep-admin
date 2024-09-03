@@ -1,0 +1,122 @@
+$menuBoxHeight: calc(100vh - $headerHeight);
+
+.layout-box {
+  display: flex;
+  // 解决关闭全屏时, Y轴出现滚动条
+  height: 100vh;
+  overflow: hidden;
+
+  .logo {
+    height: $headerHeight;
+    border-bottom: 1px solid #282a35;
+    overflow: hidden;
+    background-color: #001529;
+    box-sizing: border-box;
+  }
+
+  .left-menu {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 70px;
+    height: 100%;
+    // background-color: var(--el-menu-bg-color);
+    background-color: #001529;
+
+    .menu-list {
+      height: $menuBoxHeight;
+
+      .menu-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        // color: var(--el-menu-text-color);
+        color: #ffffffa6;
+        font-size: 20px;
+
+        &.active {
+          color: #ffffff;
+          background-color: var(--el-color-primary);
+        }
+
+        .title {
+          margin-top: 6px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .middle-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    // background-color: var(--el-menu-bg-color);
+    background-color: #0c2135;
+    transition: width 0.3s ease;
+
+    .logo {
+      width: 100%;
+      background-color: #0c2135;
+
+      .logo-text {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+        white-space: nowrap;
+      }
+    }
+
+    :deep(.sub-menu) {
+      width: 100%;
+      height: $menuBoxHeight;
+
+      .el-menu {
+        border-right: none;
+
+        .el-menu-item {
+          color: #ffffffa6;
+          background-color: #0c2135;
+
+          &:hover {
+            color: #ffffff;
+          }
+
+          &.is-active {
+            background-color: var(--el-color-primary) !important;
+            color: #ffffff;
+          }
+        }
+
+        .el-sub-menu__title {
+          color: #ffffffa6;
+          background-color: #0c2135 !important;
+        }
+      }
+    }
+  }
+
+  .right-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    flex: 1;
+
+    > .header {
+      background-color: #ffffff;
+      height: $headerHeight;
+      padding: 0;
+    }
+
+    > .content {
+      flex: 1;
+      background-color: $mainBgColor;
+      // 防止切换路由时出现 x y 轴的滚动条
+      overflow-x: hidden;
+    }
+  }
+}

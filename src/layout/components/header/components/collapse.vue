@@ -6,7 +6,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 
 const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
 

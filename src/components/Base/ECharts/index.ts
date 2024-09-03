@@ -4,7 +4,7 @@ import * as echarts from 'echarts'
 import { EChartsOption } from 'echarts'
 // import { EChartsType } from 'echarts/core'
 // import echarts from './config'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 import { throttle } from '@/utils'
 
 export default defineComponent({

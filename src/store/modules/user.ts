@@ -2,10 +2,10 @@ import { defineStore } from 'pinia'
 import { userState } from '../types'
 import { getUserInfoApi } from '@/api/modules/user'
 import { Login } from '@/api/types'
-import { usePermissionStore } from './permission'
+import usePermissionStore from './permission'
 import router from '@/router'
 
-export const useUserStore = defineStore({
+const useUserStore = defineStore({
   id: 'user',
   state: (): userState => ({
     token: null,
@@ -38,3 +38,5 @@ export const useUserStore = defineStore({
     }
   }
 })
+
+export default useUserStore

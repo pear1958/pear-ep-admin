@@ -1,18 +1,24 @@
 <template>
   <div class="bg-white dark:bg-dark p-4">
-    <ChooseArea @change="onChange" />
+    <ChooseArea @change="onChange" v-if="showChooseArea" />
+    <el-button type="primary" @click="showChooseArea = true" v-else>异步加载组件(3s)</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
-// import ChooseArea from '@/components/ChooseArea/index.vue'
+import { ref } from 'vue'
 import { createAsyncComponent } from '@/utils/vue/createAsyncComponent'
 import { delay } from '@/utils'
 
-const ChooseArea = createAsyncComponent(async () => {
-  await delay(3000)
-  return import('@/components/ChooseArea/index.vue')
-})
+const showChooseArea = ref(false)
+
+const ChooseArea = createAsyncComponent(
+  async () => {
+    await delay(3000)
+    return import('@/components/ChooseArea/index.vue')
+  },
+  { loading: true }
+)
 
 function onChange(params: any) {
   console.log('params', params)

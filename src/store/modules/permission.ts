@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { getMenuListApi, getButtonDataApi } from '@/api/modules/user'
-import { getFlatArr, getBreadcrumbList } from '@/router/utils'
+import { getFlatArr, getBreadcrumbList, filterMenuData } from '@/router/utils'
 import { PermissState } from '../types'
 
-export const usePermissionStore = defineStore({
+const usePermissionStore = defineStore({
   id: 'permission',
   state: (): PermissState => ({
     // 菜单权限
@@ -22,7 +22,9 @@ export const usePermissionStore = defineStore({
     // 为什么要这么做: 为了嵌套路由: 否则嵌套路由需要在每个父路由中写 router-view标签, 还要去控制其显示与隐藏 (麻烦了)
     breadcrumbListGet: state => {
       return (path: string) => getBreadcrumbList(path, state.menuList)
-    }
+    },
+    // 菜单权限列表 ==> 左侧菜单栏渲染, 需要剔除 showInMenu == false
+    showMenuListGet: state => filterMenuData(state.menuList)
   },
   actions: {
     setRouteName(name: string) {
@@ -58,3 +60,5 @@ export const usePermissionStore = defineStore({
     }
   }
 })
+
+export default usePermissionStore

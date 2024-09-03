@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import Sortable from 'sortablejs'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 
 export async function useTabsDrag() {
   await nextTick()

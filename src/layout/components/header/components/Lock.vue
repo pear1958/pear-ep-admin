@@ -40,7 +40,7 @@
 import { reactive, ref, unref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Lock } from '@element-plus/icons-vue'
-import { useLockStore } from '@/store/modules/lock'
+import useLockStore from '@/store/modules/lock'
 import avatarUrl from '@/assets/imgs/avatar.jpg'
 
 defineOptions({

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 
 const systemStore = useSystemStore()
 

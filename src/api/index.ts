@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { ElMessage } from 'element-plus'
 import router from '@/router'
 import { httpResEnum } from '@/enums/httpEnum'
-import { useUserStore } from '@/store/modules/user'
+import useUserStore from '@/store/modules/user'
 import { checkStatus } from './utils/checkStatus'
 import { CustomAxiosRequestConfig, ResultData } from './types'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'

@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 import { LanguageType } from '@/store/types'
 import globalization from '@/assets/svg/globalization.svg?component'
 

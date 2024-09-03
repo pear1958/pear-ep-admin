@@ -178,7 +178,7 @@
           "path": "/map/arcGis",
           "redirect": "/map/arcGis/index",
           "meta": {
-            "title": "arcGis"
+            "title": "ArcGis"
           },
           "children": [
             {

@@ -13,7 +13,7 @@
 <script setup>
 import { computed, unref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { usePermissionStore } from '@/store/modules/permission'
+import usePermissionStore from '@/store/modules/permission'
 
 const route = useRoute()
 const router = useRouter()

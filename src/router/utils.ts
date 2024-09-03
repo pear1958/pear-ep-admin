@@ -1,5 +1,5 @@
 import { RouteLocationNormalized } from 'vue-router'
-import { usePermissionStore } from '@/store/modules/permission'
+import usePermissionStore from '@/store/modules/permission'
 import { deepClone } from '@/utils'
 
 /**

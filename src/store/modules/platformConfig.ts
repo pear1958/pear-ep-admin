@@ -3,7 +3,7 @@ import { IConfigState } from '../types'
 
 type Key = keyof IConfigState
 
-export const useConfigStore = defineStore({
+const useConfigStore = defineStore({
   id: 'platformConfig',
   state: (): IConfigState => ({
     mapConfig: {
@@ -19,3 +19,5 @@ export const useConfigStore = defineStore({
     }
   }
 })
+
+export default useConfigStore

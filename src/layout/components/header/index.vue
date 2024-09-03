@@ -52,7 +52,7 @@ import DarkIcon from './components/DarkIcon.vue'
 import Lock from './components/Lock.vue'
 import I18nIcon from './components/I18nIcon.vue'
 import emitter from '@/utils/mitt'
-import { useUserStore } from '@/store/modules/user'
+import useUserStore from '@/store/modules/user'
 import avatarUrl from '@/assets/imgs/avatar.jpg'
 
 const openSetDrawer = () => {

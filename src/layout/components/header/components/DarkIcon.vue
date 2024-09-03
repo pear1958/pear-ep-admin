@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Sunny, Moon } from '@element-plus/icons-vue'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 import { useTheme } from '@/hooks/useTheme'
 
 const isDark = ref(useSystemStore().isDark)

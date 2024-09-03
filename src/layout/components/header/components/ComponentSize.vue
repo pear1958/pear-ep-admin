@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Operation } from '@element-plus/icons-vue'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 import { ComponentSize } from '@/store/types'
 
 const systemStore = useSystemStore()

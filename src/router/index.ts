@@ -2,14 +2,14 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import { staticRouter } from './modules/static'
 import { notFoundRouter } from './modules/error'
 import NProgress from '@/config/progress'
-import { useUserStore } from '@/store/modules/user'
-import { usePermissionStore } from '@/store/modules/permission'
+import useUserStore from '@/store/modules/user'
+import usePermissionStore from '@/store/modules/permission'
 import { useTheme } from '@/hooks/useTheme'
 import { AxiosCanceler } from '@/api/utils/axiosCancel'
 import { check403 } from './utils'
-import { useLockStore } from '@/store/modules/lock'
+import useLockStore from '@/store/modules/lock'
 import { LOGIN_PATH, LOCK_PATH } from '@/config/constant'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob('@/views/**/*.vue')

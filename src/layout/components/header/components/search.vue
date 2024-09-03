@@ -67,7 +67,7 @@
 import { ref, shallowRef, unref, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import hotkeys from 'hotkeys-js'
-import { usePermissionStore } from '@/store/modules/permission'
+import usePermissionStore from '@/store/modules/permission'
 import { Search } from '@element-plus/icons-vue'
 
 const route = useRoute()

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { LockState, LockInfo } from '../types'
-import { useUserStore } from './user'
+import useUserStore from './user'
 import piniaPersistConfig from '../utils/persist'
 
-export const useLockStore = defineStore({
+const useLockStore = defineStore({
   id: 'lock',
   state: (): LockState => ({
     lockInfo: null
@@ -44,3 +44,5 @@ export const useLockStore = defineStore({
   },
   persist: piniaPersistConfig('lockConfig')
 })
+
+export default useLockStore

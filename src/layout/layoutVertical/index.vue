@@ -1,6 +1,6 @@
 <template>
-  <el-container class="layout-box">
-    <el-aside :width="sideBarWidth" class="sider" id="sider">
+  <div class="layout-box">
+    <div :style="{ width: sideBarWidth }" class="sider" id="sider">
       <div class="logo flex-c">
         <LogoSvg />
         <span v-show="!isCollapse">Ep-Admin</span>
@@ -24,24 +24,24 @@
           </el-menu>
         </el-scrollbar>
       </div>
-    </el-aside>
+    </div>
 
-    <el-container class="right-layout">
-      <el-header class="header">
+    <div class="right-layout">
+      <div class="header">
         <Header />
-      </el-header>
+      </div>
 
       <Tabs />
 
-      <el-main
+      <div
         class="content"
         :style="{ padding: !route.meta?.mainFull ? '16px' : 0 }"
         v-loading="enableMainLoading && mainLoading"
       >
         <Main />
-      </el-main>
-    </el-container>
-  </el-container>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -49,8 +49,8 @@ import { computed } from 'vue'
 import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { filterMenuData } from '@/router/utils'
-import { useSystemStore } from '@/store/modules/system'
-import { usePermissionStore } from '@/store/modules/permission'
+import useSystemStore from '@/store/modules/system'
+import usePermissionStore from '@/store/modules/permission'
 import SubMenu from '../components/SubMenu/index.vue'
 import Header from '../components/Header/index.vue'
 import Tabs from '../components/Tabs/index.vue'

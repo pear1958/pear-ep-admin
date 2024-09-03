@@ -1,5 +1,5 @@
 import { storeToRefs } from 'pinia'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 import { getDarkColor, getLightColor } from '@/utils/theme'
 
 export function useTheme() {

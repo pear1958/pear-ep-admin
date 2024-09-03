@@ -25,7 +25,7 @@ export const createAsyncComponent = <
   options: Options = {}
 ) => {
   const {
-    loading = true,
+    loading = false,
     loadingComponent,
     errorComponent,
     delay = 100,

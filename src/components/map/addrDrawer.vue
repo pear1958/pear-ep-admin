@@ -34,7 +34,7 @@
 import { ref, unref, watchEffect } from 'vue'
 import { ElMessage } from 'element-plus'
 import AMapLoader from '@amap/amap-jsapi-loader'
-import { useConfigStore } from '@/store/modules/platformConfig'
+import useConfigStore from '@/store/modules/platformConfig'
 import { debounce, deepClone } from '@/utils'
 import { isObject } from '@/utils/is'
 import markerPng from '@/assets/imgs/marker.png'

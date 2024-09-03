@@ -40,7 +40,7 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import SubMenu from './index.vue'
-import { useSystemStore } from '@/store/modules/system'
+import useSystemStore from '@/store/modules/system'
 
 defineProps<{ menuList: MenuList }>()
 

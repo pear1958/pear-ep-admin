@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { usePermissionStore } from '@/store/modules/permission'
+import usePermissionStore from '@/store/modules/permission'
 
 /**
  * 页面按钮权限
