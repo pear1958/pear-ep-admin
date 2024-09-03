@@ -5,6 +5,7 @@
   overflow: hidden;
 
   .sider {
+    flex-shrink: 0;
     height: 100vh;
     background-color: #001529;
     transition: all 0.2s;
@@ -71,6 +72,7 @@
     flex-direction: column;
     height: 100vh;
     flex: 1;
+    min-width: 0;
 
     > .header {
       background-color: #ffffff;

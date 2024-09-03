@@ -15,9 +15,9 @@ $menuBoxHeight: calc(100vh - $headerHeight);
   }
 
   .left-menu {
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
     width: 70px;
     height: 100%;
     // background-color: var(--el-menu-bg-color);
@@ -52,6 +52,9 @@ $menuBoxHeight: calc(100vh - $headerHeight);
   }
 
   .middle-menu {
+    // 避免设置宽度无效
+    // 默认被加上 flex: 0 1 auto;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -105,6 +108,7 @@ $menuBoxHeight: calc(100vh - $headerHeight);
     flex-direction: column;
     height: 100vh;
     flex: 1;
+    min-width: 0;
 
     > .header {
       background-color: #ffffff;

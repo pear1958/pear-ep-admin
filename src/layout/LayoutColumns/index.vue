@@ -102,12 +102,13 @@ watch(
       return route.path === item.path || `/${route.path.split('/')[1]}` === item.path
     })
 
-    if (menuItem[0].children?.length) {
+    if (!menuItem[0].children?.length) {
+      subMenuList.value = []
+      systemStore.setCollapse(true)
+    } else {
       subMenuList.value = menuItem[0].children
-      return
+      systemStore.setCollapse(false)
     }
-
-    subMenuList.value = []
   },
   {
     deep: true,
