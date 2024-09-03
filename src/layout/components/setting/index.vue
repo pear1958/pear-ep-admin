@@ -1,5 +1,5 @@
 <template>
-  <el-drawer v-model="showDrawer" title="项目设置" :size="290" class="setting-drawer">
+  <el-drawer v-model="showDrawer" title="项目设置" :size="330" class="setting-drawer">
     <div class="flex flex-col gap-[14px] box">
       <el-divider>布局模式</el-divider>
 
@@ -113,5 +113,5 @@ emitter.on('openSetDrawer', () => {
 </style>
 
 <style lang="scss" scoped>
-@import url('./index.scss');
+@import './index.scss';
 </style>
