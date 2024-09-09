@@ -1,4 +1,7 @@
 declare interface Window {
+  _AMapSecurityConfig: {
+    [key: string]: string
+  }
   CESIUM_BASE_URL: string
 }
 
@@ -21,18 +24,14 @@ declare interface TabItem {
 
 declare type TabList = TabItem[]
 
-declare interface Window {
-  _AMapSecurityConfig: {
-    [key: string]: string
-  }
-}
-
 declare const AMap: Recordable
 
 declare type TargetContext = '_self' | '_blank'
 
-declare type LabelValueList = {
+declare interface LabelValue<T = string | number> {
   label: string
-  value: any
+  value: T
   [key: string]: any
-}[]
+}
+
+declare type LabelValueList = LabelValue[]

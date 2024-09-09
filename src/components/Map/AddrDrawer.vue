@@ -38,19 +38,7 @@ import useConfigStore from '@/store/modules/platformConfig'
 import { debounce, deepClone } from '@/utils'
 import { isObject } from '@/utils/is'
 import markerPng from '@/assets/imgs/marker.png'
-
-export type IMapData = {
-  addr: string
-  lng: number | string
-  lat: number | string
-}
-
-interface AddrOption {
-  label: string
-  value: string
-  lng: number
-  lat: number
-}
+import { AddrOption, IMapData } from './type'
 
 defineOptions({
   name: 'mapAddrDrawer'
@@ -92,7 +80,7 @@ watchEffect(async () => {
     if (!isObject(props.mapData)) return
 
     // 编辑: 回填数据
-    mapData = deepClone(props.mapData) as Recordable as any
+    mapData = deepClone(props.mapData) as unknown as any
 
     // Key 若不存在, 则赋初始值, 避免第一次点击确定返回的数据格式不对
     if (!Reflect.has(mapData, 'lng')) mapData.lng = ''

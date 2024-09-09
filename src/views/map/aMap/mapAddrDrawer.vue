@@ -12,7 +12,8 @@
 
 <script setup lang="ts">
 import { Ref, ref } from 'vue'
-import MapAddrDrawer, { IMapData } from '@/components/Map/AddrDrawer.vue'
+import MapAddrDrawer from '@/components/Map/AddrDrawer.vue'
+import { IMapData } from '@/components/Map/type'
 
 const visible = ref(false)
 
