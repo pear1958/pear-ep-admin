@@ -1,0 +1,91 @@
+.tabs-box {
+  height: $tabHeight;
+  line-height: $tabHeight;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  @include flex(space-between);
+  background-color: #ffffff;
+  padding: 1px 0;
+  border-top: 1px solid var(--el-border-color-light);
+  border-bottom: 1px solid var(--el-border-color-light);
+
+  :deep(.el-tabs) {
+    width: calc(100% - 45px);
+
+    .el-tabs__content {
+      display: none;
+    }
+
+    .el-tabs__header {
+      height: calc($tabHeight - 4px);
+      margin: 0 !important;
+      border-bottom: none !important;
+
+      .el-tabs__item {
+        height: calc($tabHeight - 4px);
+        font-size: 12px;
+        border: 1px solid var(--el-border-color-light);
+        margin: 0 3px;
+
+        &.is-active {
+          background-color: var(--el-color-primary);
+          padding: 0 13px !important;
+          transition: none;
+
+          .el-dropdown {
+            color: #ffffff !important;
+          }
+
+          .el-icon {
+            transition: none;
+            color: #ffffff !important;
+          }
+        }
+
+        &:hover {
+          color: #000000;
+        }
+
+        .el-dropdown {
+          font-size: 12px;
+          color: #000000d9;
+        }
+      }
+
+      .el-tabs__nav-prev,
+      .el-tabs__nav-next {
+        line-height: $tabHeight;
+      }
+
+      .el-tabs__nav {
+        border: none;
+      }
+    }
+  }
+
+  .more-button {
+    width: 45px;
+    height: 100%;
+    box-sizing: border-box;
+    border-left: 1px solid var(--el-border-color-light);
+    @include flex();
+
+    .dropdown-icon {
+      font-size: 17px;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      :deep(.el-icon) {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 14px;
+
+        &:hover {
+          border: none;
+        }
+      }
+    }
+  }
+}

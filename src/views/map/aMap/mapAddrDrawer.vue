@@ -6,13 +6,13 @@
       <div>数据: {{ mapData }}</div>
     </div>
 
-    <mapAddrDrawer v-model:visible="visible" v-model:map-data="mapData" />
+    <MapAddrDrawer v-model:visible="visible" v-model:map-data="mapData" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { Ref, ref } from 'vue'
-import mapAddrDrawer, { IMapData } from '@/components/Map/AddrDrawer.vue'
+import MapAddrDrawer, { IMapData } from '@/components/Map/AddrDrawer.vue'
 
 const visible = ref(false)
 
