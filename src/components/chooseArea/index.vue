@@ -1,14 +1,35 @@
 <template>
   <el-select clearable placeholder="请选择省份" v-model="province">
-    <el-option v-for="item in chinaData" :key="item.code" :value="item.code" :label="item.name"></el-option>
+    <el-option
+      v-for="item in chinaData"
+      :key="item.code"
+      :value="item.code"
+      :label="item.name"
+    ></el-option>
   </el-select>
 
-  <el-select clearable :disabled="!province" style="margin: 0 10px" placeholder="请选择城市" v-model="city">
-    <el-option v-for="item in cityOptions" :key="item.code" :value="item.code" :label="item.name"></el-option>
+  <el-select
+    clearable
+    :disabled="!province"
+    style="margin: 0 10px"
+    placeholder="请选择城市"
+    v-model="city"
+  >
+    <el-option
+      v-for="item in cityOptions"
+      :key="item.code"
+      :value="item.code"
+      :label="item.name"
+    ></el-option>
   </el-select>
 
   <el-select clearable :disabled="!province || !city" placeholder="请选择区域" v-model="district">
-    <el-option v-for="item in districtOptions" :key="item.code" :value="item.code" :label="item.name"></el-option>
+    <el-option
+      v-for="item in districtOptions"
+      :key="item.code"
+      :value="item.code"
+      :label="item.name"
+    ></el-option>
   </el-select>
 </template>
 
