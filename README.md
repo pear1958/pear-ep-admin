@@ -62,6 +62,7 @@ pnpm run build:pro
 - [ ] 使用 spring-cloud 开发后端接口
 - [ ] 暗黑模式 变量使用方式 优化
 - [ ] 修复 keep-alive 的 Bug
+- [ ] 开发图片标注工具
 
 #### 支持
 
