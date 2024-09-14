@@ -51,7 +51,7 @@
   </TablePro>
 </template>
 
-<script setup lang="tsx" name="useProTable">
+<script setup lang="tsx">
 import { ref, reactive, unref } from 'vue'
 import { ElMessage } from 'element-plus'
 import {
@@ -67,6 +67,10 @@ import TablePro from '@/components/Base/TablePro/index.vue'
 import { deleteUser, getUserList } from '@/api/modules/user'
 import { columns } from './columns'
 import { handleData } from '@/utils/element'
+
+defineOptions({
+  name: 'tablePro'
+})
 
 const tableProRef = ref()
 const fixedParams = reactive({ fixed: 'test' })

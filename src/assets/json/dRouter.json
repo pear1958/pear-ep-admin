@@ -20,6 +20,14 @@
       },
       "children": [
         {
+          "path": "/components/imgLabel",
+          "name": "imgLabel",
+          "component": "/components/imgLabel",
+          "meta": {
+            "title": "图片标注"
+          }
+        },
+        {
           "path": "/components/upload",
           "name": "upload",
           "component": "/components/upload",
@@ -314,7 +322,7 @@
       "children": [
         {
           "path": "/able/table",
-          "name": "InfiniteScrollTable",
+          "name": "infiniteScrollTable",
           "component": "/able/infiniteScroll",
           "meta": {
             "title": "表格无限滚动"

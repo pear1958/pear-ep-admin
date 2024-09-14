@@ -14,6 +14,10 @@ import Tabs from '@/components/UI/Tabs/index.vue'
 import TabItem from '@/components/UI/Tabs/TabItem'
 
 const title = ref('体育新闻')
+
+defineOptions({
+  name: 'Tabs'
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -11,8 +11,8 @@ import useLockStore from '@/store/modules/lock'
 import { LOGIN_PATH, LOCK_PATH } from '@/config/constant'
 import useSystemStore from '@/store/modules/system'
 
-// 引入 views 文件夹下所有 vue 文件
-const modules = import.meta.glob('@/views/**/*.vue')
+// 引入 views 文件夹下所有 vue | tsx 文件
+const modules = import.meta.glob('@/views/**/*.{vue,tsx}')
 
 // const whiteList = []
 
@@ -23,6 +23,13 @@ const router = createRouter({
   routes: [...staticRouter, notFoundRouter],
   // 在页面之间导航时控制滚动的函数  https://router.vuejs.org/zh/api/#routes
   scrollBehavior: () => ({ left: 0, top: 0 })
+  // scrollBehavior: (to, from, savedPosition) => {
+  //   if (savedPosition) {
+  //     return savedPosition
+  //   } else {
+  //     return { x: 0, y: 0 }
+  //   }
+  // }
 })
 
 function getAuthData() {
@@ -50,7 +57,9 @@ function initRouter() {
     item.children && delete item.children
 
     if (item.component && typeof item.component == 'string' && item.component !== '/iframeView') {
-      item.component = modules['/src/views' + item.component + '.vue']
+      item.component =
+        modules['/src/views' + item.component + '.vue'] ??
+        modules['/src/views' + item.component + '.tsx']
     }
 
     if (item.component == '/iframeView') {

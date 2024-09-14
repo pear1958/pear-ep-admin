@@ -7,12 +7,17 @@
 
     <div>
       <p class="mb-2">
-        <span>loaded page(total: {{ total }}): {{ pageIndex }}, </span>
+        <span>loaded page(total: {{ total }}): {{ pageIndex }},</span>
         disabled:
         <el-switch v-model="disabled" :disabled="pageIndex >= total" />
       </p>
 
-      <el-table v-el-table-infinite-scroll="load" :data="data" :infinite-scroll-disabled="disabled" height="435px">
+      <el-table
+        v-el-table-infinite-scroll="load"
+        :data="data"
+        :infinite-scroll-disabled="disabled"
+        height="435px"
+      >
         <el-table-column type="index" />
         <el-table-column prop="date" label="date" />
         <el-table-column prop="name" label="name" />
@@ -27,7 +32,7 @@ import { ref } from 'vue'
 import { default as vElTableInfiniteScroll } from 'el-table-infinite-scroll'
 
 defineOptions({
-  name: 'InfiniteScroll'
+  name: 'infiniteScrollTable'
 })
 
 const mockData = new Array(10).fill({

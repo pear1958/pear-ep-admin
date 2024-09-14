@@ -22,6 +22,10 @@
 import { ref } from 'vue'
 import Drawer from '@/components/UI/Drawer/index.vue'
 
+defineOptions({
+  name: 'Drawer'
+})
+
 const visible = ref(false)
 </script>
 

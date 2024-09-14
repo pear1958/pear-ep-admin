@@ -56,6 +56,10 @@ pnpm run dev
 pnpm run build:pro
 ```
 
+#### 注意事项
+
+- 使用keep-alive记得 页面name(默认为文件名) 与route.name配置的一样
+
 #### todo-list
 
 - [ ] 多种布局模式

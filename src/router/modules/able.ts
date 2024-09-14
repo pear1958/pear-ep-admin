@@ -14,7 +14,7 @@ export default {
     },
     {
       path: '/able/table',
-      name: 'InfiniteScrollTable',
+      name: 'infiniteScrollTable',
       component: '/able/infiniteScroll',
       meta: {
         title: '表格无限滚动'

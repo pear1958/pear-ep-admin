@@ -1,0 +1,15 @@
+{
+  "Vue3.2(tsx)+快速生成模板": {
+    "prefix": "Vue3.2(tsx)+",
+    "body": [
+      "import { defineComponent } from 'vue'\n",
+      "export default defineComponent({",
+      "\tname: 'xxx',",
+      "\tsetup() {",
+      "\t\treturn () => <div>xxx</div>",
+      "\t},",
+      "})\n",
+    ],
+    "description": "Vue3.2(tsx)+"
+  }
+}

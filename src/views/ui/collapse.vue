@@ -27,6 +27,10 @@ import { ref } from 'vue'
 import Collapse from '@/components/UI/Collapse/index.vue'
 import CollapseItem from '@/components/UI/Collapse/CollapseItem.vue'
 
+defineOptions({
+  name: 'Collapse'
+})
+
 const openedValue = ref(['a'])
 </script>
 
