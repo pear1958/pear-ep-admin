@@ -1,13 +1,16 @@
+import JSZip from 'jszip'
+import { ElMessage } from 'element-plus'
 import { imgUrlToBase64, base64toBlob } from './base64Convert'
+import { getFileName } from './utils'
 
 /**
  * 根据后台接口文件流下载
  * @param data: 接口返回的文件流 eg: Blob对象
- * 使用示例: downloadByData('这是一段测试文字', 'test.txt' || 'test.docx')
+ * 使用示例: downloadByData('这是一段测试文字', 'test.txt'||'test.docx')
  *           downloadByData(pdfUrl, 'temp.pdf')
  */
-export function downloadByData(data: BlobPart, fileName: string, type?: string) {
-  const blob = new Blob([data], { type: type || 'application/octet-stream' })
+export function downloadByData(data: BlobPart, fileName: string, mime?: string) {
+  const blob = new Blob([data], { type: mime || 'application/octet-stream' })
 
   const blobURL = window.URL.createObjectURL(blob)
 
@@ -21,11 +24,8 @@ export function downloadByData(data: BlobPart, fileName: string, type?: string) 
   }
 
   document.body.appendChild(tempLink)
-
   tempLink.click()
-
   document.body.removeChild(tempLink)
-
   window.URL.revokeObjectURL(blobURL)
 }
 
@@ -35,14 +35,10 @@ export function downloadByBase64(base64: string, filename: string, mime?: string
 }
 
 // 下载在线图片  不会修改图片的后缀名
-export function downloadImgByUrl(url: string, filename: string, mime?: string) {
-  if (!filename) {
-    filename = url.slice(url.lastIndexOf('/') + 1)
-  }
-
-  imgUrlToBase64(url).then(base64 => {
-    downloadByBase64(base64, filename, mime)
-  })
+export async function downloadImgByUrl(url: string, filename?: string, mime?: string) {
+  if (!filename) filename = getFileName(url)
+  const base64 = await imgUrlToBase64(url)
+  downloadByBase64(base64, filename, mime)
 }
 
 /**
@@ -82,4 +78,30 @@ export function downloadFileByUrl(url: string, target: TargetContext = '_self', 
   window.open(url, target)
 
   return true
+}
+
+/**
+ * @description: 多个在线图片下载成Zip
+ * 注意事项: 1.图片不能跨域 2.文件名不能重复, 否则会被覆盖
+ */
+export const downloadImgZip = async (urlList: string[], folderName = '图片附件') => {
+  try {
+    const zip = new JSZip()
+    const imgFolder = zip.folder(folderName)
+    const base64List = await Promise.all(urlList.map(url => imgUrlToBase64(url)))
+
+    base64List.forEach((base64, i) => {
+      const fileName = getFileName(urlList[i])
+      imgFolder.file(fileName, base64.substring(22), {
+        base64: true
+      })
+    })
+
+    const blobData = await zip.generateAsync({ type: 'blob' })
+
+    downloadByData(blobData, `${folderName}.zip`)
+  } catch (err) {
+    console.log('err', err)
+    ElMessage.error('下载失败')
+  }
 }
