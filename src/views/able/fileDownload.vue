@@ -66,7 +66,13 @@ function downloadFileByApi() {
 const imgUrlList = [
   'https://avatars.githubusercontent.com/u/499550?s=64&v=4',
   'https://img0.baidu.com/it/u=3906269906,2494252993&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500',
-  'https://xiaoxian521.github.io/hyperlink/img/pure.png'
+  'https://xiaoxian521.github.io/hyperlink/img/pure.png',
+  'https://i-blog.csdnimg.cn/blog_migrate/a6009ca70e3e0ea5786eb4030fc09ebf.png#pic_center',
+  'https://i-blog.csdnimg.cn/blog_migrate/654ec625306e3952d7aa3567da24c6bd.png#pic_center',
+  'https://i-blog.csdnimg.cn/blog_migrate/c2ac836678f1a3bcde43ee2fa838577b.png#pic_center',
+  'https://i-blog.csdnimg.cn/blog_migrate/281fb7eafb667efe8348f44d33baa041.png#pic_center',
+  'https://i-blog.csdnimg.cn/blog_migrate/7876538fdf517bdd12a3db5908b53ccf.png#pic_center',
+  'https://i-blog.csdnimg.cn/blog_migrate/5b174a7dd329a779bf333b8420a09084.png#pic_center'
   // 'http://image-demo.img.aliyuncs.com/example.jpg@!pipe1',
   // 'http://image-demo.img.aliyuncs.com/example.jpg',
   // 'https://www.leaferjs.com/ui/image/demo/mary.jpg',
