@@ -17,14 +17,22 @@
       <el-button
         @click="
           downloadFileByUrl(
-            // 'https://github.com/xiaoxian521/xiaoxian521/archive/refs/heads/main.zip',
-            'http://static.shanhuxueyuan.com/demo/excel.xlsx',
-            '_self',
-            'test.xlsx'
+            'https://github.com/xiaoxian521/xiaoxian521/archive/refs/heads/main.zip'
           )
         "
       >
-        根据文件在线地址下载文件
+        根据文件在线地址下载文件(a标签获取)
+      </el-button>
+
+      <el-button
+        @click="
+          downloadFileByUrlNoOrigin(
+            'http://static.shanhuxueyuan.com/demo/excel.xlsx',
+            'test-111.xlsx'
+          )
+        "
+      >
+        根据文件在线地址下载文件(ajax获取)
       </el-button>
 
       <el-button @click="downloadFileByApi">根据后台接口文件流下载</el-button>
@@ -40,6 +48,7 @@ import {
   downloadByData,
   downloadImgByUrl,
   downloadFileByUrl,
+  downloadFileByUrlNoOrigin,
   downloadByBase64,
   downloadImgZip
 } from '@/utils/file'

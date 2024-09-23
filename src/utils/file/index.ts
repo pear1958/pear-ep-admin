@@ -1,7 +1,7 @@
 import JSZip from 'jszip'
 import { ElMessage } from 'element-plus'
 import { imgUrlToBase64, base64toBlob } from './base64Convert'
-import { getFileName } from './utils'
+import { downloadByBlob, getFileName } from './utils'
 
 /**
  * 根据后台接口文件流下载
@@ -11,22 +11,7 @@ import { getFileName } from './utils'
  */
 export function downloadByData(data: BlobPart, fileName: string, mime?: string) {
   const blob = new Blob([data], { type: mime || 'application/octet-stream' })
-
-  const blobURL = window.URL.createObjectURL(blob)
-
-  const tempLink = document.createElement('a')
-  tempLink.style.display = 'none'
-  tempLink.href = blobURL
-  tempLink.setAttribute('download', fileName)
-
-  if (typeof tempLink.download === 'undefined') {
-    tempLink.setAttribute('target', '_blank')
-  }
-
-  document.body.appendChild(tempLink)
-  tempLink.click()
-  document.body.removeChild(tempLink)
-  window.URL.revokeObjectURL(blobURL)
+  downloadByBlob(blob, fileName)
 }
 
 export function downloadByBase64(base64: string, filename: string, mime?: string) {
@@ -34,7 +19,7 @@ export function downloadByBase64(base64: string, filename: string, mime?: string
   downloadByData(blob, filename, mime)
 }
 
-// 下载在线图片  不会修改图片的后缀名
+// 下载在线图片, 不会修改图片的后缀名
 export async function downloadImgByUrl(url: string, filename?: string, mime?: string) {
   if (!filename) filename = getFileName(url)
   const base64 = await imgUrlToBase64(url)
@@ -42,10 +27,11 @@ export async function downloadImgByUrl(url: string, filename?: string, mime?: st
 }
 
 /**
- * @description: 下载文件(在线地址)  比如: xlsx
- * @param {TargetContext} target 在当前窗口进行下载, 提示会显示在右上角
+ * 下载文件(在线地址)  比如: xlsx  没有CORS限制
+ * 非同源不支持修改文件名: 下载地址 和 当前网站地址 必须是 同源的
+ * @param target 在当前窗口进行下载, 提示会显示在右上角
  */
-export function downloadFileByUrl(url: string, target: TargetContext = '_self', fileName?: string) {
+export function downloadFileByUrl(url: string, fileName?: string, target: TargetContext = '_self') {
   const isChrome = window.navigator.userAgent.toLowerCase().indexOf('chrome') > -1
   const isSafari = window.navigator.userAgent.toLowerCase().indexOf('safari') > -1
 
@@ -81,7 +67,22 @@ export function downloadFileByUrl(url: string, target: TargetContext = '_self', 
 }
 
 /**
- * @description: 多个在线图片下载成Zip
+ * 可以修改文件名, 有CORS限制, target不生效
+ */
+export function downloadFileByUrlNoOrigin(url: string, fileName?: string) {
+  const xhr = new window.XMLHttpRequest()
+  xhr.open('GET', url, true)
+  xhr.responseType = 'blob'
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      downloadByBlob(xhr.response, fileName)
+    }
+  }
+  xhr.send()
+}
+
+/**
+ * 多个在线图片下载成Zip
  * 注意事项: 1.图片不能跨域 2.文件名不能重复, 否则会被覆盖
  */
 export const downloadImgZip = async (urlList: string[], folderName = '图片附件') => {
@@ -98,7 +99,6 @@ export const downloadImgZip = async (urlList: string[], folderName = '图片附�
     })
 
     const blobData = await zip.generateAsync({ type: 'blob' })
-
     downloadByData(blobData, `${folderName}.zip`)
   } catch (err) {
     console.log('err', err)
