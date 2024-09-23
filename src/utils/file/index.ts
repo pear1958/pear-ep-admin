@@ -62,8 +62,6 @@ export function downloadFileByUrl(url: string, fileName?: string, target: Target
   }
 
   window.open(url, target)
-
-  return true
 }
 
 /**
