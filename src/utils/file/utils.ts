@@ -10,8 +10,7 @@ export const getFileName = (url: string) => {
 }
 
 /**
- * @param fileName 如果不传, 会默认生成36位长度的文件名
- * eg: 080cce30-7879-4cf5-95de-c5f5e62a5d24.xlsx
+ * @param fileName 如果不传, 则会默认生成
  */
 export const downloadByBlob = (blob: Blob, fileName?: string) => {
   const blobURL = window.URL.createObjectURL(blob)
