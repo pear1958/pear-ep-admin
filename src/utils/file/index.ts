@@ -28,7 +28,7 @@ export async function downloadImgByUrl(url: string, filename?: string, mime?: st
 
 /**
  * 下载文件(在线地址)  比如: xlsx  没有CORS限制
- * 非同源不支持修改文件名: 下载地址 和 当前网站地址 必须是 同源的
+ * 非同源不支持修改文件名: 下载地址 和 当前网站地址 必须是 同源的, 默认为源文件名
  * @param target 在当前窗口进行下载, 提示会显示在右上角
  */
 export function downloadFileByUrl(url: string, fileName?: string, target: TargetContext = '_self') {
