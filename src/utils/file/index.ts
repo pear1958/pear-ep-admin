@@ -9,12 +9,12 @@ import { downloadByBlob, getFileName } from './utils'
  * 使用示例: downloadByData('这是一段测试文字', 'test.txt'||'test.docx')
  *           downloadByData(pdfUrl, 'temp.pdf')
  */
-export function downloadByData(data: BlobPart, fileName: string, mime?: string) {
+export function downloadByData(data: BlobPart, fileName?: string, mime?: string) {
   const blob = new Blob([data], { type: mime || 'application/octet-stream' })
   downloadByBlob(blob, fileName)
 }
 
-export function downloadByBase64(base64: string, filename: string, mime?: string) {
+export function downloadByBase64(base64: string, filename?: string, mime?: string) {
   const blob = base64toBlob(base64)
   downloadByData(blob, filename, mime)
 }
