@@ -46,7 +46,7 @@ export function downloadFileByUrl(url: string, fileName?: string, target: Target
     link.target = target
 
     if (link.download !== undefined) {
-      link.download = fileName || url.substring(url.lastIndexOf('/') + 1, url.length)
+      link.download = fileName || getFileName(url)
     }
 
     if (document.createEvent) {
