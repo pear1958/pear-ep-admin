@@ -8,3 +8,20 @@ export const getFileName = (url: string) => {
 
   return suffixRegex.test(str.toLowerCase()) ? str : randomName
 }
+
+/**
+ * @param fileName 如果不传, 则会默认生成
+ */
+export const downloadByBlob = (blob: Blob, fileName?: string) => {
+  const blobURL = window.URL.createObjectURL(blob)
+
+  const link = document.createElement('a')
+  link.style.display = 'none'
+  link.href = blobURL
+  fileName && link.setAttribute('download', fileName)
+
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  window.URL.revokeObjectURL(blobURL)
+}
