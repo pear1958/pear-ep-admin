@@ -24,8 +24,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Collapse from '@/components/UI/Collapse/index.vue'
-import CollapseItem from '@/components/UI/Collapse/CollapseItem.vue'
+import { Collapse, CollapseItem } from 'pear-view-ui'
 
 defineOptions({
   name: 'Collapse'

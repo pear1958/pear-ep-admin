@@ -37,6 +37,8 @@
     "mqtt": "^5.5.1",
     "nprogress": "^0.2.0",
     "ol": "^10.1.0",
+    "pear-view-ui": "^1.0.5",
+    "pear-view-utils": "^1.0.2",
     "pinia": "^2.0.33",
     "pinia-plugin-persistedstate": "^3.1.0",
     "qs": "^6.11.2",

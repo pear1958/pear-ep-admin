@@ -1,6 +1,7 @@
 import { defineAsyncComponent } from 'vue'
 import type { AsyncComponentLoader, Component, ComponentPublicInstance } from 'vue'
-import Loading, { LoadingSize } from '@/components/Base/Loading/index.vue'
+import { Loading } from 'pear-view-ui'
+import { LoadingSize } from 'pear-view-ui/es/src/loading/src/loading.vue'
 
 // delay默认设置的是200ms, 也就是说200ms之内如果最终组件(loader)已经加载完成, 就不会显示loadingComponent了
 // 避免了组件替换太快造成的闪烁。如果最终组件(loader)加载时间用了1秒才加载完, 那么会先有200ms的空白

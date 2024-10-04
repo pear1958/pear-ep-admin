@@ -62,6 +62,7 @@ pnpm run build:pro
 
 #### todo-list
 
+- [ ] 集成 ESLint StyleLint
 - [ ] 多种布局模式
 - [ ] 暗黑模式 变量使用方式 优化
 - [ ] 开发图片标注工具
