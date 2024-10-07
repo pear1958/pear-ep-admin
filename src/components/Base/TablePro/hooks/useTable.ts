@@ -1,6 +1,6 @@
 import { reactive, toRefs } from 'vue'
 import { Table } from '../types/table'
-import { isEmpty, objIsEmpty } from '@/utils/is'
+import { isEmpty, objIsEmpty } from 'pear-view-utils'
 import { getValueByCasKey } from '@/utils'
 
 export function useTable(

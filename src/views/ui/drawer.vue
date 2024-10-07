@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import Drawer from '@/components/UI/Drawer/index.vue'
+import { Drawer } from 'pear-view-ui'
 
 defineOptions({
   name: 'Drawer'

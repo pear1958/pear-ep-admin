@@ -45,7 +45,7 @@ import { ElMessage, UploadFile, UploadRawFile, UploadUserFile } from 'element-pl
 import { Plus } from '@element-plus/icons-vue'
 import './index.scss'
 import { uploadUrl, uploadHeaders } from '@/config'
-import { isNumber, isString } from '@/utils/is'
+import { isNumber, isString } from 'pear-view-utils'
 import { IUploadResult } from '@/api/types'
 import { validSize } from './utils'
 import CropperDialog from './CropperDialog.vue'

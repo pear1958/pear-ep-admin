@@ -129,18 +129,18 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, toRef, unref, provide, onMounted, Ref, watch } from 'vue'
+import { computed, ref, toRef, unref, provide, onMounted, Ref } from 'vue'
 import { ElTable } from 'element-plus'
 import { Refresh, Operation, Search, DCaret } from '@element-plus/icons-vue'
 import Sortable from 'sortablejs'
+import { genUUID } from 'pear-view-utils'
 import SearchForm from '../SearchForm/index.vue'
 import { useSelection } from './hooks/useSelection'
 import { useTable } from './hooks/useTable'
 import { ColumnProps, EnumMap, TypeProps } from './types'
 import { BreakPoint } from '../Grid/type'
-import { isArray, isEmpty, isFunction } from '@/utils/is'
+import { isArray, isEmpty, isFunction } from 'pear-view-utils'
 import { handleProp } from '@/utils'
-import { genUUID } from '@/utils/uuid'
 import TableColWrapper from './components/TableColWrapper.vue'
 import Pagination from './components/Pagination.vue'
 import ColSetting from './components/ColSetting.vue'

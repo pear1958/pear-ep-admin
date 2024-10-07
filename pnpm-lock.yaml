@@ -69,11 +69,11 @@ dependencies:
     specifier: ^10.1.0
     version: 10.1.0
   pear-view-ui:
-    specifier: ^1.0.5
-    version: 1.0.5
+    specifier: 1.0.6
+    version: 1.0.6
   pear-view-utils:
-    specifier: ^1.0.2
-    version: 1.0.2
+    specifier: ^1.0.8
+    version: 1.0.8
   pinia:
     specifier: ^2.0.33
     version: 2.0.33(typescript@4.9.5)(vue@3.3.4)
@@ -4729,12 +4729,12 @@ packages:
       resolve-protobuf-schema: 2.1.0
     dev: false
 
-  /pear-view-ui@1.0.5:
-    resolution: {integrity: sha512-1a+8Wprs/FNv8Cd2YIA8CY6n+FXDRQIHcdpj62QsqFfnEuNSILJoMteF0oraWG3NegWymNQTUsjog728Iy5JgQ==}
+  /pear-view-ui@1.0.6:
+    resolution: {integrity: sha512-NXpbuIXwNDUsA0KhTVsWkyGeCHG7ZIIbowiUzwE4o5KNfiVErZqvLepLxrTQ8VQMy/cHuTPpjGgDkVCdEeDx0Q==}
     dev: false
 
-  /pear-view-utils@1.0.2:
-    resolution: {integrity: sha512-aiaN6+cVE494Bo0hLoeeLoFmnGYMnnWBaaLU/xxgDuHVTHhVM6t5Ug3OaH1/dp4+uosScJt881mrX7Lc6qWW/Q==}
+  /pear-view-utils@1.0.8:
+    resolution: {integrity: sha512-cm0SQ2ECy3nOJBzHaHalvXy1bRIxOk2p6hGubs0pBTNpBSC3VJC07JLVlYuzEv1SRzJQz0QfVqMQljBzyzhdUg==}
     dev: false
 
   /picocolors@1.0.0:

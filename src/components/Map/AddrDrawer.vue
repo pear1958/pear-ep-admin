@@ -36,7 +36,7 @@ import { ElMessage } from 'element-plus'
 import AMapLoader from '@amap/amap-jsapi-loader'
 import useConfigStore from '@/store/modules/platformConfig'
 import { debounce, deepClone } from '@/utils'
-import { isObject } from '@/utils/is'
+import { isObject } from 'pear-view-utils'
 import markerPng from '@/assets/imgs/marker.png'
 import { AddrOption, IMapData } from './type'
 
