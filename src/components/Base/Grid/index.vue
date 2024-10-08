@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { computed, onBeforeMount, provide, watch, ComputedRef } from 'vue'
-import { isArray, isNumber, isObject } from 'pear-view-utils'
+import { isArray, isNumber, isObject } from 'pear-common-utils'
 import { GridProps } from './type'
 import { useGrid } from './hooks'
 

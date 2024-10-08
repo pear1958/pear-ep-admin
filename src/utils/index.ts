@@ -1,5 +1,5 @@
 import { ElMessage } from 'element-plus'
-import { isString } from 'pear-view-utils'
+import { isString } from 'pear-common-utils'
 
 /**
  * 获取浏览器默认语言

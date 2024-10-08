@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia'
 import useSystemStore from '@/store/modules/system'
-import { getDarkColor, getLightColor } from 'pear-view-utils'
+import { getDarkColor, getLightColor } from 'pear-common-utils'
 
 export function useTheme() {
   const systemStore = useSystemStore()

@@ -1,4 +1,4 @@
-import { isArray } from 'pear-view-utils'
+import { isArray } from 'pear-common-utils'
 import { fieldNames } from './types'
 
 export function handleRowAccordingToProp(row: Recordable, prop: string) {
