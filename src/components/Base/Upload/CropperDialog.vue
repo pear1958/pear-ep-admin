@@ -58,10 +58,8 @@
 <script setup lang="ts">
 import { PropType, ref, unref } from 'vue'
 import Cropper from 'cropperjs'
+import { debounce, downloadByBase64, getRoundedCanvas } from 'pear-common-utils'
 import { uploadFile } from '@/api/modules/common'
-import { debounce } from 'pear-common-utils'
-import { downloadByBase64 } from 'pear-common-utils'
-import { getRoundedCanvas } from './utils'
 
 // 常用需求
 // 1.指定比例, 可以缩放图片大小进行裁剪, 比如头像 背景图

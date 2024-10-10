@@ -1,6 +1,6 @@
 import { RouteLocationNormalized } from 'vue-router'
-import usePermissionStore from '@/store/modules/permission'
 import { deepClone } from 'pear-common-utils'
+import usePermissionStore from '@/store/modules/permission'
 
 /**
  * @description 扁平化数组对象(主要用来处理路由菜单) 他的children不剔除, 只是把所有children下的元素 提到第一级来

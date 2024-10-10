@@ -6,8 +6,8 @@
 
 <script setup lang="ts">
 import { Ref, computed, inject, ref, useAttrs, watch } from 'vue'
-import { BreakPoint, GridItemProps } from './type'
 import { isEmpty } from 'pear-common-utils'
+import { BreakPoint, GridItemProps } from './type'
 
 defineOptions({
   name: 'GridItem'

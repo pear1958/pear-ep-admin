@@ -25,8 +25,7 @@
 
 <script setup lang="ts">
 import { computed, inject, ref, toRef, unref } from 'vue'
-import { handleProp } from 'pear-common-utils'
-import { isEmpty } from 'pear-common-utils'
+import { handleProp, isEmpty } from 'pear-common-utils'
 import { ColumnProps } from '../TablePro/types'
 
 defineOptions({
