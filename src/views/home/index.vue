@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { debounce, throttle } from '@/utils'
+import { debounce, throttle } from 'pear-common-utils'
 
 const router = useRouter()
 

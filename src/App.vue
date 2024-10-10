@@ -10,9 +10,9 @@ import { useI18n } from 'vue-i18n'
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import en from 'element-plus/dist/locale/en.mjs'
+import { getBrowserLang } from 'pear-common-utils'
 import useSystemStore from '@/store/modules/system'
 import { LanguageType } from '@/store/types'
-import { getBrowserLang } from '@/utils'
 
 const systemStore = useSystemStore()
 const i18n = useI18n()

@@ -59,7 +59,7 @@
 import { PropType, ref, unref } from 'vue'
 import Cropper from 'cropperjs'
 import { uploadFile } from '@/api/modules/common'
-import { debounce } from '@/utils'
+import { debounce } from 'pear-common-utils'
 import { downloadByBase64 } from 'pear-common-utils'
 import { getRoundedCanvas } from './utils'
 

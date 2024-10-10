@@ -5,7 +5,7 @@ import { EChartsOption } from 'echarts'
 // import { EChartsType } from 'echarts/core'
 // import echarts from './config'
 import useSystemStore from '@/store/modules/system'
-import { throttle } from '@/utils'
+import { throttle } from 'pear-common-utils'
 
 export default defineComponent({
   name: 'ECharts',

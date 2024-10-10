@@ -5,7 +5,7 @@
 <script setup lang="tsx">
 import { inject, ref, unref, useSlots } from 'vue'
 import { ColumnProps, HeaderRenderScope, RenderScope } from '../types'
-import { handleProp } from '@/utils'
+import { handleProp } from 'pear-common-utils'
 import { filterEnum, formatValue, handleRowAccordingToProp } from '../utils'
 
 defineOptions({

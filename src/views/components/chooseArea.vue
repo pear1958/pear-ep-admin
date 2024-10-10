@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { createAsyncComponent } from '@/utils/vue/createAsyncComponent'
-import { delay } from '@/utils'
+import { delay } from 'pear-common-utils'
 
 const showChooseArea = ref(false)
 
