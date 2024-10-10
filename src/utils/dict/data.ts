@@ -1,5 +1,3 @@
-export * from './utils'
-
 export const testList = [
   {
     label: '待审核',
@@ -16,5 +14,3 @@ export const testList = [
     cls: 'text-error'
   }
 ]
-
-// eg: return getValue(testList, record.testStatus)
