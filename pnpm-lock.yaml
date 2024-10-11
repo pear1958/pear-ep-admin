@@ -72,8 +72,8 @@ importers:
         specifier: ^10.1.0
         version: 10.2.1
       pear-common-utils:
-        specifier: ^1.1.4
-        version: 1.1.4
+        specifier: ^1.1.5
+        version: 1.1.5
       pear-view-ui:
         specifier: 1.0.6
         version: 1.0.6
@@ -2749,8 +2749,8 @@ packages:
     resolution: {integrity: sha512-SuLdBvS42z33m8ejRbInMapQe8n0D3vN/Xd5fmWM3tufNgRQFBpaW2YVJxQZV4iPNqb0vEFvssMEo5w9c6BTIA==}
     hasBin: true
 
-  pear-common-utils@1.1.4:
-    resolution: {integrity: sha512-srUXQ/2Z/cF+Az4LvApp0Z9FPik1LXvXpA9Niq1T7uUAduyE7xVNVJ5XkFvA0Y5d1/1zUNv6ncCk5l8MWpIQpg==}
+  pear-common-utils@1.1.5:
+    resolution: {integrity: sha512-8+cImFOjR8qUEe4GNDTR19dc9C9QsUinPDv1b1T6hOLArsbdlFYpx8hwsQOE33DDnMdrGceQafZnjb0N3IYTqg==}
 
   pear-view-ui@1.0.6:
     resolution: {integrity: sha512-NXpbuIXwNDUsA0KhTVsWkyGeCHG7ZIIbowiUzwE4o5KNfiVErZqvLepLxrTQ8VQMy/cHuTPpjGgDkVCdEeDx0Q==}
@@ -6605,7 +6605,7 @@ snapshots:
     dependencies:
       resolve-protobuf-schema: 2.1.0
 
-  pear-common-utils@1.1.4: {}
+  pear-common-utils@1.1.5: {}
 
   pear-view-ui@1.0.6: {}
 
