@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Tabs, TabItem } from 'pear-view-ui'
+import { Tabs, TabItem } from 'pear-view'
 
 const title = ref('体育新闻')
 

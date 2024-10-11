@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Dialog, openDialog } from 'pear-view-ui'
+import { Dialog, openDialog } from 'pear-view'
 
 const visible = ref(false)
 
