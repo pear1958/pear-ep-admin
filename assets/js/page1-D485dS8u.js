@@ -1,0 +1,1 @@
+import{bY as n,a_ as r,o as s,b as u,O as c,bJ as p,N as l}from"./index-iSRBwhZQ.js";const d={__name:"page1",setup(_){const t=n(),o=()=>{t.push({path:"/systemManage/account/pageOuter",query:{name:"outer",number:77}})};return(m,e)=>{const a=r("el-button");return s(),u("div",null,[c(a,{onClick:o},{default:p(()=>e[0]||(e[0]=[l("点击跳转到子页面Outer")])),_:1})])}}};export{d as default};

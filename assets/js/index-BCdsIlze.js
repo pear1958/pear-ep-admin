@@ -1,0 +1,1 @@
+import{bR as s,o as t,b as n,A as o}from"./index-iSRBwhZQ.js";const r={},a={class:"bg-white dark:bg-dark p-4"};function c(d,e){return t(),n("div",a,e[0]||(e[0]=[o("div",null,"Menu21",-1)]))}const _=s(r,[["render",c]]);export{_ as default};

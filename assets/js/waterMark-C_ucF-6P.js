@@ -1,0 +1,1 @@
+import{bR as s,a$ as c,bL as n,o as e,b as r,F as o,aY as i,A as _}from"./index-iSRBwhZQ.js";const d={},l={class:"bg-white dark:bg-dark p-4"};function k(b,f){const a=c("waterMark");return n((e(),r("div",l,[(e(),r(o,null,i(200,t=>_("div",{key:t,class:"mb-1"},"水印")),64))])),[[a]])}const v=s(d,[["render",k]]);export{v as default};
