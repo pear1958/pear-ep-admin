@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white dark:bg-dark p-4">
     <ChooseArea @change="onChange" v-if="showChooseArea" />
-    <el-button type="primary" @click="showChooseArea = true" v-else>异步加载组件(3s)</el-button>
+    <el-button type="primary" @click="showChooseArea = true" v-else>异步加载组件22(3s)</el-button>
   </div>
 </template>
 
