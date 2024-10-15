@@ -2,7 +2,6 @@ declare interface Window {
   _AMapSecurityConfig: {
     [key: string]: string
   }
-  CESIUM_BASE_URL: string
 }
 
 declare interface MenuItem {
