@@ -69,8 +69,8 @@ importers:
         specifier: ^1.1.8
         version: 1.1.8
       pear-view:
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^1.0.4
+        version: 1.0.4
       pinia:
         specifier: ^2.0.33
         version: 2.2.4(typescript@4.9.5)(vue@3.5.11(typescript@4.9.5))
@@ -2605,8 +2605,8 @@ packages:
   pear-common-utils@1.1.8:
     resolution: {integrity: sha512-FXHDsycErUYCTpnk+ng8um3g4iIg+lWC/lli3oDrGNJrbCQZxtMB73GROpxlYJLtxQLLEON5kD1FWLdY6Yz3wA==}
 
-  pear-view@1.0.3:
-    resolution: {integrity: sha512-5u4cNVZVg31kwBR2wSK+jB3gcKilNGtiF87KVxbHGSC90YxY/L89otmC8XuFLizqRs0gEdjAf6eH+quT9M0XWw==}
+  pear-view@1.0.4:
+    resolution: {integrity: sha512-gLIIxk714oivjznMlitQ/n+nRlss675xtyH4m7GTryBXGyXTBA4rCJejcf7hUw1PDE7lkJkBUPe3ZQ4JKjXSew==}
 
   picocolors@1.1.0:
     resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
@@ -6275,7 +6275,7 @@ snapshots:
 
   pear-common-utils@1.1.8: {}
 
-  pear-view@1.0.3: {}
+  pear-view@1.0.4: {}
 
   picocolors@1.1.0: {}
 
