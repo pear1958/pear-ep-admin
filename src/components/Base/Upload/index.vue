@@ -4,7 +4,7 @@
       v-model:file-list="fileList"
       :list-type="listType"
       :action="uploadAction"
-      :headers="uploadHeaders"
+      :headers="UPLOAD_HEADERS"
       :before-upload="beforeUpload"
       :on-success="handleSucess"
       :on-remove="handleRemove"
@@ -45,7 +45,7 @@ import { ElMessage, UploadFile, UploadRawFile, UploadUserFile } from 'element-pl
 import { Plus } from '@element-plus/icons-vue'
 import { isNumber, isString } from 'pear-common-utils'
 import './index.scss'
-import { uploadUrl, uploadHeaders } from '@/config'
+import { UPLOAD_URL, UPLOAD_HEADERS } from '@/config/constant'
 import { IUploadResult } from '@/api/types'
 import { validSize } from './utils'
 import CropperDialog from './CropperDialog.vue'
@@ -113,7 +113,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const uploadAction = import.meta.env.VITE_API_BASE_URL + uploadUrl
+const uploadAction = import.meta.env.VITE_API_BASE_URL + UPLOAD_URL
 
 const cropperRef = ref()
 

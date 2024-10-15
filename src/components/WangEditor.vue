@@ -16,7 +16,7 @@ import { onBeforeUnmount, ref, shallowRef, unref, watch, watchEffect } from 'vue
 import { ElMessage } from 'element-plus'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
-import { uploadHeaders, uploadUrl } from '@/config'
+import { UPLOAD_HEADERS, UPLOAD_URL } from '@/config/constant'
 
 defineOptions({
   name: 'wangEditor'
@@ -45,7 +45,7 @@ const editorConfig = ref({
   MENU_CONF: {
     uploadImage: {
       // 服务端上传地址，根据实际业务改写
-      server: uploadUrl,
+      server: UPLOAD_URL,
       timeout: 12 * 1000,
       // form-data 的 fieldName，根据实际业务改写
       fieldName: 'file',
@@ -53,7 +53,7 @@ const editorConfig = ref({
       allowedFileTypes: [],
       // 自定义增加 http-header
       headers: {
-        ...uploadHeaders
+        ...UPLOAD_HEADERS
       },
       // 跨域是否传递 cookie ，默认为 false
       withCredentials: true,

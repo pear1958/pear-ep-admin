@@ -8,7 +8,7 @@
       :on-change="onChange"
       :on-success="onSuccess"
       :on-error="onError"
-      :headers="uploadHeaders"
+      :headers="UPLOAD_HEADERS"
       showReplace
       showActive
     />
@@ -21,13 +21,13 @@ import { ElMessage } from 'element-plus'
 import { AxiosError } from 'axios'
 import Upload from '@/components/UI/Upload/index.vue'
 import type { UploadFile } from '@/components/UI/Upload/types'
-import { uploadUrl, uploadHeaders } from '@/config'
+import { UPLOAD_URL, UPLOAD_HEADERS } from '@/config/constant'
 
 // const fileList: Ref<UploadFile[]> = ref([
 //   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }
 // ])
 
-const uploadAction = import.meta.env.VITE_API_BASE_URL + uploadUrl
+const uploadAction = import.meta.env.VITE_API_BASE_URL + UPLOAD_URL
 
 const fileList: Ref<UploadFile[]> = ref([])
 

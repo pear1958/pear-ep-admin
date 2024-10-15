@@ -1,12 +1,12 @@
 import http from '@/api'
-import { uploadHeaders, uploadUrl } from '@/config'
+import { UPLOAD_HEADERS, UPLOAD_URL } from '@/config/constant'
 import { IUploadResult } from '../types'
 
 export const uploadFile = (formData: Recordable) => {
-  return http.post<IUploadResult>(uploadUrl, formData, {
+  return http.post<IUploadResult>(UPLOAD_URL, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      ...uploadHeaders
+      ...UPLOAD_HEADERS
     }
   })
 }
