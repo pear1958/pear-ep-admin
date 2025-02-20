@@ -34,6 +34,7 @@ export interface SystemState {
   mainLoading: boolean
   showFooter: boolean
   showBreadcrumb: boolean
+  showBacktop: boolean
 }
 
 export interface PermissState {

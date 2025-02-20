@@ -105,6 +105,11 @@
         <span>页脚</span>
         <el-switch v-model="showFooter" />
       </div>
+
+      <div>
+        <span>回到顶部</span>
+        <el-switch v-model="showBacktop" />
+      </div>
     </div>
   </el-drawer>
 </template>
@@ -131,7 +136,8 @@ const {
   weakMode,
   enableMainLoading,
   showFooter,
-  showBreadcrumb
+  showBreadcrumb,
+  showBacktop
 } = storeToRefs(systemStore)
 
 const colorList = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])

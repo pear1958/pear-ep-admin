@@ -30,7 +30,8 @@ const useSystemStore = defineStore({
     enableMainLoading: false,
     mainLoading: false,
     showFooter: true,
-    showBreadcrumb: true
+    showBreadcrumb: true,
+    showBacktop: true
   }),
   actions: {
     setCollapse(value: boolean) {

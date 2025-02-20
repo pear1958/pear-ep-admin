@@ -1,6 +1,7 @@
 <template>
   <div
     class="main dark:!bg-dark-2"
+    id="main-scroll-box"
     :style="{ padding: !route.meta?.mainFull ? '16px' : 0 }"
     v-loading="enableMainLoading && mainLoading"
   >
@@ -13,6 +14,10 @@
     </router-view>
   </div>
 
+  <el-backtop target="#main-scroll-box" title="回到顶部" :bottom="45" v-if="showBacktop">
+    <BackTopIcon />
+  </el-backtop>
+
   <Footer v-if="showFooter" />
 </template>
 
@@ -23,9 +28,10 @@ import { storeToRefs } from 'pinia'
 import emitter from '@/utils/mitt'
 import useSystemStore from '@/store/modules/system'
 import Footer from '../Footer/index.vue'
+import BackTopIcon from '@/assets/svg/back-top.svg?component'
 
 const route = useRoute()
-const { keepAliveNameList, enableMainLoading, mainLoading, showFooter } =
+const { keepAliveNameList, enableMainLoading, mainLoading, showFooter, showBacktop } =
   storeToRefs(useSystemStore())
 
 const routerShow = ref(true)
