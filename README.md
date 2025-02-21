@@ -60,7 +60,7 @@ pnpm run build:pro
 #### 注意事项
 
 - 使用keep-alive记得 页面name(默认为文件名) 与route.name配置的一样
-- 所有 El组件 采用按需导入, 如有需要请到 /src/plugins/elementPlus.ts 添加导入
+<!-- - 所有 El组件 采用按需导入, 如有需要请到 /src/plugins/elementPlus.ts 添加导入 -->
 
 #### todo-list
 
