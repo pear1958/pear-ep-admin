@@ -2,13 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import pinia from './store'
-
-import { setupElementPlus } from '@/plugins/elementPlus'
+// import { setupElementPlus } from '@/plugins/elementPlus'
+import ElementPlus from 'element-plus'
 
 import '@/styles/index.scss'
-
 import directives from './directives'
-
 // 注册使用 svg icon
 // https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
 import 'virtual:svg-icons-register'
@@ -17,14 +15,11 @@ import 'virtual:svg-icons-register'
 import '@/styles/tailwind.css'
 
 import 'element-plus/dist/index.css'
-
 // element-plus 内置暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import { registerGlobComp } from '@/components/Global'
-
 import errorHandler from '@/utils/errorHandler'
-
 import i18n from '@/languages/index'
 
 const app = createApp(App)
@@ -32,6 +27,6 @@ const app = createApp(App)
 app.config.errorHandler = errorHandler
 
 registerGlobComp(app)
-setupElementPlus(app)
+// setupElementPlus(app)
 
-app.use(router).use(directives).use(pinia).use(i18n).mount('#app')
+app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')

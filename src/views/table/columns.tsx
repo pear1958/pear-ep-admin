@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { ElMessage } from 'element-plus'
-import { ColumnProps, HeaderRenderScope } from '@/components/Base/TablePro/types'
+import { ColumnProps, HeaderRenderScope } from '@/components/TablePro/types'
 import { getUserGender, getUserStatus } from '@/api/modules/user'
 
 // 表格配置项

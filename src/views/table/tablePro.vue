@@ -63,7 +63,7 @@ import {
   View,
   Refresh
 } from '@element-plus/icons-vue'
-import TablePro from '@/components/Base/TablePro/index.vue'
+import TablePro from '@/components/TablePro/index.vue'
 import { deleteUser, getUserList } from '@/api/modules/user'
 import { columns } from './columns'
 import { handleData } from '@/utils/element'

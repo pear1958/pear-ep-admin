@@ -7,6 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import ECharts from '@/components/Base/ECharts'
+import ECharts from '@/components/ECharts'
 import { options } from './config'
 </script>

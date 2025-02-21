@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import * as echarts from 'echarts'
-import ECharts from '@/components/Base/ECharts'
+import ECharts from '@/components/ECharts'
 import themeConfig from './wonderland.json'
 import { options } from './config'
 

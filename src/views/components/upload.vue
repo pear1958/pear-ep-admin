@@ -82,7 +82,7 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import Upload from '@/components/Base/Upload/index.vue'
+import Upload from '@/components/Upload/index.vue'
 
 const form = reactive({
   fileList: [

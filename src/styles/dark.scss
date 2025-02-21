@@ -65,4 +65,11 @@ html.dark {
   .wang-editor {
     filter: invert(0.9) hue-rotate(180deg);
   }
+
+  // 返回顶部按钮
+  .el-backtop {
+    --el-backtop-bg-color: rgb(72 72 78);
+    --el-backtop-hover-bg-color: var(--el-color-primary);
+    transition: background-color 0.25s cubic-bezier(0.7, 0.3, 0.1, 1);
+  }
 }

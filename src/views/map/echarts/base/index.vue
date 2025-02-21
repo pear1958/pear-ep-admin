@@ -6,8 +6,8 @@
 
 <script lang="ts" setup>
 import * as echarts from 'echarts'
-import ECharts from '@/components/Base/ECharts'
-import { GeoJson } from '@/components/Base/ECharts/type'
+import ECharts from '@/components/ECharts'
+import { GeoJson } from '@/components/ECharts/type'
 import { options } from './config'
 // 数据来源: https://datav.aliyun.com/portal/school/atlas/area_selector
 import mapJson from './json/china-province.json'
