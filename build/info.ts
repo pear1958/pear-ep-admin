@@ -2,6 +2,7 @@ import type { Plugin } from 'vite'
 import dayjs from 'dayjs'
 import gradientString from 'gradient-string'
 import boxen, { type Options as BoxenOptions } from 'boxen'
+import { getPkgSize } from './utils'
 
 // 青色 - 品红色
 const startMsg = gradientString('cyan', 'magenta').multiline('欢迎使用 Pear-Ep-Admin')
@@ -27,9 +28,7 @@ export function viteBuildInfo(): Plugin {
     },
     buildStart() {
       const boxMsg = boxen(startMsg, boxenOptions)
-
       console.log(boxMsg)
-
       if (config.command === 'build') {
         startTime = new Date().getTime()
       }
@@ -37,16 +36,17 @@ export function viteBuildInfo(): Plugin {
     closeBundle() {
       if (config.command === 'build') {
         endTime = new Date().getTime()
-
-        const buildTime = dayjs(endTime - startTime).format('mm分ss秒')
-
-        const graStr = gradientString('cyan', 'magenta').multiline(
-          `恭喜打包完成, 总用时${buildTime}`
-        )
-
-        const boxMsg = boxen(graStr, boxenOptions)
-
-        console.log(boxMsg)
+        getPkgSize({
+          folder: outDir,
+          callback: (formatSize: string) => {
+            const buildTime = dayjs(endTime - startTime).format('mm分ss秒')
+            const graStr = gradientString('cyan', 'magenta').multiline(
+              `恭喜打包完成, 总用时${buildTime}, 打包后的大小为${formatSize}`
+            )
+            const boxMsg = boxen(graStr, boxenOptions)
+            console.log(boxMsg)
+          }
+        })
       }
     }
   }

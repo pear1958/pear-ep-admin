@@ -1,3 +1,5 @@
+import { readdir, stat } from 'fs'
+import { sum } from 'lodash-es'
 import dayjs from 'dayjs'
 import { name, version } from '../package.json'
 
@@ -26,4 +28,37 @@ function formatEnv(envObj: Recordable): ViteEnv {
   return result as ViteEnv
 }
 
-export { __APP_INFO__, formatEnv }
+const sizeList: number[] = []
+
+// 获取指定文件夹中所有文件的总大小
+const getPkgSize = (options: { folder?: string; callback: Function }) => {
+  const { folder = 'dist', callback } = options
+  readdir(folder, (err, files: string[]) => {
+    if (err) throw err
+    let count = 0
+    const checkEnd = () => {
+      if (++count == files.length) {
+        const total = sum(sizeList)
+        const formatSize = (total / 1024 / 1024).toFixed(2) + 'MB'
+        callback(formatSize)
+      }
+    }
+    files.forEach((item: string) => {
+      stat(`${folder}/${item}`, async (err, stats) => {
+        if (err) throw err
+        if (stats.isFile()) {
+          sizeList.push(stats.size)
+          checkEnd()
+        } else if (stats.isDirectory()) {
+          getPkgSize({
+            folder: `${folder}/${item}/`,
+            callback: checkEnd
+          })
+        }
+      })
+    })
+    files.length === 0 && callback(0)
+  })
+}
+
+export { __APP_INFO__, formatEnv, getPkgSize }
