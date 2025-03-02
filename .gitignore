@@ -22,6 +22,4 @@ dist-ssr
 *.sln
 *.sw?
 
-.env.development
-
 vite.config.ts.timestamp-*.mjs

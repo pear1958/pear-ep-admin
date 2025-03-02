@@ -46,8 +46,6 @@ pnpm install
 - 运行
 
 ```
-新建 .env.development 文件
-cp .env.development.default -> .env.development
 pnpm run dev
 ```
 
