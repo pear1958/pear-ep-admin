@@ -1,4 +1,4 @@
-import { type InternalAxiosRequestConfig } from 'axios'
+import type { AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios'
 
 export interface ResultData<T = any> {
   code: string
@@ -33,4 +33,9 @@ export namespace Login {
 
 export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   showLoading?: boolean
+}
+
+export interface Config extends AxiosRequestConfig {
+  showLoading?: boolean
+  isCustom?: boolean // 是否需要绕过数据格式
 }

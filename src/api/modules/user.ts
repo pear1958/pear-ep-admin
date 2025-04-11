@@ -5,6 +5,20 @@ import dRouter from '@/assets/json/dRouter.json'
 import buttonData from '@/assets/json/buttonData.json'
 import userInfo from '@/assets/json/userInfo.json'
 
+// -------------------------------
+// 查询所有用户
+export const getAllUser = () => http.get('/user/listAll')
+
+// 用户登录
+export const login = (params: Recordable) => {
+  return http.post('/user/login', null, {
+    params,
+    isCustom: true
+  })
+  // return http.post('/user/login?username=admin&password=123456', {}, { isCustom: true })
+}
+// -------------------------------
+
 // 用户登录
 export const loginApi = (params: Login.reqForm) => {
   return http.post<Login.resType>('/login', params)

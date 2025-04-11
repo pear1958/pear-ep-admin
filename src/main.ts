@@ -19,12 +19,12 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import { registerGlobComp } from '@/components/Global'
-import errorHandler from '@/utils/errorHandler'
+// import errorHandler from '@/utils/errorHandler'
 import i18n from '@/languages/index'
 
 const app = createApp(App)
 
-app.config.errorHandler = errorHandler
+// app.config.errorHandler = errorHandler
 
 registerGlobComp(app)
 // setupElementPlus(app)
