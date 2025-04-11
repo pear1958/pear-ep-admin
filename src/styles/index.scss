@@ -5,6 +5,10 @@
 @import './element.scss';
 @import '../assets/fonts/index.scss';
 
+:root {
+  --pear-header-height: 64px;
+}
+
 body {
   font-size: 14px;
   font-family:

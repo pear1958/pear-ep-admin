@@ -36,7 +36,7 @@
           </div>
         </el-tooltip>
 
-        <el-tooltip effect="dark" content="分栏" placement="top" :show-after="200">
+        <!-- <el-tooltip effect="dark" content="分栏" placement="top" :show-after="200">
           <div
             :class="['layout-item layout-columns', { 'is-active': layout === 'columns' }]"
             @click="setLayout('columns')"
@@ -48,7 +48,7 @@
               <CircleCheckFilled />
             </el-icon>
           </div>
-        </el-tooltip>
+        </el-tooltip> -->
 
         <!-- <el-tooltip effect="dark" content="混合" placement="top" :show-after="200">
           <div
@@ -122,6 +122,7 @@ import emitter from '@/utils/mitt'
 import { useTheme } from '@/hooks/useTheme'
 import useSystemStore from '@/store/modules/system'
 import { LayoutType } from '@/store/types'
+import { setHeaderHeight } from '@/utils/system'
 
 const systemStore = useSystemStore()
 const { changeTheme, changeGrayOrWeak } = useTheme()
@@ -142,9 +143,9 @@ const {
 
 const colorList = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
 
-const setLayout = (val: LayoutType) => {
-  systemStore.setState('layout', val)
-  // setAsideTheme()
+const setLayout = (layout: LayoutType) => {
+  setHeaderHeight(layout)
+  systemStore.setState('layout', layout)
 }
 
 emitter.on('openSetDrawer', () => {
