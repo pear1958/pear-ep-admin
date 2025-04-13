@@ -81,7 +81,7 @@ export const columns = reactive<ColumnProps[]>([
     //     tagType: 'danger'
     //   }
     // ],
-    search: { el: 'select', props: { filterable: true } },
+    // search: { el: 'select', props: { filterable: true } },
     fieldNames: { label: 'userLabel', value: 'userStatus' },
     render: scope => {
       return (
@@ -99,13 +99,13 @@ export const columns = reactive<ColumnProps[]>([
         {scope.column.label}
       </el-button>
     ),
-    width: 180,
-    search: {
-      el: 'date-picker',
-      span: 2,
-      props: { type: 'datetimerange', valueFormat: 'YYYY-MM-DD HH:mm:ss', clearable: true },
-      defaultValue: ['2022-11-12 11:35:00', '2022-12-12 11:35:00']
-    }
+    width: 180
+    // search: {
+    //   el: 'date-picker',
+    //   span: 2,
+    //   props: { type: 'datetimerange', valueFormat: 'YYYY-MM-DD HH:mm:ss', clearable: true },
+    //   defaultValue: ['2022-11-12 11:35:00', '2022-12-12 11:35:00']
+    // }
   },
   { prop: 'operation', label: '操作', fixed: 'right', width: 330 }
 ])

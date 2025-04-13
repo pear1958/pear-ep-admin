@@ -3,7 +3,7 @@ import { showDialog, closeDialog } from '@/utils/ui/dialog'
 import { showLoading, closeLoading } from '@/utils/ui/loading'
 
 export default defineComponent({
-  name: 'imgLabel',
+  name: 'JsxDialog',
   setup() {
     const openDialog = () => {
       showDialog(<div onClick={closeDialog}>关闭</div>, {

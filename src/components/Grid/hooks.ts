@@ -7,14 +7,20 @@ import {
   useSlots,
   VNodeArrayChildren,
   VNode,
-  ComputedRef
+  ComputedRef,
+  computed,
+  unref
 } from 'vue'
 import { BreakPoint, GridProps } from './type'
 
 export const useGrid = () => {
   const breakPoint = ref<BreakPoint>('xl')
   const hiddenIndex = ref(-1) // 要开始折叠的 index
-  const slots = useSlots().default!()
+  const slots = useSlots()
+  // 解决warn:
+  // Slot "default" invoked outside of the render function: this will not track dependencies used in the slot.
+  // Invoke the slot function inside the render function instead.
+  const defaultSlots = computed(() => slots.default())
 
   onMounted(() => {
     setBreakPoint({ target: { innerWidth: window.innerWidth } } as unknown as UIEvent)
@@ -56,7 +62,7 @@ export const useGrid = () => {
     const fields: VNodeArrayChildren = []
     let suffix: VNode | null = null
 
-    slots.forEach((slot: any) => {
+    unref(defaultSlots).forEach((slot: any) => {
       // suffix
       if (
         typeof slot.type === 'object' &&

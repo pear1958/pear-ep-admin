@@ -20,11 +20,19 @@
       },
       "children": [
         {
-          "path": "/components/imgLabel",
-          "name": "imgLabel",
-          "component": "/components/imgLabel",
+          "path": "/components/jsonForm",
+          "name": "jsonForm",
+          "component": "/components/jsonForm/index",
           "meta": {
-            "title": "图片标注"
+            "title": "jsonForm"
+          }
+        },
+        {
+          "path": "/components/jsxDialog",
+          "name": "jsxDialog",
+          "component": "/components/jsxDialog",
+          "meta": {
+            "title": "jsxDialog"
           }
         },
         {
