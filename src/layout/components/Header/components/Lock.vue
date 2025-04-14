@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex-c">
     <div class="header-icon" @click="dialogVisible = true">
       <el-icon>
         <Lock />
