@@ -1,13 +1,13 @@
-import { DefineComponent, Ref, computed, ref, resolveComponent, unref } from 'vue'
+import { DefineComponent, Reactive, computed, ref, resolveComponent, unref } from 'vue'
 import { FormItem, JsonFormProps } from './type'
 import { BreakPoint } from '../Grid/type'
 
-const useForm = (_: JsonFormProps, formData: Ref<Recordable>) => {
+const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
   const getComponent = (item: FormItem) => {
     const { type, childType, field } = item
 
     if (type === 'component') {
-      return <item.component v-model={formData.value[field]} />
+      return <item.component v-model={formData[field]} />
     }
 
     const Component = resolveComponent(`el-${type}`) as DefineComponent
@@ -22,7 +22,7 @@ const useForm = (_: JsonFormProps, formData: Ref<Recordable>) => {
       const cType = childType || childTypeMap[type]
       const ChildComponent = resolveComponent(`el-${cType}`) as DefineComponent
       return (
-        <Component {...item.attrs} v-model={formData.value[field]}>
+        <Component {...item.attrs} v-model={formData[field]}>
           {/* eg: select-插槽-todo */}
           {item.attrs.options.map((_: LabelValue) => (
             <ChildComponent label={_.label} value={_.value} />
@@ -31,12 +31,12 @@ const useForm = (_: JsonFormProps, formData: Ref<Recordable>) => {
       )
     }
 
-    return <Component {...item.attrs} v-model={formData.value[field]} />
+    return <Component {...item.attrs} v-model={formData[field]} />
   }
 
   const getFormItem = (item: FormItem) => {
     return (
-      <el-form-item {...item.formItemAttrs}>
+      <el-form-item {...item.formItemAttrs} style={item.style || {}}>
         {{
           label: () => item.label,
           default: () => getComponent(item)

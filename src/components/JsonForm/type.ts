@@ -1,4 +1,4 @@
-import type { DefineComponent, ExtractPropTypes } from 'vue'
+import type { CSSProperties, DefineComponent, ExtractPropTypes } from 'vue'
 import type { FormInstance, FormItemProps } from 'element-plus'
 import { props } from '.'
 
@@ -20,25 +20,27 @@ export interface FormItem {
   type:
     | 'input'
     | 'select'
-    | 'password'
-    | 'datetime'
-    | 'text'
-    | 'search'
-    | 'component'
-    | 'date'
-    | 'daterange'
-    | 'time'
+    | 'radio-group'
     | 'radio'
+    | 'checkbox-group'
     | 'checkbox'
-    | 'number'
-    | 'textarea'
-    | 'group'
-    | 'cascader'
+    | 'component'
+    | 'date-picker'
+  // | 'password'
+  // | 'datetime'
+  // | 'text'
+  // | 'search'
+  // | 'daterange'
+  // | 'time'
+  // | 'number'
+  // | 'textarea'
+  // | 'group'
+  // | 'cascader'
   /**
    * 子元素控件类型  可以不传, 默认使用最通用的控件类型
    * 比如 el-radio-group -> el-radio, 而不是 el-radio-button
    */
-  childType?: 'option' | 'radio'
+  childType?: 'option' | 'radio' | 'radio-button' | 'checkbox' | 'checkbox-button'
   /**
    * 标签名称, 可以自定义组件
    */
@@ -68,7 +70,7 @@ export interface FormItem {
    */
   // visible?: boolean
   /**
-   * 单独设置FormItem的布局
+   * 单独设置FormItem的布局, 最大为4
    */
   span?: number
   offset?: number
@@ -83,4 +85,13 @@ export interface FormItem {
    * 用于设置字段的初始值
    */
   initValue?: unknown
+  /**
+   * 当字段的值是一个数组的时候，是否需要将数组转换成为以 , 分割的字符串
+   * @default false
+   */
+  arrayWithString?: boolean
+  /**
+   * el-form-item的样式
+   */
+  style?: CSSProperties
 }

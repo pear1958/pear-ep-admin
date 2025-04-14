@@ -3,6 +3,7 @@ import { FormInstance } from 'element-plus'
 import JsonForm from '@/components/JsonForm'
 import LabelComponent from './LabelComponent.vue'
 import Badge from './Badge.vue'
+import { FormItem } from '@/components/JsonForm/type'
 
 export default defineComponent({
   name: 'jsonForm',
@@ -21,7 +22,7 @@ export default defineComponent({
     //   formItems.value = items
     // }
 
-    const formItems = computed(() => [
+    const formItems = computed<FormItem[]>(() => [
       {
         type: 'input',
         label: '设备号：',
@@ -31,6 +32,9 @@ export default defineComponent({
           maxlength: 30,
           placeholder: '请输入设备号'
         }
+        // style: {
+        //   border: '1px solid red'
+        // }
       },
       {
         type: 'select',
@@ -54,10 +58,10 @@ export default defineComponent({
             formData.value.accidentType = ['SUSPECTED_ACCIDENT']
             formData.value.comment++
           }
-        },
-        formItemAttrs: {
-          // labelWidth: '120px'
         }
+        // formItemAttrs: {
+        //   labelWidth: '120px',
+        // }
       },
       {
         type: 'input',
@@ -134,7 +138,8 @@ export default defineComponent({
       {
         type: 'checkbox-group',
         label: '复选框：',
-        field: 'checkbox-group-2',
+        arrayWithString: true,
+        field: 'checkbox-group',
         attrs: {
           options: [
             {
@@ -156,7 +161,7 @@ export default defineComponent({
         type: 'checkbox-group',
         childType: 'checkbox-button',
         label: '多选：',
-        field: 'checkbox-group',
+        field: 'checkbox-group-2',
         initValue: [1],
         attrs: {
           options: [
@@ -218,8 +223,8 @@ export default defineComponent({
       // console.log('params', params)
     }
 
-    const submit = (params: Recordable) => {
-      console.log('params', params)
+    const submit = (data: Recordable) => {
+      console.log('submit-data', data)
       unref(formRef).validate((valid: boolean, fields) => {
         if (valid) {
           console.log('submit!')
@@ -233,8 +238,6 @@ export default defineComponent({
     onMounted(() => {
       setTimeout(() => {
         unref(formRef).setFieldsValue({ comment: 32 })
-        // 建议最好不要再上层修改formData的值
-        // unref(formData).comment = 30
       }, 2000)
     })
 

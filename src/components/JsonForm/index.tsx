@@ -7,7 +7,8 @@ import {
   onMounted,
   unref,
   onBeforeMount,
-  useSlots
+  useSlots,
+  reactive
 } from 'vue'
 import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { cloneDeep } from 'lodash-es'
@@ -27,9 +28,9 @@ export const props = {
     type: Object,
     default: () => ({})
   },
-  // 设置每行的列数
+  // 设置每一行展示的表单字段的个数, 用于排版
   columns: {
-    type: Object as PropType<number | Record<BreakPoint, number>>,
+    type: [Number, Object] as PropType<number | Record<BreakPoint, number>>,
     default: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
   },
   getFormInstance: {
@@ -39,6 +40,11 @@ export const props = {
   showSearch: {
     type: Boolean,
     default: false
+  },
+  // 用于设置两个字段之间的间隙
+  gutter: {
+    type: [Number, Array],
+    default: () => [0, 30]
   }
 }
 
@@ -49,7 +55,10 @@ export default defineComponent({
   setup(_, { emit, expose }) {
     const slots = useSlots()
     const formRef = ref<FormRef>()
-    const formData = computed(() => _.formData || {})
+    // 不能直接和_.formData直接引用, 否则会造成循环引用
+    // 比如无法实现arrayWithString功能
+    const initData = cloneDeep(_.formData || {})
+    const formData = reactive(initData)
     const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, formData)
 
     const formItems = computed(() => {
@@ -61,14 +70,23 @@ export default defineComponent({
     })
 
     const getFormData = () => {
-      if (!formData.value) return null
-      const data = cloneDeep(formData.value)
+      if (!Object.keys(formData).length) {
+        return null
+      }
+      const data = cloneDeep(formData)
+      // 删除隐藏的字段
       unref(hiddenKeys).forEach(key => delete data[key])
+      // 字段值 数组 -> 字符串
+      _.formItems.forEach(item => {
+        if (item.arrayWithString && Array.isArray(data[item.field])) {
+          data[item.field] = data[item.field].join(',')
+        }
+      })
       return data
     }
 
     watch(
-      () => formData.value,
+      () => formData,
       () => {
         const data = getFormData()
         emit('update:formData', data)
@@ -79,12 +97,16 @@ export default defineComponent({
       }
     )
 
-    onBeforeMount(() => {
+    const setInitValue = () => {
       _.formItems.forEach(item => {
         if (item.initValue !== undefined) {
-          formData.value[item.field] = item.initValue
+          formData[item.field] = item.initValue
         }
       })
+    }
+
+    onBeforeMount(() => {
+      setInitValue()
     })
 
     onMounted(() => {
@@ -94,7 +116,7 @@ export default defineComponent({
       if (formRef.value) {
         // 添加方法, 用于父组件手动设置值
         unref(formRef).setFieldsValue = (params: Recordable) => {
-          Object.assign(formData.value, cloneDeep(params))
+          Object.assign(formData, cloneDeep(params))
         }
       }
     })
@@ -105,9 +127,11 @@ export default defineComponent({
     }
 
     const reset = () => {
-      // to-do
-      const data = getFormData()
-      console.log('reset', data)
+      Object.keys(formData).forEach(key => {
+        delete formData[key]
+      })
+      // 异步初始值需要在父组件再次调用
+      setInitValue()
     }
 
     expose({
@@ -117,8 +141,8 @@ export default defineComponent({
     })
 
     return () => (
-      <el-form model={formData.value} ref={formRef}>
-        <Grid ref={gridRef} collapsed={collapsed.value} gap={[0, 30]} cols={_.columns}>
+      <el-form model={formData} ref={formRef}>
+        <Grid ref={gridRef} collapsed={collapsed.value} gap={_.gutter} cols={_.columns}>
           {unref(formItems).map((item, index) => {
             return (
               <GridItem key={item.field} index={index} {...getResponsive(item)}>
