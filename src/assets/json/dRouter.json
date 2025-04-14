@@ -28,6 +28,14 @@
           }
         },
         {
+          "path": "/components/jsonTable",
+          "name": "jsonTable",
+          "component": "/components/jsonTable/index",
+          "meta": {
+            "title": "jsonTable"
+          }
+        },
+        {
           "path": "/components/jsxDialog",
           "name": "jsxDialog",
           "component": "/components/jsxDialog",

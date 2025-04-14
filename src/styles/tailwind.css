@@ -38,4 +38,8 @@
   .wh-full {
     @apply w-full h-full;
   }
+
+  .page-box {
+    @apply bg-[#ffffff] h-full p-4 box-border dark:bg-dark-content;
+  }
 }

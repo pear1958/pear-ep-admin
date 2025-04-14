@@ -90,7 +90,7 @@ export default defineComponent({
       () => {
         const data = getFormData()
         emit('update:formData', data)
-        emit('change', data)
+        emit('change', cloneDeep(data))
       },
       {
         deep: true
