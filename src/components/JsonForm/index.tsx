@@ -8,10 +8,9 @@ import {
   unref,
   onBeforeMount
 } from 'vue'
-import { FormInstance } from 'element-plus'
 import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { cloneDeep } from 'lodash-es'
-import { FormItem } from './type'
+import { FormItem, FormRef } from './type'
 import Grid from '../Grid/index.vue'
 import GridItem from '../Grid/GridItem.vue'
 import { BreakPoint } from '../Grid/type'
@@ -32,7 +31,7 @@ export const props = {
     default: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
   },
   getFormInstance: {
-    type: Function as PropType<(formRef: FormInstance) => void>
+    type: Function as PropType<(formRef: FormRef) => void>
   }
 }
 
@@ -41,8 +40,8 @@ export default defineComponent({
   props,
   emits: ['update:formData', 'change', 'submit', 'reset'],
   setup(_, { emit, expose }) {
-    const formRef = ref<FormInstance>()
-    const formData = computed(() => _.formData)
+    const formRef = ref<FormRef>()
+    const formData = computed(() => _.formData || {})
     const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, formData)
 
     const formItems = computed(() => {
@@ -83,6 +82,12 @@ export default defineComponent({
     onMounted(() => {
       if (_.getFormInstance) {
         _.getFormInstance(formRef.value)
+      }
+      if (formRef.value) {
+        // 添加方法, 用于父组件手动设置值
+        unref(formRef).setFieldsValue = (params: Recordable) => {
+          Object.assign(formData.value, cloneDeep(params))
+        }
       }
     })
 

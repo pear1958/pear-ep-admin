@@ -4,29 +4,34 @@ import { BreakPoint } from '../Grid/type'
 
 const useForm = (_: JsonFormProps, formData: Ref<Recordable>) => {
   const getComponent = (item: FormItem) => {
-    let res = null
-    const { type, field } = item
+    const { type, childType, field } = item
 
-    switch (type) {
-      case 'component':
-        res = <item.component v-model={formData.value[field]} />
-        break
-
-      default:
-        const Component = resolveComponent(`el-${type}`) as DefineComponent
-        res = (
-          <Component {...item.attrs} v-model={formData.value[field]}>
-            {/* eg: select-插槽-todo */}
-            {type === 'select' &&
-              item.attrs.options.map((_: LabelValue) => (
-                <el-option label={_.label} value={_.value} />
-              ))}
-          </Component>
-        )
-        break
+    if (type === 'component') {
+      return <item.component v-model={formData.value[field]} />
     }
 
-    return res
+    const Component = resolveComponent(`el-${type}`) as DefineComponent
+
+    const childTypeMap = {
+      select: 'option',
+      'radio-group': 'radio',
+      'checkbox-group': 'checkbox'
+    }
+
+    if (Object.keys(childTypeMap).includes(type)) {
+      const cType = childType || childTypeMap[type]
+      const ChildComponent = resolveComponent(`el-${cType}`) as DefineComponent
+      return (
+        <Component {...item.attrs} v-model={formData.value[field]}>
+          {/* eg: select-插槽-todo */}
+          {item.attrs.options.map((_: LabelValue) => (
+            <ChildComponent label={_.label} value={_.value} />
+          ))}
+        </Component>
+      )
+    }
+
+    return <Component {...item.attrs} v-model={formData.value[field]} />
   }
 
   const getFormItem = (item: FormItem) => {

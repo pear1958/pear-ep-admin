@@ -1,5 +1,5 @@
 import type { DefineComponent, ExtractPropTypes } from 'vue'
-import type { FormItemProps } from 'element-plus'
+import type { FormInstance, FormItemProps } from 'element-plus'
 import { props } from '.'
 
 export type JsonFormProps = ExtractPropTypes<typeof props>
@@ -7,6 +7,10 @@ export type JsonFormProps = ExtractPropTypes<typeof props>
 export interface SpanOffset {
   span?: number
   offset?: number
+}
+
+export interface FormRef extends FormInstance {
+  setFieldsValue: (params: Recordable) => void
 }
 
 export interface FormItem {
@@ -28,6 +32,9 @@ export interface FormItem {
     | 'textarea'
     | 'group'
     | 'cascader'
+  // 子元素控件类型  可以不传, 默认使用最通用的控件类型
+  // 比如 el-radio-group -> el-radio, 而不是 el-radio-button
+  childType?: 'option' | 'radio'
   // 标签名称, 可以自定义组件
   label: string | DefineComponent
   // 字段名

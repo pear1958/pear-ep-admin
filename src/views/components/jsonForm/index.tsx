@@ -26,7 +26,7 @@ export default defineComponent({
         type: 'input',
         label: '设备号：',
         field: 'dvrId',
-        initValue: '19832h3129u',
+        initValue: 'fh92r23owhnrf92w3h',
         attrs: {
           maxlength: 30,
           placeholder: '请输入设备号'
@@ -94,6 +94,86 @@ export default defineComponent({
         component: <Badge text="评论" v-model={formData.value.comment} />,
         label: '自定义组件：',
         field: 'comment'
+      },
+      {
+        type: 'radio-group',
+        label: '性别：',
+        field: 'radio-group',
+        attrs: {
+          options: [
+            {
+              label: '男',
+              value: 1
+            },
+            {
+              label: '女',
+              value: 2
+            }
+          ]
+        }
+      },
+      {
+        type: 'radio-group',
+        childType: 'radio-button',
+        label: '水果：',
+        field: 'radio-group-2',
+        initValue: 1,
+        attrs: {
+          options: [
+            {
+              label: '苹果',
+              value: 1
+            },
+            {
+              label: '橘子',
+              value: 2
+            }
+          ]
+        }
+      },
+      {
+        type: 'checkbox-group',
+        label: '复选框：',
+        field: 'checkbox-group-2',
+        attrs: {
+          options: [
+            {
+              label: '苹果',
+              value: 1
+            },
+            {
+              label: '香蕉',
+              value: 2
+            },
+            {
+              label: '梨',
+              value: 3
+            }
+          ]
+        }
+      },
+      {
+        type: 'checkbox-group',
+        childType: 'checkbox-button',
+        label: '多选：',
+        field: 'checkbox-group',
+        initValue: [1],
+        attrs: {
+          options: [
+            {
+              label: '苹果',
+              value: 1
+            },
+            {
+              label: '香蕉',
+              value: 2
+            },
+            {
+              label: '梨',
+              value: 3
+            }
+          ]
+        }
       }
       // {
       //   type: 'daterange',
@@ -128,10 +208,10 @@ export default defineComponent({
 
     // 异步初始值
     onMounted(() => {
-      // 使用setTimeout模拟异步
       setTimeout(() => {
-        // unref(formRef).setFieldsValue({ amount: 200 })
-        unref(formData).comment = 30
+        unref(formRef).setFieldsValue({ comment: 32 })
+        // 建议最好不要再上层修改formData的值
+        // unref(formData).comment = 30
       }, 2000)
     })
 
