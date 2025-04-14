@@ -174,6 +174,31 @@ export default defineComponent({
             }
           ]
         }
+      },
+      {
+        type: 'date-picker',
+        label: '日期范围选择：',
+        field: 'date-picker',
+        attrs: {
+          type: 'daterange',
+          'range-separator': '至',
+          'start-placeholder': '起始日期',
+          'end-placeholder': '结束日期'
+        }
+      },
+      {
+        type: 'date-picker',
+        label: '时间范围选择：',
+        field: 'date-time-picker',
+        responsive: {
+          span: 2
+        },
+        attrs: {
+          type: 'datetimerange',
+          'range-separator': '至',
+          'start-placeholder': '起始时间',
+          'end-placeholder': '结束时间'
+        }
       }
       // {
       //   type: 'daterange',
@@ -216,7 +241,7 @@ export default defineComponent({
     })
 
     return () => (
-      <div class="bg-[#ffffff] h-full p-4">
+      <div class="bg-[#ffffff] h-full p-4 dark:bg-dark-content">
         <JsonForm
           formItems={formItems.value}
           formData={formData.value}
@@ -224,6 +249,7 @@ export default defineComponent({
           label-width="120px"
           getFormInstance={getFormInstance}
           onSubmit={submit}
+          showSearch
           // columns={3}
         />
       </div>

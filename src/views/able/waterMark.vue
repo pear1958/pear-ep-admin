@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 p-4" v-waterMark>
+  <div class="bg-white dark:bg-dark-content p-4" v-waterMark>
     <div v-for="item in 200" :key="item" class="mb-1">水印</div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box bg-white dark:bg-dark-1 p-4">
+  <div class="page-box bg-white dark:bg-dark-content p-4">
     <Upload
       v-model:file-list="fileList"
       v-model:active-index="activeIndex"

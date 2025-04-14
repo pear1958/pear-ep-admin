@@ -5,14 +5,14 @@ html.dark {
   .layout-box,
   .header,
   .tabs-box {
-    background-color: var(--pear-dark-2) !important;
+    background-color: var(--pear-dark-main) !important;
   }
 
   #sider {
-    background-color: var(--pear-dark-1) !important;
+    background-color: var(--pear-dark-content) !important;
 
     > .logo {
-      background-color: var(--pear-dark-1) !important;
+      background-color: var(--pear-dark-content) !important;
     }
 
     // 菜单栏暗黑模式适配
@@ -27,7 +27,7 @@ html.dark {
   }
 
   .page-box {
-    background-color: var(--pear-dark-2) !important;
+    background-color: var(--pear-dark-main) !important;
   }
 
   .tabs-box {

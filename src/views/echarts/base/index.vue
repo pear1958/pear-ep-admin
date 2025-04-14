@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 py-10">
+  <div class="bg-white dark:bg-dark-content py-10">
     <div class="w-full h-[500px]">
       <ECharts :options="options" />
     </div>

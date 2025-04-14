@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 p-4">
+  <div class="bg-white dark:bg-dark-content p-4">
     <el-button @click="visible = true" type="primary">打开Drawer</el-button>
 
     <Drawer v-model="visible" title="抽屉组件">

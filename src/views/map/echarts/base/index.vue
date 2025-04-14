@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 w-full h-full echarts-box">
+  <div class="bg-white dark:bg-dark-content w-full h-full echarts-box">
     <ECharts :options="options" />
   </div>
 </template>

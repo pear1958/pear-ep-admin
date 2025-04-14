@@ -5,8 +5,8 @@ const config = {
     // xxxxx
   },
   dark: {
-    'dark-1': '#1f1f1f',
-    'dark-2': '#141414'
+    'dark-main': '#141414',
+    'dark-content': '#1f1f1f'
   }
 }
 

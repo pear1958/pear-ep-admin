@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 p-4 cursor-pointer">
+  <div class="bg-white dark:bg-dark-content p-4 cursor-pointer">
     <div>右键菜单</div>
 
     <div class="flex-c mt-4 box" v-contextmenu:contextmenu>

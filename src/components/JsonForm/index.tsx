@@ -6,7 +6,8 @@ import {
   type PropType,
   onMounted,
   unref,
-  onBeforeMount
+  onBeforeMount,
+  useSlots
 } from 'vue'
 import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { cloneDeep } from 'lodash-es'
@@ -32,6 +33,11 @@ export const props = {
   },
   getFormInstance: {
     type: Function as PropType<(formRef: FormRef) => void>
+  },
+  // 是否显示搜索重置按钮
+  showSearch: {
+    type: Boolean,
+    default: false
   }
 }
 
@@ -40,6 +46,7 @@ export default defineComponent({
   props,
   emits: ['update:formData', 'change', 'submit', 'reset'],
   setup(_, { emit, expose }) {
+    const slots = useSlots()
     const formRef = ref<FormRef>()
     const formData = computed(() => _.formData || {})
     const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, formData)
@@ -119,25 +126,40 @@ export default defineComponent({
             )
           })}
 
-          <GridItem suffix>
-            <div class="flex-end mb-[18px]">
-              <el-button type="primary" icon={Search} onClick={submit}>
-                搜索
-              </el-button>
-              <el-button icon={Delete} onClick={reset}>
-                重置
-              </el-button>
-              {collapseVisible.value && (
-                <el-button type="primary" link onClick={() => (collapsed.value = !collapsed.value)}>
-                  {collapsed.value ? '展开' : '收起'}
-                  <el-icon class="ml-[5px]">
-                    {collapsed.value ? <ArrowDown /> : <ArrowUp />}
-                  </el-icon>
+          {_.showSearch && (
+            <GridItem suffix>
+              <div class="flex-end mb-[18px]">
+                <el-button type="primary" icon={Search} onClick={submit}>
+                  搜索
                 </el-button>
-              )}
-            </div>
-          </GridItem>
+                <el-button icon={Delete} onClick={reset}>
+                  重置
+                </el-button>
+                {collapseVisible.value && (
+                  <el-button
+                    type="primary"
+                    link
+                    onClick={() => (collapsed.value = !collapsed.value)}
+                  >
+                    {collapsed.value ? '展开' : '收起'}
+                    <el-icon class="ml-[5px]">
+                      {collapsed.value ? <ArrowDown /> : <ArrowUp />}
+                    </el-icon>
+                  </el-button>
+                )}
+              </div>
+            </GridItem>
+          )}
         </Grid>
+
+        {slots.default && slots.default()}
+
+        {!slots.default && !_.showSearch && (
+          <div class="flex-c mt-4">
+            <el-button>取消</el-button>
+            <el-button type="primary">确定</el-button>
+          </div>
+        )}
       </el-form>
     )
   }

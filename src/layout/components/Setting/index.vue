@@ -141,7 +141,7 @@ const {
   showBacktop
 } = storeToRefs(systemStore)
 
-const colorList = ref(['#1890ff', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
+const colorList = ref(['#1890ff', '#de152a', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#c71585'])
 
 const setLayout = (layout: LayoutType) => {
   setHeaderHeight(layout)

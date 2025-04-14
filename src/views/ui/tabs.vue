@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 p-4">
+  <div class="bg-white dark:bg-dark-content p-4">
     <Tabs v-model:selected="title">
       <TabItem title="体育新闻">体育新闻-xxxxxxxxx</TabItem>
       <TabItem title="财经新闻">财经新闻-yyyyyyyyy</TabItem>

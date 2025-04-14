@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 p-4">
+  <div class="bg-white dark:bg-dark-content p-4">
     <Progress isAnimate :percentage="60" />
     <br />
     <Progress isAnimate status="success" :stroke-width="20" :percentage="60" />

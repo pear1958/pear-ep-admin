@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 p-4">
+  <div class="bg-white dark:bg-dark-content p-4">
     <el-button type="primary" @click="toggle">打开对话框</el-button>
 
     <div class="mt-4">

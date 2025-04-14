@@ -1,6 +1,6 @@
 <template>
   <div
-    class="main dark:!bg-dark-2"
+    class="main dark:!bg-dark-main"
     id="main-scroll-box"
     :style="{ padding: !route.meta?.mainFull ? '16px' : 0 }"
     v-loading="enableMainLoading && mainLoading"
