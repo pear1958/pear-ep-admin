@@ -1,5 +1,5 @@
-import { computed, defineComponent, onMounted, ref, unref } from 'vue'
-import { FormInstance } from 'element-plus'
+import { computed, defineComponent, onMounted, reactive, ref, unref } from 'vue'
+import { FormInstance, FormRules } from 'element-plus'
 import JsonForm from '@/components/JsonForm'
 import LabelComponent from './LabelComponent.vue'
 import Badge from './Badge.vue'
@@ -226,6 +226,20 @@ export default defineComponent({
       // }
     ])
 
+    const rules = reactive<FormRules>({
+      dvrId: [
+        { required: true, message: '请输入设备号', trigger: 'blur' },
+        { min: 3, max: 60, message: 'Length should be 3 to 60', trigger: 'blur' }
+      ],
+      reviewStatus: [
+        {
+          required: true,
+          message: '请选择审核状态',
+          trigger: 'change'
+        }
+      ]
+    })
+
     const onChange = (params: Recordable) => {
       // console.log('params', params)
     }
@@ -253,6 +267,7 @@ export default defineComponent({
         <JsonForm
           formItems={formItems.value}
           formData={formData.value}
+          rules={rules}
           onChange={onChange}
           label-width="120px"
           getFormInstance={getFormInstance}

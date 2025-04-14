@@ -45,7 +45,7 @@ const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
 
   const getFormItem = (item: FormItem) => {
     return (
-      <el-form-item {...item.formItemAttrs} style={item.style || {}}>
+      <el-form-item {...item.formItemAttrs} prop={item.field} style={item.style || {}}>
         {{
           label: () => item.label,
           default: () => getComponent(item)
