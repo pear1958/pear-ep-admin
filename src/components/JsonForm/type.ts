@@ -13,29 +13,36 @@ export interface FormRef extends FormInstance {
   setFieldsValue: (params: Recordable) => void
 }
 
+export type FormItemType =
+  | 'input'
+  | 'input-number'
+  | 'input-tag'
+  | 'select'
+  | 'cascader'
+  | 'radio-group'
+  | 'radio'
+  | 'checkbox-group'
+  | 'checkbox'
+  | 'date-picker'
+  | 'time-picker'
+  | 'time-select'
+  | 'autocomplete'
+  | 'color-picker'
+  | 'mention'
+  | 'rate'
+  | 'select-v2'
+  | 'switch'
+  | 'transfer'
+  | 'tree-select'
+  | 'upload'
+  | 'component'
+
 export interface FormItem {
   /**
    * 表单字段控件类型
+   * 非表单控件, 建议使用 type: 'component' 实现
    */
-  type:
-    | 'input'
-    | 'select'
-    | 'radio-group'
-    | 'radio'
-    | 'checkbox-group'
-    | 'checkbox'
-    | 'component'
-    | 'date-picker'
-  // | 'password'
-  // | 'datetime'
-  // | 'text'
-  // | 'search'
-  // | 'daterange'
-  // | 'time'
-  // | 'number'
-  // | 'textarea'
-  // | 'group'
-  // | 'cascader'
+  type: FormItemType
   /**
    * 子元素控件类型  可以不传, 默认使用最通用的控件类型
    * 比如 el-radio-group -> el-radio, 而不是 el-radio-button
