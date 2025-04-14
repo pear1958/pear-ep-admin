@@ -4,6 +4,7 @@ import JsonForm from '@/components/JsonForm'
 import LabelComponent from './LabelComponent.vue'
 import Badge from './Badge.vue'
 import { FormItem } from '@/components/JsonForm/type'
+import { Iconify } from '@/components/Global/components/Icon'
 
 export default defineComponent({
   name: 'jsonForm',
@@ -31,6 +32,9 @@ export default defineComponent({
         attrs: {
           maxlength: 30,
           placeholder: '请输入设备号'
+        },
+        slots: {
+          suffix: () => <Iconify icon="ep:calendar" />
         }
         // style: {
         //   border: '1px solid red'
@@ -58,6 +62,9 @@ export default defineComponent({
             formData.value.accidentType = ['SUSPECTED_ACCIDENT']
             formData.value.comment++
           }
+        },
+        slots: {
+          header: () => <div>标题</div>
         }
         // formItemAttrs: {
         //   labelWidth: '120px',

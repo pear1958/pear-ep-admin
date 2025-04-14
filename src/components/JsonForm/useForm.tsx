@@ -23,15 +23,24 @@ const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
       const ChildComponent = resolveComponent(`el-${cType}`) as DefineComponent
       return (
         <Component {...item.attrs} v-model={formData[field]}>
-          {/* eg: select-插槽-todo */}
-          {item.attrs.options.map((_: LabelValue) => (
-            <ChildComponent label={_.label} value={_.value} />
-          ))}
+          {{
+            ...(item.slots || {}),
+            default: () =>
+              item.attrs.options.map((_: LabelValue) => (
+                <ChildComponent label={_.label} value={_.value} key={_.value} />
+              ))
+          }}
         </Component>
       )
     }
 
-    return <Component {...item.attrs} v-model={formData[field]} />
+    return (
+      <Component {...item.attrs} v-model={formData[field]}>
+        {{
+          ...(item.slots || {})
+        }}
+      </Component>
+    )
   }
 
   const getFormItem = (item: FormItem) => {

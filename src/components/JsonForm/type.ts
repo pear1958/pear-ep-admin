@@ -101,4 +101,8 @@ export interface FormItem {
    * el-form-item的样式
    */
   style?: CSSProperties
+  /**
+   * 保留原组件的插槽功能
+   */
+  slots?: Recordable<() => DefineComponent>
 }
