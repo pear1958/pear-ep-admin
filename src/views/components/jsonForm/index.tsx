@@ -190,9 +190,7 @@ export default defineComponent({
         type: 'date-picker',
         label: '时间范围选择：',
         field: 'date-time-picker',
-        responsive: {
-          span: 2
-        },
+        span: 2,
         attrs: {
           type: 'datetimerange',
           'range-separator': '至',

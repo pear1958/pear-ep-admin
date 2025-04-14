@@ -58,14 +58,9 @@ const useForm = (_: JsonFormProps, formData: Ref<Recordable>) => {
     _.formItems
       .filter(item => item.show !== false)
       .reduce((prev, current) => {
-        const r = current.responsive
+        const r = current.responsive || {}
         const bp = breakPoint.value
-
-        if (!r) {
-          prev += 1
-        } else {
-          prev += (r[bp]?.span ?? r?.span ?? 1) + (r[bp]?.offset ?? r?.offset ?? 0)
-        }
+        prev += (r[bp]?.span ?? current?.span ?? 1) + (r[bp]?.offset ?? current?.offset ?? 0)
 
         const maxColumn = typeof _.columns === 'number' ? _.columns : _.columns[bp]
         if (prev >= maxColumn) show = true

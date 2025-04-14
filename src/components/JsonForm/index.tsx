@@ -27,6 +27,7 @@ export const props = {
     type: Object,
     default: () => ({})
   },
+  // 设置每行的列数
   columns: {
     type: Object as PropType<number | Record<BreakPoint, number>>,
     default: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
