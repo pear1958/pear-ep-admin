@@ -23,5 +23,3 @@ const updateData = () => {
   emit('update:modelValue', num)
 }
 </script>
-
-<style lang="scss" scoped></style>

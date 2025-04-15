@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { FormItem } from '@/components/JsonForm/type'
 import { Iconify } from '@/components/Global/components/Icon'
 import LabelComponent from './components/LabelComponent.vue'
@@ -7,6 +7,9 @@ import Badge from './components/Badge.vue'
 export const useFormItems = () => {
   const formData = ref<Recordable>({})
   const showRejectReason = ref(false)
+  const test = reactive({
+    num: 11
+  })
 
   // or:
   // watch(formData, getFormItems, { deep: true, immediate: true });
@@ -94,7 +97,8 @@ export const useFormItems = () => {
     },
     {
       type: 'component',
-      component: <Badge text="评论" v-model={formData.value.comment} />,
+      // v-model={formData.value.comment}
+      component: <Badge text="评论" v-model={test.num} />,
       label: '自定义组件：',
       field: 'comment'
     },

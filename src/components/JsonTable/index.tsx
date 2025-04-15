@@ -99,16 +99,13 @@ export default defineComponent({
 
     return () => (
       <div class="json-table">
-        <div class="json-form">
+        {_.showSearch && (
           <JsonForm
-            {...Object.assign(
-              {},
-              { 'label-width': '120px', showSearch: true },
-              _.searchbarProps.jsonFormAttrs
-            )}
+            class="form"
+            {...{ 'label-width': '120px', showSearch: true, ..._.searchbarProps.jsonFormAttrs }}
             // v-model:formData={formData.value}
           />
-        </div>
+        )}
 
         <el-table
           class="table"
@@ -123,20 +120,19 @@ export default defineComponent({
         </el-table>
 
         {_.pagination && (
-          <div class="pagination">
-            <el-pagination
-              background
-              layout="total, sizes, prev, pager, next, jumper"
-              current-page={state.pageNum}
-              page-size={state.pageSize}
-              total={state.total}
-              page-sizes={[10, 25, 50, 100]}
-              onCurrentChange={handleCurrentChange}
-              onSizeChange={handleSizeChange}
-              {..._.paginationProps}
-              slots={_.paginationSlots}
-            />
-          </div>
+          <el-pagination
+            class="pagination"
+            background
+            layout="total, sizes, prev, pager, next, jumper"
+            current-page={state.pageNum}
+            page-size={state.pageSize}
+            total={state.total}
+            page-sizes={[5, 10, 25, 50, 100]}
+            onCurrentChange={handleCurrentChange}
+            onSizeChange={handleSizeChange}
+            {..._.paginationProps}
+            slots={_.paginationSlots}
+          />
         )}
       </div>
     )

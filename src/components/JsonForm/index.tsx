@@ -58,8 +58,10 @@ export default defineComponent({
     // 不能直接和_.formData直接引用, 否则会造成循环引用
     // 比如无法实现arrayWithString功能
     const initData = cloneDeep(_.formData || {})
-    const formData = reactive(initData)
-    const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, formData)
+
+    const localFormData = reactive({})
+
+    const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, localFormData)
 
     const formItems = computed(() => {
       return _.formItems.filter(item => item.show !== false)
@@ -70,10 +72,10 @@ export default defineComponent({
     })
 
     const getFormData = () => {
-      if (!Object.keys(formData).length) {
+      if (!Object.keys(localFormData).length) {
         return null
       }
-      const data = cloneDeep(formData)
+      const data = cloneDeep(localFormData)
       // 删除隐藏的字段
       unref(hiddenKeys).forEach(key => delete data[key])
       // 字段值 数组 -> 字符串
@@ -86,9 +88,10 @@ export default defineComponent({
     }
 
     watch(
-      () => formData,
+      () => localFormData,
       () => {
         const data = getFormData()
+        console.log('wwwwwww', localFormData)
         emit('update:formData', data)
         emit('change', cloneDeep(data))
       },
@@ -98,11 +101,11 @@ export default defineComponent({
     )
 
     const setInitValue = () => {
-      _.formItems.forEach(item => {
-        if (item.initValue !== undefined) {
-          formData[item.field] = item.initValue
-        }
-      })
+      // _.formItems.forEach(item => {
+      //   if (item.initValue !== undefined) {
+      //     localFormData[item.field] = item.initValue
+      //   }
+      // })
     }
 
     onBeforeMount(() => {
@@ -116,7 +119,7 @@ export default defineComponent({
       if (formRef.value) {
         // 添加方法, 用于父组件手动设置值
         unref(formRef).setFieldsValue = (params: Recordable) => {
-          Object.assign(formData, cloneDeep(params))
+          // Object.assign(localFormData, cloneDeep(params))
         }
       }
     })
@@ -127,8 +130,8 @@ export default defineComponent({
     }
 
     const reset = () => {
-      Object.keys(formData).forEach(key => {
-        delete formData[key]
+      Object.keys(localFormData).forEach(key => {
+        delete localFormData[key]
       })
       // 异步初始值需要在父组件再次调用
       setInitValue()
@@ -141,7 +144,7 @@ export default defineComponent({
     })
 
     return () => (
-      <el-form model={formData} ref={formRef}>
+      <el-form model={localFormData} ref={formRef}>
         <Grid ref={gridRef} collapsed={collapsed.value} gap={_.gutter} cols={_.columns}>
           {unref(formItems).map((item, index) => {
             return (

@@ -11,6 +11,7 @@ export default defineComponent({
       <div class="page-box">
         <JsonTable
           columns={columns.value}
+          // showSearch={false}
           searchbarProps={{
             jsonFormAttrs: {
               formItems: formItems.value

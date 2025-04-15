@@ -27,7 +27,7 @@ export default defineComponent({
     })
 
     const onChange = (params: Recordable) => {
-      // console.log('onChange', formData.value)
+      console.log('onChange', formData.value)
     }
 
     const submit = (data: Recordable) => {
