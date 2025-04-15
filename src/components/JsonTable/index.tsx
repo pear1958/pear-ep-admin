@@ -1,4 +1,4 @@
-import { PropType, Slot, defineComponent, onMounted } from 'vue'
+import { PropType, Slot, computed, defineComponent, onMounted, ref } from 'vue'
 import { JSX } from 'vue/jsx-runtime'
 import { PaginationProps, TableProps } from 'element-plus'
 import { Column, SearchbarProps } from './type'
@@ -91,20 +91,23 @@ export default defineComponent({
   props,
   inheritAttrs: false,
   setup(_) {
+    const formData = ref()
     const { loading, state, handleCurrentChange, handleSizeChange, handleSearch } = useTable(_)
 
     onMounted(() => {
       if (_.autoSearch) handleSearch()
     })
 
+    const jsonFormProps = computed(() => ({
+      'label-width': '120px',
+      showSearch: true,
+      ..._.searchbarProps.jsonFormAttrs
+    }))
+
     return () => (
       <div class="json-table">
         {_.showSearch && (
-          <JsonForm
-            class="form"
-            {...{ 'label-width': '120px', showSearch: true, ..._.searchbarProps.jsonFormAttrs }}
-            // v-model:formData={formData.value}
-          />
+          <JsonForm class="form" {...jsonFormProps.value} v-model:formData={formData.value} />
         )}
 
         <el-table
@@ -115,7 +118,13 @@ export default defineComponent({
           border
         >
           {_.columns.map(item => {
-            return <el-table-column {...item} key={item.prop}></el-table-column>
+            return (
+              <el-table-column
+                label={item.label}
+                prop={item.prop}
+                key={item.prop}
+              ></el-table-column>
+            )
           })}
         </el-table>
 

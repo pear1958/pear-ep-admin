@@ -27,7 +27,7 @@ export default defineComponent({
     })
 
     const onChange = (params: Recordable) => {
-      console.log('onChange', formData.value)
+      // console.log('onChange', formData.value)
     }
 
     const submit = (data: Recordable) => {
@@ -41,7 +41,7 @@ export default defineComponent({
       })
     }
 
-    // 异步初始值
+    // 异步设置值
     onMounted(() => {
       setTimeout(() => {
         unref(formRef).setFieldsValue({ comment: 32 })

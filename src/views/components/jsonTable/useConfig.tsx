@@ -204,7 +204,10 @@ const useConfig = () => {
     },
     {
       prop: 'shopName',
-      label: '4S店'
+      label: '4S店',
+      customRender: (row: Recordable) => {
+        return <a href="#">{row?.shopName}</a>
+      }
     },
     {
       prop: 'benefitName',

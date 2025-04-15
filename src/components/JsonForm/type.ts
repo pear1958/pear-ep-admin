@@ -93,11 +93,6 @@ export interface FormItem {
    */
   initValue?: unknown
   /**
-   * 当字段的值是一个数组的时候，是否需要将数组转换成为以 , 分割的字符串
-   * @default false
-   */
-  arrayWithString?: boolean
-  /**
    * el-form-item的样式
    */
   style?: CSSProperties

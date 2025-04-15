@@ -55,57 +55,47 @@ export default defineComponent({
   setup(_, { emit, expose }) {
     const slots = useSlots()
     const formRef = ref<FormRef>()
-    // 不能直接和_.formData直接引用, 否则会造成循环引用
-    // 比如无法实现arrayWithString功能
-    const initData = cloneDeep(_.formData || {})
+    const formData = reactive(_.formData || {})
 
-    const localFormData = reactive({})
-
-    const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, localFormData)
+    const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, formData)
 
     const formItems = computed(() => {
       return _.formItems.filter(item => item.show !== false)
     })
 
-    const hiddenKeys = computed(() => {
-      return _.formItems.filter(item => item.show === false).map(item => item.field)
-    })
-
-    const getFormData = () => {
-      if (!Object.keys(localFormData).length) {
-        return null
-      }
-      const data = cloneDeep(localFormData)
-      // 删除隐藏的字段
-      unref(hiddenKeys).forEach(key => delete data[key])
-      // 字段值 数组 -> 字符串
-      _.formItems.forEach(item => {
-        if (item.arrayWithString && Array.isArray(data[item.field])) {
-          data[item.field] = data[item.field].join(',')
-        }
-      })
-      return data
-    }
-
     watch(
-      () => localFormData,
+      () => formData,
       () => {
-        const data = getFormData()
-        console.log('wwwwwww', localFormData)
-        emit('update:formData', data)
-        emit('change', cloneDeep(data))
+        emit('update:formData', formData)
+        emit('change', cloneDeep(formData))
       },
       {
-        deep: true
+        deep: true,
+        immediate: true
+      }
+    )
+
+    watch(
+      () => _.formItems,
+      newVal => {
+        newVal.forEach(item => {
+          if (item.show === false) {
+            delete formData[item.field]
+          }
+        })
+      },
+      {
+        deep: true,
+        immediate: true
       }
     )
 
     const setInitValue = () => {
-      // _.formItems.forEach(item => {
-      //   if (item.initValue !== undefined) {
-      //     localFormData[item.field] = item.initValue
-      //   }
-      // })
+      _.formItems.forEach(item => {
+        if (item.initValue !== undefined) {
+          formData[item.field] = item.initValue
+        }
+      })
     }
 
     onBeforeMount(() => {
@@ -119,32 +109,29 @@ export default defineComponent({
       if (formRef.value) {
         // 添加方法, 用于父组件手动设置值
         unref(formRef).setFieldsValue = (params: Recordable) => {
-          // Object.assign(localFormData, cloneDeep(params))
+          Object.assign(formData, cloneDeep(params))
         }
       }
     })
 
     const submit = () => {
-      const data = getFormData()
-      emit('submit', data)
+      emit('submit', formData)
     }
 
     const reset = () => {
-      Object.keys(localFormData).forEach(key => {
-        delete localFormData[key]
+      Object.keys(formData).forEach(key => {
+        delete formData[key]
       })
       // 异步初始值需要在父组件再次调用
       setInitValue()
     }
 
     expose({
-      formRef,
-      submit,
       reset
     })
 
     return () => (
-      <el-form model={localFormData} ref={formRef}>
+      <el-form model={formData} ref={formRef}>
         <Grid ref={gridRef} collapsed={collapsed.value} gap={_.gutter} cols={_.columns}>
           {unref(formItems).map((item, index) => {
             return (

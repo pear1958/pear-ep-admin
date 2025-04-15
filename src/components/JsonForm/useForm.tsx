@@ -7,7 +7,7 @@ const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
     const { type, childType, field } = item
 
     if (type === 'component') {
-      return <item.component v-model={formData[field]} />
+      return <item.component />
     }
 
     const Component = resolveComponent(`el-${type}`) as DefineComponent
