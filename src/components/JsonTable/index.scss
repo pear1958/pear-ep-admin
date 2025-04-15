@@ -1,0 +1,63 @@
+.json-table {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .json-form {
+    margin-bottom: 12px;
+  }
+
+  .table {
+    &.el-table {
+      flex: 1;
+
+      // 修改表格默认样式, header添加背景色
+      .el-table__header th {
+        height: 45px;
+        font-size: 15px;
+        font-weight: bold;
+        color: var(--el-text-color-primary);
+        background: var(--el-fill-color-light);
+      }
+
+      .el-table__row {
+        height: 45px;
+        font-size: 14px;
+      }
+    }
+
+    &.el-table--small {
+      .el-table__header th {
+        height: 40px !important;
+        font-size: 14px !important;
+      }
+      .el-table__row {
+        height: 40px !important;
+        font-size: 13px !important;
+      }
+    }
+
+    &.el-table--large {
+      .el-table__header th {
+        height: 50px !important;
+        font-size: 16px !important;
+      }
+      .el-table__row {
+        height: 50px !important;
+        font-size: 15px !important;
+      }
+    }
+
+    // 解决表格数据为空时样式不居中问题(仅在element-plus中)
+    .el-table__empty-block {
+      position: absolute;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 16px;
+  }
+}
