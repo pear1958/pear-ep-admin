@@ -1,14 +1,20 @@
 import { ExtractPropTypes } from 'vue'
 import { FormInstance } from 'element-plus'
+import { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
 import { JsonFormProps } from '../JsonForm/type'
 import { props } from '.'
-import { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
+import { JsxNode } from '@/types/common'
 
 export type JsonTableProps = ExtractPropTypes<typeof props>
 
 export interface Column extends TableColumnCtx<Recordable> {
-  // label: string
-  // prop: string
+  customRender?: ({ text, record, index, column }) => any
+  slots?: Recordable<() => JsxNode>
+}
+
+export interface Toolbar {
+  title?: string
+  buttons?: JsxNode
 }
 
 export interface SearchbarProps {

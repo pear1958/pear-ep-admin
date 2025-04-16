@@ -198,5 +198,24 @@ export const mockData = [
     status: 'PENDING_INSURE',
     insureTime: null,
     effectDate: '2025-01-11T00:00:00+0800'
+  },
+  // -----------
+  {
+    shopName: '测试名称'
+  },
+  {
+    shopName: '测试名称'
+  },
+  {
+    shopName: '测试名称'
+  },
+  {
+    shopName: '测试名称'
+  },
+  {
+    shopName: '测试名称'
+  },
+  {
+    shopName: '测试名称'
   }
 ]

@@ -3,6 +3,7 @@ import { Iconify } from '@/components/Global/components/Icon'
 import { FormItem } from '@/components/JsonForm/type'
 import LabelComponent from '../jsonForm/components/LabelComponent.vue'
 import Badge from '../jsonForm/components/Badge.vue'
+import { formatDate } from '@/utils'
 
 const useConfig = () => {
   const formData = ref<Recordable>({})
@@ -200,13 +201,18 @@ const useConfig = () => {
   const columns = ref([
     {
       prop: 'id',
-      label: '记录ID'
+      label: '记录ID',
+      slots: {
+        header: () => {
+          return <el-input placeholder="请输入记录ID" />
+        }
+      }
     },
     {
       prop: 'shopName',
       label: '4S店',
-      customRender: (row: Recordable) => {
-        return <a href="#">{row?.shopName}</a>
+      customRender: ({ text }) => {
+        return <a href="#">{text}</a>
       }
     },
     {
@@ -215,10 +221,10 @@ const useConfig = () => {
     },
     {
       prop: 'insureTime',
-      label: '投保时间'
-      // customRender({ record }) {
-      //   return formatDate(record.insureTime, 'YYYY-MM-DD HH:mm:ss')
-      // }
+      label: '投保时间',
+      customRender({ record }) {
+        return formatDate(record.insureTime, 'YYYY-MM-DD HH:mm:ss')
+      }
     },
     {
       prop: 'vin',
@@ -227,11 +233,12 @@ const useConfig = () => {
     {
       prop: 'plateNumber',
       label: '车牌号'
+    },
+    {
+      prop: 'vehicleModel',
+      label: '品牌车型',
+      width: 400
     }
-    // {
-    //   prop: 'vehicleModel',
-    //   label: '品牌车型'
-    // }
   ])
 
   return {

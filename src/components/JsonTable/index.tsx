@@ -1,45 +1,54 @@
-import { PropType, Slot, computed, defineComponent, onMounted, ref } from 'vue'
-import { JSX } from 'vue/jsx-runtime'
+import { PropType, computed, defineComponent, onMounted, ref, useSlots } from 'vue'
 import { PaginationProps, TableProps } from 'element-plus'
-import { Column, SearchbarProps } from './type'
+import { Refresh, Operation } from '@element-plus/icons-vue'
+import { isEmpty } from 'pear-common-utils'
+import { Column, SearchbarProps, Toolbar } from './type'
 import { useTable } from './useTable'
 import './index.scss'
 import JsonForm from '../JsonForm'
+import noDataImg from '@/assets/imgs/notData.png'
+import { JsxNode } from '@/types/common'
 
 export const props = {
-  showSearch: {
-    type: Boolean,
-    default: true
-  },
   searchbarProps: {
     type: Object as PropType<SearchbarProps>,
     default: () => ({})
   },
-  // 自定义searchbar, 可以直接使用jsx编写
-  customSearchbar: {
-    type: Object as PropType<Slot | JSX.Element>,
-    default: () => ({})
+  showSearch: {
+    type: Boolean,
+    default: true
+  },
+  autoSearch: {
+    type: Boolean,
+    default: true
   },
   // 搜索方法
   search: {
     type: Function as PropType<(params: Recordable) => void>
     // required: true
   },
-  autoSearch: {
-    type: Boolean,
-    default: true
-  },
   columns: {
     type: Array as PropType<Column[]>,
     default: () => []
   },
+  // el-table的所有属性
   tableProps: {
-    type: Object as PropType<TableProps<Recordable[]>>
-    // required: true
-  },
-  tableSlots: {
-    type: Object as PropType<Slot | JSX.Element>,
+    type: Object as PropType<TableProps<Recordable>>,
     default: () => ({})
+  },
+  showToolbar: {
+    type: Boolean,
+    default: true
+  },
+  // 默认工具栏
+  toolbar: {
+    type: Object as PropType<Toolbar>,
+    default: () => ({})
+  },
+  // 自定义工具栏
+  customToolbar: {
+    type: Object as PropType<JsxNode>,
+    default: () => null
   },
   // 是否展示分页
   pagination: {
@@ -51,23 +60,8 @@ export const props = {
     default: () => ({})
   },
   paginationSlots: {
-    type: Object as PropType<Slot | JSX.Element>,
-    default: () => ({})
-  },
-  // 工具栏, 可以直接使用jsx编写, 比如导出按钮
-  toolbar: {
-    type: Object as PropType<JSX.Element>,
-    default: () => ({})
-  },
-  // showTotal: {
-  //   type: Boolean,
-  //   default: true,
-  // },
-  //
-  // 当单元格的数据为空的时候, 显示的字符串
-  emptyText: {
-    type: String,
-    default: ''
+    type: Object as PropType<Recordable<() => JsxNode>>,
+    default: () => null
   },
   pageNumField: {
     type: String,
@@ -91,6 +85,7 @@ export default defineComponent({
   props,
   inheritAttrs: false,
   setup(_) {
+    const slots = useSlots()
     const formData = ref()
     const { loading, state, handleCurrentChange, handleSizeChange, handleSearch } = useTable(_)
 
@@ -110,22 +105,53 @@ export default defineComponent({
           <JsonForm class="form" {...jsonFormProps.value} v-model:formData={formData.value} />
         )}
 
-        <el-table
-          class="table"
-          data={state.tableData}
-          {..._.tableProps}
-          v-loading={loading.value}
-          border
-        >
-          {_.columns.map(item => {
-            return (
-              <el-table-column
-                label={item.label}
-                prop={item.prop}
-                key={item.prop}
-              ></el-table-column>
-            )
-          })}
+        {_.customToolbar && <div class="custom-toolbar">{_.customToolbar}</div>}
+
+        {_.showToolbar && (
+          <div class="toolbar">
+            <div class="title">{_.toolbar.title || ''}</div>
+            <div class="buttons">
+              {_.toolbar.buttons && <div class="mr-3">{_.toolbar.buttons}</div>}
+              <el-button icon={Refresh} circle />
+              <el-button icon={Operation} circle />
+            </div>
+          </div>
+        )}
+
+        <el-table data={state.tableData} v-loading={loading.value} border {..._.tableProps}>
+          {{
+            default: () =>
+              _.columns.map(item => {
+                const { prop, customRender, slots } = item
+                return (
+                  <el-table-column {...item} key={prop}>
+                    {{
+                      default: ({ row, column, $index }) => {
+                        const text = row[prop]
+                        if (customRender && typeof customRender === 'function') {
+                          return customRender({
+                            text,
+                            record: row,
+                            index: $index,
+                            column
+                          })
+                        }
+                        if (isEmpty(text)) return '--'
+                        return text
+                      },
+                      ...slots
+                    }}
+                  </el-table-column>
+                )
+              }),
+            empty: () => (
+              <div class="leading-7">
+                <img src={noDataImg} alt="" />
+                <div>{_.tableProps.emptyText || '暂无数据'}</div>
+              </div>
+            ),
+            ...slots
+          }}
         </el-table>
 
         {_.pagination && (
@@ -136,7 +162,7 @@ export default defineComponent({
             current-page={state.pageNum}
             page-size={state.pageSize}
             total={state.total}
-            page-sizes={[5, 10, 25, 50, 100]}
+            page-sizes={[10, 20, 50, 100]}
             onCurrentChange={handleCurrentChange}
             onSizeChange={handleSizeChange}
             {..._.paginationProps}
