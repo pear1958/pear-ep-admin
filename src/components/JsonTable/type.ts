@@ -17,6 +17,15 @@ export interface Toolbar {
   buttons?: JsxNode
 }
 
+export interface FieldMap {
+  // 接口传参时给的字段名称
+  pageNumField?: string
+  pageSizeField?: string
+  // 接口返回时取的字段名称 eg: name1.name2 支持多级
+  dataField?: string
+  totalField?: string
+}
+
 export interface SearchbarProps {
   /**
    * JSONForm组件相关的props属性, 详见与JSONFormProps定义

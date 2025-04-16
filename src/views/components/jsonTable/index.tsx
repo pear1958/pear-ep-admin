@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import JsonTable from '@/components/JsonTable'
 import useConfig from './useConfig'
 
@@ -27,9 +27,15 @@ export default defineComponent({
             )
           }}
           // customToolbar={<div>222</div>}
+          // el-table原生的所有props
           tableProps={{
             stripe: true
           }}
+          fieldMap={{
+            pageNumField: 'current',
+            totalField: 'totalNum'
+          }}
+          // search={use}
         >
           {/* {{
             // 父组件应该控制 append插槽在 暂无数据的时候不显示

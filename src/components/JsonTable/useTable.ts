@@ -14,6 +14,13 @@ export const useTable = (_: JsonTableProps) => {
     searchParams: {} // 储存表单查询参数 | table默认查询参数
   })
 
+  const defaultFields = {
+    pageNumField: 'pageNum',
+    pageSizeField: 'pageSize',
+    dataField: 'list',
+    totalField: 'total'
+  }
+
   const handleCurrentChange = (val: number) => {
     state.pageNum = val
   }
@@ -24,10 +31,10 @@ export const useTable = (_: JsonTableProps) => {
 
   const handleSearch = async () => {
     loading.value = true
-    const params = {
-      [_.pageNumField]: state.pageNum,
-      [_.pageSizeField]: state.pageSize
-    }
+    // const params = {
+    //   [_.pageNumField]: state.pageNum,
+    //   [_.pageSizeField]: state.pageSize
+    // }
     await delay(1500)
     state.tableData = mockData
     loading.value = false

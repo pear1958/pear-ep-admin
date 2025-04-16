@@ -2,7 +2,7 @@ import { PropType, computed, defineComponent, onMounted, ref, useSlots } from 'v
 import { PaginationProps, TableProps } from 'element-plus'
 import { Refresh, Operation } from '@element-plus/icons-vue'
 import { isEmpty } from 'pear-common-utils'
-import { Column, SearchbarProps, Toolbar } from './type'
+import { Column, FieldMap, SearchbarProps, Toolbar } from './type'
 import { useTable } from './useTable'
 import './index.scss'
 import JsonForm from '../JsonForm'
@@ -23,9 +23,14 @@ export const props = {
     default: true
   },
   // 搜索方法
-  search: {
-    type: Function as PropType<(params: Recordable) => void>
-    // required: true
+  searchFn: {
+    type: Function as PropType<(params: Recordable) => void>,
+    default: () => []
+  },
+  // 传参和取值的字段名称配置
+  fieldMap: {
+    type: Object as PropType<FieldMap>,
+    default: () => ({})
   },
   columns: {
     type: Array as PropType<Column[]>,
@@ -62,14 +67,6 @@ export const props = {
   paginationSlots: {
     type: Object as PropType<Recordable<() => JsxNode>>,
     default: () => null
-  },
-  pageNumField: {
-    type: String,
-    default: 'pageNum'
-  },
-  pageSizeField: {
-    type: String,
-    default: 'pageSize'
   }
   // columnElipsis: {
   //   type: Object as PropType<LongTextElipsisType | boolean>,
@@ -118,7 +115,7 @@ export default defineComponent({
           </div>
         )}
 
-        <el-table data={state.tableData} v-loading={loading.value} border {..._.tableProps}>
+        <el-table v-loading={loading.value} border {..._.tableProps}>
           {{
             default: () =>
               _.columns.map(item => {
@@ -161,7 +158,7 @@ export default defineComponent({
             layout="total, sizes, prev, pager, next, jumper"
             current-page={state.pageNum}
             page-size={state.pageSize}
-            total={state.total}
+            // total={state.total}
             page-sizes={[10, 20, 50, 100]}
             onCurrentChange={handleCurrentChange}
             onSizeChange={handleSizeChange}

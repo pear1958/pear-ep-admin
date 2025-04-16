@@ -212,7 +212,11 @@ const useConfig = () => {
       prop: 'shopName',
       label: '4S店',
       customRender: ({ text }) => {
-        return <a href="#">{text}</a>
+        return (
+          <el-button type="primary" link>
+            {text}
+          </el-button>
+        )
       }
     },
     {
@@ -237,9 +241,34 @@ const useConfig = () => {
     {
       prop: 'vehicleModel',
       label: '品牌车型',
-      width: 400
+      width: 300
+    },
+    {
+      label: '操作',
+      width: 180,
+      fixed: 'right',
+      align: 'center',
+      customRender({ record }) {
+        return (
+          <div>
+            <el-button type="primary" link onClick={() => handleDetail(record)}>
+              详情
+            </el-button>
+            <el-button type="primary" link>
+              编辑
+            </el-button>
+            <el-button type="primary" link>
+              删除
+            </el-button>
+          </div>
+        )
+      }
     }
   ])
+
+  const handleDetail = (row: Recordable) => {
+    console.log('row', row)
+  }
 
   return {
     columns,
