@@ -17,7 +17,7 @@ export interface Toolbar {
   buttons?: JsxNode
 }
 
-export interface FieldMap {
+export interface Fields {
   // 接口传参时给的字段名称
   pageNumField?: string
   pageSizeField?: string

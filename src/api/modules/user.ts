@@ -50,21 +50,21 @@ export const getCompositionList = (params: TableParams) => {
 
 // 获取用户列表
 export const getUserList = (params: any) => {
-  return http.post(`/geeker/user/list`, params)
+  return http.post(`/user/list`, params)
   // return Promise.resolve({ list: [], total: 0 })
 }
 
 // 获取用户性别字典
 export const getUserGender = () => {
-  return http.get(`/geeker/user/gender`)
+  return http.get(`/user/gender`)
 }
 
 // 获取用户状态字典
 export const getUserStatus = () => {
-  return http.get(`/geeker/user/status`)
+  return http.get(`/user/status`)
 }
 
 // 删除用户
 export const deleteUser = (params: { id: string[] }) => {
-  return http.post(`/geeker/user/delete`, params)
+  return http.post(`/user/delete`, params)
 }

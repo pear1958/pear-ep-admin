@@ -1,7 +1,7 @@
 import { reactive, ref } from 'vue'
+import { cloneDeep } from 'lodash-es'
 import { JsonTableProps } from './type'
-import { delay } from 'pear-common-utils'
-import { mockData } from './mock'
+import { getInsuranceList } from '@/api/modules/insurance'
 
 export const useTable = (_: JsonTableProps) => {
   const loading = ref(false)
@@ -15,28 +15,36 @@ export const useTable = (_: JsonTableProps) => {
   })
 
   const defaultFields = {
-    pageNumField: 'pageNum',
+    pageNumField: 'current',
     pageSizeField: 'pageSize',
     dataField: 'list',
     totalField: 'total'
   }
 
+  const fields = Object.assign({}, defaultFields, _.fields)
+
   const handleCurrentChange = (val: number) => {
     state.pageNum = val
+    handleSearch()
   }
 
   const handleSizeChange = (val: number) => {
     state.pageSize = val
+    handleSearch()
   }
 
   const handleSearch = async () => {
     loading.value = true
-    // const params = {
-    //   [_.pageNumField]: state.pageNum,
-    //   [_.pageSizeField]: state.pageSize
-    // }
-    await delay(1500)
-    state.tableData = mockData
+    state.searchParams = cloneDeep(formData.value || {})
+    const params = {
+      [fields.pageNumField]: state.pageNum,
+      [fields.pageSizeField]: state.pageSize,
+      ...state.searchParams
+    }
+    const res = (await getInsuranceList(params)) as Recordable
+    console.log('res', res)
+    state.tableData = res[fields.dataField]
+    state.total = res[fields.totalField]
     loading.value = false
   }
 
