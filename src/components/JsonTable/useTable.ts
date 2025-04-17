@@ -1,7 +1,7 @@
 import { reactive, ref } from 'vue'
 import { cloneDeep } from 'lodash-es'
+import { getValueByCasKey, isFunction } from 'pear-common-utils'
 import { JsonTableProps } from './type'
-import { getInsuranceList } from '@/api/modules/insurance'
 
 export const useTable = (_: JsonTableProps) => {
   const loading = ref(false)
@@ -10,7 +10,7 @@ export const useTable = (_: JsonTableProps) => {
     tableData: [],
     pageNum: 1,
     pageSize: 10,
-    total: 127,
+    total: 0,
     searchParams: {} // 储存表单查询参数 | table默认查询参数
   })
 
@@ -34,6 +34,7 @@ export const useTable = (_: JsonTableProps) => {
   }
 
   const handleSearch = async () => {
+    if (!isFunction(_.request)) return
     loading.value = true
     state.searchParams = cloneDeep(formData.value || {})
     const params = {
@@ -41,12 +42,27 @@ export const useTable = (_: JsonTableProps) => {
       [fields.pageSizeField]: state.pageSize,
       ...state.searchParams
     }
-    const res = (await getInsuranceList(params)) as Recordable
-    console.log('res', res)
-    state.tableData = res[fields.dataField]
-    state.total = res[fields.totalField]
-    loading.value = false
+    try {
+      const res = await _.request(params)
+      if (isFunction(_.success)) {
+        const resData = _.success(res)
+        state.tableData = resData.list || []
+        state.total = resData.total || 0
+      } else {
+        state.tableData = getValueByCasKey(res || {}, fields.dataField) || []
+        state.total = getValueByCasKey(res || {}, fields.totalField) || 0
+      }
+    } catch (e) {
+      // xxx
+    } finally {
+      loading.value = false
+    }
   }
+
+  // to-do
+  // 4.所有按钮的功能 代码添加
+  // 5.单选, 多选, 排序 以及其他功能测试
+  // 6.默认参数调试
 
   return {
     loading,

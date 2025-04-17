@@ -7,6 +7,11 @@ import { JsxNode } from '@/types/common'
 
 export type JsonTableProps = ExtractPropTypes<typeof props>
 
+export interface SuccessCbRes {
+  list: Recordable[]
+  total: number
+}
+
 export interface Column extends TableColumnCtx<Recordable> {
   customRender?: ({ text, record, index, column }) => any
   slots?: Recordable<() => JsxNode>

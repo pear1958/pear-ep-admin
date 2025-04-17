@@ -2,7 +2,7 @@ import { PropType, computed, defineComponent, onMounted, ref, useSlots } from 'v
 import { PaginationProps, TableProps } from 'element-plus'
 import { Refresh, Operation } from '@element-plus/icons-vue'
 import { isEmpty } from 'pear-common-utils'
-import { Column, Fields, SearchbarProps, Toolbar } from './type'
+import { Column, Fields, SearchbarProps, SuccessCbRes, Toolbar } from './type'
 import { useTable } from './useTable'
 import './index.scss'
 import JsonForm from '../JsonForm'
@@ -22,10 +22,13 @@ export const props = {
     type: Boolean,
     default: true
   },
-  // 搜索方法
-  searchFn: {
-    type: Function as PropType<(params: Recordable) => void>,
-    default: () => []
+  // 请求表格数据的api
+  request: {
+    type: Function as PropType<(params: Recordable) => Promise<any>>
+  },
+  // 返回数据的回调函数, 可以对数据进行处理
+  success: {
+    type: Function as PropType<(data: any) => SuccessCbRes>
   },
   // 传参和取值的字段名称配置
   fields: {

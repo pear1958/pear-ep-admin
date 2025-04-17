@@ -1,6 +1,4 @@
 const getMockData = (params: Recordable) => {
-  console.log('params', params)
-
   const data = new Array(params.pageSize).fill('').map((_, index) => {
     return {
       id: Math.random(),
@@ -25,7 +23,9 @@ const getMockData = (params: Recordable) => {
   })
 
   return {
-    list: data,
+    list: {
+      data
+    },
     total: 158
   }
 }

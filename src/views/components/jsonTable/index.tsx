@@ -1,15 +1,31 @@
 import { defineComponent } from 'vue'
 import JsonTable from '@/components/JsonTable'
 import useConfig from './useConfig'
+import { getInsuranceList } from '@/api/modules/insurance'
 
 export default defineComponent({
   name: 'jsonTable',
   setup() {
     const { columns, formItems } = useConfig()
 
+    const getList = (params: Recordable) => {
+      console.log('params', params)
+      return getInsuranceList(params)
+    }
+
+    // const success = (res: Recordable) => {
+    //   console.log('res', res)
+    //   return {
+    //     list: res.list.data,
+    //     total: res.total
+    //   }
+    // }
+
     return () => (
       <div class="page-box">
         <JsonTable
+          request={getList}
+          // success={success}
           columns={columns.value}
           // showSearch={false}
           searchbarProps={{
@@ -31,9 +47,11 @@ export default defineComponent({
           tableProps={{
             stripe: true
           }}
-          fieldMap={{
+          // 可以不传
+          fields={{
             pageNumField: 'current',
-            totalField: 'totalNum'
+            dataField: 'list.data',
+            totalField: 'total'
           }}
           // search={use}
         >
