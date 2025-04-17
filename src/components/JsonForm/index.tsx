@@ -45,6 +45,10 @@ export const props = {
   gutter: {
     type: [Number, Array],
     default: () => [0, 30]
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 }
 
@@ -57,7 +61,7 @@ export default defineComponent({
     const formRef = ref<FormRef>()
     const formData = reactive(_.formData || {})
 
-    const { getFormItem, gridRef, collapsed, collapseVisible } = useForm(_, formData)
+    const { getFormItem, gridRef, collapsed, collapseVisible, disabled } = useForm(_, formData)
 
     const formItems = computed(() => {
       return _.formItems.filter(item => item.show !== false)
@@ -145,7 +149,7 @@ export default defineComponent({
           {_.showSearch && (
             <GridItem suffix>
               <div class="flex-end mb-[18px]">
-                <el-button type="primary" icon={Search} onClick={search}>
+                <el-button type="primary" icon={Search} onClick={search} disabled={disabled.value}>
                   搜索
                 </el-button>
                 <el-button icon={Delete} onClick={reset}>

@@ -34,15 +34,23 @@ export const useTable = (_: JsonTableProps) => {
   }
 
   const search = async () => {
-    if (!isFunction(_.request)) return
-    loading.value = true
     const params = {
       [fields.pageNumField]: state.pageNum,
       [fields.pageSizeField]: state.pageSize,
       ...cloneDeep(formData.value || {})
     }
+
+    if (isFunction(_.beforeSearch)) {
+      const bool = _.beforeSearch(params)
+      if (!bool) return
+    }
+
+    if (!isFunction(_.search)) return
+
+    loading.value = true
+
     try {
-      const res = await _.request(params)
+      const res = await _.search(params)
       if (isFunction(_.success)) {
         const resData = _.success(res)
         state.tableData = resData.list || []

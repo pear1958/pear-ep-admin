@@ -1,17 +1,18 @@
-import { PropType, computed, defineComponent, onMounted, ref, useSlots } from 'vue'
+import { PropType, defineComponent, onMounted, ref, useSlots } from 'vue'
 import { FormInstance, PaginationProps, TableProps } from 'element-plus'
 import { Refresh, Operation } from '@element-plus/icons-vue'
 import { isEmpty } from 'pear-common-utils'
-import { Column, Fields, SearchbarProps, SuccessCbRes, Toolbar } from './type'
+import { Column, Fields, SuccessCbRes, Toolbar } from './type'
 import { useTable } from './useTable'
 import './index.scss'
 import JsonForm from '../JsonForm'
 import noDataImg from '@/assets/imgs/notData.png'
 import { JsxNode } from '@/types/common'
+import { JsonFormProps } from '../JsonForm/type'
 
 export const props = {
-  searchbarProps: {
-    type: Object as PropType<SearchbarProps>,
+  jsonFormProps: {
+    type: Object as PropType<JsonFormProps>,
     default: () => ({})
   },
   showSearch: {
@@ -22,8 +23,12 @@ export const props = {
     type: Boolean,
     default: true
   },
+  // 搜索之前的回调函数, 如果回调返回值为false, 则不会调用对应的搜索方法
+  beforeSearch: {
+    type: Function as PropType<(params?: Recordable) => boolean>
+  },
   // 请求表格数据的api
-  request: {
+  search: {
     type: Function as PropType<(params: Recordable) => Promise<any>>
   },
   // 返回数据的回调函数, 可以对数据进行处理
@@ -75,9 +80,6 @@ export const props = {
   //   type: Object as PropType<LongTextElipsisType | boolean>,
   //   default: () => ({ line: 2 }),
   // },
-  // getSearchbarInstance: {
-  //   type: Function as PropType<(ins: ComponentPublicInstance) => void>,
-  // },
 }
 
 export default defineComponent({
@@ -89,10 +91,11 @@ export default defineComponent({
     const formData = ref()
     const formRef = ref() // el-form实例
     const jsonFormRef = ref() // 组件实例
+    const { loading, state, handleCurrentChange, handleSizeChange, search, reset } = useTable(_)
+
     const getFormInstance = (ins: FormInstance) => {
       formRef.value = ins
     }
-    const { loading, state, handleCurrentChange, handleSizeChange, search, reset } = useTable(_)
 
     onMounted(() => {
       if (_.autoSearch) search()
@@ -103,21 +106,18 @@ export default defineComponent({
       jsonFormRef
     })
 
-    const jsonFormProps = computed(() => ({
-      'label-width': '120px',
-      showSearch: true,
-      ..._.searchbarProps.jsonFormAttrs
-    }))
-
     return () => (
       <div class="json-table">
         {_.showSearch && (
           <JsonForm
             ref={jsonFormRef}
             class="form"
-            {...jsonFormProps.value}
-            v-model:formData={formData.value}
+            label-width="120px"
+            showSearch
             getFormInstance={getFormInstance}
+            // 可以覆盖上面的默认值
+            {..._.jsonFormProps}
+            v-model:formData={formData.value}
             onSearch={search}
             onReset={reset}
           />

@@ -24,14 +24,13 @@ export default defineComponent({
     return () => (
       <div class="page-box">
         <JsonTable
-          request={getList}
+          search={getList}
           // success={success}
           columns={columns.value}
           // showSearch={false}
-          searchbarProps={{
-            jsonFormAttrs: {
-              formItems: formItems.value
-            }
+          jsonFormProps={{
+            formItems: formItems.value,
+            disabled: true
           }}
           toolbar={{
             title: '保险列表',
@@ -53,7 +52,6 @@ export default defineComponent({
             dataField: 'list.data',
             totalField: 'total'
           }}
-          // search={use}
         >
           {/* {{
             // 父组件应该控制 append插槽在 暂无数据的时候不显示

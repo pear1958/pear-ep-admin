@@ -80,11 +80,14 @@ const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
     return show
   })
 
+  const disabled = ref(false)
+
   return {
     getFormItem,
     collapsed,
     gridRef,
-    collapseVisible
+    collapseVisible,
+    disabled
   }
 }
 
