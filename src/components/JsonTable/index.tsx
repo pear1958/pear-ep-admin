@@ -1,18 +1,18 @@
 import { PropType, defineComponent, onMounted, ref, useSlots } from 'vue'
-import { FormInstance, PaginationProps, TableProps } from 'element-plus'
+import { PaginationProps, TableProps } from 'element-plus'
 import { Refresh, Operation } from '@element-plus/icons-vue'
 import { isEmpty } from 'pear-common-utils'
 import { Column, Fields, SuccessCbRes, Toolbar } from './type'
 import { useTable } from './useTable'
 import './index.scss'
-import JsonForm from '../JsonForm'
+import Searchbar from '../Searchbar'
 import noDataImg from '@/assets/imgs/notData.png'
 import { JsxNode } from '@/types/common'
-import { JsonFormProps } from '../JsonForm/type'
+import { Props as SearchbarProps } from '../Searchbar/type'
 
 export const props = {
-  jsonFormProps: {
-    type: Object as PropType<JsonFormProps>,
+  searchbarProps: {
+    type: Object as PropType<SearchbarProps>,
     default: () => ({})
   },
   showSearch: {
@@ -88,14 +88,18 @@ export default defineComponent({
   inheritAttrs: false,
   setup(_, { expose }) {
     const slots = useSlots()
+    const searchbarRef = ref()
     const formData = ref()
-    const formRef = ref() // el-form实例
-    const jsonFormRef = ref() // 组件实例
-    const { loading, state, handleCurrentChange, handleSizeChange, search, reset } = useTable(_)
-
-    const getFormInstance = (ins: FormInstance) => {
-      formRef.value = ins
-    }
+    const {
+      loading,
+      state,
+      handleCurrentChange,
+      handleSizeChange,
+      search,
+      reset,
+      formRef,
+      getFormInstance
+    } = useTable(_)
 
     onMounted(() => {
       if (_.autoSearch) search()
@@ -103,20 +107,19 @@ export default defineComponent({
 
     expose({
       formRef,
-      jsonFormRef
+      searchbarRef
     })
 
     return () => (
       <div class="json-table">
         {_.showSearch && (
-          <JsonForm
-            ref={jsonFormRef}
+          <Searchbar
+            ref={searchbarRef}
             class="form"
             label-width="120px"
-            showSearch
             getFormInstance={getFormInstance}
             // 可以覆盖上面的默认值
-            {..._.jsonFormProps}
+            {..._.searchbarProps}
             v-model:formData={formData.value}
             onSearch={search}
             onReset={reset}

@@ -1,8 +1,14 @@
-import type { CSSProperties, DefineComponent, ExtractPropTypes } from 'vue'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { FormInstance, FormItemProps } from 'element-plus'
 import { props } from '.'
+import { JsxNode } from '@/types/common'
 
-export type JsonFormProps = ExtractPropTypes<typeof props>
+export type Props = ExtractPropTypes<typeof props>
+
+export interface SpanOffset {
+  span?: number
+  offset?: number
+}
 
 export interface FormRef extends FormInstance {
   setFieldsValue: (params: Recordable) => void
@@ -46,7 +52,7 @@ export interface FormItem {
   /**
    * 标签名称, 可以自定义组件
    */
-  label: string | DefineComponent
+  label: string | JsxNode
   /**
    * 字段名
    */
@@ -62,7 +68,7 @@ export interface FormItem {
   /**
    * 自定义组件
    */
-  component?: DefineComponent
+  component?: JsxNode
   /**
    * 控制字段是否显示, 如果隐藏, 界面不可见, 提交的时候也不会被提交
    */
@@ -71,6 +77,18 @@ export interface FormItem {
    * 同上, 但是在提交的时候会被提交, 暂不实现
    */
   // visible?: boolean
+  /**
+   * 单独设置FormItem的布局, 最大为4
+   */
+  span?: number
+  offset?: number
+  responsive?: {
+    xs?: SpanOffset
+    sm?: SpanOffset
+    md?: SpanOffset
+    lg?: SpanOffset
+    xl?: SpanOffset
+  }
   /**
    * 用于设置字段的初始值
    */
@@ -82,5 +100,5 @@ export interface FormItem {
   /**
    * 保留原组件的插槽功能
    */
-  slots?: Recordable<() => DefineComponent>
+  slots?: Recordable<() => JsxNode>
 }

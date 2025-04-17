@@ -28,7 +28,7 @@ export default defineComponent({
           // success={success}
           columns={columns.value}
           // showSearch={false}
-          jsonFormProps={{
+          searchbarProps={{
             formItems: formItems.value,
             disabled: true
           }}

@@ -58,8 +58,6 @@ export default defineComponent({
           label-width="120px"
           getFormInstance={getFormInstance}
           onSubmit={submit}
-          showSearch
-          // columns={3}
         />
       </div>
     )

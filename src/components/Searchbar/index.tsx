@@ -7,13 +7,16 @@ import {
   onMounted,
   unref,
   onBeforeMount,
-  reactive,
-  DefineComponent,
-  resolveComponent
+  reactive
 } from 'vue'
+import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { cloneDeep } from 'lodash-es'
+import { isEmpty } from 'pear-common-utils'
 import { FormItem, FormRef } from './type'
+import Grid from '../Grid/index.vue'
+import GridItem from '../Grid/GridItem.vue'
 import { BreakPoint } from '../Grid/type'
+import useForm from './useForm'
 
 export const props = {
   formItems: {
@@ -31,56 +34,30 @@ export const props = {
   },
   getFormInstance: {
     type: Function as PropType<(formRef: FormRef) => void>
+  },
+  // 用于设置两个字段之间的间隙
+  gutter: {
+    type: [Number, Array],
+    default: () => [0, 30]
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 }
 
 export default defineComponent({
-  name: 'JsonForm',
+  name: 'Searchbar',
   props,
-  emits: ['update:formData', 'change', 'submit', 'reset'],
+  emits: ['update:formData', 'change', 'search', 'reset'],
   setup(_, { emit, expose }) {
     const formRef = ref<FormRef>()
     const formData = reactive(_.formData || {})
 
-    const getComponent = (item: FormItem) => {
-      const { type, childType, field } = item
-
-      if (type === 'component') {
-        return <item.component />
-      }
-
-      const Component = resolveComponent(`el-${type}`) as DefineComponent
-
-      const childTypeMap = {
-        select: 'option',
-        'radio-group': 'radio',
-        'checkbox-group': 'checkbox'
-      }
-
-      if (Object.keys(childTypeMap).includes(type)) {
-        const cType = childType || childTypeMap[type]
-        const ChildComponent = resolveComponent(`el-${cType}`) as DefineComponent
-        return (
-          <Component {...item.attrs} v-model={formData[field]}>
-            {{
-              ...(item.slots || {}),
-              default: () =>
-                item.attrs.options.map((_: LabelValue) => (
-                  <ChildComponent label={_.label} value={_.value} key={_.value} />
-                ))
-            }}
-          </Component>
-        )
-      }
-
-      return (
-        <Component {...item.attrs} v-model={formData[field]}>
-          {{
-            ...(item.slots || {})
-          }}
-        </Component>
-      )
-    }
+    const { getFormItem, gridRef, collapsed, collapseVisible, disabled, getResponsive } = useForm(
+      _,
+      formData
+    )
 
     const formItems = computed(() => {
       return _.formItems.filter(item => item.show !== false)
@@ -113,6 +90,18 @@ export default defineComponent({
       }
     )
 
+    watch(
+      () => _.disabled,
+      newVal => {
+        if (!isEmpty(newVal)) {
+          disabled.value = newVal
+        }
+      },
+      {
+        immediate: true
+      }
+    )
+
     const setInitValue = () => {
       _.formItems.forEach(item => {
         if (item.initValue !== undefined) {
@@ -137,8 +126,8 @@ export default defineComponent({
       }
     })
 
-    const submit = () => {
-      emit('submit', formData)
+    const search = () => {
+      emit('search', formData)
     }
 
     const reset = () => {
@@ -156,21 +145,34 @@ export default defineComponent({
 
     return () => (
       <el-form model={formData} ref={formRef}>
-        {unref(formItems).map(item => {
-          return (
-            <el-form-item
-              {...item.formItemAttrs}
-              prop={item.field}
-              key={item.field}
-              style={item.style || {}}
-            >
-              {{
-                label: () => item.label,
-                default: () => getComponent(item)
-              }}
-            </el-form-item>
-          )
-        })}
+        <Grid ref={gridRef} collapsed={collapsed.value} gap={_.gutter} cols={_.columns}>
+          {unref(formItems).map((item, index) => {
+            return (
+              <GridItem key={item.field} index={index} {...getResponsive(item)}>
+                {getFormItem(item)}
+              </GridItem>
+            )
+          })}
+
+          <GridItem suffix>
+            <div class="flex-end mb-[18px]">
+              <el-button type="primary" icon={Search} onClick={search} disabled={disabled.value}>
+                搜索
+              </el-button>
+              <el-button icon={Delete} onClick={reset}>
+                重置
+              </el-button>
+              {collapseVisible.value && (
+                <el-button type="primary" link onClick={() => (collapsed.value = !collapsed.value)}>
+                  {collapsed.value ? '展开' : '收起'}
+                  <el-icon class="ml-[5px]">
+                    {collapsed.value ? <ArrowDown /> : <ArrowUp />}
+                  </el-icon>
+                </el-button>
+              )}
+            </div>
+          </GridItem>
+        </Grid>
       </el-form>
     )
   }

@@ -2,6 +2,7 @@ import { reactive, ref } from 'vue'
 import { cloneDeep } from 'lodash-es'
 import { getValueByCasKey, isFunction } from 'pear-common-utils'
 import { JsonTableProps } from './type'
+import { FormInstance } from 'element-plus'
 
 export const useTable = (_: JsonTableProps) => {
   const loading = ref(false)
@@ -13,6 +14,13 @@ export const useTable = (_: JsonTableProps) => {
     total: 0
     // searchParams: {} // 储存表单查询参数 | table默认查询参数
   })
+
+  const formRef = ref() // el-form实例
+
+  // 暴露给父级组件使用
+  const getFormInstance = (ins: FormInstance) => {
+    formRef.value = ins
+  }
 
   const defaultFields = {
     pageNumField: 'current',
@@ -84,6 +92,8 @@ export const useTable = (_: JsonTableProps) => {
     handleCurrentChange,
     handleSizeChange,
     search,
-    reset
+    reset,
+    formRef,
+    getFormInstance
   }
 }

@@ -1,13 +1,13 @@
 import { DefineComponent, Reactive, computed, ref, resolveComponent, unref } from 'vue'
-import { FormItem, JsonFormProps } from './type'
+import { FormItem, Props } from './type'
 import { BreakPoint } from '../Grid/type'
 
-const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
+const useForm = (_: Props, formData: Reactive<Recordable>) => {
   const getComponent = (item: FormItem) => {
     const { type, childType, field } = item
 
     if (type === 'component') {
-      return <item.component />
+      return item.component
     }
 
     const Component = resolveComponent(`el-${type}`) as DefineComponent
@@ -54,6 +54,20 @@ const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
     )
   }
 
+  // 获取响应式设置
+  const getResponsive = (item: FormItem) => {
+    const r = item.responsive
+    return {
+      span: item.span || 1,
+      offset: item.offset ?? 0,
+      xs: r?.xs,
+      sm: r?.sm,
+      md: r?.md,
+      lg: r?.lg,
+      xl: r?.xl
+    }
+  }
+
   // 是否默认折叠搜索项
   const collapsed = ref(false)
   // 获取响应式断点
@@ -84,6 +98,7 @@ const useForm = (_: JsonFormProps, formData: Reactive<Recordable>) => {
 
   return {
     getFormItem,
+    getResponsive,
     collapsed,
     gridRef,
     collapseVisible,
