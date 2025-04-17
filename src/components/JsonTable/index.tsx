@@ -1,5 +1,5 @@
 import { PropType, computed, defineComponent, onMounted, ref, useSlots } from 'vue'
-import { PaginationProps, TableProps } from 'element-plus'
+import { FormInstance, PaginationProps, TableProps } from 'element-plus'
 import { Refresh, Operation } from '@element-plus/icons-vue'
 import { isEmpty } from 'pear-common-utils'
 import { Column, Fields, SearchbarProps, SuccessCbRes, Toolbar } from './type'
@@ -84,13 +84,23 @@ export default defineComponent({
   name: 'JsonTable',
   props,
   inheritAttrs: false,
-  setup(_) {
+  setup(_, { expose }) {
     const slots = useSlots()
     const formData = ref()
-    const { loading, state, handleCurrentChange, handleSizeChange, handleSearch } = useTable(_)
+    const formRef = ref() // el-form实例
+    const jsonFormRef = ref() // 组件实例
+    const getFormInstance = (ins: FormInstance) => {
+      formRef.value = ins
+    }
+    const { loading, state, handleCurrentChange, handleSizeChange, search, reset } = useTable(_)
 
     onMounted(() => {
-      if (_.autoSearch) handleSearch()
+      if (_.autoSearch) search()
+    })
+
+    expose({
+      formRef,
+      jsonFormRef
     })
 
     const jsonFormProps = computed(() => ({
@@ -102,7 +112,15 @@ export default defineComponent({
     return () => (
       <div class="json-table">
         {_.showSearch && (
-          <JsonForm class="form" {...jsonFormProps.value} v-model:formData={formData.value} />
+          <JsonForm
+            ref={jsonFormRef}
+            class="form"
+            {...jsonFormProps.value}
+            v-model:formData={formData.value}
+            getFormInstance={getFormInstance}
+            onSearch={search}
+            onReset={reset}
+          />
         )}
 
         {_.customToolbar && <div class="custom-toolbar">{_.customToolbar}</div>}

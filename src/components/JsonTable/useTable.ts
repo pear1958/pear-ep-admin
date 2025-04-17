@@ -10,8 +10,8 @@ export const useTable = (_: JsonTableProps) => {
     tableData: [],
     pageNum: 1,
     pageSize: 10,
-    total: 0,
-    searchParams: {} // 储存表单查询参数 | table默认查询参数
+    total: 0
+    // searchParams: {} // 储存表单查询参数 | table默认查询参数
   })
 
   const defaultFields = {
@@ -25,22 +25,21 @@ export const useTable = (_: JsonTableProps) => {
 
   const handleCurrentChange = (val: number) => {
     state.pageNum = val
-    handleSearch()
+    search()
   }
 
   const handleSizeChange = (val: number) => {
     state.pageSize = val
-    handleSearch()
+    search()
   }
 
-  const handleSearch = async () => {
+  const search = async () => {
     if (!isFunction(_.request)) return
     loading.value = true
-    state.searchParams = cloneDeep(formData.value || {})
     const params = {
       [fields.pageNumField]: state.pageNum,
       [fields.pageSizeField]: state.pageSize,
-      ...state.searchParams
+      ...cloneDeep(formData.value || {})
     }
     try {
       const res = await _.request(params)
@@ -59,6 +58,12 @@ export const useTable = (_: JsonTableProps) => {
     }
   }
 
+  const reset = () => {
+    state.pageNum = 1
+    state.pageSize = 10
+    search()
+  }
+
   // to-do
   // 4.所有按钮的功能 代码添加
   // 5.单选, 多选, 排序 以及其他功能测试
@@ -70,6 +75,7 @@ export const useTable = (_: JsonTableProps) => {
     formData,
     handleCurrentChange,
     handleSizeChange,
-    handleSearch
+    search,
+    reset
   }
 }

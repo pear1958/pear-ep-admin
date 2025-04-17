@@ -51,7 +51,7 @@ export const props = {
 export default defineComponent({
   name: 'JsonForm',
   props,
-  emits: ['update:formData', 'change', 'submit', 'reset'],
+  emits: ['update:formData', 'change', 'search', 'reset'],
   setup(_, { emit, expose }) {
     const slots = useSlots()
     const formRef = ref<FormRef>()
@@ -114,8 +114,8 @@ export default defineComponent({
       }
     })
 
-    const submit = () => {
-      emit('submit', formData)
+    const search = () => {
+      emit('search', formData)
     }
 
     const reset = () => {
@@ -124,6 +124,7 @@ export default defineComponent({
       })
       // 异步初始值需要在父组件再次调用
       setInitValue()
+      emit('reset', formData)
     }
 
     expose({
@@ -144,7 +145,7 @@ export default defineComponent({
           {_.showSearch && (
             <GridItem suffix>
               <div class="flex-end mb-[18px]">
-                <el-button type="primary" icon={Search} onClick={submit}>
+                <el-button type="primary" icon={Search} onClick={search}>
                   搜索
                 </el-button>
                 <el-button icon={Delete} onClick={reset}>
