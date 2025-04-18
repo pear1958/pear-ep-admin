@@ -61,9 +61,13 @@ export interface FormItem {
    */
   attrs?: Recordable
   /**
+   * 字段效验规则
+   */
+  rules?: Array<Recordable>
+  /**
    * element-plus中Form.Item的属性值
    */
-  formItemAttrs?: FormItemProps
+  formItemAttrs?: Partial<FormItemProps>
   /**
    * 自定义组件
    */

@@ -23,9 +23,7 @@ const getMockData = (params: Recordable) => {
   })
 
   return {
-    list: {
-      data
-    },
+    list: data,
     total: 158
   }
 }

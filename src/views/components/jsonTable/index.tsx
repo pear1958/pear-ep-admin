@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, unref } from 'vue'
 import JsonTable from '@/components/JsonTable'
 import useConfig from './useConfig'
 import { getInsuranceList } from '@/api/modules/insurance'
@@ -6,31 +6,28 @@ import { getInsuranceList } from '@/api/modules/insurance'
 export default defineComponent({
   name: 'jsonTable',
   setup() {
-    const { columns, formItems } = useConfig()
+    const { columns, formItems, jsonTableRef, formData } = useConfig()
+
+    onMounted(() => {
+      // 建立引用
+      formData.value = unref(jsonTableRef).getFormData()
+    })
 
     const getList = (params: Recordable) => {
       console.log('params', params)
+      // console.log('formData', formData.value)
       return getInsuranceList(params)
     }
-
-    // const success = (res: Recordable) => {
-    //   console.log('res', res)
-    //   return {
-    //     list: res.list.data,
-    //     total: res.total
-    //   }
-    // }
 
     return () => (
       <div class="page-box">
         <JsonTable
+          ref={jsonTableRef}
           search={getList}
-          // success={success}
           columns={columns.value}
-          // showSearch={false}
           searchbarProps={{
             formItems: formItems.value,
-            disabled: true
+            disabled: !unref(formData).dvrId
           }}
           toolbar={{
             title: '保险列表',
@@ -41,17 +38,19 @@ export default defineComponent({
               </div>
             )
           }}
+          // 以下皆为可选属性
           // customToolbar={<div>222</div>}
-          // el-table原生的所有props
-          tableProps={{
-            stripe: true
-          }}
-          // 可以不传
-          fields={{
-            pageNumField: 'current',
-            dataField: 'list.data',
-            totalField: 'total'
-          }}
+          // tableProps={{
+          //   stripe: true
+          // }}
+          // fields={{
+          //   pageNumField: 'current',
+          //   dataField: 'list.data',
+          //   totalField: 'total'
+          // }}
+          // beforeSearch={beforeSearch}
+          // success={success}
+          // showSearch={false}
         >
           {/* {{
             // 父组件应该控制 append插槽在 暂无数据的时候不显示

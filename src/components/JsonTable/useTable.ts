@@ -1,8 +1,8 @@
 import { reactive, ref } from 'vue'
+import { FormInstance } from 'element-plus'
 import { cloneDeep } from 'lodash-es'
 import { getValueByCasKey, isFunction } from 'pear-common-utils'
 import { JsonTableProps } from './type'
-import { FormInstance } from 'element-plus'
 
 export const useTable = (_: JsonTableProps) => {
   const loading = ref(false)
@@ -49,7 +49,8 @@ export const useTable = (_: JsonTableProps) => {
     }
 
     if (isFunction(_.beforeSearch)) {
-      const bool = _.beforeSearch(params)
+      const temp = cloneDeep(params)
+      const bool = _.beforeSearch(temp)
       if (!bool) return
     }
 

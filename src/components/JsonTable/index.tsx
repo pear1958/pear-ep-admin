@@ -44,7 +44,7 @@ export const props = {
     type: Array as PropType<Column[]>,
     default: () => []
   },
-  // el-table的所有属性
+  // el-table原生的所有属性
   tableProps: {
     type: Object as PropType<TableProps<Recordable>>,
     default: () => ({})
@@ -90,6 +90,7 @@ export default defineComponent({
     const slots = useSlots()
     const searchbarRef = ref()
     const formData = ref()
+    const getFormData = () => formData.value
     const {
       loading,
       state,
@@ -107,7 +108,8 @@ export default defineComponent({
 
     expose({
       formRef,
-      searchbarRef
+      searchbarRef,
+      getFormData
     })
 
     return () => (

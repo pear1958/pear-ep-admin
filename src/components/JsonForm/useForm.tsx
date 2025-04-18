@@ -45,10 +45,11 @@ const useForm = (formData: Reactive<Recordable>) => {
   const getFormItem = (item: FormItem) => {
     return (
       <el-form-item
-        {...item.formItemAttrs}
         prop={item.field}
         style={item.style || {}}
+        rules={item.rules}
         key={item.field}
+        {...item.formItemAttrs}
       >
         {{
           label: () => item.label,

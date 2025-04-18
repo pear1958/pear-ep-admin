@@ -6,6 +6,7 @@ import Badge from '../jsonForm/components/Badge.vue'
 import { formatDate } from '@/utils'
 
 const useConfig = () => {
+  const jsonTableRef = ref()
   const formData = ref<Recordable>({})
   const showRejectReason = ref(false)
 
@@ -19,6 +20,10 @@ const useConfig = () => {
         maxlength: 30,
         placeholder: '请输入设备号'
       },
+      rules: [{ required: true, message: '请输入设备号', trigger: 'change' }],
+      // formItemAttrs: {
+      //   labelWidth: '120px'
+      // },
       slots: {
         suffix: () => <Iconify icon="ep:calendar" />
       }
@@ -52,9 +57,6 @@ const useConfig = () => {
       slots: {
         header: () => <div>标题</div>
       }
-      // formItemAttrs: {
-      //   labelWidth: '120px',
-      // }
     },
     {
       type: 'input',
@@ -131,7 +133,6 @@ const useConfig = () => {
     {
       type: 'checkbox-group',
       label: '复选框：',
-      arrayWithString: true,
       field: 'checkbox-group',
       attrs: {
         options: [
@@ -266,13 +267,30 @@ const useConfig = () => {
     }
   ])
 
+  // const beforeSearch = () => {
+  //   // do something
+  //   return true
+  // }
+
+  // const success = (res: Recordable) => {
+  //   console.log('res', res)
+  //   return {
+  //     list: res.list.data,
+  //     total: res.total
+  //   }
+  // }
+
   const handleDetail = (row: Recordable) => {
     console.log('row', row)
   }
 
   return {
+    jsonTableRef,
+    formData,
     columns,
     formItems
+    // beforeSearch,
+    // success
   }
 }
 
