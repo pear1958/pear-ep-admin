@@ -37,8 +37,8 @@ export const props = {
 export default defineComponent({
   name: 'JsonForm',
   props,
-  emits: ['update:formData', 'change', 'submit', 'reset'],
-  setup(_, { emit, expose }) {
+  emits: ['update:formData', 'change'],
+  setup(_, { emit }) {
     const slots = useSlots()
     const formRef = ref<FormRef>()
     const formData = reactive(_.formData || {})
@@ -75,14 +75,6 @@ export default defineComponent({
       }
     )
 
-    const setInitValue = () => {
-      _.formItems.forEach(item => {
-        if (item.initValue !== undefined) {
-          formData[item.field] = item.initValue
-        }
-      })
-    }
-
     onBeforeMount(() => {
       setInitValue()
     })
@@ -92,29 +84,20 @@ export default defineComponent({
         _.getFormInstance(formRef.value)
       }
       if (formRef.value) {
-        // 添加方法, 用于父组件手动设置值
+        // 异步设置初始值  添加方法, 用于父组件手动设置值
         unref(formRef).setFieldsValue = (params: Recordable) => {
           Object.assign(formData, cloneDeep(params))
         }
       }
     })
 
-    const submit = () => {
-      emit('submit', formData)
-    }
-
-    const reset = () => {
-      Object.keys(formData).forEach(key => {
-        delete formData[key]
+    const setInitValue = () => {
+      _.formItems.forEach(item => {
+        if (item.initValue !== undefined) {
+          formData[item.field] = item.initValue
+        }
       })
-      // 异步初始值需要在父组件再次调用
-      setInitValue()
-      emit('reset', formData)
     }
-
-    expose({
-      reset
-    })
 
     return () => (
       <el-form model={formData} ref={formRef}>
