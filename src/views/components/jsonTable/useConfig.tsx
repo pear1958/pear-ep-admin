@@ -51,7 +51,7 @@ const useConfig = () => {
           console.log('审核状态改变', val)
           showRejectReason.value = val === 'REJECT'
           formData.value.accidentType = ['SUSPECTED_ACCIDENT']
-          formData.value.comment++
+          formData.value.comment = 12
         }
       },
       slots: {

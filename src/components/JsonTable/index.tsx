@@ -89,22 +89,20 @@ export default defineComponent({
   setup(_, { expose }) {
     const slots = useSlots()
     const searchbarRef = ref()
-    const formData = ref()
-    const getFormData = () => formData.value
     const {
       loading,
       state,
       handleCurrentChange,
       handleSizeChange,
-      search,
+      handleSearch,
       reset,
       formRef,
-      getFormInstance
+      getFormInstance,
+      formData,
+      getFormData
     } = useTable(_)
 
-    onMounted(() => {
-      if (_.autoSearch) search()
-    })
+    if (_.autoSearch) handleSearch()
 
     expose({
       formRef,
@@ -123,7 +121,7 @@ export default defineComponent({
             // 可以覆盖上面的默认值
             {..._.searchbarProps}
             v-model:formData={formData.value}
-            onSearch={search}
+            onSearch={handleSearch}
             onReset={reset}
           />
         )}

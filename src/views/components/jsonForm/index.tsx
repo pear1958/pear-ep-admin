@@ -54,10 +54,8 @@ export default defineComponent({
           formItems={formItems.value}
           v-model:formData={formData.value}
           rules={rules}
-          onChange={onChange}
           label-width="120px"
           getFormInstance={getFormInstance}
-          onSubmit={submit}
         />
       </div>
     )

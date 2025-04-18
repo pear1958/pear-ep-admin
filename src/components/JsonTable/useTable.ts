@@ -22,7 +22,7 @@ export const useTable = (_: JsonTableProps) => {
   }
 
   const defaultFields = {
-    pageNumField: 'current',
+    pageNumField: 'pageNum',
     pageSizeField: 'pageSize',
     dataField: 'list',
     totalField: 'total'
@@ -81,15 +81,23 @@ export const useTable = (_: JsonTableProps) => {
     search()
   }
 
+  const getFormData = () => formData.value
+
+  const handleSearch = () => {
+    state.pageNum = 1
+    search()
+  }
+
   return {
     loading,
     state,
     formData,
     handleCurrentChange,
     handleSizeChange,
-    search,
     reset,
     formRef,
-    getFormInstance
+    getFormInstance,
+    handleSearch,
+    getFormData
   }
 }

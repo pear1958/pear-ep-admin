@@ -2,6 +2,8 @@ import { defineComponent, onMounted, unref } from 'vue'
 import JsonTable from '@/components/JsonTable'
 import useConfig from './useConfig'
 import { getInsuranceList } from '@/api/modules/insurance'
+import { closeDialog, showDialog } from '@/utils/ui/dialog'
+import AddEdit from './AddEdit'
 
 export default defineComponent({
   name: 'jsonTable',
@@ -18,9 +20,12 @@ export default defineComponent({
       return getInsuranceList(params)
     }
 
-    // to-do
-    // 所有按钮的功能 代码添加
-    // 默认参数调试
+    const openAddDialog = () => {
+      showDialog(<AddEdit />, {
+        title: '标题',
+        width: '500'
+      })
+    }
 
     return () => (
       <div class="page-box">
@@ -36,7 +41,9 @@ export default defineComponent({
             title: '保险列表',
             buttons: (
               <div>
-                <el-button type="primary">新增</el-button>
+                <el-button type="primary" onClick={openAddDialog}>
+                  新增
+                </el-button>
                 <el-button type="primary">导出</el-button>
               </div>
             )
