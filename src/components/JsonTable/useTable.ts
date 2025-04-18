@@ -81,11 +81,6 @@ export const useTable = (_: JsonTableProps) => {
     search()
   }
 
-  // to-do
-  // 4.所有按钮的功能 代码添加
-  // 5.单选, 多选, 排序 以及其他功能测试
-  // 6.默认参数调试
-
   return {
     loading,
     state,

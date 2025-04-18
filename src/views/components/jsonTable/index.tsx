@@ -18,6 +18,10 @@ export default defineComponent({
       return getInsuranceList(params)
     }
 
+    // to-do
+    // 所有按钮的功能 代码添加
+    // 默认参数调试
+
     return () => (
       <div class="page-box">
         <JsonTable
@@ -39,9 +43,9 @@ export default defineComponent({
           }}
           // 以下皆为可选属性
           // customToolbar={<div>222</div>}
-          // tableProps={{
-          //   stripe: true
-          // }}
+          tableProps={{
+            onSelectionChange: (val: Recordable[]) => console.log('check-val', val)
+          }}
           // fields={{
           //   pageNumField: 'current',
           //   dataField: 'list.data',

@@ -201,6 +201,22 @@ const useConfig = () => {
 
   const columns = ref([
     {
+      type: 'expand',
+      slots: {
+        default: (props: Recordable) => {
+          return <div>{JSON.stringify(props.row)}</div>
+        }
+      }
+    },
+    {
+      type: 'index'
+    },
+    {
+      type: 'selection',
+      selectable: (row: Recordable) => row.index >= 2
+    },
+    {
+      type: 'default',
       prop: 'id',
       label: '记录ID',
       slots: {

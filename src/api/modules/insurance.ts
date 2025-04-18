@@ -1,6 +1,7 @@
 const getMockData = (params: Recordable) => {
   const data = new Array(params.pageSize).fill('').map((_, index) => {
     return {
+      index,
       id: Math.random(),
       shopId: null,
       shopName: '投保测试4S店',

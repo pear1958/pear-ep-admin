@@ -1,7 +1,7 @@
 import { PropType, defineComponent, onMounted, ref, useSlots } from 'vue'
 import { PaginationProps, TableProps } from 'element-plus'
 import { Refresh, Operation } from '@element-plus/icons-vue'
-import { isEmpty } from 'pear-common-utils'
+import { isEmpty, isFunction } from 'pear-common-utils'
 import { Column, Fields, SuccessCbRes, Toolbar } from './type'
 import { useTable } from './useTable'
 import './index.scss'
@@ -142,12 +142,17 @@ export default defineComponent({
             default: () =>
               _.columns.map(item => {
                 const { prop, customRender, slots } = item
-                return (
+
+                return item.type && item.type !== 'default' ? (
+                  <el-table-column {...item} key={prop}>
+                    {slots}
+                  </el-table-column>
+                ) : (
                   <el-table-column {...item} key={prop}>
                     {{
                       default: ({ row, column, $index }) => {
                         const text = row[prop]
-                        if (customRender && typeof customRender === 'function') {
+                        if (isFunction(customRender)) {
                           return customRender({
                             text,
                             record: row,
