@@ -49,6 +49,10 @@ export const props = {
     type: Object as PropType<TableProps<Recordable>>,
     default: () => ({})
   },
+  extraParams: {
+    type: Object,
+    default: () => ({})
+  },
   showToolbar: {
     type: Boolean,
     default: true

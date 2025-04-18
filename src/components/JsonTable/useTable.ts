@@ -12,7 +12,6 @@ export const useTable = (_: JsonTableProps) => {
     pageNum: 1,
     pageSize: 10,
     total: 0
-    // searchParams: {} // 储存表单查询参数 | table默认查询参数
   })
 
   const formRef = ref() // el-form实例
@@ -45,7 +44,8 @@ export const useTable = (_: JsonTableProps) => {
     const params = {
       [fields.pageNumField]: state.pageNum,
       [fields.pageSizeField]: state.pageSize,
-      ...cloneDeep(formData.value || {})
+      ...cloneDeep(formData.value || {}),
+      ...cloneDeep(_.extraParams)
     }
 
     if (isFunction(_.beforeSearch)) {

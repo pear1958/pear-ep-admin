@@ -41,11 +41,14 @@ export default defineComponent({
               </div>
             )
           }}
-          // 以下皆为可选属性
-          // customToolbar={<div>222</div>}
-          tableProps={{
-            onSelectionChange: (val: Recordable[]) => console.log('check-val', val)
+          extraParams={{
+            test1: 'aaa',
+            test2: 'bbb'
           }}
+          // customToolbar={<div>222</div>}
+          // tableProps={{
+          //   onSelectionChange: (val: Recordable[]) => console.log('check-val', val)
+          // }}
           // fields={{
           //   pageNumField: 'current',
           //   dataField: 'list.data',
