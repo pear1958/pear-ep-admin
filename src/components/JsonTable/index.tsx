@@ -76,10 +76,6 @@ export const props = {
     type: Object as PropType<Recordable<() => JsxNode>>,
     default: () => null
   }
-  // columnElipsis: {
-  //   type: Object as PropType<LongTextElipsisType | boolean>,
-  //   default: () => ({ line: 2 }),
-  // },
 }
 
 export default defineComponent({

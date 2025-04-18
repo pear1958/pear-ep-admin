@@ -15,7 +15,6 @@ export default defineComponent({
 
     const getList = (params: Recordable) => {
       console.log('params', params)
-      // console.log('formData', formData.value)
       return getInsuranceList(params)
     }
 
