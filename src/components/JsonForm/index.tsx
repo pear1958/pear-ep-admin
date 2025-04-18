@@ -8,12 +8,12 @@ import {
   unref,
   onBeforeMount,
   reactive,
-  DefineComponent,
-  resolveComponent
+  useSlots
 } from 'vue'
 import { cloneDeep } from 'lodash-es'
-import { FormItem, FormRef } from './type'
 import { BreakPoint } from '../Grid/type'
+import { FormItem, FormRef } from './type'
+import useForm from './useForm'
 
 export const props = {
   formItems: {
@@ -39,48 +39,10 @@ export default defineComponent({
   props,
   emits: ['update:formData', 'change', 'submit', 'reset'],
   setup(_, { emit, expose }) {
+    const slots = useSlots()
     const formRef = ref<FormRef>()
     const formData = reactive(_.formData || {})
-
-    const getComponent = (item: FormItem) => {
-      const { type, childType, field } = item
-
-      if (type === 'component') {
-        return <item.component />
-      }
-
-      const Component = resolveComponent(`el-${type}`) as DefineComponent
-
-      const childTypeMap = {
-        select: 'option',
-        'radio-group': 'radio',
-        'checkbox-group': 'checkbox'
-      }
-
-      if (Object.keys(childTypeMap).includes(type)) {
-        const cType = childType || childTypeMap[type]
-        const ChildComponent = resolveComponent(`el-${cType}`) as DefineComponent
-        return (
-          <Component {...item.attrs} v-model={formData[field]}>
-            {{
-              ...(item.slots || {}),
-              default: () =>
-                item.attrs.options.map((_: LabelValue) => (
-                  <ChildComponent label={_.label} value={_.value} key={_.value} />
-                ))
-            }}
-          </Component>
-        )
-      }
-
-      return (
-        <Component {...item.attrs} v-model={formData[field]}>
-          {{
-            ...(item.slots || {})
-          }}
-        </Component>
-      )
-    }
+    const { getFormItem } = useForm(formData)
 
     const formItems = computed(() => {
       return _.formItems.filter(item => item.show !== false)
@@ -156,21 +118,8 @@ export default defineComponent({
 
     return () => (
       <el-form model={formData} ref={formRef}>
-        {unref(formItems).map(item => {
-          return (
-            <el-form-item
-              {...item.formItemAttrs}
-              prop={item.field}
-              key={item.field}
-              style={item.style || {}}
-            >
-              {{
-                label: () => item.label,
-                default: () => getComponent(item)
-              }}
-            </el-form-item>
-          )
-        })}
+        {unref(formItems).map(item => getFormItem(item))}
+        {slots.default && slots.default()}
       </el-form>
     )
   }

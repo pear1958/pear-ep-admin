@@ -12,15 +12,17 @@ import {
 import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { cloneDeep } from 'lodash-es'
 import { isEmpty } from 'pear-common-utils'
-import { FormItem, FormRef } from './type'
 import Grid from '../Grid/index.vue'
 import GridItem from '../Grid/GridItem.vue'
 import { BreakPoint } from '../Grid/type'
-import useForm from './useForm'
+import { SearchbarItem } from './type'
+import { FormRef } from '../JsonForm/type'
+import useSearchbar from './useSearchbar'
+import useForm from '../JsonForm/useForm'
 
 export const props = {
   formItems: {
-    type: Array as PropType<FormItem[]>,
+    type: Array as PropType<SearchbarItem[]>,
     default: () => []
   },
   formData: {
@@ -53,8 +55,8 @@ export default defineComponent({
   setup(_, { emit, expose }) {
     const formRef = ref<FormRef>()
     const formData = reactive(_.formData || {})
-
-    const { getFormItem, gridRef, collapsed, collapseVisible, disabled, getResponsive } = useForm(
+    const { getFormItem } = useForm(formData)
+    const { gridRef, collapsed, collapseVisible, disabled, getResponsive } = useSearchbar(
       _,
       formData
     )

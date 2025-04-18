@@ -1,8 +1,13 @@
-import type { CSSProperties, DefineComponent, ExtractPropTypes } from 'vue'
-import type { FormInstance, FormItemProps } from 'element-plus'
+import { Component, ComponentPublicInstance, CSSProperties, VNode, ExtractPropTypes } from 'vue'
+import { FormInstance, FormItemProps } from 'element-plus'
 import { props } from '.'
 
 export type JsonFormProps = ExtractPropTypes<typeof props>
+
+// export type Slot = JSX.Element | JsxNode
+
+// 组件定义、组件实例 或 VNode
+export type JsxNode = Component | ComponentPublicInstance | VNode
 
 export interface FormRef extends FormInstance {
   setFieldsValue: (params: Recordable) => void
@@ -46,7 +51,7 @@ export interface FormItem {
   /**
    * 标签名称, 可以自定义组件
    */
-  label: string | DefineComponent
+  label: string | JsxNode
   /**
    * 字段名
    */
@@ -62,7 +67,7 @@ export interface FormItem {
   /**
    * 自定义组件
    */
-  component?: DefineComponent
+  component?: JsxNode
   /**
    * 控制字段是否显示, 如果隐藏, 界面不可见, 提交的时候也不会被提交
    */
@@ -82,5 +87,5 @@ export interface FormItem {
   /**
    * 保留原组件的插槽功能
    */
-  slots?: Recordable<() => DefineComponent>
+  slots?: Recordable<() => JsxNode>
 }

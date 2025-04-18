@@ -7,7 +7,7 @@ import { useTable } from './useTable'
 import './index.scss'
 import Searchbar from '../Searchbar'
 import noDataImg from '@/assets/imgs/notData.png'
-import { JsxNode } from '@/types/common'
+import { JsxNode } from '@/types/form'
 import { Props as SearchbarProps } from '../Searchbar/type'
 
 export const props = {

@@ -3,7 +3,7 @@ import { FormInstance } from 'element-plus'
 import { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
 import { JsonFormProps } from '../JsonForm/type'
 import { props } from '.'
-import { JsxNode } from '@/types/common'
+import { JsxNode } from '@/types/form'
 
 export type JsonTableProps = ExtractPropTypes<typeof props>
 
