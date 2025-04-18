@@ -2,7 +2,7 @@ import { ExtractPropTypes } from 'vue'
 import { FormItem } from '../JsonForm/type'
 import { props } from '.'
 
-export type Props = ExtractPropTypes<typeof props>
+export type SearchbarProps = ExtractPropTypes<typeof props>
 
 export interface SpanOffset {
   span?: number

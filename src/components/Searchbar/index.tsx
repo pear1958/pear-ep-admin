@@ -56,10 +56,7 @@ export default defineComponent({
     const formRef = ref<FormRef>()
     const formData = reactive(_.formData || {})
     const { getFormItem } = useForm(formData)
-    const { gridRef, collapsed, collapseVisible, disabled, getResponsive } = useSearchbar(
-      _,
-      formData
-    )
+    const { gridRef, collapsed, collapseVisible, disabled, getResponsive } = useSearchbar(_)
 
     const formItems = computed(() => {
       return _.formItems.filter(item => item.show !== false)
