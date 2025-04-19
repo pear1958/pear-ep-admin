@@ -30,6 +30,10 @@ const handleClose = async () => {
   result && closeDialog()
 }
 
+/**
+ * @param {any} Compo 传入的组件必须是显示导入的组件, 比如ElButton, 而不是el-button
+ * https://cn.vuejs.org/api/render-function#resolvecomponent
+ */
 export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable) => {
   // 创建div元素
   const div = document.createElement('div')

@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { showDialog, closeDialog } from '@/utils/ui/dialog'
 import { showLoading, closeLoading } from '@/utils/ui/loading'
 
@@ -6,10 +7,15 @@ export default defineComponent({
   name: 'JsxDialog',
   setup() {
     const openDialog = () => {
-      showDialog(<div onClick={closeDialog}>关闭</div>, {
-        title: '标题',
-        width: '500'
-      })
+      showDialog(
+        <ElButton onClick={closeDialog} type="primary">
+          关闭
+        </ElButton>,
+        {
+          title: '标题',
+          width: '500'
+        }
+      )
     }
 
     const openLoading = () => {
