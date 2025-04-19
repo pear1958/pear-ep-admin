@@ -14,6 +14,7 @@ import { cloneDeep } from 'lodash-es'
 import { BreakPoint } from '../Grid/type'
 import { FormItem, FormRef } from './type'
 import useForm from './useForm'
+import { ElForm } from 'element-plus'
 
 export const props = {
   formItems: {
@@ -100,10 +101,10 @@ export default defineComponent({
     }
 
     return () => (
-      <el-form model={formData} ref={formRef}>
+      <ElForm model={formData} ref={formRef}>
         {unref(formItems).map(item => getFormItem(item))}
         {slots.default && slots.default()}
-      </el-form>
+      </ElForm>
     )
   }
 })

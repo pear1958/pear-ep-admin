@@ -1,8 +1,10 @@
+import { computed, defineComponent, h, reactive, ref } from 'vue'
+import { FormInstance, FormRules } from 'element-plus'
 import { Iconify } from '@/components/Global/components/Icon'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
-import { FormInstance, FormRules } from 'element-plus'
-import { computed, defineComponent, reactive, ref } from 'vue'
+import LabelComponent from './components/LabelComponent'
+import Badge from './components/Badge'
 
 export default defineComponent({
   name: 'AddEdit',
@@ -11,6 +13,8 @@ export default defineComponent({
     const getFormInstance = (ins: FormInstance) => {
       formRef.value = ins
     }
+    const formData = ref<Recordable>({})
+    const showRejectReason = ref(false)
 
     const formItems = computed<FormItem[]>(() => [
       {
@@ -23,8 +27,11 @@ export default defineComponent({
           placeholder: '请输入设备号'
         },
         slots: {
-          suffix: () => <Iconify icon="ep:calendar" />
+          suffix: () => h(<Iconify icon="ep:calendar" />)
         }
+        // style: {
+        //   border: '1px solid red'
+        // }
       },
       {
         type: 'select',
@@ -44,13 +51,172 @@ export default defineComponent({
           ],
           onChange: (val: string) => {
             console.log('审核状态改变', val)
-            formData.value.dvrId = 'xxxxxxx'
+            showRejectReason.value = val === 'REJECT'
+            formData.value.accidentType = ['SUSPECTED_ACCIDENT']
+            formData.value.comment++
           }
         },
         slots: {
           header: () => <div>标题</div>
         }
+        // formItemAttrs: {
+        //   labelWidth: '120px',
+        // }
+      },
+      {
+        type: 'input',
+        label: '拒绝原因：',
+        field: 'rejectReason',
+        show: showRejectReason.value,
+        attrs: {
+          maxlength: 30,
+          placeholder: '请输入拒绝原因'
+        }
+      },
+      {
+        type: 'select',
+        label: h(LabelComponent),
+        field: 'accidentType',
+        attrs: {
+          multiple: true,
+          clearable: true,
+          placeholder: '请选择事故类型',
+          options: [
+            {
+              label: '疑似事故',
+              value: 'SUSPECTED_ACCIDENT'
+            },
+            {
+              label: '事故',
+              value: 'ACCIDENT'
+            }
+          ]
+        }
+      },
+      {
+        type: 'component',
+        component: <Badge text="评论" v-model={formData.value.comment} />,
+        label: '自定义组件：',
+        field: 'comment'
+      },
+      {
+        type: 'radio-group',
+        label: '性别：',
+        field: 'radio-group',
+        attrs: {
+          options: [
+            {
+              label: '男',
+              value: 1
+            },
+            {
+              label: '女',
+              value: 2
+            }
+          ]
+        }
+      },
+      {
+        type: 'radio-group',
+        childType: 'radio-button',
+        label: '水果：',
+        field: 'radio-group-2',
+        initValue: 1,
+        attrs: {
+          options: [
+            {
+              label: '苹果',
+              value: 1
+            },
+            {
+              label: '橘子',
+              value: 2
+            }
+          ]
+        }
+      },
+      {
+        type: 'checkbox-group',
+        label: '复选框：',
+        arrayWithString: true,
+        field: 'checkbox-group',
+        attrs: {
+          options: [
+            {
+              label: '苹果',
+              value: 1
+            },
+            {
+              label: '香蕉',
+              value: 2
+            },
+            {
+              label: '梨',
+              value: 3
+            }
+          ]
+        }
+      },
+      {
+        type: 'checkbox-group',
+        childType: 'checkbox-button',
+        label: '多选：',
+        field: 'checkbox-group-2',
+        initValue: [1],
+        attrs: {
+          options: [
+            {
+              label: '苹果',
+              value: 1
+            },
+            {
+              label: '香蕉',
+              value: 2
+            },
+            {
+              label: '梨',
+              value: 3
+            }
+          ]
+        }
+      },
+      {
+        type: 'date-picker',
+        label: '日期范围选择：',
+        field: 'date-picker',
+        attrs: {
+          type: 'daterange',
+          'range-separator': '至',
+          'start-placeholder': '起始日期',
+          'end-placeholder': '结束日期'
+        }
+      },
+      {
+        type: 'date-picker',
+        label: '时间范围选择：',
+        field: 'date-time-picker',
+        span: 2,
+        attrs: {
+          type: 'datetimerange',
+          'range-separator': '至',
+          'start-placeholder': '起始时间',
+          'end-placeholder': '结束时间'
+        }
       }
+      // {
+      //   type: 'daterange',
+      //   label: '申请时间',
+      //   field: 'applyTime',
+      //   startFieldName: 'applyTimeStart',
+      //   endFieldName: 'applyTimeEnd',
+      //   attrs: {
+      //     format: 'YYYY-MM-DD HH:mm:ss',
+      //     valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      //     placeholder: ['开始时间', '结束时间'],
+      //     showTime: true,
+      //     allowEmpty: [true, true]
+      //   }
+      // }
     ])
 
     const rules = reactive<FormRules>({
@@ -66,19 +232,15 @@ export default defineComponent({
         }
       ]
     })
-    const formData = ref()
 
     return () => (
-      <div>
-        <div>1111</div>
-        <JsonForm
-          formItems={formItems.value}
-          v-model:formData={formData.value}
-          rules={rules}
-          label-width="120px"
-          getFormInstance={getFormInstance}
-        />
-      </div>
+      <JsonForm
+        formItems={formItems.value}
+        v-model:formData={formData.value}
+        rules={rules}
+        label-width={120}
+        getFormInstance={getFormInstance}
+      />
     )
   }
 })

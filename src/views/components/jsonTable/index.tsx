@@ -22,8 +22,8 @@ export default defineComponent({
 
     const openAddDialog = () => {
       showDialog(<AddEdit />, {
-        title: '标题',
-        width: '500'
+        title: '新增数据',
+        width: 650
       })
     }
 

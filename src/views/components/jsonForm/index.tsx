@@ -54,7 +54,7 @@ export default defineComponent({
           formItems={formItems.value}
           v-model:formData={formData.value}
           rules={rules}
-          label-width="120px"
+          label-width={120}
           getFormInstance={getFormInstance}
         />
       </div>

@@ -1,8 +1,8 @@
 import { computed, ref } from 'vue'
 import { Iconify } from '@/components/Global/components/Icon'
 import { FormItem } from '@/components/JsonForm/type'
-import LabelComponent from '../jsonForm/components/LabelComponent.vue'
-import Badge from '../jsonForm/components/Badge.vue'
+import LabelComponent from './components/LabelComponent'
+import Badge from './components/Badge'
 import { formatDate } from '@/utils'
 
 const useConfig = () => {
