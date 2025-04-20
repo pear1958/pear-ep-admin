@@ -191,24 +191,18 @@ export const useFormItems = () => {
     {
       type: 'date-picker',
       label: '日期范围选择：',
-      field: 'date-picker',
+      field: 'time111',
       attrs: {
-        type: 'daterange',
-        'range-separator': '至',
-        'start-placeholder': '起始日期',
-        'end-placeholder': '结束日期'
+        type: 'daterange'
       }
     },
     {
       type: 'date-picker',
       label: '时间范围选择：',
-      field: 'date-time-picker',
+      field: 'time222',
       span: 2,
       attrs: {
-        type: 'datetimerange',
-        'range-separator': '至',
-        'start-placeholder': '起始时间',
-        'end-placeholder': '结束时间'
+        type: 'datetimerange'
       }
     }
     // {

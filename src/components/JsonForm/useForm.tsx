@@ -51,6 +51,17 @@ const elMap = {
   upload: ElUpload
 }
 
+const inputArr = ['autocomplete', 'input', 'input-tag', 'mention']
+const selectArr = [
+  'cascader',
+  'select',
+  'select-v2',
+  'tree-select',
+  'date-picker',
+  'time-picker',
+  'time-select'
+]
+
 /**
  * 不用动态组件, 因为showDialog方法需要显示导入El组件
  * const Component = resolveComponent(`el-${type}`)
@@ -69,10 +80,25 @@ const useForm = (formData: Reactive<Recordable>) => {
 
     let placeholder = ''
 
-    if (['autocomplete', 'input', 'input-tag', 'mention'].includes(type)) {
+    if (inputArr.includes(type)) {
       placeholder = '请输入'
-    } else if (['cascader', 'select', 'select-v2', 'tree-select'].includes(type)) {
-      placeholder = '请选择'
+    }
+
+    if (selectArr.includes(type)) {
+      if (type === 'date-picker') {
+        if (attrs.type === 'daterange') {
+          attrs['range-separator'] = '至'
+          attrs['start-placeholder'] = '起始日期'
+          attrs['end-placeholder'] = '结束日期'
+        }
+        if (attrs.type === 'datetimerange') {
+          attrs['range-separator'] = '至'
+          attrs['start-placeholder'] = '起始时间'
+          attrs['end-placeholder'] = '结束时间'
+        }
+      } else {
+        placeholder = '请选择'
+      }
     }
 
     if (placeholder) {
