@@ -118,7 +118,7 @@ export default defineComponent({
       },
       {
         type: 'radio-group',
-        childType: 'radio-button',
+        children: 'radio-button',
         label: '水果：',
         field: 'radio-group-2',
         initValue: 1,
@@ -159,7 +159,7 @@ export default defineComponent({
       },
       {
         type: 'checkbox-group',
-        childType: 'checkbox-button',
+        children: 'checkbox-button',
         label: '多选：',
         field: 'checkbox-group-2',
         initValue: [1],

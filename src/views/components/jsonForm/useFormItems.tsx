@@ -3,6 +3,7 @@ import { FormItem } from '@/components/JsonForm/type'
 import { Iconify } from '@/components/Global/components/Icon'
 import LabelComponent from './components/LabelComponent.vue'
 import Badge from './components/Badge.vue'
+import { casOptions } from './mock'
 
 export const useFormItems = () => {
   const formData = ref<Recordable>({})
@@ -20,10 +21,10 @@ export const useFormItems = () => {
       type: 'input',
       label: '设备号：',
       field: 'dvrId',
-      initValue: 'fh92r23owhnrf92w3h',
+      initValue: '', // fh92r23owhnrf92w3h
       attrs: {
-        maxlength: 30,
-        placeholder: '请输入设备号'
+        maxlength: 30
+        // placeholder: '请输入设备号'
       },
       slots: {
         suffix: () => <Iconify icon="ep:calendar" />
@@ -31,6 +32,14 @@ export const useFormItems = () => {
       // style: {
       //   border: '1px solid red'
       // }
+    },
+    {
+      type: 'cascader',
+      label: '级联选择：',
+      field: 'cascader',
+      attrs: {
+        options: casOptions
+      }
     },
     {
       type: 'select',
@@ -117,7 +126,7 @@ export const useFormItems = () => {
     },
     {
       type: 'radio-group',
-      childType: 'radio-button',
+      children: 'radio-button',
       label: '水果：',
       field: 'radio-group-2',
       initValue: 1,
@@ -158,7 +167,7 @@ export const useFormItems = () => {
     },
     {
       type: 'checkbox-group',
-      childType: 'checkbox-button',
+      children: 'checkbox-button',
       label: '多选：',
       field: 'checkbox-group-2',
       initValue: [1],

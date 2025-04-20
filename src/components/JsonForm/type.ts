@@ -47,7 +47,7 @@ export interface FormItem {
    * 子元素控件类型  可以不传, 默认使用最通用的控件类型
    * 比如 el-radio-group -> el-radio, 而不是 el-radio-button
    */
-  childType?: 'option' | 'radio' | 'radio-button' | 'checkbox' | 'checkbox-button'
+  children?: 'option' | 'radio' | 'radio-button' | 'checkbox' | 'checkbox-button'
   /**
    * 标签名称, 可以自定义组件
    */
