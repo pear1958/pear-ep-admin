@@ -85,13 +85,13 @@ const useForm = (formData: Reactive<Recordable>) => {
     }
 
     if (selectArr.includes(type)) {
-      if (type === 'date-picker') {
+      if (['date-picker', 'time-picker'].includes(type)) {
         if (attrs.type === 'daterange') {
           attrs['range-separator'] = '至'
           attrs['start-placeholder'] = '起始日期'
           attrs['end-placeholder'] = '结束日期'
         }
-        if (attrs.type === 'datetimerange') {
+        if (attrs.type === 'datetimerange' || attrs['is-range']) {
           attrs['range-separator'] = '至'
           attrs['start-placeholder'] = '起始时间'
           attrs['end-placeholder'] = '结束时间'

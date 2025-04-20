@@ -88,26 +88,30 @@ export default defineComponent({
   inheritAttrs: false,
   setup(_, { expose }) {
     const slots = useSlots()
-    const searchbarRef = ref()
     const {
       loading,
       state,
       handleCurrentChange,
       handleSizeChange,
-      handleSearch,
+      refresh,
       reset,
       formRef,
+      searchbarRef,
       getFormInstance,
       formData,
-      getFormData
+      getFormData,
+      handleSearch
     } = useTable(_)
 
-    if (_.autoSearch) handleSearch()
+    if (_.autoSearch) refresh()
 
     expose({
       formRef,
       searchbarRef,
-      getFormData
+      getFormData,
+      refresh,
+      reset,
+      handleSearch
     })
 
     return () => (
@@ -122,7 +126,6 @@ export default defineComponent({
             {..._.searchbarProps}
             v-model:formData={formData.value}
             onSearch={handleSearch}
-            onReset={reset}
           />
         )}
 
@@ -133,7 +136,7 @@ export default defineComponent({
             <div class="title">{_.toolbar.title || ''}</div>
             <div class="buttons">
               {_.toolbar.buttons && <div class="mr-3">{_.toolbar.buttons}</div>}
-              <el-button icon={Refresh} circle />
+              <el-button icon={Refresh} circle onClick={refresh} />
               <el-button icon={Operation} circle />
             </div>
           </div>

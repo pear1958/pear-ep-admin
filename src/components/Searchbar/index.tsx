@@ -139,6 +139,7 @@ export default defineComponent({
     }
 
     expose({
+      setInitValue,
       reset
     })
 

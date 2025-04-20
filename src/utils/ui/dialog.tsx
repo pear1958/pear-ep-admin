@@ -1,5 +1,5 @@
-import { ref, render } from 'vue'
-import { type DialogProps, ElDialog, ElButton } from 'element-plus'
+import { ref, render, unref } from 'vue'
+import { DialogProps, ElDialog, ElButton } from 'element-plus'
 import { genUUID } from 'pear-common-utils'
 
 /**
@@ -24,8 +24,8 @@ const handleClose = async () => {
   let result = true
   const id = dialogIds[dialogIds.length - 1]
 
-  if (dialogRefMap[id].value?.onCancel) {
-    result = await dialogRefMap[id].value.onCancel()
+  if (unref(dialogRefMap[id])?.onCancel) {
+    result = await unref(dialogRefMap[id]).onCancel()
   }
   result && closeDialog()
 }
@@ -54,12 +54,12 @@ export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable
       let result = true
       const id = dialogIds[dialogIds.length - 1]
 
-      if (dialogRefMap[id].value?.handleSubmit) {
-        result = await dialogRefMap[id].value.handleSubmit()
+      if (unref(dialogRefMap[id])?.handleSubmit) {
+        result = await unref(dialogRefMap[id]).handleSubmit()
       }
 
-      if (!result) return
       loading.value = false
+      if (!result) return
       closeDialog()
     },
     beforeClose: handleClose, // 点击关闭按钮或者对话框的遮罩区域时被调用
@@ -71,14 +71,29 @@ export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable
     <ElDialog {...params}>
       {{
         default: () => <Compo ref={dialogRefMap[id]} />,
-        footer: () => (
-          <div class="dialog-footer">
-            <ElButton onClick={params.onCancel}>取消</ElButton>
-            <ElButton type="primary" onClick={params.onConfirm} loading={loading.value}>
-              确定
-            </ElButton>
-          </div>
-        )
+        footer: () => {
+          return (
+            <div
+              class="footer-box"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              {props?.hasOwnProperty('footer') ? (
+                props.footer
+              ) : (
+                <>
+                  <ElButton onClick={params.onCancel}>取消</ElButton>
+                  <ElButton type="primary" onClick={params.onConfirm} loading={loading.value}>
+                    确定
+                  </ElButton>
+                </>
+              )}
+            </div>
+          )
+        }
       }}
     </ElDialog>,
     div

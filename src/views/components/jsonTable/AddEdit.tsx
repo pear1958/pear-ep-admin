@@ -1,5 +1,6 @@
 import { computed, defineComponent, h, reactive, ref } from 'vue'
 import { FormInstance, FormRules } from 'element-plus'
+import { delay } from 'pear-common-utils'
 import { Iconify } from '@/components/Global/components/Icon'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
@@ -8,7 +9,8 @@ import Badge from './components/Badge'
 
 export default defineComponent({
   name: 'AddEdit',
-  setup() {
+  emits: ['refresh'],
+  setup(_, { emit, expose }) {
     const formRef = ref()
     const getFormInstance = (ins: FormInstance) => {
       formRef.value = ins
@@ -231,6 +233,21 @@ export default defineComponent({
           trigger: 'change'
         }
       ]
+    })
+
+    const handleSubmit = async () => {
+      try {
+        // mock-api
+        await delay(2000)
+        emit('refresh')
+        return true // or false
+      } catch (e) {
+        console.log('e', e)
+      }
+    }
+
+    expose({
+      handleSubmit
     })
 
     return () => (

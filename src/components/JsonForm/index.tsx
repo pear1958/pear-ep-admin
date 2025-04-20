@@ -3,18 +3,18 @@ import {
   computed,
   watch,
   ref,
-  type PropType,
+  PropType,
   onMounted,
   unref,
   onBeforeMount,
   reactive,
   useSlots
 } from 'vue'
+import { ElForm } from 'element-plus'
 import { cloneDeep } from 'lodash-es'
 import { BreakPoint } from '../Grid/type'
 import { FormItem, FormRef } from './type'
 import useForm from './useForm'
-import { ElForm } from 'element-plus'
 
 export const props = {
   formItems: {

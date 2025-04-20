@@ -1,4 +1,5 @@
 import { defineComponent, onMounted, unref } from 'vue'
+import { ElButton } from 'element-plus'
 import JsonTable from '@/components/JsonTable'
 import useConfig from './useConfig'
 import { getInsuranceList } from '@/api/modules/insurance'
@@ -20,10 +21,24 @@ export default defineComponent({
       return getInsuranceList(params)
     }
 
+    const refresh = () => {
+      console.log('refresh')
+      closeDialog()
+      unref(jsonTableRef).reset()
+    }
+
     const openAddDialog = () => {
-      showDialog(<AddEdit />, {
+      showDialog(<AddEdit onRefresh={refresh} />, {
         title: '新增数据',
         width: 650
+        // footer: null
+        // footer: (
+        //   <div>
+        //     <ElButton type="primary" onClick={closeDialog}>
+        //       自定义关闭
+        //     </ElButton>
+        //   </div>
+        // )
       })
     }
 
