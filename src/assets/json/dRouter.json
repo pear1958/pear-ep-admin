@@ -233,6 +233,14 @@
       },
       "children": [
         {
+          "path": "/able/canvas",
+          "name": "canvasPage",
+          "component": "/able/canvas/index",
+          "meta": {
+            "title": "canvas"
+          }
+        },
+        {
           "path": "/able/table",
           "name": "infiniteScrollTable",
           "component": "/able/infiniteScroll",
