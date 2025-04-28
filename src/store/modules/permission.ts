@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { getFlatArr, getMatchNodeList } from 'pear-common-utils'
-import { getMenuListApi, getButtonDataApi } from '@/api/modules/user'
+import { getMenuList, getButtonData } from '@/api/modules/auth'
 import { filterMenuData } from '@/router/utils'
 import { PermissState } from '../types'
 
@@ -32,11 +32,11 @@ const usePermissionStore = defineStore({
       this.curRouteName = name
     },
     // 获取侧边栏菜单数据
-    getMenuList() {
+    getAuthMenu() {
       return new Promise((resolve, reject) => {
-        getMenuListApi()
-          .then(res => {
-            const menuData = res.data ?? []
+        getMenuList()
+          .then(data => {
+            const menuData = data ?? []
             this.menuList.push(...menuData)
             // 菜单排序
             // this.menuList.sort((a: MenuItem, b: MenuItem) => a.meta.rank! - b.meta.rank!)
@@ -47,11 +47,11 @@ const usePermissionStore = defineStore({
           })
       })
     },
-    getButtonData() {
+    getAuthButton() {
       return new Promise((resolve, reject) => {
-        getButtonDataApi()
-          .then(res => {
-            this.buttonData = res.data
+        getButtonData()
+          .then(data => {
+            this.buttonData = data
             resolve(true)
           })
           .catch(() => {

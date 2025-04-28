@@ -22,6 +22,8 @@ import { registerGlobComp } from '@/components/Global'
 // import errorHandler from '@/utils/errorHandler'
 import i18n from '@/languages/index'
 
+import { startMock } from '@/mock'
+
 const app = createApp(App)
 
 // app.config.errorHandler = errorHandler
@@ -30,3 +32,6 @@ registerGlobComp(app)
 // setupElementPlus(app)
 
 app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
+
+// 放到最后才可以使用pinia
+startMock()

@@ -12,7 +12,8 @@ const axiosCanceler = new AxiosCanceler()
 
 const config = {
   baseURL: import.meta.env.VITE_BASE_URL,
-  timeout: httpResEnum.TIMEOUT
+  timeout: httpResEnum.TIMEOUT,
+  fullRes: false
   // headers: {
   //   adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
   // }
@@ -48,7 +49,8 @@ class Http {
     // 响应拦截器
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
-        const { data, config } = response
+        const { data } = response
+        const config = response.config as Recordable
 
         // 在请求结束后, 移除本次请求
         // axiosCanceler.removePending(config)
@@ -71,16 +73,16 @@ class Http {
           return Promise.reject(data)
         }
 
-        console.log('config', config)
-
         // 全局错误信息拦截
-        if (!(config as Recordable).isCustom && !String(data.code).startsWith('2')) {
+        if (!config.isCustom && !String(data.code).startsWith('2')) {
           ElMessage.error(data.msg)
           return Promise.reject(data)
         }
 
+        if (config.fullRes) return data
+
         // 请求成功
-        return data
+        return data.data
       },
       (error: AxiosError) => {
         const { response: res } = error
@@ -103,19 +105,19 @@ class Http {
   // config: https://axios-http.com/zh/docs/req_config
 
   // 常用请求方法封装
-  get<T = any>(url: string, params?: object, config: Config = {}): Promise<ResultData<T>> {
+  get<T = any>(url: string, params?: object, config: Config = {}): Promise<T> {
     return this.service.get(url, { params, ...config })
   }
 
-  post<T = any>(url: string, data?: object, config: Config = {}): Promise<ResultData<T>> {
+  post<T = any>(url: string, data?: object, config: Config = {}): Promise<T> {
     return this.service.post(url, data, config)
   }
 
-  put<T = any>(url: string, params?: object, config: Config = {}): Promise<ResultData<T>> {
+  put<T = any>(url: string, params?: object, config: Config = {}): Promise<T> {
     return this.service.put(url, params, config)
   }
 
-  delete<T = any>(url: string, params?: any, config: Config = {}): Promise<ResultData<T>> {
+  delete<T = any>(url: string, params?: any, config: Config = {}): Promise<T> {
     return this.service.delete(url, { params, ...config })
   }
 
@@ -124,4 +126,6 @@ class Http {
   }
 }
 
-export default new Http(config)
+const http = new Http(config)
+
+export default http

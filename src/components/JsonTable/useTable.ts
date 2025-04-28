@@ -60,17 +60,18 @@ export const useTable = (_: JsonTableProps) => {
     loading.value = true
 
     try {
-      const res = await _.search(params)
+      const data = await _.search(params)
+      if (!data) return
       if (isFunction(_.success)) {
-        const resData = _.success(res)
+        const resData = _.success(data)
         state.tableData = resData.list || []
         state.total = resData.total || 0
       } else {
-        state.tableData = getValueByCasKey(res || {}, fields.dataField) || []
-        state.total = getValueByCasKey(res || {}, fields.totalField) || 0
+        state.tableData = getValueByCasKey(data || {}, fields.dataField) || []
+        state.total = getValueByCasKey(data || {}, fields.totalField) || 0
       }
-    } catch (e) {
-      // xxx
+    } catch (err) {
+      console.log('err', err)
     } finally {
       loading.value = false
     }

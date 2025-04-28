@@ -35,8 +35,8 @@ const router = createRouter({
 function getAuthData() {
   return new Promise((resolve, reject) => {
     Promise.all([
-      usePermissionStore().getMenuList(),
-      usePermissionStore().getButtonData(),
+      usePermissionStore().getAuthMenu(),
+      usePermissionStore().getAuthButton(),
       useUserStore().getUserInfo()
     ])
       .then(([res1, res2, res3]) => {

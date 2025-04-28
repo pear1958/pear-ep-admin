@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { userState } from '../types'
-import { getUserInfoApi } from '@/api/modules/user'
+import { getUserData } from '@/api/modules/user'
 import { Login } from '@/api/types'
 import usePermissionStore from './permission'
 import router from '@/router'
@@ -14,9 +14,9 @@ const useUserStore = defineStore({
   actions: {
     getUserInfo() {
       return new Promise((resolve, reject) => {
-        getUserInfoApi()
-          .then((res: any) => {
-            this.userInfo = res.data
+        getUserData()
+          .then((data: Recordable) => {
+            this.userInfo = data
             resolve(true)
           })
           .catch(() => {

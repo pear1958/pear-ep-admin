@@ -191,7 +191,7 @@ export default defineComponent({
             current-page={state.pageNum}
             page-size={state.pageSize}
             total={state.total}
-            page-sizes={[10, 20, 50, 100]}
+            page-sizes={[5, 10, 20, 50, 100]}
             onCurrentChange={handleCurrentChange}
             onSizeChange={handleSizeChange}
             {..._.paginationProps}

@@ -1,5 +1,7 @@
 import dayjs from 'dayjs'
 
+export const isDev = import.meta.env.MODE === 'development'
+
 /**
  * @param {*} format https://day.js.org/docs/zh-CN/parse/string-format
  */
