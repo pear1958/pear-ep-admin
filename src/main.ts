@@ -23,6 +23,7 @@ import { registerGlobComp } from '@/components/Global'
 import i18n from '@/languages/index'
 
 import { startMock } from '@/mock'
+import { isDev } from './utils'
 
 const app = createApp(App)
 
@@ -33,5 +34,4 @@ registerGlobComp(app)
 
 app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
 
-// 放到最后才可以使用pinia
-startMock()
+if (isDev) startMock()
