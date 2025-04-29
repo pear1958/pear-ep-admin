@@ -204,24 +204,6 @@ export const menuList = [
     ]
   },
   {
-    path: '/table',
-    redirect: '/table/tablePro',
-    meta: {
-      title: '表格',
-      icon: 'ep:message-box'
-    },
-    children: [
-      {
-        path: '/table/tablePro',
-        name: 'tablePro',
-        component: '/table/tablePro',
-        meta: {
-          title: 'TablePro'
-        }
-      }
-    ]
-  },
-  {
     path: '/able',
     redirect: '/able/table',
     meta: {

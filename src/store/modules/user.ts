@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { userState } from '../types'
-import { getUserData } from '@/api/modules/user'
-import { Login } from '@/api/types'
+import { getUserInfo, login, logout } from '@/api/modules/user'
 import usePermissionStore from './permission'
 import router from '@/router'
 
@@ -12,9 +11,9 @@ const useUserStore = defineStore({
     userInfo: null
   }),
   actions: {
-    getUserInfo() {
+    getUserInfo(): Promise<boolean> {
       return new Promise((resolve, reject) => {
-        getUserData()
+        getUserInfo()
           .then((data: Recordable) => {
             this.userInfo = data
             resolve(true)
@@ -27,14 +26,33 @@ const useUserStore = defineStore({
     setToken(token: null | string) {
       this.token = token
     },
-    login(params: Login.reqForm) {
-      return Promise.resolve({ code: 200, data: true })
+    login(params: Recordable): Promise<void> {
+      return new Promise(async (resolve, reject) => {
+        login(params)
+          .then(() => {
+            localStorage.setItem('token', 'test-token')
+            router.replace('/home')
+            resolve()
+          })
+          .catch(() => {
+            reject()
+          })
+      })
     },
-    logout() {
-      localStorage.clear()
-      usePermissionStore().$reset()
-      this.$reset()
-      router.push('/login')
+    logout(): Promise<void> {
+      return new Promise(async (resolve, reject) => {
+        logout()
+          .then(() => {
+            localStorage.clear()
+            usePermissionStore().$reset()
+            this.$reset()
+            router.push('/login')
+            resolve()
+          })
+          .catch(() => {
+            reject()
+          })
+      })
     }
   }
 })

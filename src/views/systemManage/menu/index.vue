@@ -20,7 +20,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { getCompositionList } from '@/api/modules/user'
 
 const checked1 = ref(false)
 const checked2 = ref(false)
@@ -35,19 +34,8 @@ defineOptions({
 })
 
 const test = async () => {
-  const res = await getCompositionList(params)
-
+  // const res = await getCompositionList(params)
   ElMessage.success('请求成功')
-
-  console.log('res.data', res)
-
-  // getCompositionList(params)
-  //   .then(res => {
-  //     console.log('weawea', res)
-  //   })
-  //   .catch(err => {
-  //     console.log('err', err)
-  //   })
 }
 
 const test2 = () => {

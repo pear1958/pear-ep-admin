@@ -8,6 +8,24 @@ import { buttonData } from './modules/buttonData'
 export const startMock = () => {
   const mock = new MockAdapter(http.service, { delayResponse: 1000 })
 
+  mock
+    .onPost('/user/login', {
+      username: 'Admin',
+      password: '123456',
+      code: 'phfp'
+    })
+    .reply(200, {
+      code: 200,
+      msg: 'ok',
+      data: true
+    })
+
+  mock.onPost('/user/logout').reply(200, {
+    code: 200,
+    msg: 'ok',
+    data: true
+  })
+
   mock.onGet('/auth/menu').reply(200, {
     code: 200,
     msg: 'ok',

@@ -67,11 +67,9 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import type { FormRules } from 'element-plus'
+import { FormRules } from 'element-plus'
 import { User, Lock, Aim } from '@element-plus/icons-vue'
-
-const router = useRouter()
+import useUserStore from '@/store/modules/user'
 
 const formState = reactive({
   username: 'Admin',
@@ -89,15 +87,16 @@ const rules = reactive<FormRules>({
   code: [{ required: true, message: '请输入验证码' }]
 })
 
-function handleLogin() {
-  if (formState.username == 'Admin' && formState.password == '123456' && formState.code == 'phfp') {
-    loading.value = true
-
-    setTimeout(() => {
-      loading.value = false
-      localStorage.setItem('token', 'test-token')
-      router.replace('/home')
-    }, 1000)
+async function handleLogin() {
+  loading.value = true
+  try {
+    await useUserStore().login({
+      username: 'Admin',
+      password: '123456',
+      code: 'phfp'
+    })
+  } finally {
+    loading.value = false
   }
 }
 </script>

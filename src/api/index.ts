@@ -4,7 +4,7 @@ import router from '@/router'
 import { httpResEnum } from '@/enums/httpEnum'
 import useUserStore from '@/store/modules/user'
 import { checkStatus } from './utils/checkStatus'
-import { Config, CustomAxiosRequestConfig, ResultData } from './types'
+import { Config, CustomAxiosRequestConfig } from './types'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
 import { AxiosCanceler } from './utils/axiosCancel'
 
@@ -50,7 +50,7 @@ class Http {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
-        const config = response.config as Recordable
+        const config = response.config as Config
 
         // 在请求结束后, 移除本次请求
         // axiosCanceler.removePending(config)
@@ -74,7 +74,7 @@ class Http {
         }
 
         // 全局错误信息拦截
-        if (!config.isCustom && !String(data.code).startsWith('2')) {
+        if (!String(data.code).startsWith('2')) {
           ElMessage.error(data.msg)
           return Promise.reject(data)
         }
