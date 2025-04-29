@@ -1,5 +1,13 @@
+import { ResultData } from '@/api/types'
 import { UploadFile } from 'element-plus'
-import { IUploadResult } from '@/api/types'
+
+export interface IUpload {
+  name: string
+  origin: string
+  url: string
+}
+
+export type IUploadResult = ResultData<IUpload>
 
 export type IFile = UploadFile & { response: IUploadResult }
 

@@ -46,10 +46,9 @@ import { Plus } from '@element-plus/icons-vue'
 import { isNumber, isString } from 'pear-common-utils'
 import './index.scss'
 import { UPLOAD_URL, UPLOAD_HEADERS } from '@/config/constant'
-import { IUploadResult } from '@/api/types'
 import { validSize } from './utils'
 import CropperDialog from './CropperDialog.vue'
-import { ICropperParams, IFile } from './types'
+import { ICropperParams, IFile, IUploadResult } from './types'
 
 defineOptions({
   name: 'uploadCropper'

@@ -7,14 +7,6 @@ export interface ResultData<T = any> {
   [key: string]: any
 }
 
-export interface IUpload {
-  name: string
-  origin: string
-  url: string
-}
-
-export type IUploadResult = ResultData<IUpload>
-
 export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   showLoading?: boolean
   fullRes?: boolean
