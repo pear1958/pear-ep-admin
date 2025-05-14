@@ -40,7 +40,7 @@
   }
 
   .page-box {
-    @apply bg-[#ffffff] h-full p-4 box-border dark:bg-dark-content;
+    @apply bg-[#ffffff] p-4 box-border dark:bg-dark-content;
     border-radius: 6px;
     box-shadow: 0 0 12px rgb(0 0 0 / 5%);
   }
