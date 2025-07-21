@@ -10,6 +10,7 @@ import { check403 } from './utils'
 import useLockStore from '@/store/modules/lock'
 import { LOGIN_PATH, LOCK_PATH } from '@/config/constant'
 import useSystemStore from '@/store/modules/system'
+import { title } from '@/utils'
 
 // 引入 views 文件夹下所有 vue | tsx 文件
 const modules = import.meta.glob('@/views/**/*.{vue,tsx}')
@@ -97,7 +98,6 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
   // 动态设置标题
-  const title = import.meta.env.VITE_TITLE
   document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
 
   if (useSystemStore().enableMainLoading) {

@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login-form">
-      <h2 class="title">Ep-Admin</h2>
+      <h2 class="title">{{ title }}</h2>
 
       <el-form :model="formState" :rules="rules">
         <el-form-item prop="username">
@@ -22,17 +22,19 @@
           />
         </el-form-item>
 
-        <el-form-item prop="code" class="code-item">
-          <div class="flex-c gap-3">
-            <el-input
-              v-model="formState.code"
-              :prefix-icon="Aim"
-              placeholder="验证码"
-              size="large"
-            />
+        <el-form-item prop="code">
+          <div class="w-full flex-c gap-3">
+            <div class="flex-1">
+              <el-input
+                v-model="formState.code"
+                :prefix-icon="Aim"
+                placeholder="验证码"
+                size="large"
+              />
+            </div>
 
-            <div @click="getCode">
-              <img src="./code.png" class="code-img" />
+            <div @click="getCaptcha" class="flex-c">
+              <img :src="captchaUrl" class="code-img" />
             </div>
           </div>
         </el-form-item>
@@ -57,8 +59,8 @@
     </div>
 
     <div class="copyright-wrap">
-      <p class="en">copyright@2023 ep-admin All Rights Reserved</p>
-      <p class="cn">ep-admin 版权所有</p>
+      <p class="en">copyright@2025 ep-admin All Rights Reserved</p>
+      <p class="cn">{{ title }} 版权所有</p>
     </div>
   </div>
 </template>
@@ -69,15 +71,18 @@ import { FormRules } from 'element-plus'
 import { User, Lock, Aim } from '@element-plus/icons-vue'
 import useUserStore from '@/store/modules/user'
 import { getLoginCode } from '@/api/modules/auth'
+import { title } from '@/utils'
 
 const formState = reactive({
   username: 'Admin',
   password: '123456',
   remember: true,
-  code: 'phfp'
+  code: '',
+  captchaId: null
 })
 
 const loading = ref(false)
+const captchaUrl = ref('')
 
 const rules = reactive<FormRules>({
   username: [{ required: true, message: '请输入用户名' }],
@@ -86,12 +91,13 @@ const rules = reactive<FormRules>({
   code: [{ required: true, message: '请输入验证码' }]
 })
 
-const getCode = async () => {
-  const res = await getLoginCode()
-  console.log('res', res)
+const getCaptcha = async () => {
+  const { data } = await getLoginCode({ width: 100, height: 38 })
+  formState.captchaId = data.id
+  captchaUrl.value = data.img
 }
 
-getCode()
+getCaptcha()
 
 const handleLogin = async () => {
   loading.value = true
@@ -126,18 +132,14 @@ const handleLogin = async () => {
     box-sizing: border-box;
 
     .title {
-      font-size: 20px;
+      font-size: 18px;
       color: rgba(50, 65, 82, 1);
       margin-bottom: 30px;
     }
 
-    .code-item :deep(.el-form-item__content) {
-      display: block;
-    }
-
     .code-img {
       width: 100px;
-      height: 50px;
+      height: 38px;
       cursor: pointer;
       border: 1px solid var(--el-border-color);
     }
