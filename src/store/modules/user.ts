@@ -3,11 +3,11 @@ import { userState } from '../types'
 import { getUserInfo, login, logout } from '@/api/modules/auth'
 import usePermissionStore from './permission'
 import router from '@/router'
+import { removeToken, setToken } from '@/utils/auth'
 
 const useUserStore = defineStore({
   id: 'user',
   state: (): userState => ({
-    token: null,
     userInfo: null
   }),
   actions: {
@@ -23,14 +23,11 @@ const useUserStore = defineStore({
           })
       })
     },
-    setToken(token: null | string) {
-      this.token = token
-    },
     login(params: Recordable): Promise<void> {
       return new Promise(async (resolve, reject) => {
         login(params)
-          .then(() => {
-            localStorage.setItem('token', 'test-token')
+          .then(({ data }) => {
+            setToken(data.token)
             router.replace('/home')
             resolve()
           })
@@ -43,6 +40,7 @@ const useUserStore = defineStore({
       return new Promise(async (resolve, reject) => {
         logout()
           .then(() => {
+            removeToken()
             localStorage.clear()
             usePermissionStore().$reset()
             this.$reset()

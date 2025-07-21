@@ -22,19 +22,19 @@
           />
         </el-form-item>
 
-        <el-form-item prop="code">
+        <el-form-item prop="verifyCode">
           <div class="w-full flex-c gap-3">
             <div class="flex-1">
               <el-input
-                v-model="formState.code"
+                v-model="formState.verifyCode"
                 :prefix-icon="Aim"
                 placeholder="验证码"
                 size="large"
               />
             </div>
 
-            <div @click="getCaptcha" class="flex-c">
-              <img :src="captchaUrl" class="code-img" />
+            <div @click="getCaptcha" class="code-img">
+              <img :src="captchaUrl" class="size-full" v-if="captchaUrl" />
             </div>
           </div>
         </el-form-item>
@@ -75,9 +75,9 @@ import { title } from '@/utils'
 
 const formState = reactive({
   username: 'Admin',
-  password: '123456',
+  password: 'a123456',
   remember: true,
-  code: '',
+  verifyCode: '',
   captchaId: null
 })
 
@@ -88,7 +88,7 @@ const rules = reactive<FormRules>({
   username: [{ required: true, message: '请输入用户名' }],
   password: [{ required: true, message: '请输入密码' }],
   remember: [{ required: false }],
-  code: [{ required: true, message: '请输入验证码' }]
+  verifyCode: [{ required: true, message: '请输入验证码' }]
 })
 
 const getCaptcha = async () => {
@@ -102,11 +102,9 @@ getCaptcha()
 const handleLogin = async () => {
   loading.value = true
   try {
-    await useUserStore().login({
-      username: 'Admin',
-      password: '123456',
-      code: 'phfp'
-    })
+    const params = { ...formState }
+    delete params.remember
+    await useUserStore().login(params)
   } finally {
     loading.value = false
   }
@@ -138,6 +136,8 @@ const handleLogin = async () => {
     }
 
     .code-img {
+      display: flex;
+      align-items: center;
       width: 100px;
       height: 38px;
       cursor: pointer;

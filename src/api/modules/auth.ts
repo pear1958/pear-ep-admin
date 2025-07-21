@@ -5,11 +5,15 @@ export const getLoginCode = (params: { width?: number; height?: number }) => {
 }
 
 export const login = (params: Recordable) => {
-  return http.post('/system/user/login', params)
+  return http.post('/auth/login', params)
 }
 
 export const logout = () => {
   return http.post('/system/user/logout')
+}
+
+export const logout2 = () => {
+  return http.post('/account/logout')
 }
 
 export const getUserInfo = () => {

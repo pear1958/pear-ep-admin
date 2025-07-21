@@ -11,6 +11,7 @@ import useLockStore from '@/store/modules/lock'
 import { LOGIN_PATH, LOCK_PATH } from '@/config/constant'
 import useSystemStore from '@/store/modules/system'
 import { title } from '@/utils'
+import { getToken } from '@/utils/auth'
 
 // 引入 views 文件夹下所有 vue | tsx 文件
 const modules = import.meta.glob('@/views/**/*.{vue,tsx}')
@@ -87,7 +88,7 @@ function initRouter() {
 // https://segmentfault.com/q/1010000041657273/a-1020000042515957
 
 router.beforeEach(async (to, from, next) => {
-  const token = localStorage.getItem('token')
+  const token = getToken()
   const { userInfo } = useUserStore()
   const { menuList, buttonData } = usePermissionStore()
   const { isLock } = useLockStore().lockInfo || {}

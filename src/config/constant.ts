@@ -8,4 +8,4 @@ export const UPLOAD_HEADERS = {
   xxxxx: 'test-token'
 }
 
-export const TOKEN_KEY = 'test_key'
+export const TOKEN_KEY = 'ticket'

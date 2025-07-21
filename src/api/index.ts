@@ -1,13 +1,13 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
+import { isObject } from 'pear-common-utils'
 import router from '@/router'
 import { httpResEnum } from '@/enums/httpEnum'
-import useUserStore from '@/store/modules/user'
 import { checkStatus } from './utils/checkStatus'
 import { Config, CustomAxiosRequestConfig, ResultData } from './types'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
 import { AxiosCanceler } from './utils/axiosCancel'
-import { isObject } from 'pear-common-utils'
+import { getToken, removeToken, setToken } from '@/utils/auth'
 
 const axiosCanceler = new AxiosCanceler()
 
@@ -30,7 +30,7 @@ class Http {
     // 请求拦截器
     this.service.interceptors.request.use(
       (config: CustomAxiosRequestConfig) => {
-        const { token } = useUserStore()
+        const token = getToken()
 
         // 将当前请求添加到 pending 中
         // axiosCanceler.addPending(config)
@@ -62,13 +62,13 @@ class Http {
 
         if (authStr && authStr.length > 0) {
           const token = authStr.substr(7)
-          localStorage.setItem('token', token)
+          setToken(token)
         }
 
         // token过期
         if (isObject(data) && data.code == httpResEnum.OVERDUE) {
           ElMessage.error(data.msg)
-          useUserStore().setToken(null)
+          removeToken()
           router.replace('/login')
           return Promise.reject(data)
         }
