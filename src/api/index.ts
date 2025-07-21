@@ -4,9 +4,10 @@ import router from '@/router'
 import { httpResEnum } from '@/enums/httpEnum'
 import useUserStore from '@/store/modules/user'
 import { checkStatus } from './utils/checkStatus'
-import { Config, CustomAxiosRequestConfig } from './types'
+import { Config, CustomAxiosRequestConfig, ResultData } from './types'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
 import { AxiosCanceler } from './utils/axiosCancel'
+import { isObject } from 'pear-common-utils'
 
 const axiosCanceler = new AxiosCanceler()
 
@@ -50,7 +51,6 @@ class Http {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
-        const config = response.config as Config
 
         // 在请求结束后, 移除本次请求
         // axiosCanceler.removePending(config)
@@ -66,7 +66,7 @@ class Http {
         }
 
         // token过期
-        if (data.code == httpResEnum.OVERDUE) {
+        if (isObject(data) && data.code == httpResEnum.OVERDUE) {
           ElMessage.error(data.msg)
           useUserStore().setToken(null)
           router.replace('/login')
@@ -74,15 +74,12 @@ class Http {
         }
 
         // 全局错误信息拦截
-        if (!String(data.code).startsWith('2')) {
+        if (isObject(data) && !String(data.code).startsWith('2')) {
           ElMessage.error(data.msg)
           return Promise.reject(data)
         }
 
-        if (config.fullRes) return data
-
-        // 请求成功
-        return data.data
+        return data
       },
       (error: AxiosError) => {
         const { response: res } = error
@@ -105,23 +102,23 @@ class Http {
   // config: https://axios-http.com/zh/docs/req_config
 
   // 常用请求方法封装
-  get<T = any>(url: string, params?: object, config: Config = {}): Promise<T> {
+  get<T = any>(url: string, params?: object, config: Config = {}): Promise<ResultData<T>> {
     return this.service.get(url, { params, ...config })
   }
 
-  post<T = any>(url: string, data?: object, config: Config = {}): Promise<T> {
+  post<T = any>(url: string, data?: object, config: Config = {}): Promise<ResultData<T>> {
     return this.service.post(url, data, config)
   }
 
-  put<T = any>(url: string, params?: object, config: Config = {}): Promise<T> {
+  put<T = any>(url: string, params?: object, config: Config = {}): Promise<ResultData<T>> {
     return this.service.put(url, params, config)
   }
 
-  delete<T = any>(url: string, params?: any, config: Config = {}): Promise<T> {
+  delete<T = any>(url: string, params?: any, config: Config = {}): Promise<ResultData<T>> {
     return this.service.delete(url, { params, ...config })
   }
 
-  download(url: string, params?: object, config: Config = {}): Promise<BlobPart> {
+  download(url: string, params?: object, config: Config = {}): Promise<ResultData<BlobPart>> {
     return this.service.post(url, params, { ...config, responseType: 'blob' })
   }
 }

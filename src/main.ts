@@ -22,8 +22,8 @@ import { registerGlobComp } from '@/components/Global'
 // import errorHandler from '@/utils/errorHandler'
 import i18n from '@/languages/index'
 
-import { startMock } from '@/mock'
-import { isDev } from './utils'
+// import { startMock } from '@/mock'
+// import { isDev } from './utils'
 
 const app = createApp(App)
 
@@ -34,4 +34,4 @@ registerGlobComp(app)
 
 app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
 
-if (isDev) startMock()
+// if (isDev) startMock()

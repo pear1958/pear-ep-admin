@@ -35,7 +35,7 @@ const usePermissionStore = defineStore({
     getAuthMenu() {
       return new Promise((resolve, reject) => {
         getMenuList()
-          .then(data => {
+          .then(({ data }) => {
             const menuData = data ?? []
             this.menuList.push(...menuData)
             // 菜单排序
@@ -50,7 +50,7 @@ const usePermissionStore = defineStore({
     getAuthButton() {
       return new Promise((resolve, reject) => {
         getButtonData()
-          .then(data => {
+          .then(({ data }) => {
             this.buttonData = data
             resolve(true)
           })

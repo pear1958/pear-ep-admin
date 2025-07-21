@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { userState } from '../types'
-import { getUserInfo, login, logout } from '@/api/modules/user'
+import { getUserInfo, login, logout } from '@/api/modules/auth'
 import usePermissionStore from './permission'
 import router from '@/router'
 
@@ -14,7 +14,7 @@ const useUserStore = defineStore({
     getUserInfo(): Promise<boolean> {
       return new Promise((resolve, reject) => {
         getUserInfo()
-          .then((data: Recordable) => {
+          .then(({ data }) => {
             this.userInfo = data
             resolve(true)
           })
