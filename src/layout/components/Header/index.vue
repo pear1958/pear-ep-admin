@@ -57,6 +57,7 @@ import emitter from '@/utils/mitt'
 import useUserStore from '@/store/modules/user'
 import useSystemStore from '@/store/modules/system'
 import avatarUrl from '@/assets/imgs/avatar.jpg'
+import { confirmModal } from '@/utils/element'
 
 const systemStore = useSystemStore()
 
@@ -68,7 +69,7 @@ const openSetDrawer = () => {
   emitter.emit('openSetDrawer')
 }
 
-function onClick(key: string) {
+const onClick = async (key: string) => {
   switch (key) {
     case '0':
       // router.push('/userCenter/index')
@@ -76,6 +77,7 @@ function onClick(key: string) {
       break
 
     case '1':
+      await confirmModal('确认退出？')
       useUserStore().logout()
       break
   }

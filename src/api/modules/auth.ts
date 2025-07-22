@@ -8,12 +8,12 @@ export const login = (params: Recordable) => {
   return http.post('/auth/login', params)
 }
 
-export const logout = () => {
-  return http.post('/system/user/logout')
-}
+// export const logout = () => {
+//   return http.post('/system/user/logout')
+// }
 
-export const logout2 = () => {
-  return http.post('/account/logout')
+export const logout = () => {
+  return http.get('/account/logout')
 }
 
 export const getUserInfo = () => {
