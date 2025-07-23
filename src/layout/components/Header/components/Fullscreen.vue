@@ -1,11 +1,12 @@
 <template>
   <div class="header-icon" @click="toggle">
-    <Iconify :icon="!isFullscreen ? 'fullscreen-outlined' : 'fullscreen-exit-outlined'" />
+    <Icon :icon="!isFullscreen ? 'fullscreen-outlined' : 'fullscreen-exit-outlined'" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { Icon } from '@iconify/vue'
 
 const isFullscreen = ref(false)
 

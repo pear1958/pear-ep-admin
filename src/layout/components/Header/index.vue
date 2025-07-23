@@ -22,12 +22,12 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="0">
-              <Iconify icon="user-outlined" />
+              <Icon icon="user-outlined" />
               <span class="ml-[5px]">个人中心</span>
             </el-dropdown-item>
 
             <el-dropdown-item command="1">
-              <Iconify icon="poweroff-outlined" />
+              <Icon icon="poweroff-outlined" />
               <span class="ml-[5px]">退出登录</span>
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -35,7 +35,7 @@
       </el-dropdown>
 
       <div class="header-icon flex-c text-base">
-        <Iconify icon="setting" @click="openSetDrawer" />
+        <Icon icon="setting" @click="openSetDrawer" />
       </div>
     </div>
   </div>
@@ -45,6 +45,7 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { ElMessage } from 'element-plus'
+import { Icon } from '@iconify/vue'
 import Collapse from './components/Collapse.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import Search from './components/Search.vue'

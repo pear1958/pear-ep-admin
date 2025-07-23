@@ -1,7 +1,7 @@
 import { computed, defineComponent, h, reactive, ref } from 'vue'
 import { FormInstance, FormRules } from 'element-plus'
+import { Icon } from '@iconify/vue'
 import { delay } from 'pear-common-utils'
-import { Iconify } from '@/components/Global/components/Icon'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
 import LabelComponent from './components/LabelComponent'
@@ -29,7 +29,7 @@ export default defineComponent({
           placeholder: '请输入设备号'
         },
         slots: {
-          suffix: () => h(<Iconify icon="ep:calendar" />)
+          suffix: () => h(<Icon icon="ep:calendar" />)
         }
         // style: {
         //   border: '1px solid red'

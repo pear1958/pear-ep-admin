@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import { Iconify } from '@/components/Global/components/Icon'
+import { Icon } from '@iconify/vue'
 import { FormItem } from '@/components/JsonForm/type'
 import LabelComponent from './components/LabelComponent'
 import Badge from './components/Badge'
@@ -25,7 +25,7 @@ const useConfig = () => {
       //   labelWidth: '120px'
       // },
       slots: {
-        suffix: () => <Iconify icon="ep:calendar" />
+        suffix: () => <Icon icon="ep:calendar" />
       }
       // style: {
       //   border: '1px solid red'

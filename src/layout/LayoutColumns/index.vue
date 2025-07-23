@@ -16,7 +16,7 @@
             @click="changeSubMenu(item)"
             :key="item.path"
           >
-            <Iconify :icon="item.meta.icon" />
+            <Icon :icon="item.meta.icon" />
             <span class="ellipsis title">{{ item.meta.title }}</span>
           </div>
         </el-scrollbar>
@@ -55,6 +55,7 @@
 import { computed, ref, unref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import { Icon } from '@iconify/vue'
 import useSystemStore from '@/store/modules/system'
 import usePermissionStore from '@/store/modules/permission'
 import LogoSvg from '@/assets/imgs/logo.svg?component'

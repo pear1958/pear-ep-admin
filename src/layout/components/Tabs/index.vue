@@ -92,7 +92,8 @@ import { onMounted, ref, watch } from 'vue'
 import Maximize from './Maximize.vue'
 import { useTabs } from './useTabs'
 import { useTabsDrag } from '@/layout/hooks/useTabs'
-import { useIcon } from '@/components/Global/components/Icon'
+import SvgIcon from '@/components/SvgIcon/index.vue'
+import { useIcon } from '@/components/Icon/useIcon'
 
 const { tabList, mainMaximize, systemStore, route, router, tabClick, removeTab, onDropDownClick } =
   useTabs()

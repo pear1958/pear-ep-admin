@@ -18,7 +18,6 @@ import 'element-plus/dist/index.css'
 // element-plus 内置暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
-import { registerGlobComp } from '@/components/Global'
 // import errorHandler from '@/utils/errorHandler'
 import i18n from '@/languages/index'
 
@@ -29,7 +28,6 @@ const app = createApp(App)
 
 // app.config.errorHandler = errorHandler
 
-registerGlobComp(app)
 // setupElementPlus(app)
 
 app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')

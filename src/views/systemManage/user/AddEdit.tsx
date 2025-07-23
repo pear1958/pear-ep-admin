@@ -4,6 +4,7 @@ import { delay } from 'pear-common-utils'
 import { Iconify } from '@/components/Global/components/Icon'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
+import Upload from '@/components/Upload/index.vue'
 
 export default defineComponent({
   name: 'AddEdit',
@@ -16,6 +17,12 @@ export default defineComponent({
     const formData = ref<Recordable>({})
 
     const formItems = computed<FormItem[]>(() => [
+      {
+        type: 'component',
+        label: '头像：',
+        field: 'avatar',
+        component: <Upload v-model={formData.value.avatar} limit={1} />
+      },
       {
         type: 'input',
         label: '昵称：',
@@ -59,13 +66,12 @@ export default defineComponent({
       //   { required: true, message: '请输入设备号', trigger: 'blur' },
       //   { min: 3, max: 60, message: 'Length should be 3 to 60', trigger: 'blur' }
       // ],
-      // reviewStatus: [
-      //   {
-      //     required: true,
-      //     message: '请选择审核状态',
-      //     trigger: 'change'
-      //   }
-      // ]
+      avatar: [
+        {
+          required: true,
+          message: '请上传头像'
+        }
+      ]
     })
 
     const handleSubmit = async () => {

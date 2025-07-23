@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
+import { Icon } from '@iconify/vue'
 import { FormItem } from '@/components/JsonForm/type'
-import { Iconify } from '@/components/Global/components/Icon'
 import LabelComponent from './components/LabelComponent.vue'
 import Badge from './components/Badge.vue'
 import { casOptions } from './mock'
@@ -27,7 +27,7 @@ export const useFormItems = () => {
         // placeholder: '请输入设备号'
       },
       slots: {
-        suffix: () => <Iconify icon="ep:calendar" />
+        suffix: () => <Icon icon="ep:calendar" />
       }
       // style: {
       //   border: '1px solid red'

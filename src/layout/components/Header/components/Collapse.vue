@@ -1,6 +1,6 @@
 <template>
   <div class="collapse-icon" @click="toggleSidebar">
-    <Iconify :icon="isCollapse ? 'menu-unfold-outlined' : 'menu-fold-outlined'" class="trigger" />
+    <Icon :icon="isCollapse ? 'menu-unfold-outlined' : 'menu-fold-outlined'" class="trigger" />
   </div>
 </template>
 
@@ -8,6 +8,7 @@
 import { computed, unref } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import { Icon } from '@iconify/vue'
 import useSystemStore from '@/store/modules/system'
 import usePermissionStore from '@/store/modules/permission'
 
@@ -24,9 +25,9 @@ function toggleSidebar() {
   })
 
   // 多列布局, 没有子菜单, 则不能展开
-  if (isCollapse.value && layout.value === 'columns' && !menuItem[0].children?.length) {
-    return
-  }
+  // if (isCollapse.value && layout.value === 'columns' && !menuItem[0].children?.length) {
+  //   return
+  // }
 
   useSystemStore().setCollapse(!isCollapse.value)
 }

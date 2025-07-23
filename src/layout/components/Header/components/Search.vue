@@ -1,6 +1,6 @@
 <template>
   <div class="header-icon" @click="showSearchPanel = true">
-    <Iconify icon="search-outlined" />
+    <Icon icon="search-outlined" />
   </div>
 
   <el-dialog
@@ -24,7 +24,7 @@
         <div class="search-item" v-for="searchItem in searchList" @click="handleSelect(searchItem)">
           <div class="flex-c">
             <span class="icon" style="margin-top: -6px">
-              <Iconify icon="document" />
+              <Icon icon="document" />
             </span>
 
             <div class="breadcrumb-text">
@@ -37,7 +37,7 @@
           </div>
 
           <a class="icon">
-            <Iconify icon="enter-outlined" color="var(--el-color-primary)" />
+            <Icon icon="enter-outlined" color="var(--el-color-primary)" />
           </a>
         </div>
       </template>
@@ -66,9 +66,11 @@
 <script lang="ts" setup>
 import { ref, shallowRef, unref, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import hotkeys from 'hotkeys-js'
-import usePermissionStore from '@/store/modules/permission'
 import { Search } from '@element-plus/icons-vue'
+import hotkeys from 'hotkeys-js'
+import { Icon } from '@iconify/vue'
+import usePermissionStore from '@/store/modules/permission'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 
 const route = useRoute()
 const router = useRouter()

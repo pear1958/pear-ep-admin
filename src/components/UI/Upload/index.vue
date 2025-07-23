@@ -26,15 +26,15 @@
           v-if="showActive && activeIndex == index"
         >
           <!-- 红色背景, 白色叉叉的按钮 -->
-          <Iconify icon="close" />
+          <Icon icon="close" />
         </div>
 
         <div class="hover-del-icon" v-if="index !== activeIndex" @click.stop="handleRemove(index)">
-          <Iconify icon="delete" />
+          <Icon icon="delete" />
         </div>
 
         <div class="hover-preview-icon" @click.stop="handlePreview(index)">
-          <Iconify icon="zoom-in" />
+          <Icon icon="zoom-in" />
         </div>
       </template>
 
@@ -48,7 +48,7 @@
 
     <Dragger :onFile="files => uploadFiles(files)" v-if="fileList.length < maxLength">
       <div class="upload" @click="handleClick">
-        <Iconify icon="plus" />
+        <Icon icon="plus" />
       </div>
     </Dragger>
 
@@ -69,9 +69,11 @@
 <script setup lang="ts">
 import { PropType, ref, unref, computed } from 'vue'
 import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
+import { Icon } from '@iconify/vue'
 import { deepClone } from 'pear-common-utils'
 import Dragger from './Dragger.vue'
 import { UploadFile } from './types'
+import ImgViewer from '@/components/ImgViewer'
 
 defineOptions({
   name: 'Upload'

@@ -1,10 +1,11 @@
 <template>
   <div class="max-close-icon" @click="exitMaximize">
-    <Iconify icon="close" />
+    <Icon icon="close" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
 import useSystemStore from '@/store/modules/system'
 
 const systemStore = useSystemStore()

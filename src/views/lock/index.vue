@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen flex flex-col justify-center bg-black text-white select-none">
     <div class="cursor-pointer flex-c-col pt-5" @click="showLockForm = true">
-      <Iconify icon="ant-design:lock-outlined" class="text-base" />
+      <Icon icon="ant-design:lock-outlined" class="text-base" />
       <span class="xl:text-xl">点击解锁</span>
     </div>
 
@@ -72,10 +72,12 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { Loading } from '@element-plus/icons-vue'
+import { Icon } from '@iconify/vue'
 import useLockStore from '@/store/modules/lock'
 import useUserStore from '@/store/modules/user'
 import { useNow } from './useNow'
 import avatarUrl from '@/assets/imgs/avatar.jpg'
+import LinkButton from '@/components/LinkButton/index.vue'
 
 defineOptions({
   name: 'Lock'

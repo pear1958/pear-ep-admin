@@ -1,5 +1,5 @@
 import { h, defineComponent, Component } from 'vue'
-import Iconify from './Iconify'
+import { Icon } from '@iconify/vue'
 import IconFont from './IconFont'
 import { IconType } from './types'
 
@@ -47,10 +47,10 @@ export function useIcon(icon: any, attrs?: IconType): Component {
     return defineComponent({
       name: 'useIconify',
       render() {
-        return h(Iconify, {
+        return h(Icon, {
           icon,
           ...attrs
-        })
+        } as any)
       }
     })
   }

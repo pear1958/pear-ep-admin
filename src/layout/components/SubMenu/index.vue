@@ -5,7 +5,7 @@
       :index="subItem.path"
       @click="handleClickMenu(subItem)"
     >
-      <Iconify
+      <Icon
         :icon="subItem.meta.icon"
         :class="['text-base', { 'mr-1.5': !isCollapse }]"
         v-if="subItem.meta.icon"
@@ -20,7 +20,7 @@
 
     <el-sub-menu v-else :index="subItem.path">
       <template #title>
-        <Iconify
+        <Icon
           :icon="subItem.meta.icon"
           :class="['text-base', { 'mr-1.5': !isCollapse }]"
           v-if="subItem.meta.icon"
@@ -39,6 +39,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { Icon } from '@iconify/vue'
 import SubMenu from './index.vue'
 import useSystemStore from '@/store/modules/system'
 

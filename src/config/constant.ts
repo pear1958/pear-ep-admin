@@ -2,7 +2,7 @@ export const LOGIN_PATH = '/login'
 
 export const LOCK_PATH = '/lock'
 
-export const UPLOAD_URL = '/sourceData/document/uploadFile'
+export const UPLOAD_URL = '/api/tools/upload'
 
 export const UPLOAD_HEADERS = {
   xxxxx: 'test-token'
