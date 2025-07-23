@@ -42,7 +42,7 @@
 
         <el-form-item prop="remember" class="reme-item">
           <el-checkbox v-model="formState.remember">记住我</el-checkbox>
-          <el-button type="primary" link>忘记密码?</el-button>
+          <el-button type="primary" link @click="forget">忘记密码?</el-button>
         </el-form-item>
 
         <el-form-item>
@@ -69,17 +69,19 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { FormRules } from 'element-plus'
+import { ElMessage, FormRules } from 'element-plus'
 import { User, Lock, Aim } from '@element-plus/icons-vue'
+import { isEmpty } from 'pear-common-utils'
 import useUserStore from '@/store/modules/user'
 import { getLoginCode } from '@/api/modules/auth'
 import { title } from '@/utils'
+import { getPassword, getUserName, setPassword, setUserName } from '@/utils/auth'
 
 const router = useRouter()
 
 const formState = reactive({
-  username: 'Admin',
-  password: 'a123456',
+  username: '', // Admin
+  password: '', // a123456
   remember: true,
   verifyCode: '',
   captchaId: null
@@ -95,27 +97,42 @@ const rules = reactive<FormRules>({
   verifyCode: [{ required: true, message: '请输入验证码' }]
 })
 
-const getCaptcha = async () => {
-  const { data } = await getLoginCode({ width: 100, height: 38 })
-  formState.captchaId = data.id
-  captchaUrl.value = data.img
-}
-
+fillInfo()
 getCaptcha()
 
 const handleLogin = async () => {
   loading.value = true
   try {
     const params = { ...formState }
-    delete params.remember
-    await useUserStore().login(params)
-    if (formState.remember) {
-      // xxxxxxxxxx
+
+    if (params.remember) {
+      setUserName(params.username)
+      setPassword(params.password)
     }
+    delete params.remember
+
+    await useUserStore().login(params)
     router.replace('/home')
   } finally {
     loading.value = false
   }
+}
+
+const forget = () => {
+  ElMessage.info('请联系管理员')
+}
+
+async function getCaptcha() {
+  const { data } = await getLoginCode({ width: 100, height: 38 })
+  formState.captchaId = data.id
+  captchaUrl.value = data.img
+}
+
+function fillInfo() {
+  const userName = getUserName()
+  const password = getPassword()
+  if (!isEmpty(userName)) formState.username = userName
+  if (!isEmpty(password)) formState.password = password
 }
 </script>
 

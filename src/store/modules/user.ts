@@ -4,6 +4,7 @@ import { getUserInfo, login, logout } from '@/api/modules/auth'
 import usePermissionStore from './permission'
 import router from '@/router'
 import { removeToken, setToken } from '@/utils/auth'
+import useLockStore from './lock'
 
 const useUserStore = defineStore({
   id: 'user',
@@ -40,7 +41,7 @@ const useUserStore = defineStore({
         logout()
           .then(() => {
             removeToken()
-            localStorage.clear()
+            useLockStore().resetLockInfo()
             usePermissionStore().$reset()
             this.$reset()
             router.push('/login')

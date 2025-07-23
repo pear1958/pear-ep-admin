@@ -100,7 +100,6 @@ const back = () => {
 
 const goLogin = () => {
   if (loading.value) return
-  lockStore.resetLockInfo()
   userStore.logout()
 }
 
