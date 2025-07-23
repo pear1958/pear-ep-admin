@@ -44,7 +44,7 @@ import useLockStore from '@/store/modules/lock'
 import avatarUrl from '@/assets/imgs/avatar.jpg'
 
 defineOptions({
-  name: 'Lock'
+  name: 'LockIcon'
 })
 
 const router = useRouter()

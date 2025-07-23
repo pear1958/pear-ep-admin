@@ -24,7 +24,7 @@ export const staticRouter: RouteRecordRaw[] = [
   {
     path: '/lock',
     name: 'lock',
-    component: () => import('@/views/system/lock/index.vue'),
+    component: () => import('@/views/lock/index.vue'),
     meta: {
       title: '锁屏'
     }
