@@ -80,8 +80,8 @@ import { getPassword, getUserName, setPassword, setUserName } from '@/utils/auth
 const router = useRouter()
 
 const formState = reactive({
-  username: '', // Admin
-  password: '', // a123456
+  username: '', // Admin zhangzy
+  password: '', // a123456 aaa111
   remember: true,
   verifyCode: '',
   captchaId: null
