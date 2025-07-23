@@ -75,7 +75,14 @@ import { isEmpty } from 'pear-common-utils'
 import useUserStore from '@/store/modules/user'
 import { getLoginCode } from '@/api/modules/auth'
 import { title } from '@/utils'
-import { getPassword, getUserName, setPassword, setUserName } from '@/utils/auth'
+import {
+  getPassword,
+  getUserName,
+  removePassword,
+  removeUserName,
+  setPassword,
+  setUserName
+} from '@/utils/auth'
 
 const router = useRouter()
 
@@ -108,7 +115,11 @@ const handleLogin = async () => {
     if (params.remember) {
       setUserName(params.username)
       setPassword(params.password)
+    } else {
+      removeUserName()
+      removePassword()
     }
+
     delete params.remember
 
     await useUserStore().login(params)
@@ -119,7 +130,11 @@ const handleLogin = async () => {
 }
 
 const forget = () => {
-  ElMessage.info('请联系管理员')
+  ElMessage({
+    message: '请联系管理员',
+    type: 'info',
+    plain: true
+  })
 }
 
 async function getCaptcha() {

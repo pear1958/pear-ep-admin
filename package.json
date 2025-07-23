@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
-    "@element-plus/icons-vue": "^2.1.0",
+    "@element-plus/icons-vue": "^2.3.1",
     "@vue-office/docx": "1.6.0",
     "@vue-office/excel": "^1.7.2",
     "@wangeditor/editor": "^5.1.23",
@@ -30,7 +30,7 @@
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
     "el-table-infinite-scroll": "^3.0.3",
-    "element-plus": "^2.3.14",
+    "element-plus": "^2.10.4",
     "hotkeys-js": "^3.10.2",
     "js-cookie": "^3.0.5",
     "jszip": "^3.10.1",
