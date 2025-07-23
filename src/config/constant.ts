@@ -9,3 +9,7 @@ export const UPLOAD_HEADERS = {
 }
 
 export const TOKEN_KEY = 'ticket'
+
+export const PEAR_USER_NAME = 'pear_user_name'
+
+export const PEAR_PASSWORD = 'pear_password'

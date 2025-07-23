@@ -19,6 +19,7 @@
             :prefix-icon="Lock"
             placeholder="密码"
             size="large"
+            show-password
           />
         </el-form-item>
 
@@ -67,11 +68,14 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { FormRules } from 'element-plus'
 import { User, Lock, Aim } from '@element-plus/icons-vue'
 import useUserStore from '@/store/modules/user'
 import { getLoginCode } from '@/api/modules/auth'
 import { title } from '@/utils'
+
+const router = useRouter()
 
 const formState = reactive({
   username: 'Admin',
@@ -105,6 +109,10 @@ const handleLogin = async () => {
     const params = { ...formState }
     delete params.remember
     await useUserStore().login(params)
+    if (formState.remember) {
+      // xxxxxxxxxx
+    }
+    router.replace('/home')
   } finally {
     loading.value = false
   }

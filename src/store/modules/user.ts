@@ -28,7 +28,6 @@ const useUserStore = defineStore({
         login(params)
           .then(({ data }) => {
             setToken(data.token)
-            router.replace('/home')
             resolve()
           })
           .catch(() => {
