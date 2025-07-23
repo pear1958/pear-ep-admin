@@ -67,14 +67,17 @@ export default defineComponent({
             test1: 'aaa',
             test2: 'bbb'
           }}
+          fields={{
+            // pageNumField: 'current',
+            // dataField: 'list.data',
+            // totalField: 'total'
+            dataField: null,
+            totalField: 'length'
+          }}
+          // pagination={false}
           // customToolbar={<div>222</div>}
           // tableProps={{
           //   onSelectionChange: (val: Recordable[]) => console.log('check-val', val)
-          // }}
-          // fields={{
-          //   pageNumField: 'current',
-          //   dataField: 'list.data',
-          //   totalField: 'total'
           // }}
           // beforeSearch={beforeSearch}
           // success={success}

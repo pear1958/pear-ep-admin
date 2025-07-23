@@ -1,8 +1,14 @@
 import { reactive, ref, unref } from 'vue'
 import { FormInstance } from 'element-plus'
 import { cloneDeep } from 'lodash-es'
-import { getValueByCasKey, isFunction } from 'pear-common-utils'
+import { isEmpty, isFunction } from 'pear-common-utils'
 import { JsonTableProps } from './type'
+
+const getValueByCasKey = <T = any>(data: Recordable, key: string) => {
+  if (isEmpty(key)) return data as T
+  key.split('.').forEach(key => (data = data[key]))
+  return data as T
+}
 
 export const useTable = (_: JsonTableProps) => {
   const loading = ref(false)
@@ -60,16 +66,15 @@ export const useTable = (_: JsonTableProps) => {
     loading.value = true
 
     try {
-      const data = await _.search(params)
+      let { data } = await _.search(params)
+      console.log('data', data)
       if (!data) return
+      // 第一层数据结构支持自定义
       if (isFunction(_.success)) {
-        const resData = _.success(data)
-        state.tableData = resData.list || []
-        state.total = resData.total || 0
-      } else {
-        state.tableData = getValueByCasKey(data || {}, fields.dataField) || []
-        state.total = getValueByCasKey(data || {}, fields.totalField) || 0
+        data = _.success(data)
       }
+      state.tableData = getValueByCasKey(data || {}, fields.dataField) || []
+      state.total = getValueByCasKey(data || {}, fields.totalField) || 0
     } catch (err) {
       console.log('err', err)
     } finally {
