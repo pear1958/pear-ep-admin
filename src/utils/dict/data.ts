@@ -14,3 +14,19 @@ export const testList = [
     cls: 'text-error'
   }
 ]
+
+export enum UserStatus {
+  Disable = 0,
+  Enabled = 1
+}
+
+export const userStatus = [
+  {
+    label: '启用',
+    value: UserStatus.Enabled
+  },
+  {
+    label: '禁用',
+    value: UserStatus.Disable
+  }
+]

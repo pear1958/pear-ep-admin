@@ -1,20 +1,18 @@
 import { computed, onMounted, ref, unref } from 'vue'
+import { ElMessage } from 'element-plus'
 import { FormItem } from '@/components/JsonForm/type'
 import { formatDate } from '@/utils'
-import { editUser, getUserList } from '@/api/modules/systemManage'
+import { deleteUser, editUser, getUserList } from '@/api/modules/systemManage'
 import { closeDialog, showDialog } from '@/utils/ui/dialog'
-import AddEdit from './AddEdit'
+import UserForm from './UserForm'
 import { confirmModal } from '@/utils/element'
-import { ElMessage } from 'element-plus'
-
-export enum UserStatus {
-  Disable = 0,
-  Enabled = 1
-}
+import { UserStatus } from '@/utils/dict/data'
 
 const useConfig = () => {
   const tableRef = ref()
   const formData = ref<Recordable>({})
+  const selectRows = ref<Recordable[]>([])
+  const hasSelect = computed(() => !!selectRows.value?.length)
 
   onMounted(() => {
     // 建立引用
@@ -27,20 +25,38 @@ const useConfig = () => {
   }
 
   const refresh = () => {
-    // closeDialog()
     unref(tableRef).refresh()
-  }
-
-  const openAddDialog = () => {
-    showDialog(<AddEdit onRefresh={refresh} />, {
-      title: '新增用户',
-      width: 650
-    })
   }
 
   const beforeChange = async (row: Recordable) => {
     await confirmModal(`确认要${row.status === UserStatus.Disable ? '启' : '禁'}用该用户`)
     await editUser({ ...row, status: +!row.status })
+    ElMessage.success('操作成功')
+    refresh()
+  }
+
+  const delUser = async (id: number) => {
+    await confirmModal('确认要删除该用户？')
+    await deleteUser(id)
+    ElMessage.success('操作成功')
+    refresh()
+  }
+
+  const close = () => {
+    refresh()
+    closeDialog()
+  }
+
+  const openAddDialog = () => {
+    showDialog(<UserForm onRefresh={close} />, {
+      title: '新增用户',
+      width: 650
+    })
+  }
+
+  const delSelectUsers = async () => {
+    await confirmModal(`确认要删除？`)
+    // await deleteUser(id)
     ElMessage.success('操作成功')
     refresh()
   }
@@ -205,7 +221,7 @@ const useConfig = () => {
             <el-button type="primary" link>
               编辑
             </el-button>
-            <el-button type="primary" link>
+            <el-button type="primary" link onClick={() => delUser(record)}>
               删除
             </el-button>
           </div>
@@ -220,7 +236,10 @@ const useConfig = () => {
     columns,
     formItems,
     getList,
-    openAddDialog
+    openAddDialog,
+    selectRows,
+    hasSelect,
+    delSelectUsers
   }
 }
 

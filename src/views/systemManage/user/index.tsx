@@ -1,11 +1,20 @@
-import { defineComponent, onMounted, unref } from 'vue'
+import { defineComponent } from 'vue'
 import JsonTable from '@/components/JsonTable'
 import useConfig from './useConfig'
 
 export default defineComponent({
   name: 'UserManage',
   setup() {
-    const { columns, formItems, tableRef, getList, openAddDialog } = useConfig()
+    const {
+      columns,
+      formItems,
+      tableRef,
+      getList,
+      openAddDialog,
+      selectRows,
+      hasSelect,
+      delSelectUsers
+    } = useConfig()
 
     return () => (
       <div class="page-box">
@@ -23,7 +32,10 @@ export default defineComponent({
                 <el-button type="primary" onClick={openAddDialog}>
                   新增
                 </el-button>
-                <el-button type="primary">导出</el-button>
+                <el-button>导出</el-button>
+                <el-button disabled={!hasSelect.value} onClick={delSelectUsers}>
+                  删除
+                </el-button>
               </div>
             )
           }}
@@ -35,6 +47,11 @@ export default defineComponent({
             pageNumField: 'current',
             dataField: 'items',
             totalField: 'meta.totalItems'
+          }}
+          tableProps={{
+            onSelectionChange: (val: Recordable[]) => {
+              selectRows.value = val
+            }
           }}
         />
       </div>
