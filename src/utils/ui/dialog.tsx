@@ -1,6 +1,7 @@
-import { ref, render, unref } from 'vue'
+import { ref, render, unref, createVNode } from 'vue'
 import { DialogProps, ElDialog, ElButton } from 'element-plus'
 import { genUUID } from 'pear-common-utils'
+import { app } from '@/main'
 
 /**
  * 弹窗不显示时, 弹窗内的生命周期不会执行
@@ -30,10 +31,6 @@ const handleClose = async () => {
   result && closeDialog()
 }
 
-/**
- * @param {any} Compo 传入的组件必须是显示导入的组件, 比如ElButton, 而不是el-button
- * https://cn.vuejs.org/api/render-function#resolvecomponent
- */
 export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable) => {
   // 创建div元素
   const div = document.createElement('div')
@@ -67,35 +64,41 @@ export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable
     ...props
   }
 
-  render(
-    <ElDialog {...params}>
-      {{
-        default: () => <Compo ref={dialogRefMap[id]} />,
-        footer: () => {
-          return (
-            <div
-              class="footer-box"
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-            >
-              {props?.hasOwnProperty('footer') ? (
-                props.footer
-              ) : (
-                <>
-                  <ElButton onClick={params.onCancel}>取消</ElButton>
-                  <ElButton type="primary" onClick={params.onConfirm} loading={loading.value}>
-                    确定
-                  </ElButton>
-                </>
-              )}
-            </div>
-          )
-        }
-      }}
-    </ElDialog>,
-    div
-  )
+  // 使用 createVNode 创建节点并关联app上下文
+  const vnode = createVNode(ElDialog, params, {
+    default: () => createVNode(Compo, { ref: dialogRefMap[id] }),
+    footer: () =>
+      createVNode(
+        'div',
+        {
+          class: 'footer-box',
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }
+        },
+        [
+          props?.hasOwnProperty('footer')
+            ? props.footer
+            : [
+                createVNode(ElButton, { onClick: params.onCancel }, () => '取消'),
+                createVNode(
+                  ElButton,
+                  {
+                    type: 'primary',
+                    onClick: params.onConfirm,
+                    loading: loading.value
+                  },
+                  () => '确定'
+                )
+              ]
+        ]
+      )
+  })
+
+  // 关联应用上下文
+  vnode.appContext = app._context
+
+  render(vnode, div)
 }

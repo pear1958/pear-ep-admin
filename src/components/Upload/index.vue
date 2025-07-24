@@ -1,6 +1,6 @@
 <template>
   <div class="upload-box">
-    <ElUpload
+    <el-upload
       v-model:file-list="fileList"
       :list-type="listType"
       :action="uploadAction"
@@ -17,12 +17,12 @@
         'hide-upload-btn': isMaxLimit
       }"
     >
-      <ElIcon v-if="listType === 'picture-card'">
+      <el-icon v-if="listType === 'picture-card'">
         <Plus />
-      </ElIcon>
+      </el-icon>
 
-      <ElButton type="primary" v-else>点击上传</ElButton>
-    </ElUpload>
+      <el-button type="primary" v-else>点击上传</el-button>
+    </el-upload>
 
     <CropperDialog
       ref="cropperRef"
@@ -41,15 +41,7 @@
 <script setup lang="ts">
 import { ref, nextTick, PropType, unref, computed, watch, Ref } from 'vue'
 import { useRouter } from 'vue-router'
-import {
-  ElIcon,
-  ElMessage,
-  UploadFile,
-  UploadRawFile,
-  UploadUserFile,
-  ElButton,
-  ElUpload
-} from 'element-plus'
+import { ElMessage, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { isNumber, isString } from 'pear-common-utils'
 import './index.scss'
@@ -60,7 +52,7 @@ import { ICropperParams, IFile, IUploadResult } from './types'
 import ImgViewer from '../ImgViewer'
 
 defineOptions({
-  name: 'uploadCropper'
+  name: 'Upload'
 })
 
 const props = defineProps({

@@ -24,7 +24,7 @@ import i18n from '@/languages/index'
 // import { startMock } from '@/mock'
 // import { isDev } from './utils'
 
-const app = createApp(App)
+export const app = createApp(App)
 
 // app.config.errorHandler = errorHandler
 

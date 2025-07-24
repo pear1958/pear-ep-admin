@@ -1,7 +1,6 @@
 import { computed, defineComponent, h, reactive, ref } from 'vue'
 import { FormInstance, FormRules } from 'element-plus'
 import { delay } from 'pear-common-utils'
-import { Iconify } from '@/components/Global/components/Icon'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
 import Upload from '@/components/Upload/index.vue'
@@ -76,7 +75,9 @@ export default defineComponent({
 
     const handleSubmit = async () => {
       // mock-api
+      console.log('1111')
       await delay(2000)
+      console.log('222')
       emit('refresh')
       return true
     }
