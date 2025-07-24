@@ -1,6 +1,6 @@
 import { computed, ref, unref } from 'vue'
 import { SearchbarProps, SearchbarItem } from './type'
-import { BreakPoint } from '../Grid/type'
+import { BreakPoint } from '../../Grid/type'
 
 const useSearchbar = (_: SearchbarProps) => {
   // 获取响应式设置

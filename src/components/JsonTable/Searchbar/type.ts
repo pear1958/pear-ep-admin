@@ -1,5 +1,5 @@
 import { ExtractPropTypes } from 'vue'
-import { FormItem } from '../JsonForm/type'
+import { FormItem } from '../../JsonForm/type'
 import { props } from '.'
 
 export type SearchbarProps = ExtractPropTypes<typeof props>

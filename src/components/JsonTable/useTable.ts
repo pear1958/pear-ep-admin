@@ -67,7 +67,6 @@ export const useTable = (_: JsonTableProps) => {
 
     try {
       let { data } = await _.search(params)
-      console.log('data', data)
       if (!data) return
       // 第一层数据结构支持自定义
       if (isFunction(_.success)) {
@@ -87,14 +86,15 @@ export const useTable = (_: JsonTableProps) => {
     state.pageSize = 10
 
     if (unref(searchbarRef)) {
+      // 重置formData
       unref(searchbarRef).reset()
     } else {
       // 没有搜索栏的情况
       Object.keys(formData).forEach(key => {
         delete formData[key]
       })
-      refresh()
     }
+    refresh()
   }
 
   const getFormData = () => formData.value

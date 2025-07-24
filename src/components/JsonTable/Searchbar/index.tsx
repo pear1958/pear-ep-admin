@@ -12,13 +12,13 @@ import {
 import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { cloneDeep } from 'lodash-es'
 import { isEmpty } from 'pear-common-utils'
-import Grid from '../Grid/index.vue'
-import GridItem from '../Grid/GridItem.vue'
-import { BreakPoint } from '../Grid/type'
-import { SearchbarItem } from './type'
-import { FormRef } from '../JsonForm/type'
+import Grid from '@/components/Grid/index.vue'
+import GridItem from '@/components/Grid/GridItem.vue'
+import { BreakPoint } from '@/components/Grid/type'
+import { FormRef } from '@/components/JsonForm/type'
+import useForm from '@/components/JsonForm/useForm'
 import useSearchbar from './useSearchbar'
-import useForm from '../JsonForm/useForm'
+import { SearchbarItem } from './type'
 
 export const props = {
   formItems: {

@@ -1,9 +1,11 @@
-import { computed, ref, unref } from 'vue'
+import { computed, onMounted, ref, unref } from 'vue'
 import { FormItem } from '@/components/JsonForm/type'
 import { formatDate } from '@/utils'
-import { getUserList } from '@/api/modules/systemManage'
+import { editUser, getUserList } from '@/api/modules/systemManage'
 import { closeDialog, showDialog } from '@/utils/ui/dialog'
 import AddEdit from './AddEdit'
+import { confirmModal } from '@/utils/element'
+import { ElMessage } from 'element-plus'
 
 export enum UserStatus {
   Disable = 0,
@@ -14,14 +16,19 @@ const useConfig = () => {
   const tableRef = ref()
   const formData = ref<Recordable>({})
 
+  onMounted(() => {
+    // 建立引用
+    formData.value = unref(tableRef).getFormData()
+  })
+
   const getList = (params: Recordable) => {
     // console.log('params', params)
     return getUserList(params)
   }
 
   const refresh = () => {
-    closeDialog()
-    unref(tableRef).reset()
+    // closeDialog()
+    unref(tableRef).refresh()
   }
 
   const openAddDialog = () => {
@@ -31,8 +38,11 @@ const useConfig = () => {
     })
   }
 
-  const changeStatus = (record: Recordable) => {
-    // xxxxxxxxxxx
+  const beforeChange = async (row: Recordable) => {
+    await confirmModal(`确认要${row.status === UserStatus.Disable ? '启' : '禁'}用该用户`)
+    await editUser({ ...row, status: +!row.status })
+    ElMessage.success('操作成功')
+    refresh()
   }
 
   const formItems = computed<FormItem[]>(() => [
@@ -133,7 +143,7 @@ const useConfig = () => {
       prop: 'email',
       label: '邮箱',
       align: 'center',
-      width: 160
+      width: 180
     },
     {
       prop: 'phone',
@@ -153,14 +163,13 @@ const useConfig = () => {
         if ([UserStatus.Enabled, UserStatus.Disable].includes(record.status)) {
           return (
             <el-switch
-              // row.status === UserStatus.Enabled
               v-model={record.status}
               inline-prompt
               active-text="启用"
               inactive-text="禁用"
               active-value={UserStatus.Enabled}
               inactive-value={UserStatus.Disable}
-              onChange={() => changeStatus(record)}
+              before-change={() => beforeChange(record)}
             />
           )
         }

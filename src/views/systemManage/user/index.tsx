@@ -5,12 +5,7 @@ import useConfig from './useConfig'
 export default defineComponent({
   name: 'UserManage',
   setup() {
-    const { columns, formItems, tableRef, formData, getList, openAddDialog } = useConfig()
-
-    onMounted(() => {
-      // 建立引用
-      formData.value = unref(tableRef).getFormData()
-    })
+    const { columns, formItems, tableRef, getList, openAddDialog } = useConfig()
 
     return () => (
       <div class="page-box">
