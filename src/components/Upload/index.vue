@@ -3,7 +3,7 @@
     <el-upload
       v-model:file-list="fileList"
       :list-type="listType"
-      :action="uploadAction"
+      :action="action"
       :headers="UPLOAD_HEADERS"
       :before-upload="beforeUpload"
       :on-success="handleSucess"
@@ -41,14 +41,14 @@
 <script setup lang="ts">
 import { ref, nextTick, PropType, unref, computed, watch, Ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
+import { ElMessage, UploadFile, UploadRawFile, UploadUserFile, ElUpload } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { isNumber, isString } from 'pear-common-utils'
 import './index.scss'
-import { UPLOAD_URL, UPLOAD_HEADERS } from '@/config/constant'
+import { UPLOAD_HEADERS, UPLOAD_URL } from '@/config/constant'
 import { validSize } from './utils'
 import CropperDialog from './CropperDialog.vue'
-import { ICropperParams, IFile, IUploadResult } from './types'
+import { BindFormat, ICropperParams, IFile, IUploadResult, ListType, FileType } from './types'
 import ImgViewer from '../ImgViewer'
 
 defineOptions({
@@ -57,13 +57,19 @@ defineOptions({
 
 const props = defineProps({
   modelValue: {
-    type: [String, Array], // string | array | null | undefined
+    // string | array | null | undefined
+    type: [String, Array],
     require: true
   },
-  // v-model绑定值的格式
-  format: {
+  // 内部会自动走本地代理
+  action: {
     type: String,
-    default: 'array' // string | array | jsonArray
+    default: UPLOAD_URL
+  },
+  // v-model绑定值的格式
+  bindFormat: {
+    type: String as PropType<BindFormat>,
+    default: 'array'
   },
   // format为string时的分隔符
   separator: {
@@ -71,7 +77,7 @@ const props = defineProps({
     default: ','
   },
   listType: {
-    type: String as PropType<'picture' | 'text' | 'picture-card'>,
+    type: String as PropType<ListType>,
     default: 'picture-card'
   },
   limit: {
@@ -83,7 +89,7 @@ const props = defineProps({
     default: false
   },
   fileType: {
-    type: String as PropType<'img' | 'file' | 'video'>,
+    type: String as PropType<FileType>,
     default: 'img'
   },
   // 上传前需要效验的类型
@@ -113,8 +119,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const uploadAction = import.meta.env.VITE_API_BASE_URL + UPLOAD_URL
-
 const cropperRef = ref()
 
 const fileList: Ref<(IFile | UploadUserFile)[]> = ref([])
@@ -129,11 +133,11 @@ watch(
   () => props.modelValue,
   newVal => {
     // 默认处理成数组的格式
-    if (props.format === 'string' && isString(newVal) && newVal.length) {
+    if (props.bindFormat === 'string' && isString(newVal) && newVal.length) {
       newVal = newVal.split(props.separator)
     }
 
-    if (props.format === 'jsonArray' && isString(newVal) && newVal.length) {
+    if (props.bindFormat === 'jsonArray' && isString(newVal) && newVal.length) {
       try {
         newVal = JSON.parse(newVal)
       } catch (e) {
@@ -229,11 +233,11 @@ const emitData = () => {
     return (item.response as IUploadResult)?.data.url || item.url
   })
 
-  if (props.format === 'string') {
+  if (props.bindFormat === 'string') {
     data = data.join(props.separator)
   }
 
-  if (props.format === 'jsonArray') {
+  if (props.bindFormat === 'jsonArray') {
     data = JSON.stringify(data)
   }
 

@@ -17,3 +17,9 @@ export interface ICropperParams {
   canvasWidth?: number
   canvasHeight?: number
 }
+
+export type BindFormat = 'string' | 'array' | 'jsonArray'
+
+export type ListType = 'picture' | 'text' | 'picture-card'
+
+export type FileType = 'img' | 'file' | 'video'

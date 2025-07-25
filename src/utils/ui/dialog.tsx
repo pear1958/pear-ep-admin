@@ -51,13 +51,17 @@ export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable
       let result = true
       const id = dialogIds[dialogIds.length - 1]
 
-      if (unref(dialogRefMap[id])?.handleSubmit) {
-        result = await unref(dialogRefMap[id]).handleSubmit()
+      try {
+        if (unref(dialogRefMap[id])?.handleSubmit) {
+          result = await unref(dialogRefMap[id]).handleSubmit()
+          if (result) {
+            loading.value = false
+            closeDialog()
+          }
+        }
+      } catch (e) {
+        loading.value = false
       }
-
-      loading.value = false
-      if (!result) return
-      closeDialog()
     },
     beforeClose: handleClose, // 点击关闭按钮或者对话框的遮罩区域时被调用
     onCancel: handleClose, // 点击取消按钮时被调用

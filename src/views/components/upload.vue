@@ -26,7 +26,7 @@
       <template #header>
         <span>绑定值为字符串, 逗号(,)分割</span>
       </template>
-      <Upload v-model="form.imgList2" format="string" @change="onChange" />
+      <Upload v-model="form.imgList2" bindFormat="string" @change="onChange" />
       <div class="mt-1">
         <div>绑定的数据：</div>
         <div class="mt-1 break-words">{{ form.imgList2 }}</div>
@@ -37,7 +37,7 @@
       <template #header>
         <span>绑定值为字符串数组</span>
       </template>
-      <Upload v-model="form.imgList3" format="jsonArray" @change="onChange" />
+      <Upload v-model="form.imgList3" bindFormat="jsonArray" @change="onChange" />
       <div class="mt-1">
         <div>绑定的数据：</div>
         <div class="mt-1">{{ form.imgList3 }}</div>

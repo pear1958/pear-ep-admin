@@ -1,10 +1,10 @@
 import { computed, defineComponent, h, reactive, ref } from 'vue'
-import { FormInstance, FormRules } from 'element-plus'
+import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import { delay } from 'pear-common-utils'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
 import Upload from '@/components/Upload/index.vue'
-import { getDeptList, getRoleList } from '@/api/modules/systemManage'
+import { createUser, getDeptList, getRoleList } from '@/api/modules/systemManage'
 import { convertToTree } from '@/utils'
 import { UserStatus, userStatus } from '@/utils/dict/data'
 
@@ -45,7 +45,7 @@ export default defineComponent({
         type: 'component',
         label: '头像：',
         field: 'avatar',
-        component: <Upload v-model={formData.value.avatar} limit={1} />
+        component: <Upload v-model={formData.value.avatar} limit={1} bindFormat="string" />
       },
       {
         type: 'tree-select',
@@ -87,7 +87,6 @@ export default defineComponent({
         label: '用户名：',
         field: 'username',
         attrs: {
-          maxlength: 12,
           placeholder: '请输入用户名'
         },
         rules: [
@@ -95,7 +94,8 @@ export default defineComponent({
             required: true,
             message: '请输入用户名',
             trigger: 'change'
-          }
+          },
+          { min: 2, max: 12, message: 'Length should be 2 to 12', trigger: 'blur' }
         ]
       },
       {
@@ -163,24 +163,12 @@ export default defineComponent({
       }
     ])
 
-    const rules = reactive<FormRules>({
-      // dvrId: [
-      //   { required: true, message: '请输入设备号', trigger: 'blur' },
-      //   { min: 3, max: 60, message: 'Length should be 3 to 60', trigger: 'blur' }
-      // ],
-      avatar: [
-        {
-          required: true,
-          message: '请上传头像'
-        }
-      ]
-    })
-
     const handleSubmit = async () => {
-      // mock-api
-      console.log('1111')
+      console.log('formData.value', formData.value)
+      const params = { ...formData.value }
       await delay(2000)
-      console.log('222')
+      await createUser(params)
+      ElMessage.success('操作成功')
       emit('refresh')
       return true
     }
