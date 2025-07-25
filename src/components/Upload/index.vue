@@ -41,7 +41,14 @@
 <script setup lang="ts">
 import { ref, nextTick, PropType, unref, computed, watch, Ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage, UploadFile, UploadRawFile, UploadUserFile, ElUpload } from 'element-plus'
+import {
+  ElMessage,
+  UploadFile,
+  UploadRawFile,
+  UploadUserFile,
+  ElUpload,
+  UploadProps
+} from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { isNumber, isString } from 'pear-common-utils'
 import { UPLOAD_URL, getUploadHeader } from '@/config/constant'
@@ -257,24 +264,16 @@ const emitData = () => {
 }
 
 const handleSucess = (res: IUploadResult, uploadFile: UploadFile) => {
-  // console.log('fileList', unref(fileList))
-
   if (!String(res?.code).startsWith('2')) {
     ElMessage.error(res.msg || '服务器开小差了, 请稍后再试')
-
-    unref(fileList).forEach((item, index) => {
-      if (item.uid === uploadFile.uid) {
-        unref(fileList).splice(index, 1)
-      }
-    })
-
+    fileList.value = fileList.value.filter(item => item.uid !== uploadFile.uid)
     return
   }
-
   emitData()
 }
 
-const handleRemove = () => {
+const handleRemove: UploadProps['onRemove'] = uploadFile => {
+  fileList.value = fileList.value.filter(item => item.uid !== uploadFile.uid)
   emitData()
 }
 
