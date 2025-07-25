@@ -39,10 +39,6 @@ export default defineComponent({
               </div>
             )
           }}
-          extraParams={{
-            test1: 'aaa',
-            test2: 'bbb'
-          }}
           fields={{
             pageNumField: 'current',
             dataField: 'items',

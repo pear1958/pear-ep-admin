@@ -12,8 +12,8 @@ export const createUser = (data: Recordable) => {
   return http.post('/system/user', data)
 }
 
-export const editUser = (params: Recordable) => {
-  return http.put(`/system/user/${params.id}`, params)
+export const editUser = (id: number, params: Recordable) => {
+  return http.put(`/system/user/${id}`, params)
 }
 
 export const getUserDetail = (id: number) => {

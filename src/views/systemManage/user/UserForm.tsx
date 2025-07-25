@@ -14,6 +14,7 @@ import {
 } from '@/api/modules/systemManage'
 import { convertToTree } from '@/utils'
 import { UserStatus, userStatus } from '@/utils/dict/data'
+import { closeDialog } from '@/utils/ui/dialog'
 
 export default defineComponent({
   name: 'UserForm',
@@ -62,7 +63,6 @@ export default defineComponent({
 
         formData.value[key] = data[key]
       })
-      console.log('formData.value', formData.value)
     }
 
     const getData = () => {
@@ -202,19 +202,18 @@ export default defineComponent({
       await unref(formRef).validate(async valid => {
         if (!valid) return
         const params = cloneDeep(formData.value)
-
         await delay(2000)
 
         if (!_.id) {
           await createUser(params)
         } else {
-          // params.id = _.id
           if (!params.password) delete params.password
-          await editUser(params)
+          await editUser(_.id, params)
         }
 
         ElMessage.success('操作成功')
         emit('refresh')
+        closeDialog()
       })
     }
 

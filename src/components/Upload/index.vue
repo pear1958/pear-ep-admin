@@ -139,13 +139,15 @@ const isMaxLimit = ref(false)
 const showViewer = ref(false)
 const initIndex = ref(0)
 
-const imgList = computed(() =>
-  unref(fileList).map(item => {
-    // item.url 本地地址
+const imgList = computed(() => {
+  return unref(fileList).map(item => {
+    // 上传的时候 item.url 为本地地址
+    // 回显的时候 item.url 为真实地址
+    if (!Reflect.hasOwnProperty('response')) return item.url
     const res = item.response as IUploadResult
     return res?.data[props.pathKey]
   })
-)
+})
 
 watch(
   () => props.modelValue,

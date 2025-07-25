@@ -48,19 +48,15 @@ export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable
     modelValue: true, // 可见
     onConfirm: async () => {
       loading.value = true
-      let result = true
       const id = dialogIds[dialogIds.length - 1]
 
       try {
         if (unref(dialogRefMap[id])?.handleSubmit) {
-          result = await unref(dialogRefMap[id]).handleSubmit()
-          if (result) {
-            loading.value = false
-            closeDialog()
-          }
+          await unref(dialogRefMap[id]).handleSubmit()
         }
+      } catch (err) {
+        // console.log('err', err)
       } finally {
-        console.log('result', result)
         loading.value = false
       }
     },
