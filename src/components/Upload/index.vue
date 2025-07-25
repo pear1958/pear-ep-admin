@@ -4,7 +4,7 @@
       v-model:file-list="fileList"
       :list-type="listType"
       :action="action"
-      :headers="UPLOAD_HEADERS"
+      :headers="uploadHeader"
       :before-upload="beforeUpload"
       :on-success="handleSucess"
       :on-remove="handleRemove"
@@ -44,8 +44,7 @@ import { useRouter } from 'vue-router'
 import { ElMessage, UploadFile, UploadRawFile, UploadUserFile, ElUpload } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { isNumber, isString } from 'pear-common-utils'
-import './index.scss'
-import { UPLOAD_HEADERS, UPLOAD_URL } from '@/config/constant'
+import { UPLOAD_URL, getUploadHeader } from '@/config/constant'
 import { validSize } from './utils'
 import CropperDialog from './CropperDialog.vue'
 import { BindFormat, ICropperParams, IFile, IUploadResult, ListType, FileType } from './types'
@@ -114,10 +113,17 @@ const props = defineProps({
   cropperParams: {
     type: Object as PropType<ICropperParams>,
     default: () => ({}) as ICropperParams
+  },
+  // 接口返回的文件路径 key
+  pathKey: {
+    type: String,
+    default: 'path'
   }
 })
 
 const emit = defineEmits(['update:modelValue', 'change'])
+
+const uploadHeader = getUploadHeader()
 
 const cropperRef = ref()
 
@@ -125,9 +131,14 @@ const fileList: Ref<(IFile | UploadUserFile)[]> = ref([])
 const isMaxLimit = ref(false)
 const showViewer = ref(false)
 const initIndex = ref(0)
-const imgList = computed(() => {
-  return unref(fileList).map(item => (item.response as IUploadResult)?.data?.url || item.url)
-})
+
+const imgList = computed(() =>
+  unref(fileList).map(item => {
+    // item.url 本地地址
+    const res = item.response as IUploadResult
+    return res?.data[props.pathKey]
+  })
+)
 
 watch(
   () => props.modelValue,
@@ -159,7 +170,6 @@ watch(
         name: url.slice(url.lastIndexOf('/') + 1), // fileName
         url
       }))
-
       checkIsMaxLimit()
     }
   },
@@ -230,7 +240,8 @@ const emitData = () => {
   checkIsMaxLimit()
 
   let data: string | string[] = unref(fileList).map(item => {
-    return (item.response as IUploadResult)?.data.url || item.url
+    const res = item.response as IUploadResult
+    return res?.data[props.pathKey]
   })
 
   if (props.bindFormat === 'string') {
@@ -241,14 +252,12 @@ const emitData = () => {
     data = JSON.stringify(data)
   }
 
-  // console.log('--data--', data)
-
   emit('update:modelValue', data)
   emit('change', data)
 }
 
 const handleSucess = (res: IUploadResult, uploadFile: UploadFile) => {
-  console.log('res', res)
+  // console.log('fileList', unref(fileList))
 
   if (!String(res?.code).startsWith('2')) {
     ElMessage.error(res.msg || '服务器开小差了, 请稍后再试')
@@ -273,7 +282,7 @@ const router = useRouter()
 
 const handlePreview = (file: IFile) => {
   if (props.listType === 'text') {
-    const url = file.response?.data?.url || file.url
+    const url = file.response?.data[props.pathKey] || file.url
     const lastIndex = url.lastIndexOf('.')
     const suffix = url.slice(lastIndex)
 
@@ -309,3 +318,7 @@ const onCropperConfirm = (file: { name: string; url: string }) => {
   emitData()
 }
 </script>
+
+<style lang="scss">
+@import './index.scss';
+</style>

@@ -16,7 +16,7 @@ import { onBeforeUnmount, ref, shallowRef, unref, watch, watchEffect } from 'vue
 import { ElMessage } from 'element-plus'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
-import { UPLOAD_HEADERS, UPLOAD_URL } from '@/config/constant'
+import { UPLOAD_URL, getUploadHeader } from '@/config/constant'
 
 defineOptions({
   name: 'wangEditor'
@@ -53,7 +53,7 @@ const editorConfig = ref({
       allowedFileTypes: [],
       // 自定义增加 http-header
       headers: {
-        ...UPLOAD_HEADERS
+        ...getUploadHeader()
       },
       // 跨域是否传递 cookie ，默认为 false
       withCredentials: true,

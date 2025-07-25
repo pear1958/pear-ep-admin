@@ -3,12 +3,12 @@
     <Upload
       v-model:file-list="fileList"
       v-model:active-index="activeIndex"
-      :action="uploadAction"
+      :action="UPLOAD_URL"
       :before-upload="beforeUpload"
       :on-change="onChange"
       :on-success="onSuccess"
       :on-error="onError"
-      :headers="UPLOAD_HEADERS"
+      :headers="uploadHeader"
       showReplace
       showActive
     />
@@ -21,13 +21,13 @@ import { ElMessage } from 'element-plus'
 import { AxiosError } from 'axios'
 import Upload from '@/components/UI/Upload/index.vue'
 import type { UploadFile } from '@/components/UI/Upload/types'
-import { UPLOAD_URL, UPLOAD_HEADERS } from '@/config/constant'
+import { UPLOAD_URL, getUploadHeader } from '@/config/constant'
 
 // const fileList: Ref<UploadFile[]> = ref([
 //   { name: '111', src: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF' }
 // ])
 
-const uploadAction = import.meta.env.VITE_API_BASE_URL + UPLOAD_URL
+const uploadHeader = getUploadHeader()
 
 const fileList: Ref<UploadFile[]> = ref([])
 
@@ -69,4 +69,3 @@ const onError = (err: AxiosError, file: UploadFile) => {
   height: 700px;
 }
 </style>
-@/components/uploadImg/types

@@ -1,5 +1,5 @@
-import { computed, defineComponent, h, reactive, ref } from 'vue'
-import { ElMessage, FormInstance, FormRules } from 'element-plus'
+import { computed, defineComponent, ref } from 'vue'
+import { ElMessage, FormInstance } from 'element-plus'
 import { delay } from 'pear-common-utils'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
@@ -164,7 +164,7 @@ export default defineComponent({
     ])
 
     const handleSubmit = async () => {
-      console.log('formData.value333', formData.value)
+      console.log('formData', formData.value)
       const params = { ...formData.value }
       await delay(2000)
       await createUser(params)

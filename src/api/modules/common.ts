@@ -1,11 +1,11 @@
 import http from '@/api'
-import { UPLOAD_HEADERS, UPLOAD_URL } from '@/config/constant'
+import { UPLOAD_URL, getUploadHeader } from '@/config/constant'
 
 export const uploadFile = (formData: Recordable) => {
   return http.post(UPLOAD_URL, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      ...UPLOAD_HEADERS
+      ...getUploadHeader()
     }
   })
 }
