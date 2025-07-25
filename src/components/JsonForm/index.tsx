@@ -94,6 +94,7 @@ export default defineComponent({
 
     const setInitValue = () => {
       _.formItems.forEach(item => {
+        formData[item.field] = undefined
         if (item.initValue !== undefined) {
           formData[item.field] = item.initValue
         }

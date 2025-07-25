@@ -47,9 +47,9 @@ const useConfig = () => {
     closeDialog()
   }
 
-  const openAddDialog = () => {
-    showDialog(<UserForm onRefresh={close} />, {
-      title: '新增用户',
+  const openUserDialog = (id?: string) => {
+    showDialog(<UserForm onRefresh={close} id={id} />, {
+      title: `${!id ? '新增' : '编辑'}用户`,
       width: 650
     })
   }
@@ -118,6 +118,23 @@ const useConfig = () => {
       label: '序号',
       align: 'center',
       width: 70
+    },
+    {
+      prop: 'avatar',
+      label: '头像',
+      align: 'center',
+      width: 120,
+      customRender({ text: url }) {
+        if (!url) return '-'
+        return (
+          <el-image
+            src={url}
+            style={{ width: '60px', height: '60px', borderRadius: '50%' }}
+            preview-src-list={[url]}
+            z-index={99}
+          />
+        )
+      }
     },
     {
       prop: 'username',
@@ -218,7 +235,7 @@ const useConfig = () => {
       customRender({ record }) {
         return (
           <div>
-            <el-button type="primary" link>
+            <el-button type="primary" link onClick={() => openUserDialog(record.id)}>
               编辑
             </el-button>
             <el-button type="primary" link onClick={() => delUser(record)}>
@@ -236,7 +253,7 @@ const useConfig = () => {
     columns,
     formItems,
     getList,
-    openAddDialog,
+    openUserDialog,
     selectRows,
     hasSelect,
     delSelectUsers

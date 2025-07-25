@@ -16,8 +16,12 @@ export const editUser = (params: Recordable) => {
   return http.put(`/system/user/${params.id}`, params)
 }
 
+export const getUserDetail = (id: number) => {
+  return http.get(`/system/user/${id}`)
+}
+
 export const deleteUser = (id: number) => {
-  return http.delete(`/system/user/${id}`, { id })
+  return http.delete(`/system/user/${id}`)
 }
 
 export const getRoleList = () => {

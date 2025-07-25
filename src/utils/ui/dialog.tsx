@@ -59,7 +59,8 @@ export const showDialog = (Compo: any, props?: Partial<DialogProps> & Recordable
             closeDialog()
           }
         }
-      } catch (e) {
+      } finally {
+        console.log('result', result)
         loading.value = false
       }
     },

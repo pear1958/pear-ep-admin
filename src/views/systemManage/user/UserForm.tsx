@@ -1,18 +1,31 @@
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, unref } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
+import { cloneDeep } from 'lodash-es'
 import { delay } from 'pear-common-utils'
 import JsonForm from '@/components/JsonForm'
 import { FormItem } from '@/components/JsonForm/type'
 import Upload from '@/components/Upload/index.vue'
-import { createUser, getDeptList, getRoleList } from '@/api/modules/systemManage'
+import {
+  createUser,
+  getDeptList,
+  getRoleList,
+  getUserDetail,
+  editUser
+} from '@/api/modules/systemManage'
 import { convertToTree } from '@/utils'
 import { UserStatus, userStatus } from '@/utils/dict/data'
 
 export default defineComponent({
   name: 'UserForm',
   emits: ['refresh'],
+  props: {
+    id: {
+      type: Number,
+      default: null
+    }
+  },
   setup(_, { emit, expose }) {
-    const formRef = ref()
+    const formRef = ref<FormInstance>()
     const getFormInstance = (ins: FormInstance) => {
       formRef.value = ins
     }
@@ -33,12 +46,32 @@ export default defineComponent({
       }))
     }
 
-    getOptions()
+    const getDetail = async () => {
+      const { data } = await getUserDetail(_.id)
 
-    function getOptions() {
+      Object.keys(formData.value).forEach(key => {
+        if (key === 'deptId') {
+          formData.value.deptId = data.dept?.id
+          return
+        }
+
+        if (key === 'roleIds') {
+          formData.value.roleIds = data.roles?.map((_: Recordable) => _.id)
+          return
+        }
+
+        formData.value[key] = data[key]
+      })
+      console.log('formData.value', formData.value)
+    }
+
+    const getData = () => {
+      if (_.id) getDetail()
       getDeptOptions()
       getRoleOptions()
     }
+
+    getData()
 
     const formItems = computed<FormItem[]>(() => [
       {
@@ -103,17 +136,19 @@ export default defineComponent({
         label: '密码：',
         field: 'password',
         attrs: {
-          placeholder: '请输入密码',
+          placeholder: !_.id ? '请输入密码' : '无需修改请留空',
           'show-password': true,
           clearable: true
         },
-        rules: [
-          {
-            required: true,
-            message: '请输入密码',
-            trigger: 'change'
-          }
-        ]
+        rules: !_.id
+          ? [
+              {
+                required: true,
+                message: '请输入密码',
+                trigger: 'change'
+              }
+            ]
+          : []
       },
       {
         type: 'input',
@@ -164,13 +199,23 @@ export default defineComponent({
     ])
 
     const handleSubmit = async () => {
-      console.log('formData', formData.value)
-      const params = { ...formData.value }
-      await delay(2000)
-      await createUser(params)
-      ElMessage.success('操作成功')
-      emit('refresh')
-      return true
+      await unref(formRef).validate(async valid => {
+        if (!valid) return
+        const params = cloneDeep(formData.value)
+
+        await delay(2000)
+
+        if (!_.id) {
+          await createUser(params)
+        } else {
+          // params.id = _.id
+          if (!params.password) delete params.password
+          await editUser(params)
+        }
+
+        ElMessage.success('操作成功')
+        emit('refresh')
+      })
     }
 
     expose({

@@ -10,7 +10,7 @@ export default defineComponent({
       formItems,
       tableRef,
       getList,
-      openAddDialog,
+      openUserDialog,
       selectRows,
       hasSelect,
       delSelectUsers
@@ -29,7 +29,7 @@ export default defineComponent({
             title: '用户管理',
             buttons: (
               <div>
-                <el-button type="primary" onClick={openAddDialog}>
+                <el-button type="primary" onClick={() => openUserDialog()}>
                   新增
                 </el-button>
                 <el-button>导出</el-button>
