@@ -164,7 +164,7 @@ export default defineComponent({
     ])
 
     const handleSubmit = async () => {
-      console.log('formData.value', formData.value)
+      console.log('formData.value333', formData.value)
       const params = { ...formData.value }
       await delay(2000)
       await createUser(params)
