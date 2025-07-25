@@ -207,8 +207,10 @@ export default defineComponent({
         if (!_.id) {
           await createUser(params)
         } else {
+          params.id = _.id
+          // 编辑的时候可以不传
           if (!params.password) delete params.password
-          await editUser(_.id, params)
+          await editUser(params)
         }
 
         ElMessage.success('操作成功')

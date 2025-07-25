@@ -131,7 +131,7 @@ const useConfig = () => {
             src={url}
             style={{ width: '60px', height: '60px', borderRadius: '50%' }}
             preview-src-list={[url]}
-            z-index={99}
+            preview-teleported
           />
         )
       }
