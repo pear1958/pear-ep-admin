@@ -94,38 +94,37 @@ export default defineComponent({
       handleCurrentChange,
       handleSizeChange,
       refresh,
+      search,
+      _reset,
       reset,
       formRef,
-      searchbarRef,
       getFormInstance,
       formData,
       getFormData,
-      handleSearch
     } = useTable(_)
 
     if (_.autoSearch) refresh()
 
     expose({
       formRef,
-      searchbarRef,
       getFormData,
       refresh,
-      reset,
-      handleSearch
+      search,
+      reset
     })
 
     return () => (
       <div class="json-table">
         {_.showSearch && (
           <Searchbar
-            ref={searchbarRef}
             class="form"
             label-width="120px"
             getFormInstance={getFormInstance}
             // 可以覆盖上面的默认值
             {..._.searchbarProps}
             v-model:formData={formData.value}
-            onSearch={handleSearch}
+            onSearch={search}
+            onReset={_reset}
           />
         )}
 

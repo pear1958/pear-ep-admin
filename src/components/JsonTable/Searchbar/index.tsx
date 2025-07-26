@@ -133,9 +133,8 @@ export default defineComponent({
       Object.keys(formData).forEach(key => {
         delete formData[key]
       })
-      // 异步初始值需要在父组件再次调用
       setInitValue()
-      emit('reset', formData)
+      emit('reset')
     }
 
     expose({

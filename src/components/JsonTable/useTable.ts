@@ -37,6 +37,8 @@ export const useTable = (_: JsonTableProps) => {
 
   const fields = Object.assign({}, defaultFields, _.fields)
 
+  const getFormData = () => formData.value
+
   const handleCurrentChange = (val: number) => {
     state.pageNum = val
     refresh()
@@ -81,12 +83,22 @@ export const useTable = (_: JsonTableProps) => {
     }
   }
 
-  const reset = () => {
+  // 点击搜索按钮
+  const search = () => {
+    state.pageNum = 1
+    refresh()
+  }
+
+  const _reset = () => {
     state.pageNum = 1
     state.pageSize = 10
+    refresh()
+  }
 
+  // 供外界手动重置的场景
+  const reset = () => {
     if (unref(searchbarRef)) {
-      // 重置formData
+      // 重置formData - 并触发 _reset
       unref(searchbarRef).reset()
     } else {
       // 没有搜索栏的情况
@@ -94,29 +106,20 @@ export const useTable = (_: JsonTableProps) => {
         delete formData[key]
       })
     }
-    refresh()
-  }
-
-  const getFormData = () => formData.value
-
-  // 点击搜索按钮
-  const handleSearch = () => {
-    state.pageNum = 1
-    refresh()
   }
 
   return {
     loading,
     state,
     formData,
+    formRef,
+    getFormInstance,
+    getFormData,
     handleCurrentChange,
     handleSizeChange,
     refresh,
+    search,
     reset,
-    formRef,
-    searchbarRef,
-    getFormInstance,
-    handleSearch,
-    getFormData
+    _reset
   }
 }
