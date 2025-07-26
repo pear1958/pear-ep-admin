@@ -29,7 +29,7 @@ export const useTable = (_: JsonTableProps) => {
   }
 
   const defaultFields = {
-    pageNumField: 'pageNum',
+    pageNumField: 'page',
     pageSizeField: 'pageSize',
     dataField: 'list',
     totalField: 'total'

@@ -40,7 +40,6 @@ export default defineComponent({
             )
           }}
           fields={{
-            pageNumField: 'current',
             dataField: 'items',
             totalField: 'meta.totalItems'
           }}
@@ -48,6 +47,9 @@ export default defineComponent({
             onSelectionChange: (val: Recordable[]) => {
               selectRows.value = val
             }
+          }}
+          paginationProps={{
+            'page-sizes': [2, 10, 50, 100]
           }}
         />
       </div>

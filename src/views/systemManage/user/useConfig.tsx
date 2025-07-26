@@ -144,7 +144,8 @@ const useConfig = () => {
     {
       prop: 'nickname',
       label: '昵称',
-      align: 'center'
+      align: 'center',
+      width: 120
     },
     {
       prop: 'dept',
@@ -186,7 +187,8 @@ const useConfig = () => {
     {
       prop: 'remark',
       label: '备注',
-      align: 'center'
+      align: 'center',
+      width: 180
     },
     {
       prop: 'status',
