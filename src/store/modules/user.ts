@@ -36,14 +36,17 @@ const useUserStore = defineStore({
           })
       })
     },
+    resetData() {
+      removeToken()
+      useLockStore().resetLockInfo()
+      usePermissionStore().$reset()
+      this.$reset()
+    },
     logout(): Promise<void> {
       return new Promise(async (resolve, reject) => {
         logout()
           .then(() => {
-            removeToken()
-            useLockStore().resetLockInfo()
-            usePermissionStore().$reset()
-            this.$reset()
+            this.resetData()
             router.push('/login')
             resolve()
           })

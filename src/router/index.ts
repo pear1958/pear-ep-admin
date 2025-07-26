@@ -34,7 +34,7 @@ const router = createRouter({
   // }
 })
 
-function getAuthData() {
+const getAuthData = () => {
   return new Promise((resolve, reject) => {
     Promise.all([
       usePermissionStore().getAuthMenu(),
@@ -167,7 +167,7 @@ router.beforeEach(async (to, from, next) => {
       }
     } catch (error) {
       console.log('error', error)
-      localStorage.clear()
+      useUserStore().resetData()
       return next(LOGIN_PATH)
     }
   }
