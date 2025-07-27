@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
-import { isObject } from 'pear-common-utils'
+import { genUUID, isObject } from 'pear-common-utils'
 import router from '@/router'
 import { httpResEnum } from '@/enums/httpEnum'
 import { checkStatus } from './utils/checkStatus'
@@ -8,16 +8,24 @@ import { Config, CustomAxiosRequestConfig, ResultData } from './types'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
 import { AxiosCanceler } from './utils/axiosCancel'
 import { getToken, removeToken, setToken } from '@/utils/auth'
+import { cryptoService } from './utils/encrypt'
+import { openCrypto } from '@/utils'
 
 const axiosCanceler = new AxiosCanceler()
 
 const config = {
   baseURL: import.meta.env.VITE_BASE_URL,
   timeout: httpResEnum.TIMEOUT,
-  fullRes: false
-  // headers: {
-  //   adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
-  // }
+  fullRes: false,
+  headers: {
+    // adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
+    // 'Content-Type': 'application/json',
+    'trace-id': genUUID()
+  }
+}
+
+if (openCrypto) {
+  config.headers['X-Encrypted'] = true
 }
 
 class Http {
@@ -40,6 +48,13 @@ class Http {
 
         if (token) config.headers.Authorization = `Bearer ${token}`
 
+        // 对请求数据进行加密
+        if (openCrypto && config.data) {
+          config.data = {
+            encryptedData: cryptoService.encrypt(config.data)
+          }
+        }
+
         return config
       },
       (error: AxiosError) => {
@@ -50,7 +65,12 @@ class Http {
     // 响应拦截器
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
-        const { data } = response
+        let { data } = response
+
+        // 对响应数据进行解密
+        if (openCrypto && data?.encryptedData) {
+          data = cryptoService.decrypt(data.encryptedData)
+        }
 
         // 在请求结束后, 移除本次请求
         // axiosCanceler.removePending(config)

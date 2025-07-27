@@ -1,5 +1,13 @@
 import http from '..'
 
+export const getPublicKey = () => {
+  return http.get('/auth/publicKey')
+}
+
+export const exchangeKey = (params: Recordable) => {
+  return http.post('/auth/publicKey', params)
+}
+
 export const getLoginCode = (params: { width?: number; height?: number }) => {
   return http.get('/auth/captcha/img', params)
 }
