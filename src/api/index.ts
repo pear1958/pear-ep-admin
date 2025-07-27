@@ -8,7 +8,7 @@ import { Config, CustomAxiosRequestConfig, ResultData } from './types'
 import { hideFullScreenLoading, showFullScreenLoading } from './utils/fullScreenLoading'
 import { AxiosCanceler } from './utils/axiosCancel'
 import { getToken, removeToken, setToken } from '@/utils/auth'
-import { cryptoService } from './utils/encrypt'
+import encryptService from './utils/encrypt'
 import { openCrypto } from '@/utils'
 
 const axiosCanceler = new AxiosCanceler()
@@ -50,9 +50,8 @@ class Http {
 
         // 对请求数据进行加密
         if (openCrypto && config.data) {
-          config.data = {
-            encryptedData: cryptoService.encrypt(config.data)
-          }
+          const { encryptData, iv } = encryptService.encrypt(config.data)
+          config.data = { encryptData, iv }
         }
 
         return config
@@ -68,8 +67,8 @@ class Http {
         let { data } = response
 
         // 对响应数据进行解密
-        if (openCrypto && data?.encryptedData) {
-          data = cryptoService.decrypt(data.encryptedData)
+        if (openCrypto && data?.encryptData && data?.iv) {
+          data = encryptService.decrypt(data.encryptData, data.iv)
         }
 
         // 在请求结束后, 移除本次请求

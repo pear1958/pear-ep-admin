@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, App as VueApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import pinia from './store'
@@ -20,16 +20,25 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 
 // import errorHandler from '@/utils/errorHandler'
 import i18n from '@/languages/index'
+import encryptService from './api/utils/encrypt'
 
 // import { startMock } from '@/mock'
 // import { isDev } from './utils'
 
-export const app = createApp(App)
+export let app: VueApp
 
-// app.config.errorHandler = errorHandler
+const bootstrap = async () => {
+  try {
+    await encryptService.init()
+    app = createApp(App)
+    // app.config.errorHandler = errorHandler
+    // setupElementPlus(app)
+    app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
+    // if (isDev) startMock()
+  } catch (error) {
+    console.error('启动失败:', error)
+    alert('初始化失败，请刷新页面')
+  }
+}
 
-// setupElementPlus(app)
-
-app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
-
-// if (isDev) startMock()
+bootstrap()

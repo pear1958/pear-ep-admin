@@ -88,4 +88,6 @@ export class EncryptService {
   }
 }
 
-export const encryptService = new EncryptService()
+const encryptService = new EncryptService()
+
+export default encryptService
