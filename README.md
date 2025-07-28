@@ -1,9 +1,5 @@
 ## pear-ep-admin
 
-#### 私活
-
-- 有私活的老板, 欢迎骚扰
-
 #### 简介
 
 `pear-ep-admin` 是一款开源免费的中后台管理系统模版, 使用最新的 `Vue3`、`Vite`、`Ts`、`element-plus`、`Pinia`、`tailwindcss` 等主流技术开发
@@ -16,6 +12,10 @@
 
 - 开发时使用的是19.1.0
 - 说明: lint-staged v15 版本需要 Node大于18.12.0 https://github.com/lint-staged/lint-staged
+
+#### 跳过效验
+
+- git commit -m "你的提交信息" --no-verify
 
 #### 登录相关
 
