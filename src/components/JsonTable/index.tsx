@@ -79,6 +79,14 @@ export const props = {
   paginationSlots: {
     type: Object as PropType<Recordable<() => JsxNode>>,
     default: () => null
+  },
+  pageNum: {
+    type: Number,
+    default: 1
+  },
+  pageSize: {
+    type: Number,
+    default: 10
   }
 }
 
@@ -100,7 +108,7 @@ export default defineComponent({
       formRef,
       getFormInstance,
       formData,
-      getFormData,
+      getFormData
     } = useTable(_)
 
     if (_.autoSearch) refresh()

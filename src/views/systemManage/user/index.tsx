@@ -51,6 +51,7 @@ export default defineComponent({
           paginationProps={{
             'page-sizes': [2, 10, 50, 100]
           }}
+          pageSize={2}
         />
       </div>
     )

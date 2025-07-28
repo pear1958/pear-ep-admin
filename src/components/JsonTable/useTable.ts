@@ -15,8 +15,8 @@ export const useTable = (_: JsonTableProps) => {
   const formData = ref()
   const state = reactive({
     tableData: [],
-    pageNum: 1,
-    pageSize: 10,
+    pageNum: _.pageNum,
+    pageSize: _.pageSize,
     total: 0
   })
 
