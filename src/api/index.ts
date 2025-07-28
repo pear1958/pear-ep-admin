@@ -50,8 +50,8 @@ class Http {
 
         // 对请求数据进行加密
         if (openCrypto && config.data) {
-          const { encryptData, iv } = encryptService.encrypt(config.data)
-          config.data = { encryptData, iv }
+          const { encryptData } = encryptService.encrypt(config.data)
+          config.data = { encryptData }
         }
 
         return config
@@ -67,8 +67,8 @@ class Http {
         let { data } = response
 
         // 对响应数据进行解密
-        if (openCrypto && data?.encryptData && data?.iv) {
-          data = encryptService.decrypt(data.encryptData, data.iv)
+        if (openCrypto && data?.encryptData) {
+          data = encryptService.decrypt(data.encryptData)
         }
 
         // 在请求结束后, 移除本次请求

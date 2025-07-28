@@ -1,6 +1,11 @@
 import CryptoES from 'crypto-es'
 import JSEncrypt from 'jsencrypt'
 import { exchangeKey, getPublicKey } from '../modules/auth'
+import { openCrypto } from '@/utils'
+
+// 固定IV（与后端保持完全一致）
+// 注意：IV长度必须与AES块大小一致（16字节）
+const iv = CryptoES.enc.Utf8.parse('0123456789buqiyuan222') // 16字节固定值
 
 export class EncryptService {
   // 对称密钥, 由前端生成  只不过用后端给的 publicKey 进行加密了，然后发送给了后端而已
@@ -8,8 +13,8 @@ export class EncryptService {
   private initialized = false
 
   async init(): Promise<void> {
+    if (!openCrypto) return
     if (this.initialized) return
-
     try {
       // 1.从服务器获取 RSA 公钥  RSA: 非对称加密算法
       // 公钥 可以公开，用于加密数据  私钥：必须保密，用于解密用公钥加密的数据
@@ -41,11 +46,10 @@ export class EncryptService {
    * @param data 要加密的数据, 可以是任意类型
    * @return 加密后的字符串
    */
-  encrypt(data: any): { encryptData: string; iv: string } {
+  encrypt(data: any): { encryptData: string } {
     if (!this.initialized || !this.secretKey) {
       return
     }
-    const iv = CryptoES.lib.WordArray.random(16) // 16位向量
     const strData = JSON.stringify(data)
 
     // AES（Advanced Encryption Standard，高级加密标准） 对称加密算法
@@ -57,8 +61,7 @@ export class EncryptService {
 
     // 返回密文和iv（iv转为Base64字符串，方便传输）
     return {
-      encryptData: encrypted.toString(),
-      iv: CryptoES.enc.Base64.stringify(iv)
+      encryptData: encrypted.toString()
     }
   }
 
@@ -67,16 +70,14 @@ export class EncryptService {
    * @param encryptData 加密后的字符串
    * @returns 解密后的原始数据
    */
-  decrypt<T = any>(encryptData: string, iv: string): T {
+  decrypt<T = any>(encryptData: string): T {
     if (!this.initialized || !this.secretKey) {
       return
     }
 
-    const ivWordArray = CryptoES.enc.Base64.parse(iv)
-
     // 解密
     const decrypted = CryptoES.AES.decrypt(encryptData, this.secretKey, {
-      iv: ivWordArray,
+      iv,
       mode: CryptoES.mode.CBC,
       padding: CryptoES.pad.Pkcs7
     })

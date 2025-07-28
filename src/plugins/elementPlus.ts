@@ -132,6 +132,8 @@ const components = [
   ElBacktop
 ]
 
+// 使用方法: main.ts -> setupElementPlus(app)
+
 export function setupElementPlus(app: App) {
   // 注册组件
   components.forEach((component: Component) => {

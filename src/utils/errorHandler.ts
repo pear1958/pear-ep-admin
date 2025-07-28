@@ -3,6 +3,7 @@ import { ElNotification } from 'element-plus'
 
 /**
  * @description 全局代码错误捕捉
+ * 使用方法: main.ts -> app.config.errorHandler = errorHandler
  * */
 const errorHandler = async (error: any) => {
   // 过滤 HTTP 请求错误

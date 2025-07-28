@@ -4,7 +4,7 @@ export const isDev = import.meta.env.MODE === 'development'
 
 export const title = import.meta.env.VITE_TITLE
 
-export const openCrypto = import.meta.env.VITE_OPEN_CRYPTO
+export const openCrypto = import.meta.env.VITE_OPEN_CRYPTO === 'true'
 
 /**
  * @param {*} format https://day.js.org/docs/zh-CN/parse/string-format

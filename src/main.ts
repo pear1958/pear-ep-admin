@@ -1,12 +1,13 @@
-import { createApp, App as VueApp } from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import pinia from './store'
-// import { setupElementPlus } from '@/plugins/elementPlus'
 import ElementPlus from 'element-plus'
 
 import '@/styles/index.scss'
+
 import directives from './directives'
+
 // 注册使用 svg icon
 // https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
 import 'virtual:svg-icons-register'
@@ -18,27 +19,8 @@ import 'element-plus/dist/index.css'
 // element-plus 内置暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
-// import errorHandler from '@/utils/errorHandler'
 import i18n from '@/languages/index'
-import encryptService from './api/utils/encrypt'
 
-// import { startMock } from '@/mock'
-// import { isDev } from './utils'
+export const app = createApp(App)
 
-export let app: VueApp
-
-const bootstrap = async () => {
-  try {
-    await encryptService.init()
-    app = createApp(App)
-    // app.config.errorHandler = errorHandler
-    // setupElementPlus(app)
-    app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
-    // if (isDev) startMock()
-  } catch (error) {
-    console.error('启动失败:', error)
-    alert('初始化失败，请刷新页面')
-  }
-}
-
-bootstrap()
+app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
