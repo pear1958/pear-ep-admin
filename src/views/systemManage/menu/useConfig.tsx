@@ -2,6 +2,8 @@ import { computed, onMounted, ref, unref } from 'vue'
 import { getMenuList } from '@/api/modules/systemManage'
 import { FormItem } from '@/components/JsonForm/type'
 import { formatDate } from '@/utils'
+import { isEmpty } from 'pear-common-utils'
+import { KeepAlive, MenuShow, MenuStatus, MenuType } from '@/utils/dict/data'
 
 const useConfig = () => {
   const tableRef = ref()
@@ -59,7 +61,15 @@ const useConfig = () => {
     {
       prop: 'type',
       label: '类型',
-      align: 'center'
+      align: 'center',
+      customRender({ text }) {
+        const map = {
+          [MenuType.Directory]: <el-tag type="warning">目录</el-tag>,
+          [MenuType.Menu]: <el-tag type="success">菜单</el-tag>,
+          [MenuType.Button]: <el-tag type="danger">按钮</el-tag>
+        }
+        return map[text] || '-'
+      }
     },
     {
       prop: 'path',
@@ -77,7 +87,11 @@ const useConfig = () => {
       prop: 'permission',
       label: '权限标识',
       width: 240,
-      align: 'center'
+      align: 'center',
+      customRender({ text }) {
+        if (isEmpty(text)) return '-'
+        return <el-tag type="primary">{text}</el-tag>
+      }
     },
     {
       prop: 'orderNo',
@@ -88,18 +102,42 @@ const useConfig = () => {
       prop: 'keepAlive',
       label: '路由缓存',
       width: 120,
-      align: 'center'
+      align: 'center',
+      customRender({ record, text }) {
+        if (record.type !== MenuType.Menu) return '-'
+        if (text === KeepAlive.Disable) return '否'
+        if (text === KeepAlive.Enable) return '是'
+        return '-'
+      }
     },
     {
       prop: 'show',
       label: '是否显示',
       width: 120,
-      align: 'center'
+      align: 'center',
+      customRender({ text }) {
+        if (text === MenuShow.Enable) {
+          return <el-tag type="success">显示</el-tag>
+        }
+        if (text === MenuShow.Disable) {
+          return <el-tag type="danger">隐藏</el-tag>
+        }
+        return '-'
+      }
     },
     {
       prop: 'status',
       label: '状态',
-      align: 'center'
+      align: 'center',
+      customRender({ text }) {
+        if (text === MenuStatus.Enable) {
+          return <el-tag type="success">启用</el-tag>
+        }
+        if (text === MenuStatus.Disable) {
+          return <el-tag type="danger">禁用</el-tag>
+        }
+        return '-'
+      }
     },
     {
       prop: 'createdAt',

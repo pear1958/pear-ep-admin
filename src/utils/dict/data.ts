@@ -30,3 +30,39 @@ export const userStatus = [
     value: UserStatus.Disable
   }
 ]
+
+export enum MenuType {
+  Directory = 0,
+  Menu = 1,
+  Button = 2
+}
+
+export const menuType = [
+  {
+    label: '目录',
+    value: MenuType.Directory
+  },
+  {
+    label: '菜单',
+    value: MenuType.Menu
+  },
+  {
+    label: '按钮',
+    value: MenuType.Button
+  }
+]
+
+export enum KeepAlive {
+  Disable = 0,
+  Enable = 1
+}
+
+export enum MenuShow {
+  Disable = 0,
+  Enable = 1
+}
+
+export enum MenuStatus {
+  Disable = 0,
+  Enable = 1
+}
