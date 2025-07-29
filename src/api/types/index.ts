@@ -14,5 +14,5 @@ export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 
 export interface Config extends AxiosRequestConfig {
   showLoading?: boolean
-  fullRes?: boolean
+  fullResponse?: boolean
 }

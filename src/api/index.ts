@@ -16,10 +16,8 @@ const axiosCanceler = new AxiosCanceler()
 const config = {
   baseURL: import.meta.env.VITE_BASE_URL,
   timeout: httpResEnum.TIMEOUT,
-  fullRes: false,
   headers: {
-    // adminid: localStorage.getItem('adminId') || 'e8774e4015f733aeac3d2d242ce411d378ed8307'
-    // 'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
     'trace-id': genUUID()
   }
 }
@@ -64,7 +62,8 @@ class Http {
     // 响应拦截器
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
-        let { data } = response
+        let { data, config } = response
+        // console.log('response', response)
 
         // 对响应数据进行解密
         if (openCrypto && data?.encryptData) {
@@ -98,11 +97,11 @@ class Http {
           return Promise.reject(data)
         }
 
+        if (config.headers.fullResponse === 'true') return response
+
         return data
       },
       (error: AxiosError) => {
-        const { response: res } = error
-
         hideFullScreenLoading()
 
         // 请求超时 && 网络错误单独判断，没有 response
@@ -110,7 +109,7 @@ class Http {
         if (error.message.indexOf('Network Error') !== -1) ElMessage.error('网络错误！请您稍后重试')
 
         // 根据响应的错误状态码, 做不同的处理
-        if (res) checkStatus(res.status)
+        if (error.response) checkStatus(error.response.status)
 
         return Promise.reject(error)
       }

@@ -14,3 +14,17 @@ export const uploadFile = (formData: Recordable) => {
 export const getOrganization = (params: { level: number; pcode?: string }) => {
   return http.get('/console/orgNationwide/getOrganization', params)
 }
+
+export const downloadFile = () => {
+  return http.get(
+    '/system/user/export',
+    {},
+    {
+      // 指定响应类型为二进制流
+      responseType: 'blob',
+      headers: {
+        fullResponse: true
+      }
+    }
+  )
+}
