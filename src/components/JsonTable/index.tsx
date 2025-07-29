@@ -149,7 +149,13 @@ export default defineComponent({
           </div>
         )}
 
-        <el-table data={state.tableData} v-loading={loading.value} border {..._.tableProps}>
+        <el-table
+          data={state.tableData}
+          row-key="id"
+          v-loading={loading.value}
+          border
+          {..._.tableProps}
+        >
           {{
             default: () =>
               _.columns.map(item => {

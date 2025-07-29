@@ -21,6 +21,13 @@ button:focus {
   outline: none;
 }
 
+.page-box {
+  @apply bg-[#ffffff]  box-border dark:bg-dark-content;
+  padding: 24px 16px 16px 16px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+}
+
 .pear-loading-box {
   position: fixed;
   left: 0;

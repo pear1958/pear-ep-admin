@@ -20,7 +20,6 @@ const useConfig = () => {
   })
 
   const getList = (params: Recordable) => {
-    // console.log('params', params)
     return getUserList(params)
   }
 
@@ -108,7 +107,7 @@ const useConfig = () => {
     }
   ])
 
-  const columns = ref([
+  const columns = computed(() => [
     {
       type: 'selection',
       align: 'center'
