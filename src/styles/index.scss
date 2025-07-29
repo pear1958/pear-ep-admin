@@ -26,6 +26,8 @@ button:focus {
   padding: 24px 16px 16px 16px;
   border-radius: 6px;
   box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .pear-loading-box {
