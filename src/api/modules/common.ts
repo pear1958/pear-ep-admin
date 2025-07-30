@@ -15,10 +15,12 @@ export const getOrganization = (params: { level: number; pcode?: string }) => {
   return http.get('/console/orgNationwide/getOrganization', params)
 }
 
-export const downloadFile = () => {
+export const downloadFile = (url: string, params: Recordable = {}) => {
   return http.get(
-    '/system/user/export',
-    {},
+    url,
+    {
+      ...params
+    },
     {
       // 指定响应类型为二进制流
       responseType: 'blob',

@@ -9,10 +9,11 @@ export default defineComponent({
       columns,
       formItems,
       tableRef,
-      getList,
-      openUserDialog,
       selectRows,
       hasSelect,
+      exportLoading,
+      getList,
+      openUserDialog,
       delSelectUsers,
       handleExport
     } = useConfig()
@@ -33,7 +34,9 @@ export default defineComponent({
                 <el-button type="primary" onClick={() => openUserDialog()}>
                   新增
                 </el-button>
-                <el-button onClick={() => handleExport()}>导出</el-button>
+                <el-button loading={exportLoading.value} onClick={() => handleExport()}>
+                  导出
+                </el-button>
                 <el-button disabled={!hasSelect.value} onClick={delSelectUsers}>
                   删除
                 </el-button>

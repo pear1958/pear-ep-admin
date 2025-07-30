@@ -1,20 +1,19 @@
 import { computed, onMounted, ref, unref } from 'vue'
 import { ElMessage } from 'element-plus'
-import { downloadByData } from 'pear-common-utils'
 import { FormItem } from '@/components/JsonForm/type'
-import { formatDate } from '@/utils'
+import { download, formatDate } from '@/utils'
 import { deleteUser, editUser, getUserList } from '@/api/modules/systemManage'
 import { closeDialog, showDialog } from '@/utils/ui/dialog'
 import UserForm from './UserForm'
 import { confirmModal } from '@/utils/element'
 import { UserStatus } from '@/utils/dict/data'
-import { downloadFile } from '@/api/modules/common'
 
 const useConfig = () => {
   const tableRef = ref()
   const formData = ref<Recordable>({})
   const selectRows = ref<Recordable[]>([])
   const hasSelect = computed(() => !!selectRows.value?.length)
+  const exportLoading = ref(false)
 
   onMounted(() => {
     // 建立引用
@@ -251,24 +250,18 @@ const useConfig = () => {
   ])
 
   const handleExport = async () => {
-    const res = await downloadFile()
-    let fileName = `用户列表_${new Date().getTime()}.xlsx`
-    const contentDisposition = res.headers['content-disposition']
+    const params = unref(tableRef).getFormData()
+    exportLoading.value = true
 
-    if (contentDisposition) {
-      // 同时配两种格式：filename="xxx" 或 filename*=UTF-8''编码后的文件名
-      const match = contentDisposition.match(/filename="(.*?)"|filename\*=UTF-8''(.*?)(;|$)/i)
-      if (match) {
-        // 优先取 filename*=UTF-8 的值，没有则取 filename 的值
-        fileName = match[2] ? decodeURIComponent(match[2]) : match[1]
-      }
+    try {
+      await download({
+        url: '/system/user/export',
+        params,
+        fileName: `用户列表_${new Date().getTime()}.xlsx`
+      })
+    } finally {
+      exportLoading.value = false
     }
-
-    const contentType =
-      res.headers['content-type'] ||
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-
-    downloadByData(res.data, fileName, contentType)
   }
 
   return {
@@ -278,6 +271,7 @@ const useConfig = () => {
     formItems,
     selectRows,
     hasSelect,
+    exportLoading,
     getList,
     openUserDialog,
     delSelectUsers,
