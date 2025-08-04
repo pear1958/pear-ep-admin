@@ -5,7 +5,7 @@ import { FormItem } from '@/components/JsonForm/type'
 import { formatDate } from '@/utils'
 import { roleStatus, RoleStatus } from '@/utils/dict/data'
 import { confirmModal } from '@/utils/element'
-import { showDialog } from '@/utils/ui/dialog'
+import { closeDialog, showDialog } from '@/utils/ui/dialog'
 import RoleForm from './components/RoleForm'
 
 const useConfig = () => {
@@ -23,6 +23,11 @@ const useConfig = () => {
 
   const refresh = () => {
     unref(tableRef).refresh()
+  }
+
+  const close = () => {
+    closeDialog()
+    refresh()
   }
 
   const openRoleDialog = (id?: string) => {

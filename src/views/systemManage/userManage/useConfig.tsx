@@ -43,8 +43,8 @@ const useConfig = () => {
   }
 
   const close = () => {
-    refresh()
     closeDialog()
+    refresh()
   }
 
   const openUserDialog = (id?: string) => {
