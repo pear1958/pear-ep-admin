@@ -17,13 +17,13 @@ export const testList = [
 
 export enum UserStatus {
   Disable = 0,
-  Enabled = 1
+  Enable = 1
 }
 
 export const userStatus = [
   {
     label: '启用',
-    value: UserStatus.Enabled
+    value: UserStatus.Enable
   },
   {
     label: '禁用',
@@ -74,11 +74,11 @@ export enum RoleStatus {
 
 export const roleStatus = [
   {
-    label: '禁用',
-    value: RoleStatus.Disable
-  },
-  {
     label: '启用',
     value: RoleStatus.Enable
+  },
+  {
+    label: '禁用',
+    value: RoleStatus.Disable
   }
 ]

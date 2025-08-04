@@ -10,7 +10,7 @@ import {
   getDeptList,
   getRoleList,
   getUserDetail,
-  editUser
+  updateUser
 } from '@/api/modules/systemManage'
 import { convertToTree } from '@/utils'
 import { UserStatus, userStatus } from '@/utils/dict/data'
@@ -191,7 +191,7 @@ export default defineComponent({
         type: 'radio-group',
         label: '状态：',
         field: 'status',
-        initValue: UserStatus.Enabled,
+        initValue: UserStatus.Enable,
         attrs: {
           options: userStatus
         }
@@ -210,7 +210,7 @@ export default defineComponent({
           params.id = _.id
           // 编辑的时候可以不传
           if (!params.password) delete params.password
-          await editUser(params)
+          await updateUser(params)
         }
 
         ElMessage.success('操作成功')

@@ -2,7 +2,7 @@ import { computed, onMounted, ref, unref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { FormItem } from '@/components/JsonForm/type'
 import { download, formatDate } from '@/utils'
-import { deleteUser, editUser, getUserList } from '@/api/modules/systemManage'
+import { deleteUser, updateUser, getUserList } from '@/api/modules/systemManage'
 import { closeDialog, showDialog } from '@/utils/ui/dialog'
 import UserForm from './UserForm'
 import { confirmModal } from '@/utils/element'
@@ -30,7 +30,7 @@ const useConfig = () => {
 
   const beforeChange = async (row: Recordable) => {
     await confirmModal(`确认要${row.status === UserStatus.Disable ? '启' : '禁'}用该用户`)
-    await editUser({ ...row, status: +!row.status })
+    await updateUser({ ...row, status: +!row.status })
     ElMessage.success('操作成功')
     refresh()
   }
@@ -195,14 +195,14 @@ const useConfig = () => {
       label: '状态',
       align: 'center',
       customRender({ record }) {
-        if ([UserStatus.Enabled, UserStatus.Disable].includes(record.status)) {
+        if ([UserStatus.Enable, UserStatus.Disable].includes(record.status)) {
           return (
             <el-switch
               v-model={record.status}
               inline-prompt
               active-text="启用"
               inactive-text="禁用"
-              active-value={UserStatus.Enabled}
+              active-value={UserStatus.Enable}
               inactive-value={UserStatus.Disable}
               before-change={() => beforeChange(record)}
             />

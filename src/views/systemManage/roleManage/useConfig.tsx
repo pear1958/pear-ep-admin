@@ -1,8 +1,12 @@
 import { computed, onMounted, ref, unref } from 'vue'
-import { getRoleList } from '@/api/modules/systemManage'
+import { ElMessage } from 'element-plus'
+import { getRoleList, deleteRole } from '@/api/modules/systemManage'
 import { FormItem } from '@/components/JsonForm/type'
 import { formatDate } from '@/utils'
 import { roleStatus, RoleStatus } from '@/utils/dict/data'
+import { confirmModal } from '@/utils/element'
+import { showDialog } from '@/utils/ui/dialog'
+import RoleForm from './components/RoleForm'
 
 const useConfig = () => {
   const tableRef = ref()
@@ -15,6 +19,24 @@ const useConfig = () => {
 
   const getList = (params: Recordable) => {
     return getRoleList(params)
+  }
+
+  const refresh = () => {
+    unref(tableRef).refresh()
+  }
+
+  const openRoleDialog = (id?: string) => {
+    showDialog(<RoleForm onRefresh={close} id={id} />, {
+      title: `${!id ? '新增' : '编辑'}角色`,
+      width: 650
+    })
+  }
+
+  const handleDelete = async (id: number) => {
+    await confirmModal('确认要删除？')
+    await deleteRole(id)
+    ElMessage.success('操作成功')
+    refresh()
   }
 
   const formItems = computed<FormItem[]>(() => [
@@ -59,13 +81,13 @@ const useConfig = () => {
       type: 'index',
       label: '序号',
       width: 70,
-      align: 'center',
+      align: 'center'
     },
     {
       prop: 'name',
       label: '角色名称',
       width: 220,
-      align: 'center',
+      align: 'center'
     },
     {
       prop: 'value',
@@ -90,7 +112,10 @@ const useConfig = () => {
     {
       prop: 'remark',
       label: '备注',
-      align: 'center'
+      align: 'center',
+      customRender({ text }) {
+        return text || '-'
+      }
     },
     {
       prop: 'createdAt',
@@ -118,10 +143,10 @@ const useConfig = () => {
       customRender({ record }) {
         return (
           <div>
-            <el-button type="primary" link>
+            <el-button type="primary" link onClick={() => openRoleDialog(record.id)}>
               编辑
             </el-button>
-            <el-button type="primary" link>
+            <el-button type="primary" link onClick={() => handleDelete(record.id)}>
               删除
             </el-button>
           </div>
@@ -130,7 +155,7 @@ const useConfig = () => {
     }
   ])
 
-  return { tableRef, formItems, columns, getList }
+  return { tableRef, formItems, columns, getList, openRoleDialog }
 }
 
 export default useConfig

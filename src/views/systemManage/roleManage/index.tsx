@@ -5,7 +5,7 @@ import useConfig from './useConfig'
 export default defineComponent({
   name: 'RolePage',
   setup() {
-    const { tableRef, columns, formItems, getList } = useConfig()
+    const { tableRef, columns, formItems, getList, openRoleDialog } = useConfig()
 
     return () => (
       <div class="page-box">
@@ -19,10 +19,9 @@ export default defineComponent({
           toolbar={{
             title: '角色管理',
             buttons: (
-              <div>
-                <el-button type="primary">新增</el-button>
-                <el-button>删除</el-button>
-              </div>
+              <el-button type="primary" onClick={() => openRoleDialog()}>
+                新增
+              </el-button>
             )
           }}
           fields={{
