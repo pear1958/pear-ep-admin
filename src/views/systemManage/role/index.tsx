@@ -3,7 +3,7 @@ import JsonTable from '@/components/JsonTable'
 import useConfig from './useConfig'
 
 export default defineComponent({
-  name: 'MenuManage',
+  name: 'RolePage',
   setup() {
     const { tableRef, columns, formItems, getList } = useConfig()
 
@@ -17,7 +17,7 @@ export default defineComponent({
             formItems: formItems.value
           }}
           toolbar={{
-            title: '菜单管理',
+            title: '角色管理',
             buttons: (
               <div>
                 <el-button type="primary">新增</el-button>

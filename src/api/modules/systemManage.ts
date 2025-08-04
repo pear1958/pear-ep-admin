@@ -24,8 +24,8 @@ export const deleteUser = (id: number) => {
   return http.delete(`/system/user/${id}`)
 }
 
-export const getRoleList = () => {
-  return http.get('/system/role')
+export const getRoleList = (params?: Recordable) => {
+  return http.get('/system/role', params)
 }
 
 export const getDeptList = () => {

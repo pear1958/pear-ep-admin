@@ -66,3 +66,19 @@ export enum MenuStatus {
   Disable = 0,
   Enable = 1
 }
+
+export enum RoleStatus {
+  Disable = 0,
+  Enable = 1
+}
+
+export const roleStatus = [
+  {
+    label: '禁用',
+    value: RoleStatus.Disable
+  },
+  {
+    label: '启用',
+    value: RoleStatus.Enable
+  }
+]
