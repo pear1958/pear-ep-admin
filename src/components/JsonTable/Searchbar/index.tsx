@@ -81,6 +81,10 @@ export default defineComponent({
           if (item.show === false) {
             delete formData[item.field]
           }
+          // 切换以后重新设置初始值
+          if (item.show === true) {
+            formData[item.field] = item.initValue
+          }
         })
       },
       {

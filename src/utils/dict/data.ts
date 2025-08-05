@@ -52,20 +52,84 @@ export const menuType = [
   }
 ]
 
-export enum KeepAlive {
+export enum MenuKeepAlive {
   Disable = 0,
   Enable = 1
 }
+
+export const menuKeepAlive = [
+  {
+    label: '是',
+    value: MenuKeepAlive.Enable
+  },
+  {
+    label: '否',
+    value: MenuKeepAlive.Disable
+  }
+]
 
 export enum MenuShow {
   Disable = 0,
   Enable = 1
 }
 
+export const menuShow = [
+  {
+    label: '是',
+    value: MenuShow.Enable
+  },
+  {
+    label: '否',
+    value: MenuShow.Disable
+  }
+]
+
 export enum MenuStatus {
   Disable = 0,
   Enable = 1
 }
+
+export const menuStatus = [
+  {
+    label: '启用',
+    value: MenuStatus.Enable
+  },
+  {
+    label: '禁用',
+    value: MenuStatus.Disable
+  }
+]
+
+// 是否为外链
+export const ExtStatusEnable = true
+export const ExtStatusDisable = false
+export const extStatus = [
+  {
+    label: '是',
+    value: ExtStatusEnable
+  },
+  {
+    label: '否',
+    value: ExtStatusDisable
+  }
+]
+
+export enum ExtOpenMode {
+  NewWindow = 0,
+  Inline = 1
+}
+
+// 外链打开方式
+export const extOpenMode = [
+  {
+    label: '新窗口打开',
+    value: ExtOpenMode.NewWindow
+  },
+  {
+    label: '内嵌页打开',
+    value: ExtOpenMode.Inline
+  }
+]
 
 export enum RoleStatus {
   Disable = 0,

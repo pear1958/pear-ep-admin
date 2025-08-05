@@ -4,7 +4,7 @@ import { isEmpty } from 'pear-common-utils'
 import { deleteMenu, getMenuList } from '@/api/modules/systemManage'
 import { FormItem } from '@/components/JsonForm/type'
 import { formatDate } from '@/utils'
-import { KeepAlive, MenuShow, MenuStatus, MenuType } from '@/utils/dict/data'
+import { MenuKeepAlive, MenuShow, MenuStatus, MenuType } from '@/utils/dict/data'
 import { closeDialog, showDialog } from '@/utils/ui/dialog'
 import MenuForm from './MenuForm'
 import { confirmModal } from '@/utils/element'
@@ -132,8 +132,8 @@ const useConfig = () => {
       align: 'center',
       customRender({ record, text }) {
         if (record.type !== MenuType.Menu) return '-'
-        if (text === KeepAlive.Disable) return '否'
-        if (text === KeepAlive.Enable) return '是'
+        if (text === MenuKeepAlive.Disable) return '否'
+        if (text === MenuKeepAlive.Enable) return '是'
         return '-'
       }
     },

@@ -45,8 +45,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.6(typescript@4.9.5)
       element-plus:
-        specifier: ^2.10.4
-        version: 2.10.4(vue@3.5.13(typescript@4.9.5))
+        specifier: ^2.10.5
+        version: 2.10.5(vue@3.5.13(typescript@4.9.5))
       hotkeys-js:
         specifier: ^3.10.2
         version: 3.13.9
@@ -1625,8 +1625,8 @@ packages:
   electron-to-chromium@1.5.83:
     resolution: {integrity: sha512-LcUDPqSt+V0QmI47XLzZrz5OqILSMGsPFkDYus22rIbgorSvBYEFqq854ltTmUdHkY92FSdAAvsh4jWEULMdfQ==}
 
-  element-plus@2.10.4:
-    resolution: {integrity: sha512-UD4elWHrCnp1xlPhbXmVcaKFLCRaRAY6WWRwemGfGW3ceIjXm9fSYc9RNH3AiOEA6Ds1p9ZvhCs76CR9J8Vd+A==}
+  element-plus@2.10.5:
+    resolution: {integrity: sha512-O9wTDu3Tm51ACVByWrThtBhH4Ygefg1HGY5pyAaxnoIrj8uMN0GtZ4IREwR3Yw/6sM2HyxjrsGI/D46iUVP97A==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -5406,7 +5406,7 @@ snapshots:
   el-table-infinite-scroll@3.0.6(typescript@4.9.5):
     dependencies:
       core-js: 3.40.0
-      element-plus: 2.10.4(vue@3.5.13(typescript@4.9.5))
+      element-plus: 2.10.5(vue@3.5.13(typescript@4.9.5))
       vue: 3.5.13(typescript@4.9.5)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -5414,7 +5414,7 @@ snapshots:
 
   electron-to-chromium@1.5.83: {}
 
-  element-plus@2.10.4(vue@3.5.13(typescript@4.9.5)):
+  element-plus@2.10.5(vue@3.5.13(typescript@4.9.5)):
     dependencies:
       '@ctrl/tinycolor': 3.6.1
       '@element-plus/icons-vue': 2.3.1(vue@3.5.13(typescript@4.9.5))
