@@ -1,9 +1,13 @@
 import { computed, onMounted, ref, unref } from 'vue'
-import { getMenuList } from '@/api/modules/systemManage'
+import { ElMessage } from 'element-plus'
+import { isEmpty } from 'pear-common-utils'
+import { deleteMenu, getMenuList } from '@/api/modules/systemManage'
 import { FormItem } from '@/components/JsonForm/type'
 import { formatDate } from '@/utils'
-import { isEmpty } from 'pear-common-utils'
 import { KeepAlive, MenuShow, MenuStatus, MenuType } from '@/utils/dict/data'
+import { closeDialog, showDialog } from '@/utils/ui/dialog'
+import MenuForm from './MenuForm'
+import { confirmModal } from '@/utils/element'
 
 const useConfig = () => {
   const tableRef = ref()
@@ -16,6 +20,29 @@ const useConfig = () => {
 
   const getList = (params: Recordable) => {
     return getMenuList(params)
+  }
+
+  const refresh = () => {
+    unref(tableRef).refresh()
+  }
+
+  const close = () => {
+    closeDialog()
+    refresh()
+  }
+
+  const openMenuDialog = (id?: string) => {
+    showDialog(<MenuForm onRefresh={close} id={id} />, {
+      title: `${!id ? '新增' : '编辑'}菜单`,
+      width: 650
+    })
+  }
+
+  const handleDelete = async (id: number) => {
+    await confirmModal('确认要删除？')
+    await deleteMenu(id)
+    ElMessage.success('操作成功')
+    refresh()
   }
 
   const formItems = computed<FormItem[]>(() => [
@@ -171,7 +198,7 @@ const useConfig = () => {
             <el-button type="primary" link>
               编辑
             </el-button>
-            <el-button type="primary" link>
+            <el-button type="primary" link onClick={() => handleDelete(record.id)}>
               删除
             </el-button>
           </div>
@@ -180,7 +207,7 @@ const useConfig = () => {
     }
   ])
 
-  return { tableRef, formItems, columns, getList }
+  return { tableRef, formItems, columns, getList, openMenuDialog }
 }
 
 export default useConfig

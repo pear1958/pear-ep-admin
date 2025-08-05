@@ -10,6 +10,22 @@ export const getAllMenu = (params?: Recordable) => {
   return http.get('/system/menu/all-list', params)
 }
 
+export const deleteMenu = (id: number) => {
+  return http.delete(`/system/menu/${id}`)
+}
+
+export const createMenu = (data: Recordable) => {
+  return http.post('/system/menu', data)
+}
+
+export const updateMenu = (params: Recordable) => {
+  return http.put(`/system/menu/${params.id}`, params)
+}
+
+export const getMenuDetail = (id: number) => {
+  return http.get(`/system/menu/${id}`)
+}
+
 // -------------- 用户 ---------------------
 
 export const getUserList = (params: Recordable) => {

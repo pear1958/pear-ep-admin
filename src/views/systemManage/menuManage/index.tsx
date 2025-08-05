@@ -5,7 +5,7 @@ import useConfig from './useConfig'
 export default defineComponent({
   name: 'MenuManage',
   setup() {
-    const { tableRef, columns, formItems, getList } = useConfig()
+    const { tableRef, columns, formItems, getList, openMenuDialog } = useConfig()
 
     return () => (
       <div class="page-box">
@@ -20,8 +20,9 @@ export default defineComponent({
             title: '菜单管理',
             buttons: (
               <div>
-                <el-button type="primary">新增</el-button>
-                <el-button>删除</el-button>
+                <el-button type="primary" onClick={() => openMenuDialog()}>
+                  新增
+                </el-button>
               </div>
             )
           }}

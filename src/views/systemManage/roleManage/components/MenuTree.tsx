@@ -12,7 +12,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(_, { emit }) {
-    const menuData = ref([])
+    const menuOptions = ref([])
     const treeRef = ref()
 
     const stopWatch = watch(
@@ -31,7 +31,7 @@ export default defineComponent({
 
     const getMenuOptions = async () => {
       const { data } = await getAllMenu()
-      menuData.value = data
+      menuOptions.value = data
     }
 
     getMenuOptions()
@@ -59,7 +59,7 @@ export default defineComponent({
         }}
       >
         <ElTree
-          data={menuData.value}
+          data={menuOptions.value}
           props={defaultProps}
           show-checkbox
           node-key="id"
