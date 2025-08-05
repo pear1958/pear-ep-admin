@@ -222,7 +222,7 @@ export default defineComponent({
         children: 'radio-button',
         label: '是否缓存：',
         field: 'keepAlive',
-        show: unref(formData).type === MenuType.Menu,
+        show: isMenu.value,
         initValue: MenuKeepAlive.Enable,
         attrs: {
           options: menuKeepAlive
