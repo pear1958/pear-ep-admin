@@ -108,8 +108,12 @@ class Http {
         if (error.message.indexOf('timeout') !== -1) ElMessage.error('请求超时！请您稍后重试')
         if (error.message.indexOf('Network Error') !== -1) ElMessage.error('网络错误！请您稍后重试')
 
-        // 根据响应的错误状态码, 做不同的处理
-        if (error.response) checkStatus(error.response.status)
+        // 接口请求失败, 同时接口返回了响应数据
+        const { message: msg } = (error.response?.data || {}) as Recordable
+        if (msg) ElMessage.error(msg)
+
+        // 根据响应的错误状态码, 做不同处理
+        if (!msg && error.response) checkStatus(error.response.status)
 
         return Promise.reject(error)
       }
