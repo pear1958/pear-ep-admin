@@ -42,6 +42,7 @@ const style = computed(() => {
   return {
     display: 'grid',
     gridGap: gridGap.value,
+    // 强制严格平分容器宽度，不受内容长度影响
     gridTemplateColumns: `repeat(${gridCols.value}, minmax(0, 1fr))` // 定义每一列的列宽
   }
 })

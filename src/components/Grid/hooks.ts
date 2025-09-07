@@ -35,6 +35,7 @@ export const useGrid = () => {
   const setBreakPoint = (e: UIEvent) => {
     const width = (e.target as Window).innerWidth
 
+    // x 的缩写为 Extra
     switch (!!width) {
       case width < 768:
         breakPoint.value = 'xs'
