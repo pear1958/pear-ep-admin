@@ -24,6 +24,17 @@ const config = {
 
 let isErrorShowing = false
 
+export const showErrMsg = (msg: string) => {
+  if (isErrorShowing) return
+  isErrorShowing = true
+  ElMessage.error({
+    message: msg,
+    onClose: () => {
+      isErrorShowing = false
+    }
+  })
+}
+
 if (openCrypto) {
   config.headers['X-Encrypted'] = true
 }
@@ -87,15 +98,7 @@ class Http {
 
         // 全局错误信息拦截
         if (isObject(data) && !String(data.code).startsWith('2')) {
-          if (!isErrorShowing) {
-            isErrorShowing = true
-            ElMessage.error({
-              message: data.msg,
-              onClose: () => {
-                isErrorShowing = false
-              },
-            })
-          }
+          showErrMsg(data.msg)
 
           // token过期
           if (data.code == httpResEnum.OVERDUE) {
@@ -119,7 +122,7 @@ class Http {
 
         // 接口请求失败, 同时接口返回了响应数据
         const { message: msg } = (error.response?.data || {}) as Recordable
-        if (msg) ElMessage.error(msg)
+        if (msg) showErrMsg(msg)
 
         // 根据响应的错误状态码, 做不同处理
         if (!msg && error.response) checkStatus(error.response.status)
