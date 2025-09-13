@@ -22,6 +22,8 @@ const config = {
   }
 }
 
+let isErrorShowing = false
+
 if (openCrypto) {
   config.headers['X-Encrypted'] = true
 }
@@ -83,17 +85,24 @@ class Http {
           setToken(token)
         }
 
-        // token过期
-        if (isObject(data) && data.code == httpResEnum.OVERDUE) {
-          ElMessage.error(data.msg)
-          removeToken()
-          router.replace('/login')
-          return Promise.reject(data)
-        }
-
         // 全局错误信息拦截
         if (isObject(data) && !String(data.code).startsWith('2')) {
-          ElMessage.error(data.msg)
+          if (!isErrorShowing) {
+            isErrorShowing = true
+            ElMessage.error({
+              message: data.msg,
+              onClose: () => {
+                isErrorShowing = false
+              },
+            })
+          }
+
+          // token过期
+          if (data.code == httpResEnum.OVERDUE) {
+            removeToken()
+            router.replace('/login')
+          }
+
           return Promise.reject(data)
         }
 
