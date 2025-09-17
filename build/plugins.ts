@@ -8,7 +8,9 @@ import viteCompression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import legacy from '@vitejs/plugin-legacy'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import { viteBuildInfo } from './info'
+import { isDev } from '@/utils'
 
 export const getPlugins = (viteEnv: ViteEnv): PluginOption[] => {
   const { VITE_TITLE, VITE_OPEN_GZIP } = viteEnv
@@ -69,6 +71,17 @@ export const getPlugins = (viteEnv: ViteEnv): PluginOption[] => {
       ignoreBrowserslistConfig: true,
       // 打包时如果有无法转译(无法模拟)的功能, 控制台显示警告
       warnings: true
-    })
+    }),
+    // 开发环境禁用，不影响热更新速度
+    // Vite 在加载配置文件前会主动注入这个环境变量
+    process.env.NODE_ENV !== 'development' &&
+      ViteImageOptimizer({
+        // 只处理常见图片格式（后台系统很少用到 gif/avif 等）
+        include: /\.(png|jpe?g|svg|webp)$/i,
+        exclude: /node_modules/,
+        // 简化配置：优先保证压缩速度，兼顾体积
+        png: { quality: 70 }, // 压缩质量, 70% 足够清晰
+        jpeg: { quality: 70 }
+      })
   ]
 }

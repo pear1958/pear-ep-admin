@@ -3,6 +3,8 @@ import { downloadByData } from 'pear-common-utils'
 import { downloadFile } from '@/api/modules/common'
 
 export const isDev = import.meta.env.MODE === 'development'
+export const isTest = import.meta.env.MODE === 'test'
+export const isProduction = import.meta.env.MODE === 'production'
 
 export const title = import.meta.env.VITE_TITLE
 

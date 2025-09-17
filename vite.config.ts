@@ -61,10 +61,26 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       sourcemap: false,
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 4000,
+      // 默认值为'esbuild'，即使用 esbuild 进行压缩
       // esbuild 打包更快, 但是不能去除 console.log
       minify: 'esbuild',
+      terserOptions: {
+        compress: {
+          drop_console: true, // 移除 console
+          drop_debugger: true // 移除 debugger
+        }
+      },
       rollupOptions: {
         output: {
+          // 优化代码分包  避免单文件过大, 将 公共依赖 拆分, 利用浏览器并行加载
+          // 通过手动拆分，把 “首屏必需的依赖” 和 “首屏用不到的大依赖” 彻底分开
+          // 让首屏只加载 “自己真正需要的那部分依赖”，从而减少首屏加载的资源体积，最终提升加载速度
+          manualChunks: {
+            // 同一个hash, 后续版本不升级, 可以复用缓存
+            vue: ['vue', 'vue-router', 'pinia', 'pinia-plugin-persistedstate'],
+            ui: ['element-plus', '@element-plus/icons-vue'],
+            utils: ['axios', 'js-cookie', 'pear-common-utils']
+          },
           // 静态资源分类和打包
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
