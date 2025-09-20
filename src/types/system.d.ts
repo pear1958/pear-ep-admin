@@ -33,8 +33,6 @@ declare type TabList = TabItem[]
 
 declare const AMap: Recordable
 
-declare type TargetContext = '_self' | '_blank'
-
 declare interface LabelValue<T = string | number> {
   label: string
   value: T

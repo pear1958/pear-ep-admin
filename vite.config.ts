@@ -46,7 +46,9 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           additionalData: `
             @use "@/styles/variable.scss" as *;
             @use "@/styles/mixin.scss" as *;
-          `
+          `,
+          // 忽略 @import deprecation 警告
+          silenceDeprecations: ['import']
         }
       }
     },

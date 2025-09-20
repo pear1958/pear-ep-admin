@@ -1,0 +1,17 @@
+{
+  "name": "@pear/utils",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
+  "optionalDependencies": {
+    "jszip": "^3.10.1"
+  }
+}

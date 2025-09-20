@@ -14,6 +14,9 @@ importers:
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@4.9.5))
+      '@pear/utils':
+        specifier: workspace:*
+        version: link:packages/utils
       '@vue-office/docx':
         specifier: 1.6.0
         version: 1.6.0(vue-demi@0.14.6(vue@3.5.13(typescript@4.9.5)))(vue@3.5.13(typescript@4.9.5))
@@ -56,9 +59,6 @@ importers:
       jsencrypt:
         specifier: ^3.3.2
         version: 3.3.2
-      jszip:
-        specifier: ^3.10.1
-        version: 3.10.1
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -216,6 +216,14 @@ importers:
       vue-tsc:
         specifier: ^1.6.5
         version: 1.8.27(typescript@4.9.5)
+
+  packages/hooks: {}
+
+  packages/utils:
+    optionalDependencies:
+      jszip:
+        specifier: ^3.10.1
+        version: 3.10.1
 
 packages:
 
@@ -3198,6 +3206,7 @@ packages:
 
   lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    deprecated: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
 
   lodash.isfunction@3.0.9:
     resolution: {integrity: sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==}
@@ -6861,7 +6870,8 @@ snapshots:
 
   core-js@3.45.1: {}
 
-  core-util-is@1.0.3: {}
+  core-util-is@1.0.3:
+    optional: true
 
   cors@2.8.5:
     dependencies:
@@ -7704,7 +7714,8 @@ snapshots:
 
   image-size@0.5.5: {}
 
-  immediate@3.0.6: {}
+  immediate@3.0.6:
+    optional: true
 
   immer@9.0.21: {}
 
@@ -7972,6 +7983,7 @@ snapshots:
       pako: 1.0.11
       readable-stream: 2.3.8
       setimmediate: 1.0.5
+    optional: true
 
   kind-of@3.2.2:
     dependencies:
@@ -7988,6 +8000,7 @@ snapshots:
   lie@3.3.0:
     dependencies:
       immediate: 3.0.6
+    optional: true
 
   lilconfig@3.1.3: {}
 
@@ -8417,7 +8430,8 @@ snapshots:
 
   package-json-from-dist@1.0.1: {}
 
-  pako@1.0.11: {}
+  pako@1.0.11:
+    optional: true
 
   param-case@3.0.4:
     dependencies:
@@ -8772,6 +8786,7 @@ snapshots:
       safe-buffer: 5.1.2
       string_decoder: 1.1.1
       util-deprecate: 1.0.2
+    optional: true
 
   readable-stream@3.6.2:
     dependencies:
@@ -8998,7 +9013,8 @@ snapshots:
       is-plain-object: 2.0.4
       split-string: 3.1.0
 
-  setimmediate@1.0.5: {}
+  setimmediate@1.0.5:
+    optional: true
 
   sharp@0.34.3:
     dependencies:
@@ -9221,6 +9237,7 @@ snapshots:
   string_decoder@1.1.1:
     dependencies:
       safe-buffer: 5.1.2
+    optional: true
 
   string_decoder@1.3.0:
     dependencies:

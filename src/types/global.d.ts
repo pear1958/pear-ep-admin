@@ -1,6 +1,6 @@
-declare type Nullable<T> = T | null
-
 declare type Recordable<T = any> = Record<string, T>
+
+declare type Nullable<T> = T | null
 
 declare type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>
@@ -30,6 +30,7 @@ declare interface PromiseFn<T = any, R = T> {
 }
 
 declare type TimeoutHandle = ReturnType<typeof setTimeout>
+
 declare type IntervalHandle = ReturnType<typeof setInterval>
 
 declare interface ChangeEvent extends Event {
@@ -50,3 +51,5 @@ declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
 declare type ToInterface<T extends string | number | symbol, U> = {
   [P in T]: U
 }
+
+declare type TargetContext = '_self' | '_blank'

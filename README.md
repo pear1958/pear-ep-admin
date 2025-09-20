@@ -17,6 +17,10 @@
 
 - git commit -m "你的提交信息" --no-verify
 
+#### 常用命令
+
+- pnpm add @pear/utils@workspace:*
+
 #### 登录相关
 
 - 开发中...

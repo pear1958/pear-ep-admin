@@ -46,7 +46,11 @@
     "src/**/*.vue",
     "types/**/*.d.ts",
     "types/**/*.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue",
   ],
   // 指定编译器 要排除的、不编译的文件
   "exclude": [

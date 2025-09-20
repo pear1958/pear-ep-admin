@@ -1,4 +1,7 @@
-onlyBuiltDependencies:
-  - '@vue-office/docx'
-  - '@vue-office/excel'
-  - vue-demi
+# onlyBuiltDependencies:
+#   - '@vue-office/docx'
+#   - '@vue-office/excel'
+#   - vue-demi
+
+packages:
+  - "packages/*"
