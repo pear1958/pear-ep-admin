@@ -2,7 +2,7 @@
 
 #### 简介
 
-`pear-ep-admin` 是一款开源免费的中后台管理系统模版, 使用最新的 `Vue3`、`Vite`、`Ts`、`element-plus`、`Pinia`、`tailwindcss` 等主流技术开发
+`pear-ep-admin` 是一款开源免费的中后台管理系统模版, 使用最新的 `Vue3`、`Vite`、`Ts`、`element-plus`、`Pinia`、`tailwindcss`、`pnpm`、`monorepo` 等主流技术开发
 
 #### 在线预览地址
 
@@ -19,7 +19,7 @@
 
 #### 常用命令
 
-- pnpm add @pear/utils@workspace:*
+- pnpm add @pear/utils@workspace:\*
 
 #### 登录相关
 

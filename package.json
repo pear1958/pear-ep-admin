@@ -4,17 +4,8 @@
   "version": "1.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "serve": "vite",
-    "build:dev": "vue-tsc && vite build --mode development",
-    "build:test": "vue-tsc && vite build --mode test",
-    "build:pro": "vite build --mode production",
-    "preview": "vite preview",
-    "prepare": "husky install",
-    "lint:lint-staged": "lint-staged",
-    "cz": "czg",
-    "commit": "git add -A && czg",
-    "dev:ele": "pnpm -F @pear/web-admin run dev"
+    "dev": "pnpm -F @pear/web-admin run dev",
+    "serve": "pnpm -F @pear/web-admin run dev"
   },
   "engines": {
     "node": ">=18.12.0"
