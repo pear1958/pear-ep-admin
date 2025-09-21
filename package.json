@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm -F @pear/web-admin run dev",
-    "serve": "pnpm -F @pear/web-admin run dev"
+    "serve": "pnpm -F @pear/web-admin run dev",
+    "lint:lint-staged": "lint-staged"
   },
   "engines": {
     "node": ">=18.12.0"
