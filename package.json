@@ -21,6 +21,7 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "^2.3.1",
+    "@pear/hooks": "workspace:*",
     "@pear/utils": "workspace:*",
     "@vue-office/docx": "1.6.0",
     "@vue-office/excel": "^1.7.2",

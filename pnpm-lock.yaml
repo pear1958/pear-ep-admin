@@ -14,6 +14,9 @@ importers:
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@4.9.5))
+      '@pear/hooks':
+        specifier: workspace:*
+        version: link:packages/hooks
       '@pear/utils':
         specifier: workspace:*
         version: link:packages/utils

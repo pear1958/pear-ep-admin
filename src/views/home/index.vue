@@ -9,6 +9,8 @@
 
     <el-button type="primary" class="mt-4" @click="debounceFn">测试防抖</el-button>
     <el-button type="primary" class="mt-4" @click="throttleFn">测试节流</el-button>
+
+    <el-button type="primary" class="mt-4" @click="handleTest">测试子包</el-button>
   </div>
 </template>
 
@@ -43,6 +45,10 @@ const throttleFn = throttle(handleClick2, 1000)
 // }
 // // window.addEventListener('resize', debounce(handleFn, 1000))
 // window.addEventListener('resize', throttle(handleFn, 1000))
+
+const handleTest = () => {
+  // test()
+}
 </script>
 
 <style lang="scss" scoped></style>
