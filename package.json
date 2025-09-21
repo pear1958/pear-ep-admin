@@ -1,5 +1,5 @@
 {
-  "name": "pear-ep-admin",
+  "name": "pear-monorepo",
   "private": true,
   "version": "1.0.1",
   "type": "module",
@@ -13,7 +13,8 @@
     "prepare": "husky install",
     "lint:lint-staged": "lint-staged",
     "cz": "czg",
-    "commit": "git add -A && czg"
+    "commit": "git add -A && czg",
+    "dev:ele": "pnpm -F @pear/web-admin run dev"
   },
   "engines": {
     "node": ">=18.12.0"
