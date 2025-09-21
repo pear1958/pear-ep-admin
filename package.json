@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "pnpm -F @pear/web-admin run dev",
     "serve": "pnpm -F @pear/web-admin run dev",
-    "lint:lint-staged": "lint-staged"
+    "build:dev": "pnpm -F @pear/web-admin run build:dev",
+    "prepare": "husky install",
+    "lint:lint-staged": "lint-staged",
+    "cz": "czg",
+    "commit": "git add -A && czg"
   },
   "engines": {
     "node": ">=18.12.0"

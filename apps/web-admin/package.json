@@ -9,10 +9,6 @@
     "build:dev": "vue-tsc && vite build --mode development",
     "build:test": "vue-tsc && vite build --mode test",
     "build:pro": "vite build --mode production",
-    "preview": "vite preview",
-    "prepare": "husky install",
-    "lint:lint-staged": "lint-staged",
-    "cz": "czg",
-    "commit": "git add -A && czg"
+    "preview": "vite preview"
   }
 }
