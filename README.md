@@ -66,7 +66,7 @@ pnpm run build:pro
 
 #### todo-list
 
-- 暂无
+- 集成 `vite-plugin-federation`
 
 #### 支持
 
