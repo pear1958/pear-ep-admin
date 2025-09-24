@@ -220,7 +220,11 @@ importers:
         specifier: ^1.6.5
         version: 1.8.27(typescript@4.9.5)
 
-  apps/main-app: {}
+  apps/main-app:
+    dependencies:
+      '@micro-zoe/micro-app':
+        specifier: 1.0.0-rc.27
+        version: 1.0.0-rc.27
 
   packages/hooks: {}
 
@@ -1203,6 +1207,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@micro-zoe/micro-app@1.0.0-rc.27':
+    resolution: {integrity: sha512-FctYIwS1lfzaduCKHzMB8dpOg1ugGYejeeV+tE7LvLMmmbxRl2HaO4dlydUYu/pTXTFEGMsnNul+6kx/8rfcAQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5870,6 +5877,8 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@micro-zoe/micro-app@1.0.0-rc.27': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

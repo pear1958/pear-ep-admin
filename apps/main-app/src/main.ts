@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import pinia from './store'
 import ElementPlus from 'element-plus'
+import microApp from '@micro-zoe/micro-app'
 
 import '@/styles/index.scss'
 
@@ -20,6 +21,51 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import i18n from '@/languages/index'
+
+microApp.start({
+  plugins: {
+    modules: {
+      // 针对名称为 appname-vite 的子应用配置插件
+      'appname-vite': [
+        {
+          // 接收的参数 code 是子应用的源代码字符串，返回处理后的代码
+          loader(code) {
+            if (process.env.NODE_ENV === 'development') {
+              code = code.replace(/(from|import)(\s*['"])(\/child\/vite\/)/g, all => {
+                return all.replace('/child/vite/', 'http://localhost:4007/child/vite/')
+              })
+            }
+            return code
+          }
+        }
+      ],
+      // 解决 create-react-app 中 sockjs-node 报错的问题
+      // create-react-app 的热更新会默认使用当前页面的端口，而子应用实际运行在 4004 端口，直接使用会导致连接错误
+      'appname-react16': [
+        {
+          loader(code) {
+            if (process.env.NODE_ENV === 'development' && code.indexOf('sockjs-node') > -1) {
+              // 将代码中的 'window.location.port' 替换为子应用实际运行的端口（4004）
+              code = code.replace('window.location.port', '4004')
+            }
+            return code
+          }
+        }
+      ],
+      // 解决 create-react-app 中 sockjs-node 报错的问题
+      'appname-react17': [
+        {
+          loader(code) {
+            if (process.env.NODE_ENV === 'development' && code.indexOf('sockjs-node') > -1) {
+              code = code.replace('window.location.port', '4005')
+            }
+            return code
+          }
+        }
+      ]
+    }
+  }
+})
 
 export const app = createApp(App)
 
