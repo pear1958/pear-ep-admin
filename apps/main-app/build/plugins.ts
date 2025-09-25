@@ -10,12 +10,19 @@ import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import legacy from '@vitejs/plugin-legacy'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import { viteBuildInfo } from './info'
-import { isDev } from '@/utils'
 
 export const getPlugins = (viteEnv: ViteEnv): PluginOption[] => {
   const { VITE_TITLE, VITE_OPEN_GZIP } = viteEnv
   return [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          // 匹配所有以 micro-app 开头的标签
+          // 不会产生 "Unknown custom element" 警告  micro-app 框架可以正常工作
+          isCustomElement: (tag: string) => /^micro-app/.test(tag)
+        }
+      }
+    }),
     vueJsx(),
     // 使用 svg 图标
     createSvgIconsPlugin({
@@ -56,7 +63,7 @@ export const getPlugins = (viteEnv: ViteEnv): PluginOption[] => {
       // defaults: > 0.5%, last 2 versions, Firefox 的长期支持版本 等
       targets: ['defaults', 'chrome 52', 'firefox 54', 'not IE 11'],
       // 提供所有可供挑选的 polyfill, 支持实验性特性
-      corejs: { version: 3, proposals: true },
+      // corejs: { version: 3, proposals: true },
       // 补充  core-js 不包含的补丁
       additionalLegacyPolyfills: [
         'regenerator-runtime/runtime', // async/await 补丁 -> generator 函数
@@ -68,9 +75,9 @@ export const getPlugins = (viteEnv: ViteEnv): PluginOption[] => {
       // 给现代浏览器补必要的新特性补丁  比如 Array.prototype.at
       // modernPolyfills: true,
       // 是否忽略项目中的 browserslist 配置
-      ignoreBrowserslistConfig: true,
+      // ignoreBrowserslistConfig: true,
       // 打包时如果有无法转译(无法模拟)的功能, 控制台显示警告
-      warnings: true
+      // warnings: true
     }),
     // 开发环境禁用，不影响热更新速度
     // Vite 在加载配置文件前会主动注入这个环境变量

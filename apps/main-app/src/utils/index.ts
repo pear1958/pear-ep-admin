@@ -2,6 +2,9 @@ import dayjs from 'dayjs'
 import { downloadByData } from 'pear-common-utils'
 import { downloadFile } from '@/api/modules/common'
 
+// - process.env.NODE_ENV ：在 构建过程中 使用（Node.js 环境）
+// - import.meta.env.MODE ：在 浏览器运行时 使用
+
 export const isDev = import.meta.env.MODE === 'development'
 export const isTest = import.meta.env.MODE === 'test'
 export const isProduction = import.meta.env.MODE === 'production'

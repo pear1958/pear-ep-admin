@@ -4,7 +4,7 @@
     "target": "ESNext", // 用于指定编译之后的版本目标  如果设为 ESNEXT，则为最新 ES 规范版本
     "useDefineForClassFields": true, // class编译优化
     "module": "ESNext", // 指定要使用的模块标准
-    "moduleResolution": "Node", // 模块解析策略  有 node 和 classic 两种类型
+    "moduleResolution": "bundler", // 模块解析策略
     // 是否启动所有类型检查
     // https://blog.csdn.net/weixin_40013817/article/details/127200987
     "strict": false,
