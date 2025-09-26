@@ -1,5 +1,6 @@
 // 开发环境地址
 const config: Recordable<string> = {
+  react19: 'http://localhost:5173',
   angular11: 'http://localhost:4001',
   nextjs11: 'http://localhost:4002',
   nuxtjs2: 'http://localhost:4003',

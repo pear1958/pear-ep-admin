@@ -7,6 +7,7 @@
     "dev": "pnpm -F @pear/web-admin run dev",
     "serve": "pnpm -F @pear/web-admin run dev",
     "build:dev": "pnpm -F @pear/web-admin run build:dev",
+    "build:pro": "pnpm -F @pear/web-admin run build:pro",
     "prepare": "husky install",
     "lint:lint-staged": "lint-staged",
     "cz": "czg",

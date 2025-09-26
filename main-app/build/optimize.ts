@@ -17,7 +17,7 @@ export const include = [
   'echarts',
   'el-table-infinite-scroll',
   'hotkeys-js',
-  'jszip',
+  // 'jszip',
   'lodash-es',
   'mitt',
   'mqtt',
