@@ -2,7 +2,7 @@
   <div class="header flex-between">
     <div class="flex items-center">
       <Collapse v-if="showCollapse" />
-      <Breadcrumb v-if="showBreadcrumb" />
+      <!-- <Breadcrumb v-if="showBreadcrumb" /> -->
     </div>
 
     <div class="flex-c pr-1.5">

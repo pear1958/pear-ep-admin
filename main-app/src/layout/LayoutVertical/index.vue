@@ -13,7 +13,7 @@
 
     <div class="right-layout">
       <Header />
-      <Tabs />
+      <!-- <Tabs /> -->
       <Main />
     </div>
   </div>

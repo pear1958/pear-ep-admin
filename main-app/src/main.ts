@@ -25,28 +25,33 @@ import i18n from '@/languages/index'
 microApp.start({
   plugins: {
     modules: {
-      // 针对名称为 app-react-vite-19 的子应用配置插件
-      // 'app-react-vite-19': [
-      //   {
-      //     // 接收的参数 code 是子应用的源代码字符串，返回处理后的代码
-      //     loader(code) {
-      //       if (process.env.NODE_ENV === 'development') {
-      //         code = code.replace(/(from|import)(\s*['"])(\/react-vite-19\/)/g, all => {
-      //           return all.replace('/react-vite-19/', 'http://localhost:5173/react-vite-19/')
-      //         })
-      //       }
-      //       return code
-      //     }
-      //   }
-      // ],
+      'appname-vite': [
+        {
+          loader(code) {
+            if (process.env.NODE_ENV === 'development') {
+              // 这里 /basename/ 需要和子应用vite.config.js中base的配置保持一致
+              code = code.replace(/(from|import)(\s*['"])(\/child\/vite\/)/g, all => {
+                return all.replace('/child/vite/', 'http://localhost:4007/child/vite/')
+              })
+            }
+
+            return code
+          }
+        }
+      ],
+
       // 新增 react-vite-19 子应用的配置
+      // loader 配置的核心是处理子应用中 “以 / 开头的绝对路径”
       'app-react-vite-19': [
         {
           loader(code) {
             if (process.env.NODE_ENV === 'development') {
               // 处理开发环境下的资源路径
-              code = code.replace(/(from|import)(\s*['"])(\/src\/)/g, all => {
-                return all.replace('/src/', 'http://localhost:5173/src/')
+              // code = code.replace(/(from|import)(\s*['"])(\/src\/)/g, all => {
+              //   return all.replace('/src/', 'http://localhost:5173/src/')
+              // })
+              code = code.replace(/(from|import)(\s*['"])(\/react-vite-19\/)/g, all => {
+                return all.replace('/react-vite-19/', 'http://localhost:5173/react-vite-19/')
               })
             }
             return code

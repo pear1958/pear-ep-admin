@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { staticRouter } from './modules/static'
 import { notFoundRouter } from './modules/error'
 import NProgress from '@/config/progress'
@@ -21,7 +21,8 @@ const modules = import.meta.glob('@/views/**/*.{vue,tsx}')
 const axiosCanceler = new AxiosCanceler()
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  // history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [...staticRouter, notFoundRouter],
   // 在页面之间导航时控制滚动的函数  https://router.vuejs.org/zh/api/#routes
   scrollBehavior: () => ({ left: 0, top: 0 })

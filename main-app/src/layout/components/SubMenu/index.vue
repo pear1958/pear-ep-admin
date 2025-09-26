@@ -51,7 +51,18 @@ const isCollapse = computed(() => useSystemStore().sideBar.isCollapse)
 
 const handleClickMenu = (subItem: MenuItem) => {
   if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank')
-
+  console.log('subItem', subItem)
+  // // if (subItem.path === '/react-vite-19/:page*') {
+  // //   console.log(111111)
+  // //   router.push('/react-vite-19')
+  // //   return 
+  // // } 
+  if (subItem.path === '/app-vite:page*') {
+    console.log(111111)
+    router.push('/app-vite')
+    // router.push('/app-vite/page2')
+    return 
+  } 
   router.push(subItem.path)
 }
 </script>
