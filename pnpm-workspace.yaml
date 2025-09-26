@@ -5,4 +5,5 @@
 
 packages:
   - "packages/*"
-  - apps/*
+  - main-app
+  - child-apps/*
