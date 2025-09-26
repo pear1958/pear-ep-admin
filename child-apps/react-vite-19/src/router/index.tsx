@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createHashRouter, RouterProvider } from 'react-router-dom'
 import Home from '../pages/Home'
 import About from '../pages/About'
 import UserList from '../pages/users/List'
@@ -42,7 +42,7 @@ const routes = [
 ]
 
 // 创建路由时，在第二个参数中配置basename
-const router = createBrowserRouter(routes, {
+const router = createHashRouter(routes, {
   basename: baseRoute
 })
 
