@@ -26,13 +26,27 @@ microApp.start({
   plugins: {
     modules: {
       // 针对名称为 app-react-vite-19 的子应用配置插件
+      // 'app-react-vite-19': [
+      //   {
+      //     // 接收的参数 code 是子应用的源代码字符串，返回处理后的代码
+      //     loader(code) {
+      //       if (process.env.NODE_ENV === 'development') {
+      //         code = code.replace(/(from|import)(\s*['"])(\/react-vite-19\/)/g, all => {
+      //           return all.replace('/react-vite-19/', 'http://localhost:5173/react-vite-19/')
+      //         })
+      //       }
+      //       return code
+      //     }
+      //   }
+      // ],
+      // 新增 react-vite-19 子应用的配置
       'app-react-vite-19': [
         {
-          // 接收的参数 code 是子应用的源代码字符串，返回处理后的代码
           loader(code) {
             if (process.env.NODE_ENV === 'development') {
-              code = code.replace(/(from|import)(\s*['"])(\/child\/vite\/)/g, all => {
-                return all.replace('/react-vite-19/', 'http://localhost:5173/react-vite-19/')
+              // 处理开发环境下的资源路径
+              code = code.replace(/(from|import)(\s*['"])(\/src\/)/g, all => {
+                return all.replace('/src/', 'http://localhost:5173/src/')
               })
             }
             return code

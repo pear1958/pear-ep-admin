@@ -13,7 +13,12 @@ export default defineConfig({
       'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     }
   },
-  base: `${process.env.NODE_ENV === 'production' ? 'http://www.micro-zoe.com' : ''}/react-vite-19/`,
+  // base: `${process.env.NODE_ENV === 'production' ? 'http://www.micro-zoe.com' : ''}/react-vite-19/`,
+  // 动态设置 base 路径
+  // @ts-ignore
+  base: window.__MICRO_APP_ENVIRONMENT__
+    ? '/react-vite-19/' // 微前端环境：匹配主应用路由前缀（与主应用挂载子应用的路由保持一致）
+    : '/', // 独立运行：使用根路径
   plugins: [
     react(),
     (function () {
