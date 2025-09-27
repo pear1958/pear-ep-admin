@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import pinia from './store'
 import ElementPlus from 'element-plus'
+import { registerMicroApps, setDefaultMountApp, start } from 'qiankun'
 
 import '@/styles/index.scss'
 
@@ -24,3 +25,21 @@ import i18n from '@/languages/index'
 export const app = createApp(App)
 
 app.use(ElementPlus).use(router).use(directives).use(pinia).use(i18n).mount('#app')
+
+registerMicroApps([
+  {
+    name: 'app-vite-vue3',
+    entry: '//localhost:5173',
+    container: '#sub-app-container',
+    activeRule: '/app-vite-vue3', // 匹配的路由规则
+    // 可以传递给子应用的参数
+    props: {
+      mainAppName: 'Main Application'
+    }
+  }
+])
+
+// 设置默认进入的子应用
+setDefaultMountApp('/')
+
+start()

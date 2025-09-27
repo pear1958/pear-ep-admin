@@ -34,7 +34,7 @@
     "types": [
       // "node",
       // "vite/client",
-      "element-plus/global",
+      // "element-plus/global",
     ],
     "allowImportingTsExtensions": true
   },
