@@ -295,11 +295,7 @@ importers:
         specifier: ^0.28.10
         version: 0.28.10(typescript@4.9.5)
 
-  main-app:
-    dependencies:
-      '@micro-zoe/micro-app':
-        specifier: 1.0.0-rc.27
-        version: 1.0.0-rc.27
+  main-app: {}
 
   packages/hooks: {}
 
@@ -1886,9 +1882,6 @@ packages:
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.3.0'
-
-  '@micro-zoe/micro-app@1.0.0-rc.27':
-    resolution: {integrity: sha512-FctYIwS1lfzaduCKHzMB8dpOg1ugGYejeeV+tE7LvLMmmbxRl2HaO4dlydUYu/pTXTFEGMsnNul+6kx/8rfcAQ==}
 
   '@module-federation/error-codes@0.8.12':
     resolution: {integrity: sha512-K+F4iiV62KY+IpjK6ggn3vI5Yt/T/LUb6xuazY78bhAGwLaHe1DYr7BfSutKMpiB+Dcs6U4dYOBogSMnnl0j4Q==, tarball: https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-0.8.12.tgz}
@@ -10459,8 +10452,6 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       react: 18.3.1
       react-is: 16.13.1
-
-  '@micro-zoe/micro-app@1.0.0-rc.27': {}
 
   '@module-federation/error-codes@0.8.12': {}
 

@@ -14,15 +14,7 @@ import { viteBuildInfo } from './info'
 export const getPlugins = (viteEnv: ViteEnv): PluginOption[] => {
   const { VITE_TITLE, VITE_OPEN_GZIP } = viteEnv
   return [
-    vue({
-      template: {
-        compilerOptions: {
-          // 匹配所有以 micro-app 开头的标签
-          // 不会产生 "Unknown custom element" 警告  micro-app 框架可以正常工作
-          isCustomElement: (tag: string) => /^micro-app/.test(tag)
-        }
-      }
-    }),
+    vue(),
     vueJsx(),
     // 使用 svg 图标
     createSvgIconsPlugin({
