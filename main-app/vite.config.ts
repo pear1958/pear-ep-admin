@@ -38,7 +38,6 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       warmup: {
         clientFiles: ['./index.html', './src/{views,components}/*']
       },
-      cors: true // 允许跨域
     },
     css: {
       preprocessorOptions: {

@@ -268,6 +268,9 @@ importers:
       vue:
         specifier: ^3.5.21
         version: 3.5.22(typescript@5.8.3)
+      vue-router:
+        specifier: ^4.2.2
+        version: 4.5.0(vue@3.5.22(typescript@5.8.3))
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^6.0.1
@@ -285,11 +288,7 @@ importers:
         specifier: ^3.0.7
         version: 3.0.8(typescript@5.8.3)
 
-  main-app:
-    dependencies:
-      qiankun:
-        specifier: ^2.10.16
-        version: 2.10.16
+  main-app: {}
 
   packages/hooks: {}
 
@@ -3243,9 +3242,6 @@ packages:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==, tarball: https://registry.npmjs.org/import-fresh/-/import-fresh-3.3.0.tgz}
     engines: {node: '>=6'}
 
-  import-html-entry@1.17.0:
-    resolution: {integrity: sha512-2SDsRlGlE8bqdnGqsOyiDPEWlzJR0jNW4LWopnZl5QE1Yd0nJ7fykWo2GaKUF7Jq7pR0g3dElhuJHyamTt1gPQ==, tarball: https://registry.npmjs.org/import-html-entry/-/import-html-entry-1.17.0.tgz}
-
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==, tarball: https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz}
     engines: {node: '>=0.8.19'}
@@ -4446,9 +4442,6 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==, tarball: https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz}
     engines: {node: '>=6'}
 
-  qiankun@2.10.16:
-    resolution: {integrity: sha512-Q3tSVUrPnzx8ckEOKIoPnhb5LE28FPKyan/r6jEuGJGqTbIy+3rp6E2/KfU82ZI4yZpef9LFTrnxdj49jAEsmw==, tarball: https://registry.npmjs.org/qiankun/-/qiankun-2.10.16.tgz}
-
   qs@6.14.0:
     resolution: {integrity: sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==}
     engines: {node: '>=0.6'}
@@ -4728,9 +4721,6 @@ packages:
 
   simple-swizzle@0.2.4:
     resolution: {integrity: sha512-nAu1WFPQSMNr2Zn9PGSZK9AGn4t/y97lEm+MXTtUDwfP0ksAIX4nO+6ruD9Jwut4C49SB1Ws+fbXsm/yScWOHw==}
-
-  single-spa@5.9.5:
-    resolution: {integrity: sha512-9SQdmsyz4HSP+3gs6PJzhkaMEg+6zTlu9oxIghnwUX3eq+ajq4ft5egl0iyR55LAmO/UwvU8NgIWs/ZyQMa6dw==, tarball: https://registry.npmjs.org/single-spa/-/single-spa-5.9.5.tgz}
 
   slate-history@0.66.0:
     resolution: {integrity: sha512-6MWpxGQZiMvSINlCbMW43E2YBSVMCMCIwQfBzGssjWw4kb0qfvj0pIdblWNRQZD0hR6WHP+dHHgGSeVdMWzfng==}
@@ -8845,10 +8835,6 @@ snapshots:
       parent-module: 1.0.1
       resolve-from: 4.0.0
 
-  import-html-entry@1.17.0:
-    dependencies:
-      '@babel/runtime': 7.26.0
-
   imurmurhash@0.1.4: {}
 
   indent-string@4.0.0: {}
@@ -9991,13 +9977,6 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  qiankun@2.10.16:
-    dependencies:
-      '@babel/runtime': 7.26.0
-      import-html-entry: 1.17.0
-      lodash: 4.17.21
-      single-spa: 5.9.5
-
   qs@6.14.0:
     dependencies:
       side-channel: 1.1.0
@@ -10351,8 +10330,6 @@ snapshots:
   simple-swizzle@0.2.4:
     dependencies:
       is-arrayish: 0.3.4
-
-  single-spa@5.9.5: {}
 
   slate-history@0.66.0(slate@0.72.8):
     dependencies:
@@ -10968,6 +10945,11 @@ snapshots:
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@4.9.5)
+
+  vue-router@4.5.0(vue@3.5.22(typescript@5.8.3)):
+    dependencies:
+      '@vue/devtools-api': 6.6.4
+      vue: 3.5.22(typescript@5.8.3)
 
   vue-template-compiler@2.7.16:
     dependencies:

@@ -10,8 +10,5 @@
     "build:test": "vue-tsc && vite build --mode test",
     "build:pro": "vite build --mode production",
     "preview": "vite preview"
-  },
-  "dependencies": {
-    "qiankun": "^2.10.16"
   }
 }
