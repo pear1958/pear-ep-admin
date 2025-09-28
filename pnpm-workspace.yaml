@@ -1,9 +1,3 @@
-# onlyBuiltDependencies:
-#   - '@vue-office/docx'
-#   - '@vue-office/excel'
-#   - vue-demi
-
 packages:
   - "packages/*"
-  - main-app
-  - child-apps/*
+  - apps/*
