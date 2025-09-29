@@ -67,6 +67,7 @@ pnpm run build:pro
 #### todo-list
 
 - 集成 `vite-plugin-federation`
+- pure-admin starFish -> https://github.com/haixin-fang/vue-form-design
 
 #### 支持
 

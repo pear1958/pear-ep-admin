@@ -4,8 +4,6 @@ import { formatEnv, __APP_INFO__ } from './build/utils'
 import { getPlugins } from './build/plugins'
 import { include, exclude } from './build/optimize'
 
-const pathSrc = resolve(__dirname, 'src')
-
 // https://cn.vitejs.dev/config/#conditional-config
 export default ({ mode }: ConfigEnv): UserConfigExport => {
   // 加载 envDir 中的 .env 文件, 默认情况下只有前缀为 VITE_ 的会被加载
@@ -20,7 +18,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     base: env.VITE_PUBLIC_PATH,
     resolve: {
       alias: {
-        '@': pathSrc
+        '@': resolve(__dirname, 'src')
       }
     },
     server: {
@@ -37,7 +35,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布
       warmup: {
         clientFiles: ['./index.html', './src/{views,components}/*']
-      },
+      }
     },
     css: {
       preprocessorOptions: {
