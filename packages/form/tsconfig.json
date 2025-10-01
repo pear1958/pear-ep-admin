@@ -1,6 +1,23 @@
 {
   "extends": "../../apps/web-admin/tsconfig.json",
   "compilerOptions": {
-    "types": []
-  }
+    // 当前目录
+    "baseUrl": "./",
+    "types": [
+      "element-plus/global",
+    ],
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "vite.config.ts",
+    "**/packages/**/*.ts",
+    "**/packages/**/*.d.ts",
+    "**/packages/**/*.tsx",
+    "**/packages/**/*.vue",
+  ],
 }

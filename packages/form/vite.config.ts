@@ -2,23 +2,37 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { visualizer } from 'rollup-plugin-visualizer'
 import pkg from './package.json'
 
 // https://vite.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
+      // __dirname 是当前配置文件所在目录
       '@': resolve(__dirname, 'src')
     }
   },
   plugins: [
     vue(),
+    // 分析打包后的产物 生成一个可视化的报告（通常是 HTML 文件），展示各依赖包和模块的体积占比
+    visualizer(),
     dts({
       outDir: 'dist/types', // 类型声明文件输出到 dist/types 目录
       include: ['src/**/*'], // 只处理 src 目录下的所有文件
       // 生成的类型声明文件（.d.ts）里，所有的类型引用都用 import 语法，而不是用三斜线引用（/// <reference ... />
       staticImport: true, // 类型声明文件使用静态 import 语法
-      insertTypesEntry: true, // 在 package.json 里自动插入 types 字段入口
+      insertTypesEntry: true // 在 package.json 里自动插入 types 字段入口
+    }),
+    // 配置按需导入
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
     })
   ],
   build: {

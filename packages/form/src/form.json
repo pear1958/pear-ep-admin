@@ -1,0 +1,131 @@
+[
+  {
+    "ControlType": "CheckBox",
+    "nameCn": "复选框",
+    "id": "WiTmWspBL7HJfBiIV1q3D",
+    "layout": false,
+    "data": {
+      "fieldName": "CheckBox_t2CJxYwhiMXXUmuniMl9B",
+      "label": "标签名称",
+      "tip": "",
+      "value": "",
+      "showRule": "{}",
+      "required": false,
+      "rule": "[]",
+      "default": false,
+      "itemConfig": {
+        "value": ["选项1"],
+        "items": [
+          {
+            "label": "选项1",
+            "value": "选项1",
+            "select": true,
+            "id": 1
+          },
+          {
+            "label": "选项2",
+            "value": "选项2",
+            "select": false,
+            "id": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "ControlType": "ColorSelect",
+    "nameCn": "颜色选择",
+    "id": "okKc36tNEV0_XVxer81fo",
+    "layout": false,
+    "data": {
+      "fieldName": "ColorSelect_DFIK4xUQOrJ5V_-zJaR-y",
+      "label": "标签名称",
+      "tip": "",
+      "placeholder": "",
+      "showRule": "{}",
+      "required": false,
+      "rule": "[]",
+      "default": "#409EFF"
+    }
+  },
+  {
+    "ControlType": "Selected",
+    "nameCn": "选择器",
+    "id": "S3TLziOArBAW41id4Z3G0",
+    "layout": false,
+    "data": {
+      "fieldName": "Selected_Og3y0LGdPH9eeP0W8h4xD",
+      "label": "标签名称",
+      "tip": "",
+      "placeholder": "",
+      "showRule": "{}",
+      "required": false,
+      "rule": "[]",
+      "itemConfig": {
+        "value": "选项1",
+        "items": [
+          {
+            "label": "选项1",
+            "value": "选项1",
+            "select": true,
+            "id": 1
+          },
+          {
+            "label": "选项2",
+            "value": "选项2",
+            "select": false,
+            "id": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "ControlType": "Text",
+    "nameCn": "文本框",
+    "id": "0Uw4wbYlmJpkSw191TOmV",
+    "layout": false,
+    "data": {
+      "fieldName": "Text_FDxx4JzQwrXAg8zIuTUG-",
+      "label": "标签名称",
+      "tip": "",
+      "placeholder": "",
+      "showRule": "{}",
+      "required": false,
+      "rule": "[]",
+      "default": ""
+    }
+  },
+  {
+    "ControlType": "JsonEditor",
+    "nameCn": "JSON编辑",
+    "id": "FqjuPFFfTBiM-gAa2vCNX",
+    "layout": false,
+    "data": {
+      "fieldName": "JsonEditor_Wu04iQnT9crbIO1njr-FP",
+      "label": "标签名称",
+      "tip": "",
+      "showRule": "{}",
+      "required": false,
+      "rule": "[]",
+      "default": "[]",
+      "json": true
+    }
+  },
+  {
+    "ControlType": "Switch",
+    "nameCn": "开关",
+    "id": "s1EX_ap33BIu748LAenJg",
+    "layout": false,
+    "data": {
+      "fieldName": "Switch_fl0ixX-Km0DbdvPeF7-eE",
+      "label": "标签名称",
+      "tip": "",
+      "value": "",
+      "showRule": "{}",
+      "required": false,
+      "rule": "[]",
+      "default": false
+    }
+  }
+]
