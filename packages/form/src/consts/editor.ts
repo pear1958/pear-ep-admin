@@ -10,6 +10,9 @@ interface FormRule {
  */
 type ComponentListEnum = Omit<keyof typeof window.VApp.$formcomponents, 'symbol'>
 
+/**
+ * 实际渲染的 Item 配置
+ */
 export interface AllFormItem {
   /**
    * 组件渲染唯一标识

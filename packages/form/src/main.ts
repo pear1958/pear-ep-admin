@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, App as AppType, defineAsyncComponent } from 'vue'
 import App from './App.vue'
 import './styles/index.scss'
 import $Flex from '@/utils/_'
@@ -30,4 +30,28 @@ app.config.globalProperties.$formcomponents = utilFuns
 app.config.globalProperties.$Flex = $Flex
 window.VApp = app.config.globalProperties
 
+app.component(
+  'draggable',
+  defineAsyncComponent({
+    loader: () => import('vuedraggable')
+  })
+)
+
 app.mount('#app')
+
+// -------------------------------------
+
+// 本质是提供了一个 “组件仓库”，而不是直接注册组件。
+// 这种设计允许上层调用者（如 editor 子包）根据自身需求决定如何使用这些组件：
+// 可以全局注册，也可以局部注册，甚至按需动态导入
+const install = (app: AppType) => {
+  app.config.globalProperties.$formcomponents = utilFuns
+
+  for (const key in utilFuns) {
+    app.component(key, utilFuns[key])
+  }
+}
+
+export default {
+  install
+}
