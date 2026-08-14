@@ -1,6 +1,0 @@
-{
-  "extends": "../../apps/web-admin/tsconfig.json",
-  "compilerOptions": {
-    "types": []
-  }
-}

@@ -1,10 +1,11 @@
 <template>
-  <vue-office-excel :src="excelUrl" style="height: 100vh" @rendered="rendered" />
+  <!-- <vue-office-excel :src="excelUrl" style="height: 100vh" @rendered="rendered" /> -->
+  <div>checkExcel</div>
 </template>
 
 <script setup lang="ts">
-import VueOfficeExcel from '@vue-office/excel'
-import '@vue-office/excel/lib/index.css'
+// import VueOfficeExcel from '@vue-office/excel'
+// import '@vue-office/excel/lib/index.css'
 
 defineOptions({
   name: 'checkExcel'

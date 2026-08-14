@@ -1,10 +1,11 @@
 <template>
-  <vue-office-docx :src="wordUrl" @rendered="rendered" />
+  <!-- <vue-office-docx :src="wordUrl" @rendered="rendered" /> -->
+  <div>checkWord</div>
 </template>
 
 <script setup lang="ts">
-import VueOfficeDocx from '@vue-office/docx'
-import '@vue-office/docx/lib/index.css'
+// import VueOfficeDocx from '@vue-office/docx'
+// import '@vue-office/docx/lib/index.css'
 
 defineOptions({
   name: 'checkWord'
